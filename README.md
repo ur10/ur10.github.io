@@ -1,3 +1,3 @@
 # Portfolio
 
-atharva-18.github.io
+ur10.github.io
