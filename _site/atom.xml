@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> - Articles</title>
+    <description>Atharva Pusalkar</description>
+    <link>
+    http://localhost:4000</link>
+    
+      
+      <item>
+        <title>Medicine Dispensing Robot</title>
+        
+          <description>&lt;p&gt;This is an ongoing project funded by our college for routine medicine delivery for hospital patients. The main goal is to dispense medicines according to the prescription to Alzheimer’s patients during the suggested timings.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 10 Oct 2021 15:48:00 +0530</pubDate>
+        <link>
+        http://localhost:4000/med-robot</link>
+        <guid isPermaLink="true">http://localhost:4000/med-robot</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>ROS2 2D Landmark SLAM</title>
+        
+          <description>&lt;p&gt;A ROS2 package developed by me for 2D SLAM using landmark detections and FastSLAM 2.0.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 01 Oct 2021 15:48:00 +0530</pubDate>
+        <link>
+        http://localhost:4000/2d-landmark-slam</link>
+        <guid isPermaLink="true">http://localhost:4000/2d-landmark-slam</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Contributing to Open Robotics</title>
+        
+          <description>&lt;p&gt;In this post I will be presenting my contributions to Open Robotics before joining them as a student developer. I contributed mainly to the Ignition Gazebo and Ignition RViz projects for a few months to get familiar with a large codebase.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Mon, 23 Aug 2021 15:48:00 +0530</pubDate>
+        <link>
+        http://localhost:4000/osrf</link>
+        <guid isPermaLink="true">http://localhost:4000/osrf</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Google Summer of Code at Open Robotics</title>
+        
+          <description>&lt;p&gt;In the summer of 2021, I had the opportunity to work at Open Robotics (née
+Open Source Robotics Foundation) as a student developer. The project was in turn funded by Google through their Summer of Code 2021 program.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 22 Aug 2021 15:48:00 +0530</pubDate>
+        <link>
+        http://localhost:4000/gsoc</link>
+        <guid isPermaLink="true">http://localhost:4000/gsoc</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Data Acquisition - DJS Racing</title>
+        
+          <description>&lt;h1 id=&quot;data-acquisition-for-a-formula-student-car&quot;&gt;Data Acquisition for a Formula Student car.&lt;/h1&gt;
+&lt;p&gt;In this blog, I will be writing about the data acquisition system that I built with my teammates for the year 2021.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 31 Jul 2021 15:48:00 +0530</pubDate>
+        <link>
+        http://localhost:4000/djsr-daq</link>
+        <guid isPermaLink="true">http://localhost:4000/djsr-daq</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Model Predictive Control Concept</title>
+        
+          <description>&lt;section id=&quot;main&quot; class=&quot;wrapper&quot;&gt;
+  &lt;div class=&quot;inner&quot;&gt;
+  &lt;h1 class=&quot;major&quot;&gt;A concept for Model Predictive Control in race-cars&lt;/h1&gt;
+    &lt;!-- &lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;images/pic04.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt; --&gt;
+    &lt;p&gt;This is a presentation made by me during the concept phase of the 2021-2022 season.&lt;/p&gt;
+    &lt;p&gt;It is an extension of Contouring Model Predictive Control for cars with a
+    differential, using the HPIPM NLP solver. Globalrace-trajectory optimization
+    for shortest time is done using Time-Optimal Trajectory Planning (Christ et
+    al., 2019).&lt;/p&gt;
+    &lt;iframe src=&quot;https://docs.google.com/presentation/d/e/2PACX-1vQX6QqJKk9YsoXgC34c0_mbO6K9sN1kIp2U-qKnue3OFToLQhVGKgYfuYoX4LqNFLzPNYDtV5HJphwH/embed?start=false&amp;amp;loop=true&amp;amp;delayms=10000&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;749&quot; allowfullscreen=&quot;true&quot; mozallowfullscreen=&quot;true&quot; webkitallowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+</description>
+        
+        <pubDate>Sat, 31 Jul 2021 15:48:00 +0530</pubDate>
+        <link>
+        http://localhost:4000/mpcc</link>
+        <guid isPermaLink="true">http://localhost:4000/mpcc</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Monocular Depth Estimation</title>
+        
+          <description>&lt;section id=&quot;main&quot; class=&quot;wrapper&quot;&gt;
+  &lt;div class=&quot;inner&quot;&gt;
+  &lt;h1 class=&quot;major&quot;&gt;Monocular Depth Estimation using CGANs&lt;/h1&gt;
+  &lt;!-- &lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;images/pic04.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt; --&gt;
+  &lt;p&gt;Monocular depth estimation and object detection pipeline that makes use of Image-to-Image Translation with Conditional Adversarial Nets (Isola et al., 2017). The model was trained such that it learns the translation between a raw image and its stereo depth estimate.&lt;/p&gt;
+  &lt;a href=&quot;https://github.com/atharva-18/Object-Streamer&quot; target=&quot;_blank&quot;&gt;GitHub Repository&lt;/a&gt;
+  &lt;iframe src=&quot;https://docs.google.com/presentation/d/e/2PACX-1vQw9TzhkEomSEa-RVDAG9pKhtg6seix5Y4w0NGu7vknCJWmcCrVuWLkrC9xOmck5v4tSByO3rbaXW-b/embed?start=false&amp;amp;loop=true&amp;amp;delayms=5000&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;749&quot; allowfullscreen=&quot;true&quot; mozallowfullscreen=&quot;true&quot; webkitallowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+</description>
+        
+        <pubDate>Sat, 31 Jul 2021 15:48:00 +0530</pubDate>
+        <link>
+        http://localhost:4000/cgan</link>
+        <guid isPermaLink="true">http://localhost:4000/cgan</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>IEEE Student Branch, DJSCE</title>
+        
+          <description>&lt;p&gt;For two years of my undergrad, I was a member of the IEEE student chapter of my institute, DJ Sanghvi College of Engineering.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Mon, 05 Jul 2021 15:48:00 +0530</pubDate>
+        <link>
+        http://localhost:4000/ieee-sb</link>
+        <guid isPermaLink="true">http://localhost:4000/ieee-sb</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>DJS Racing</title>
+        
+          <description>&lt;p&gt;I currently lead the driverless project at DJS Racing, a student team aiming to build a self-driving Formula Student race car. In conjuction, I also developed the data acquisition system for our vehicle.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 01 Jul 2021 15:48:00 +0530</pubDate>
+        <link>
+        http://localhost:4000/djsr</link>
+        <guid isPermaLink="true">http://localhost:4000/djsr</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Internship at Mowito Robotics</title>
+        
+          <description>&lt;p&gt;Mowito is an Indian startup that provides autonomous navigation software solutions for use in warehouses and more. The company has also recently expanded into providing physical robots with applications such as grocery delivery.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 30 May 2021 15:48:00 +0530</pubDate>
+        <link>
+        http://localhost:4000/mowito</link>
+        <guid isPermaLink="true">http://localhost:4000/mowito</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Wireless Data Transceiver using LoRa mesh</title>
+        
+          <description>&lt;p&gt;I worked on an industrial-grade wireless data transceiver using the LoRa mesh technology for use in ship docking systems.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 25 Apr 2021 15:48:00 +0530</pubDate>
+        <link>
+        http://localhost:4000/iiot-device</link>
+        <guid isPermaLink="true">http://localhost:4000/iiot-device</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>RRT-Classic</title>
+        
+          <description>&lt;p&gt;Rapidly exploring rapid trees (RRTs) implementation in C++17.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 05 Jan 2021 15:48:00 +0530</pubDate>
+        <link>
+        http://localhost:4000/rrt-cpp</link>
+        <guid isPermaLink="true">http://localhost:4000/rrt-cpp</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>COVID-19 Detection from Chest X-Ray Images</title>
+        
+          <description>&lt;p&gt;A small project that I did back in December of 2020 for COVID-19 detection using chest x-ray images. The model uses a modified ResNet-50 model for detection using RGB signals.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 20 Dec 2020 15:48:00 +0530</pubDate>
+        <link>
+        http://localhost:4000/resnet-chest</link>
+        <guid isPermaLink="true">http://localhost:4000/resnet-chest</guid>
+      </item>
+      
+    
+  </channel>
+</rss>

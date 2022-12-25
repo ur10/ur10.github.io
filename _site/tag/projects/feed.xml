@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
+  <link href="http://localhost:4000/tag/projects/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="http://localhost:4000/" rel="alternate" type="text/html" />
+  <updated>2022-01-01T20:02:16+05:30</updated>
+  <id>http://localhost:4000/tag/projects/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">Atharva Pusalkar | </title>
+  
+
+  
+    <subtitle>Atharva Pusalkar</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Medicine Dispensing Robot</title>
+      <link href="http://localhost:4000/med-robot" rel="alternate" type="text/html" title="Medicine Dispensing Robot" />
+      <published>2021-10-10T15:48:00+05:30</published>
+      <updated>2021-10-10T15:48:00+05:30</updated>
+      <id>http://localhost:4000/med-robot</id>
+      <content type="html" xml:base="http://localhost:4000/med-robot">&lt;p&gt;This is an ongoing project funded by our college for routine medicine delivery for hospital patients. The main goal is to dispense medicines according to the prescription to Alzheimer’s patients during the suggested timings.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/mdr_cad.jpg&quot; alt=&quot;assets/images/mdr_cad.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I am currently working as the system integration lead and developing the human voice interface.&lt;/p&gt;
+
+&lt;p&gt;Medicine dispensing mechanism design:
+&lt;img src=&quot;assets/images/mdr_medicine_base.jpg&quot; alt=&quot;Medicine base&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3D printed mechanism:&lt;/p&gt;
+&lt;video width=&quot;75%&quot; height=&quot;75%&quot; controls=&quot;&quot; loop=&quot;&quot;&gt;
+	&lt;source src=&quot;assets/videos/mdr_dispensing.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+    Your browser does not support the video tag.
+&lt;/video&gt;
+&lt;p&gt;Apologies for the shaky video.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Atharva Pusalkar</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="Projects" />
+      
+
+      
+        <summary type="html">This is an ongoing project funded by our college for routine medicine delivery for hospital patients. The main goal is to dispense medicines according to the prescription to Alzheimer’s patients during the suggested timings.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">ROS2 2D Landmark SLAM</title>
+      <link href="http://localhost:4000/2d-landmark-slam" rel="alternate" type="text/html" title="ROS2 2D Landmark SLAM" />
+      <published>2021-10-01T15:48:00+05:30</published>
+      <updated>2021-10-01T15:48:00+05:30</updated>
+      <id>http://localhost:4000/2d-landmark-slam</id>
+      <content type="html" xml:base="http://localhost:4000/2d-landmark-slam">&lt;p&gt;A ROS2 package developed by me for 2D SLAM using landmark detections and FastSLAM 2.0.&lt;/p&gt;
+
+&lt;p&gt;GitHub Repository - &lt;a href=&quot;https://github.com/atharva-18/landmark-slam-2d.git&quot;&gt;https://github.com/atharva-18/landmark-slam-2d.git&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/2dlsm_ss.png&quot; alt=&quot;assets/images/2dlsm_ss.png&quot; /&gt;&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Atharva Pusalkar</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="Projects" />
+      
+
+      
+        <summary type="html">A ROS2 package developed by me for 2D SLAM using landmark detections and FastSLAM 2.0.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Contributing to Open Robotics</title>
+      <link href="http://localhost:4000/osrf" rel="alternate" type="text/html" title="Contributing to Open Robotics" />
+      <published>2021-08-23T15:48:00+05:30</published>
+      <updated>2021-08-23T15:48:00+05:30</updated>
+      <id>http://localhost:4000/osrf</id>
+      <content type="html" xml:base="http://localhost:4000/osrf">&lt;p&gt;In this post I will be presenting my contributions to Open Robotics before joining them as a student developer. I contributed mainly to the Ignition Gazebo and Ignition RViz projects for a few months to get familiar with a large codebase.&lt;/p&gt;
+
+&lt;h2 id=&quot;ignition-gazebo&quot;&gt;Ignition Gazebo&lt;/h2&gt;
+
+&lt;h3 id=&quot;about-dialog&quot;&gt;About dialog&lt;/h3&gt;
+
+&lt;p&gt;Adds an about dialog box to display version number, license, and documentation links.&lt;/p&gt;
+
+&lt;p&gt;Pull request - &lt;a href=&quot;https://github.com/ignitionrobotics/ign-gazebo/pull/609&quot;&gt;https://github.com/ignitionrobotics/ign-gazebo/pull/609&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/about_dialog.png&quot; alt=&quot;About dialog&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;modifying-light-intensity&quot;&gt;Modifying light intensity&lt;/h3&gt;
+
+&lt;p&gt;Adds the ability to change the intensity of light entities in the simulation at runtime.&lt;/p&gt;
+
+&lt;p&gt;Pull request - &lt;a href=&quot;https://github.com/ignitionrobotics/ign-gazebo/pull/670&quot;&gt;https://github.com/ignitionrobotics/ign-gazebo/pull/670&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/light_intensity.gif&quot; alt=&quot;Light intensity&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;joint-position-controller-topic-validity&quot;&gt;Joint Position Controller topic validity&lt;/h3&gt;
+
+&lt;p&gt;Sanity checks for user provided topic values in joint controllers.&lt;/p&gt;
+
+&lt;p&gt;Pull requests - &lt;a href=&quot;https://github.com/ignitionrobotics/ign-gazebo/pull/632&quot;&gt;https://github.com/ignitionrobotics/ign-gazebo/pull/632&lt;/a&gt; and &lt;a href=&quot;https://github.com/ignitionrobotics/ign-gazebo/pull/639&quot;&gt;https://github.com/ignitionrobotics/ign-gazebo/pull/639&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if (_sdf-&amp;gt;HasElement(&quot;topic&quot;))
+{
+  topic = transport::TopicUtils::AsValidTopic(
+      _sdf-&amp;gt;Get&amp;lt;std::string&amp;gt;(&quot;topic&quot;));
+
+  if (topic.empty())
+  {
+    ignerr &amp;lt;&amp;lt; &quot;Failed to create topic [&quot; &amp;lt;&amp;lt; _sdf-&amp;gt;Get&amp;lt;std::string&amp;gt;(&quot;topic&quot;)
+           &amp;lt;&amp;lt; &quot;]&quot; &amp;lt;&amp;lt; &quot; for joint [&quot; &amp;lt;&amp;lt; jointName
+           &amp;lt;&amp;lt; &quot;]&quot; &amp;lt;&amp;lt; std::endl;
+    return;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;ignition-rviz&quot;&gt;Ignition RViz&lt;/h2&gt;
+
+&lt;h3 id=&quot;tf-transform-status&quot;&gt;TF transform status&lt;/h3&gt;
+
+&lt;p&gt;Adds the ability to show TF transform status in RViz.&lt;/p&gt;
+
+&lt;p&gt;Pull request - &lt;a href=&quot;https://github.com/ignitionrobotics/ign-rviz/pull/69&quot;&gt;https://github.com/ignitionrobotics/ign-rviz/pull/69&lt;/a&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;TF Warn&lt;/th&gt;
+      &lt;th&gt;TF Error&lt;/th&gt;
+      &lt;th&gt;TF Valid&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;img src=&quot;assets/images/rviz_tf_warn.png&quot; alt=&quot;&quot; /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img src=&quot;assets/images/rviz_tf_error.png&quot; alt=&quot;&quot; /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img src=&quot;assets/images/rviz_tf_valid.png&quot; alt=&quot;&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;bug-fix-in-rviz-framemanager&quot;&gt;Bug fix in RViz FrameManager&lt;/h3&gt;
+
+&lt;p&gt;Fixes a bug where RViz won’t show entites in the absence of tf data.&lt;/p&gt;
+
+&lt;p&gt;Pull request - &lt;a href=&quot;https://github.com/ignitionrobotics/ign-rviz/pull/67&quot;&gt;https://github.com/ignitionrobotics/ign-rviz/pull/67&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/rviz_tf_fix.gif&quot; alt=&quot;assets/images/rviz_tf_fix.gif&quot; /&gt;&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Atharva Pusalkar</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="Projects" />
+      
+
+      
+        <summary type="html">In this post I will be presenting my contributions to Open Robotics before joining them as a student developer. I contributed mainly to the Ignition Gazebo and Ignition RViz projects for a few months to get familiar with a large codebase.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Data Acquisition - DJS Racing</title>
+      <link href="http://localhost:4000/djsr-daq" rel="alternate" type="text/html" title="Data Acquisition - DJS Racing" />
+      <published>2021-07-31T15:48:00+05:30</published>
+      <updated>2021-07-31T15:48:00+05:30</updated>
+      <id>http://localhost:4000/djsr-daq</id>
+      <content type="html" xml:base="http://localhost:4000/djsr-daq">&lt;h1 id=&quot;data-acquisition-for-a-formula-student-car&quot;&gt;Data Acquisition for a Formula Student car.&lt;/h1&gt;
+&lt;p&gt;In this blog, I will be writing about the data acquisition system that I built with my teammates for the year 2021.&lt;/p&gt;
+
+&lt;h2 id=&quot;hardware&quot;&gt;Hardware&lt;/h2&gt;
+&lt;p&gt;Our newest car &lt;i&gt;EO3&lt;/i&gt; employs a completely new sensor data acquisition system. A more powerful microcontroller, the Teensy 4.1 is used with the automotive-grade CAN protocol.
+ Previously, we used analog signals to receive data rom the sensors that were prone to stray signals and noise. Also, since the testing track is a little far from the campus, we also added the capability to transmit live data to a cloud server using the ESP8266 board. The HC12 module was used to transmit data over a large distance considering the area of the Hockenheimring Baden-Württemberg racing circuit in Germany and the Kari Motor Speedway in India. The conversion of analog values from the sensors to 8-bit digital values is done on the &lt;i&gt;CAN node&lt;/i&gt; PCBs.&lt;/p&gt;
+
+&lt;p&gt;Overview of our data acquisition system:
+&lt;img src=&quot;assets/images/image5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A seperate interface circuitry is designed for a sensor whenever required, such as the pressure and wheel speed sensors. Together, we have integrated all the connections and designed the harness.&lt;/p&gt;
+
+&lt;p&gt;Schematic of the data logger PCB:
+&lt;img src=&quot;assets/images/djsr_data_logger_pcb.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here’s the electronics design report (read from page 32):&lt;/p&gt;
+&lt;iframe src=&quot;https://drive.google.com/file/d/1HlSNjRsue460ksPtxLEC5RipbiUN6Xma/preview&quot; width=&quot;640&quot; height=&quot;480&quot; allow=&quot;autoplay&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;software&quot;&gt;Software&lt;/h2&gt;
+&lt;p&gt;To ensure that all of our subsystems work efficiently, we have developed our first-ever data visualization app. The app also supports Tableau integration for advanced data analysis and over-the-air (OTA) updates. We call the app “Nautilus”.&lt;/p&gt;
+
+&lt;p&gt;Our software stack is open-sourced on a &lt;a href=&quot;https://github.com/djsracing/Nautilus&quot;&gt;GitHub repository&lt;/a&gt;. The application offers features such as a dashboard, data plotting, post processing of data, live recording, and more.&lt;/p&gt;
+
+&lt;h4 id=&quot;cloud-infrastructure&quot;&gt;Cloud infrastructure&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/image10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Overview of our cloud infrastructure&lt;/p&gt;
+
+&lt;p&gt;The cloud framework is based on AWS EC2 compute platform and the flask micro web framework. socketIO is used to establish chat-rooms to relay sensor data in real-time. The data is also sent to Tableau client nodes through the Google Sheets API. Received data is logged to AWS S3 and PostgreSQL based database for backup.&lt;/p&gt;
+
+&lt;h4 id=&quot;desktop-application&quot;&gt;Desktop Application&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/image6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Dashboard&lt;/p&gt;
+
+&lt;p&gt;The dashboard features a grid view of all sensors present on the car. Users can create and save sessions from the top panel. The track mapping from GPS data is created on this page.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/image8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Analysis&lt;/p&gt;
+
+&lt;p&gt;To debug any issues in each subsystem, the app provides an offline visualization and debugging page called “Analysis”. Users can select sensors and plot their graphs, lap-wise. Users are also presented with an option to load recorded data from a JSON file. Plots can be exported in CSV, SVG, and PNG file formats.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/image2.png&quot; alt=&quot;&quot; /&gt; &lt;img src=&quot;assets/images/image7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Connection Page &amp;amp; Track Mapping&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/image9.png&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;assets/images/image4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Users can rename sensors and change their mapping from raw voltage&lt;/p&gt;
+
+&lt;p&gt;Often, team members need to change the mapping applied to the raw sensor voltages. Hence, we came up with a JavaScript arithmetic-based solution. Users can simply type in a JavaScript math expression and its unit for post-processing. This mapping configuration can be saved in a JSON file format to load variables instantly.&lt;/p&gt;
+
+&lt;p&gt;Plot Mode
+&lt;img src=&quot;assets/images/image1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This was our first season where we developed our in-house data visualization software stack. This app will be used as a foundation for future support of Android and iOS.&lt;/p&gt;
+
+&lt;p&gt;Experimental support for ROS (Robot Operating System) data visualization is also under active development:
+&lt;img src=&quot;assets/images/image3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Atharva Pusalkar</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="Projects" />
+      
+
+      
+        <summary type="html">Data Acquisition for a Formula Student car. In this blog, I will be writing about the data acquisition system that I built with my teammates for the year 2021.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Model Predictive Control Concept</title>
+      <link href="http://localhost:4000/mpcc" rel="alternate" type="text/html" title="Model Predictive Control Concept" />
+      <published>2021-07-31T15:48:00+05:30</published>
+      <updated>2021-07-31T15:48:00+05:30</updated>
+      <id>http://localhost:4000/mpcc</id>
+      <content type="html" xml:base="http://localhost:4000/mpcc">&lt;section id=&quot;main&quot; class=&quot;wrapper&quot;&gt;
+  &lt;div class=&quot;inner&quot;&gt;
+  &lt;h1 class=&quot;major&quot;&gt;A concept for Model Predictive Control in race-cars&lt;/h1&gt;
+    &lt;!-- &lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;images/pic04.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt; --&gt;
+    &lt;p&gt;This is a presentation made by me during the concept phase of the 2021-2022 season.&lt;/p&gt;
+    &lt;p&gt;It is an extension of Contouring Model Predictive Control for cars with a
+    differential, using the HPIPM NLP solver. Globalrace-trajectory optimization
+    for shortest time is done using Time-Optimal Trajectory Planning (Christ et
+    al., 2019).&lt;/p&gt;
+    &lt;iframe src=&quot;https://docs.google.com/presentation/d/e/2PACX-1vQX6QqJKk9YsoXgC34c0_mbO6K9sN1kIp2U-qKnue3OFToLQhVGKgYfuYoX4LqNFLzPNYDtV5HJphwH/embed?start=false&amp;amp;loop=true&amp;amp;delayms=10000&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;749&quot; allowfullscreen=&quot;true&quot; mozallowfullscreen=&quot;true&quot; webkitallowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Atharva Pusalkar</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="Projects" />
+      
+
+      
+        <summary type="html">A concept for Model Predictive Control in race-cars This is a presentation made by me during the concept phase of the 2021-2022 season. It is an extension of Contouring Model Predictive Control for cars with a differential, using the HPIPM NLP solver. Globalrace-trajectory optimization for shortest time is done using Time-Optimal Trajectory Planning (Christ et al., 2019).</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Monocular Depth Estimation</title>
+      <link href="http://localhost:4000/cgan" rel="alternate" type="text/html" title="Monocular Depth Estimation" />
+      <published>2021-07-31T15:48:00+05:30</published>
+      <updated>2021-07-31T15:48:00+05:30</updated>
+      <id>http://localhost:4000/cgan</id>
+      <content type="html" xml:base="http://localhost:4000/cgan">&lt;section id=&quot;main&quot; class=&quot;wrapper&quot;&gt;
+  &lt;div class=&quot;inner&quot;&gt;
+  &lt;h1 class=&quot;major&quot;&gt;Monocular Depth Estimation using CGANs&lt;/h1&gt;
+  &lt;!-- &lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;images/pic04.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt; --&gt;
+  &lt;p&gt;Monocular depth estimation and object detection pipeline that makes use of Image-to-Image Translation with Conditional Adversarial Nets (Isola et al., 2017). The model was trained such that it learns the translation between a raw image and its stereo depth estimate.&lt;/p&gt;
+  &lt;a href=&quot;https://github.com/atharva-18/Object-Streamer&quot; target=&quot;_blank&quot;&gt;GitHub Repository&lt;/a&gt;
+  &lt;iframe src=&quot;https://docs.google.com/presentation/d/e/2PACX-1vQw9TzhkEomSEa-RVDAG9pKhtg6seix5Y4w0NGu7vknCJWmcCrVuWLkrC9xOmck5v4tSByO3rbaXW-b/embed?start=false&amp;amp;loop=true&amp;amp;delayms=5000&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;749&quot; allowfullscreen=&quot;true&quot; mozallowfullscreen=&quot;true&quot; webkitallowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Atharva Pusalkar</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="Projects" />
+      
+
+      
+        <summary type="html">Monocular Depth Estimation using CGANs Monocular depth estimation and object detection pipeline that makes use of Image-to-Image Translation with Conditional Adversarial Nets (Isola et al., 2017). The model was trained such that it learns the translation between a raw image and its stereo depth estimate. GitHub Repository</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">DJS Racing</title>
+      <link href="http://localhost:4000/djsr" rel="alternate" type="text/html" title="DJS Racing" />
+      <published>2021-07-01T15:48:00+05:30</published>
+      <updated>2021-07-01T15:48:00+05:30</updated>
+      <id>http://localhost:4000/djsr</id>
+      <content type="html" xml:base="http://localhost:4000/djsr">&lt;p&gt;I currently lead the driverless project at DJS Racing, a student team aiming to build a self-driving Formula Student race car. In conjuction, I also developed the data acquisition system for our vehicle.&lt;/p&gt;
+
+&lt;p&gt;Here’s a small video from 2019 about our work prior to building electric cars:&lt;/p&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube-nocookie.com/embed/58pZoXDAzec&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Although we’ve been working remotely most of the times for the past one and half years, we’re on our way to finish building our next car by February 2022.&lt;/p&gt;
+
+&lt;p&gt;I joined the team as an electronics member, and then I also started working on the driverless sub-system. Here’s our electronics design report, you can read about my work from the “Data Aquisition” section:&lt;/p&gt;
+&lt;iframe src=&quot;https://drive.google.com/file/d/1HlSNjRsue460ksPtxLEC5RipbiUN6Xma/preview&quot; width=&quot;640&quot; height=&quot;480&quot; allow=&quot;autoplay&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;I have always wanted to develop my own PCB in college and through the team I was able to do so. The data acquisition PCB was designed by us using the Teensy 4.1 because it offered the computation power and power efficiency that was required by our low-voltage system. The MCP2551 CAN module was used for interacing the sensors with the main board.&lt;/p&gt;
+
+&lt;p&gt;Special thanks to SBG Systems for sponsoring us the Ellipse-N IMU, JLCPCB for manufacturing the PCBs, Analog Devices, Kvaser, and TE Connectivity for the components.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/djsr_sbg.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;assets/images/djsr_kvaser.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;assets/images/djsr_ad.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote class=&quot;instagram-media&quot; data-instgrm-captioned=&quot;&quot; data-instgrm-permalink=&quot;https://www.instagram.com/p/CTKZUHqhGlh/?utm_source=ig_embed&amp;amp;utm_campaign=loading&quot; data-instgrm-version=&quot;14&quot; style=&quot; background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);&quot;&gt;&lt;div style=&quot;padding:16px;&quot;&gt; &lt;a href=&quot;https://www.instagram.com/p/CTKZUHqhGlh/?utm_source=ig_embed&amp;amp;utm_campaign=loading&quot; style=&quot; background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;&quot; target=&quot;_blank&quot;&gt; &lt;div style=&quot; display: flex; flex-direction: row; align-items: center;&quot;&gt; &lt;div style=&quot;background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;&quot;&gt;&lt;/div&gt; &lt;div style=&quot;display: flex; flex-direction: column; flex-grow: 1; justify-content: center;&quot;&gt; &lt;div style=&quot; background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;&quot;&gt;&lt;/div&gt; &lt;div style=&quot; background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding: 19% 0;&quot;&gt;&lt;/div&gt; &lt;div style=&quot;display:block; height:50px; margin:0 auto 12px; width:50px;&quot;&gt;&lt;svg width=&quot;50px&quot; height=&quot;50px&quot; viewBox=&quot;0 0 60 60&quot; version=&quot;1.1&quot; xmlns=&quot;https://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;https://www.w3.org/1999/xlink&quot;&gt;&lt;g stroke=&quot;none&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;&gt;&lt;g transform=&quot;translate(-511.000000, -20.000000)&quot; fill=&quot;#000000&quot;&gt;&lt;g&gt;&lt;path d=&quot;M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631&quot;&gt;&lt;/path&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div style=&quot;padding-top: 8px;&quot;&gt; &lt;div style=&quot; color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;&quot;&gt;View this post on Instagram&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding: 12.5% 0;&quot;&gt;&lt;/div&gt; &lt;div style=&quot;display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;&quot;&gt;&lt;div&gt; &lt;div style=&quot;background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);&quot;&gt;&lt;/div&gt; &lt;div style=&quot;background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;&quot;&gt;&lt;/div&gt; &lt;div style=&quot;background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;margin-left: 8px;&quot;&gt; &lt;div style=&quot; background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;&quot;&gt;&lt;/div&gt; &lt;div style=&quot; width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;margin-left: auto;&quot;&gt; &lt;div style=&quot; width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);&quot;&gt;&lt;/div&gt; &lt;div style=&quot; background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);&quot;&gt;&lt;/div&gt; &lt;div style=&quot; width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt; &lt;div style=&quot;display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;&quot;&gt; &lt;div style=&quot; background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;&quot;&gt;&lt;/div&gt; &lt;div style=&quot; background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/a&gt;&lt;p style=&quot; color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;&quot;&gt;&lt;a href=&quot;https://www.instagram.com/p/CTKZUHqhGlh/?utm_source=ig_embed&amp;amp;utm_campaign=loading&quot; style=&quot; color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;&quot; target=&quot;_blank&quot;&gt;A post shared by DJS Racing (@djs_racing)&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt;
+&lt;script async=&quot;&quot; src=&quot;//www.instagram.com/embed.js&quot;&gt;&lt;/script&gt;
+
+&lt;h1 id=&quot;djs-racing-driverless&quot;&gt;DJS Racing Driverless&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/djsre03.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The autonomous systems team of DJS Racing was formed back in early 2019 to develop a prototype vehicle. Alongside, we have also been developing the software that goes along with it. The team will use the software system presented below for the Formula Student Driverless competition in 2022 (postponed due to the outbreak of COVID-19).&lt;/p&gt;
+
+&lt;h2 id=&quot;about-formula-student-driverless&quot;&gt;About Formula Student Driverless&lt;/h2&gt;
+
+&lt;p&gt;Formula Student Driverless (FSD) is the world’s largest autonomous racing competition, held annually in Hockenheim, Germany, in which multidisciplinary student teams compete with self-developed driverless racecars every year. In this competition, each team has to race their autonomous car across 5 disciplines - Acceleration, Skidpad, Autocross, and Trackdrive. In the main event, called Trackdrive, a car has to complete 10 laps on an unknown track autonomously as fast as possible against the clock. The track is defined by a set of traffic cones, blue cones on the left and yellow cones on the right-hand side&lt;a href=&quot;#27&quot;&gt;[27]&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;track-layout&quot;&gt;Track Layout&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/track_layout.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In this blog, I shall be describing the overall implementation of a Formula Student Driverless race-car by DJS Racing, India. The race-car can drive autonomously on unknown tracks and switch to Model Predictive Control after track exploration, mapping, and loop-closure detection in the first lap.&lt;/p&gt;
+
+&lt;h2 id=&quot;software-architecture&quot;&gt;Software Architecture&lt;/h2&gt;
+
+&lt;p&gt;We chose the Robot Operating System as our primary framework for software development. In order to run the MPC algorithm at its full potential, the track must be known at least 2s in advance for a speed of 85 kmph. With the current perception setup, it is not possible to achieve accurate mapping of the environment with a 40m (at 85 kmph) of look-ahead. Hence, we need to drive the first lap, exploring the track using a geometric controller such as the Pure Pursuit Controller&lt;a href=&quot;#23&quot;&gt;[23]&lt;/a&gt;&lt;a href=&quot;#28&quot;&gt;[28]&lt;/a&gt; at a lower speed. After successful mapping and exploration of the track, the car switches to the more performant Model Predictve Control(MPC) for the subsequent laps to race as fast as possible. From this, we can define two modes of our system operation, SLAM mode, and localization mode. To count the number of laps and to detect loop closure, high-level mission planning is done using a finite state machine. This state machine guides to the system to switch between SLAM and localization mode and signals whether the race has finished. Interfacing between the onboard Jetson AGX Xavier and the STM32 is done using the ros-serial package. The STM32 runs FreeRTOS to achieve real-time control of actuators.&lt;/p&gt;
+
+&lt;h4 id=&quot;system-overview&quot;&gt;System Overview&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/Autonomous System.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;high-level-architecture&quot;&gt;High-level Architecture&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/rosgraph.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;3d-perception&quot;&gt;3D Perception&lt;/h2&gt;
+
+&lt;p&gt;The goal of the perception system is to detect traffic cones in the vicinity of the car and determine their color and 3D coordinates in real-time. These cone detections will be then fed as landmarks to the SLAM node to build a map of the track. The perception system takes input from multiple sensors - stereo camera, and a 3D LiDAR. The Basler Ace 2 industrial camera was chosen for our self-developed mono and stereo camera setups.&lt;/p&gt;
+
+&lt;p&gt;Multiple sources of visual information are chosen so as to increase the redundancy&lt;a href=&quot;#22&quot;&gt;[22]&lt;/a&gt; in the system and to perceive the environment reliably as only one chance is given for the trackdrive race.&lt;/p&gt;
+
+&lt;h4 id=&quot;lidar-3d-object-dectection&quot;&gt;LiDAR 3D Object Dectection&lt;/h4&gt;
+
+&lt;p&gt;3D Traffic Cone Detection using LiDAR Data&lt;/p&gt;
+
+&lt;video width=&quot;75%&quot; height=&quot;75%&quot; controls=&quot;&quot; loop=&quot;&quot;&gt;
+	&lt;source src=&quot;assets/videos/lidar.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+    Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;p&gt;The point cloud obtained from the LiDAR is first segmented and the ground and out-of-track planes are removed. Afterwards, Euclidean clustering is run on the point cloud to cluster cone patches. The centroid of these cone patches is used to determine the 3D coordinates for each cone.&lt;/p&gt;
+
+&lt;p&gt;These clusters are also passed through a rule-based outlier filter to remove false cones in the map.&lt;/p&gt;
+
+&lt;p&gt;We don’t estimate the color for each detected cone since the computational costs don’t justify its use for this year and the path planning algorithm works just as well without color information.&lt;/p&gt;
+
+&lt;h4 id=&quot;stereo-3d-object-dectection&quot;&gt;Stereo 3D Object Dectection&lt;/h4&gt;
+
+&lt;p&gt;In order to ensure redundancy in the system, an additional camera-based object detection pipeline is added to the system.&lt;/p&gt;
+
+&lt;p&gt;We have chosen an off-the-shelf object detector, YOLOv3&lt;a href=&quot;#17&quot;&gt;[17]&lt;/a&gt; for object detection for real-time performance.&lt;/p&gt;
+
+&lt;p&gt;Stereo Object Detection Pipeline&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/stereo_pipeline.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;YOLOv3 running on mock cones&lt;/p&gt;
+
+&lt;video width=&quot;75%&quot; height=&quot;75%&quot; controls=&quot;&quot; loop=&quot;&quot;&gt;
+	&lt;source src=&quot;assets/videos/stereo.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+    Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;p&gt;Stereo feature matching is then performed using the Semi-Global Block Matching&lt;a href=&quot;#32&quot;&gt;[32]&lt;/a&gt; (SGBM) algorithm to obtain the disparity map and 3D coordinates of the traffic cones.&lt;/p&gt;
+
+&lt;p&gt;3D point cloud obtained after occlusion reduction in the disparity map&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/stereo_depth.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Occlusion of background cones is handled by outlier filtering.&lt;/p&gt;
+
+&lt;h2 id=&quot;velocity-estimation-and-simultaneous-localization-and-mapping&quot;&gt;Velocity Estimation and Simultaneous Localization and Mapping&lt;/h2&gt;
+
+&lt;p&gt;The extended Kalman Filter was chosen as an estimator for mildly non-linear systems with white Gaussian noise. Our main task here is to fuse data from an Inertial Measurement Unit (SBG Ellipse N), 4 wheel encoders, steering angle sensor, and a dual GPS system in a moving baseline configuration. EKF is also computationally more efficient than the Unscented Kalman Filter&lt;a href=&quot;#20&quot;&gt;[20]&lt;/a&gt; and allows us to estimate the state at 200 Hz. Here, the effects of lateral load transfer are ignored and the track is assumed to be a flat 2D surface.&lt;/p&gt;
+
+&lt;p&gt;State Estimation Pipeline&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/velocity_estimation.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We consider that our system model is a constant velocity model (CTRV)&lt;a href=&quot;#2&quot;&gt;[2]&lt;/a&gt;, the jerk is assumed to be zero in this case and acceleration is used as a pseudo input to the system.&lt;/p&gt;
+
+&lt;p&gt;The wheel encoders along with the steering angle potentiometer are used to estimate the slip ratios of the vehicle.&lt;/p&gt;
+
+&lt;p&gt;The 6-DOF state vector is taken as&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/state_vector.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Where &lt;code class=&quot;highlighter-rouge&quot;&gt;p, θ, v&lt;/code&gt; are the position (along x and y), angular velocity, and the linear velocity (along x and y in car frame) of the car respectively.&lt;/p&gt;
+
+&lt;p&gt;The process model is taken as&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/process_model.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Where &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt; is the linear acceleration measured by the IMU and &lt;code class=&quot;highlighter-rouge&quot;&gt;R(θ)&lt;/code&gt; is the rotation matrix between the sensor frame and the vehicle frame.&lt;/p&gt;
+
+&lt;p&gt;The sensor model is&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/sensor_model.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Where &lt;code class=&quot;highlighter-rouge&quot;&gt;θs&lt;/code&gt; is the sensor heading in the body frame and n{.} are additive Gaussian white noises that corrupt the measurements.&lt;/p&gt;
+
+&lt;p&gt;Different sensors work at different rates and the accuracy also varies between the sensors. Hence, we use multiple update functions for each sensor and we update our beliefs asynchronously&lt;a href=&quot;#26&quot;&gt;[26]&lt;/a&gt;. Here, the acceleration is taken from the IMU, angular velocity from the Gyroscope, and velocities from GPS and wheel encoders.&lt;/p&gt;
+
+&lt;p&gt;The landmark-based FastSLAM&lt;a href=&quot;#8&quot;&gt;[8]&lt;/a&gt;&lt;a href=&quot;#15&quot;&gt;[15]&lt;/a&gt; algorithm was chosen for its robustness because of multiple-hypothesis and proposal sampling&lt;a href=&quot;#3&quot;&gt;[3]&lt;/a&gt;&lt;a href=&quot;#31&quot;&gt;[31]&lt;/a&gt;. FastSLAM is computationally much more efficient with N.log(N) time complexity as compared to EKF SLAM with a quadratic complexity &lt;a href=&quot;#19&quot;&gt;[19]&lt;/a&gt;. FastSLAM is also much more tunable owing to the fact that it uses a Rao-Backwellized particle filter to express pose estimates. We can simply tune the number of particles to adjust the runtime performance. Data association is done by comparing the mahalanobis distance between an observation and each landmark on the map.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/slam_pipeline.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Our SLAM pipeline runs at 15 Hz to accommodate for the perception pipeline operation rate. The pose estimates from the SLAM node are then integrated by the velocity with time by the velocity estimation node to provide fast pose updates at 200 Hz for the control algorithm. This ensures that the MPC node always receives the latest pose estimates.&lt;/p&gt;
+
+&lt;h2 id=&quot;path-planning&quot;&gt;Path Planning&lt;/h2&gt;
+
+&lt;h4 id=&quot;rrt--delaunay-triangulation-for-waypoints-generation&quot;&gt;RRT + Delaunay Triangulation for Waypoints Generation&lt;/h4&gt;
+
+&lt;p&gt;We chose the Randomly Exploring Random Trees&lt;a href=&quot;#24&quot;&gt;[24]&lt;/a&gt;&lt;a href=&quot;#25&quot;&gt;[25]&lt;/a&gt; as our path planning algorithms. Formula Student poses a unique challenge to path planning as there is no definite goal, and we just have to drive straight. Hence, in order to determine the best path, we have proposed a cost function that is assigned to each node. The tree branch with the lowest cost is then chosen as our desired path.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;J = Q_delta * delta^2 + Q_theta * theta^2 + Q_cte * cte^2 - Q_cone * cone_count^2&lt;/code&gt;&lt;br /&gt;
+Where,&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;delta: Angular deviation between two nodes. Avoids sharp turns.&lt;/li&gt;
+  &lt;li&gt;theta: Discounted heading. Tree pointing backward to the car are penalized.&lt;/li&gt;
+  &lt;li&gt;cte: Distance between the path and track boundary. Penalizes branches too close to the boundaries.&lt;/li&gt;
+  &lt;li&gt;cone_count: Count of cones on both sides of the path. Penalizes shorter paths.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The cost is then normalized between 0 and 1 to determine the best path.&lt;/p&gt;
+
+&lt;p&gt;However, this is not the appropriate approach to path planning in FSD, as we need to have a continous and smooth trajectory in order to ensure that we are driving close to the limits of handling. Hence, we have an additional step of running Delaunay triangulation&lt;a href=&quot;#13&quot;&gt;[13]&lt;/a&gt; on nearby cone positions. The intersection points of the best tree branch and the traingulation segments are then taken as the waypoints for the control algorithm.&lt;/p&gt;
+
+&lt;video width=&quot;75%&quot; height=&quot;75%&quot; controls=&quot;&quot; loop=&quot;&quot;&gt;
+	&lt;source src=&quot;assets/videos/rrt_delaunay.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+    Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;p&gt;The waypoints that are generated are depicted as blue dots along the track center-line.&lt;/p&gt;
+
+&lt;h2 id=&quot;model-predictive-control&quot;&gt;Model Predictive Control&lt;/h2&gt;
+
+&lt;p&gt;After finishing the first lap using the PID and Pure Pursuit Controller, loop closure is detected and the SLAM algorithm switches to localization mode. This is all handled by the mission planning node. After track exploration and mapping, we switch to Model Predictve Control&lt;a href=&quot;#18&quot;&gt;[18]&lt;/a&gt; as our control method to finish the race as fast as possible at the limits of handling in real-time.&lt;/p&gt;
+
+&lt;p&gt;The goal of the optimization problem is to drive the car along the reference path, following imposed contraints and targeting the desired velocity. The state dynamics is considered as a bicycle model with actuator and drivetrain models along with tire forces.&lt;/p&gt;
+
+&lt;h4 id=&quot;dynamic-bicycle-model&quot;&gt;Dynamic Bicycle Model&lt;/h4&gt;
+
+&lt;p&gt;We consider the dynamic bicycle model for vehicle dynamics&lt;a href=&quot;#9&quot;&gt;[9]&lt;/a&gt;&lt;a href=&quot;#14&quot;&gt;[14]&lt;/a&gt; with non-linear magic tire formula models&lt;a href=&quot;#16&quot;&gt;[16]&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/dynamic_model.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;vehicle-dynamics&quot;&gt;Vehicle Dynamics&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/vehicle_dynamics.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Where &lt;em&gt;X, Y&lt;/em&gt; is the position and is the orientation of the car in the world frame. &lt;em&gt;Vx, Vy&lt;/em&gt;, and &lt;em&gt;ω&lt;/em&gt; are the linear and angular velocities of the car in the body frame respectively. &lt;em&gt;𝛿&lt;/em&gt; is the steering angle, &lt;em&gt;Lf&lt;/em&gt; and &lt;em&gt;Lr&lt;/em&gt; are the length from the front and rear axles to the center-of-gravity respectively and &lt;em&gt;Iz&lt;/em&gt; is the inertia moment.&lt;/p&gt;
+
+&lt;h4 id=&quot;tire-model&quot;&gt;Tire Model&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/tire_model.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/tire_model_x.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here &lt;em&gt;D, C, B&lt;/em&gt; are coefficients obtained from the Pacejka tire model. &lt;em&gt;d&lt;/em&gt; is the driving command (acceleration), &lt;em&gt;Cr&lt;/em&gt; is the rolling resistance, &lt;em&gt;α{f, r}&lt;/em&gt; are tire slip angles, and &lt;em&gt;Cd&lt;/em&gt; is the drag coefficient. &lt;em&gt;m&lt;/em&gt; is the mass of the vehicle.&lt;/p&gt;
+
+&lt;h4 id=&quot;state-input&quot;&gt;State Input&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/state_input.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;the-lateral-and-cross-track-errors-are-defined-as&quot;&gt;The lateral and cross-track errors are defined as&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cte` = cte - v * sin(epsi) * dt&lt;/code&gt;&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;epsi` = epsi + v / Lf * (-delta) * dt&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;and-hence-the-cost-function-is-defined-as&quot;&gt;And hence, the cost function is defined as&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;J = Q_cte * cte^2 + Q_epsi * epsi^2 + Q_v * (v - vmax)^2 + Q_delta * delta^2&lt;/code&gt;&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;+ Q_a * a^2 + F * (a` - a)^2 + Q_ddelta * (delta` - delta)^2&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The objective of this optimization problem is to drive the vehicle as close as possible to the track center line, with heading along the track direction. Rapid changes in the state inputs, as well as linear and angular velocities, are penalized.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/videos/mpc.gif&quot; alt=&quot;this slowpoke moves&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The optimization problem is then solved directly using the IPOPT non-linear optimization library&lt;a href=&quot;#6&quot;&gt;[6]&lt;/a&gt; in a receding horizon fashion for over 15 steps for a horizon of 1.5 secs. There is an approximately 100 ms delay between computed command and actuation, hence we choose an actuator vector in the future (about 100 ms in the future) to compensate for mechanical delays.&lt;br /&gt;
+However, an improvement is required here as IPOPT is not designed for real-time systems and considerably slows down with an increase in sequence size&lt;a href=&quot;#30&quot;&gt;[30]&lt;/a&gt;. Hence, we need to use a convex optimization library such as HPIPM&lt;a href=&quot;#29&quot;&gt;[29]&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;simulation-and-cicd-infrastructure&quot;&gt;Simulation and CI/CD Infrastructure&lt;/h2&gt;
+
+&lt;h4 id=&quot;simulation-environment-designed-with-gazebo12-and-ignition-libraries&quot;&gt;Simulation Environment Designed with Gazebo&lt;a href=&quot;#12&quot;&gt;[12]&lt;/a&gt; and Ignition Libraries&lt;/h4&gt;
+
+&lt;p&gt;The FSSIM &lt;a href=&quot;#4&quot;&gt;[4]&lt;/a&gt; simulation framework by AMZ Driverless has been used for the codebase. The FSSIM simulator uses a Gazebo plugin that uses a basic vehicle model which is discretized with Euler Forward discretization to achieve 99% of real-world performance.&lt;/p&gt;
+
+&lt;h4 id=&quot;ros-bags-from-github-pull-requests-and-actual-car-races-can-be-visualized-in-the-app&quot;&gt;ROS Bags from GitHub Pull Requests and actual car races can be visualized in the app&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/image3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The simulation framework, on every pull request, runs the codebase and important ROS topics are recorded into ROS Bags and uploaded to the server. Each ROS Bag is played on the remote server and the run is recorded using VirtualGL, the videos are then stored in a NoSQL database for backup and querying. The client app can establish a remote database connection to visualize the ROS Bags. The server automatically replays the bag file and stores the recorded videos. To ensure software reliability, each pull request is first compiled using GitHub Actions and run on our CI server hosted on AWS. Only after all checks have passed and the simulation runs without any issues, a pull request can be merged.&lt;/p&gt;
+
+&lt;h4 id=&quot;references&quot;&gt;References&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Kieran Strobel and Sibo Zhu and Raphael Chang and Skanda Koppula. Accurate, Low-Latency Visual Perception for Autonomous Racing:Challenges, Mechanisms, and Practical Solutions. 2020. arXiv:2007.13971 &lt;a id=&quot;1&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;de la Iglesia Valls, M., Hendrikx, H. F. C., Reijgwart, V. J. F., Meier, F. V., Sa, I., Dub´e, R., Gawel, A., B¨urki, M., and Siegwart, R. (2018). Design of an autonomous racecar: Perception, state estimation and system integration. 2018 IEEE International Conference on Robotics and Automation (ICRA). &lt;a id=&quot;2&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Dellaert, F., Fox, D., Burgard, W., and Thrun, S. (1999). Monte carlo localization for mobile robots. In IEEE International Conference on Robotics and Automation (ICRA99). &lt;a id=&quot;3&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Juraj Kabzan and Miguel de la Iglesia Valls and Victor Reijgwart and Hubertus Franciscus Cornelis Hendrikx and Claas Ehmke and Manish Prajapat and Andreas Bühler and Nikhil Gosala and Mehak Gupta and Ramya Sivanesan and Ankit Dhall and Eugenio Chisari and Napat Karnchanachari and Sonja Brits and Manuel Dangel and Inkyu Sa and Renaud Dubé and Abel Gawel and Mark Pfeiffer and Alexander Liniger and John Lygeros and Roland Siegwart. AMZ Driverless: The Full Autonomous Racing System. 2019. arXiv:1905.05150. &lt;a id=&quot;4&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Dhall, A., Dai, D., and Van Gool, L. (2019). Real-time 3D Traffic Cone Detection for Autonomous Driving. arXiv e-prints, page arXiv:1902.02394. &lt;a id=&quot;5&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Wächter, A., Biegler, L. On the implementation of an interior-point filter line-search algorithm for large-scale nonlinear programming. Math. Program. 106, 25–57 (2006). https://doi.org/10.1007/s10107-004-0559-y. &lt;a id=&quot;6&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;B. D. Brumback and M. Srinath, “A chi-square test for fault-detection in kalman filters,” Automatic Control, IEEE Transactions on, vol. 32, pp. 552 – 554, 07 1987. &lt;a id=&quot;7&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;M. Montemerlo, S. Thrun, D. Koller, B. Wegbreit, et al., “Fastslam: A factored solution to the simultaneous localization and mapping problem,” in Aaai/iaai, pp. 593–598, 2002. &lt;a id=&quot;8&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Kong, Jason, et al. “Kinematic and dynamic vehicle models for autonomous driving control design.” 2015 IEEE Intelligent Vehicles Symposium (IV). IEEE, 2015. &lt;a id=&quot;9&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Yoon, Jong-Hwa, and Huei Peng. “A cost-effective sideslip estimation method using velocity measurements from two GPS receivers.” IEEE Transactions on Vehicular Technology 63.6 (2013): 2589-2599. &lt;a id=&quot;10&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Klomp, M., Olsson, K., and Sandberg, C. (2014). Non-linear steering control for limit handling conditions using preview path curvature. International Journal of Vehicle Autonomous Systems, 12(3):266–283. &lt;a id=&quot;11&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Koenig, N. and Howard, A. (2004). Design and use paradigms for gazebo, an open-source multi-robot simulator. In Intelligent Robots and Systems, 2004.(IROS 2004). Proceedings. 2004 IEEE/RSJ International Conference on, volume 3, pages 2149–2154. IEEE. &lt;a id=&quot;12&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Lee and Schachter (1980). Two algorithms for constructing a delaunay triangulation. International Journal of Computer and Information Sciences. &lt;a id=&quot;13&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Milliken, W., Milliken, D., and of Automotive Engineers, S. (1995). Race Car Vehicle Dynamics. Premiere Series. SAE International. &lt;a id=&quot;14&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Montemerlo, M., Thrun, S., Koller, D., and Wegbreit, B. (2003). FastSLAM 2.0 : An Improved Particle Filtering Algorithm for Simultaneous Localization and Mapping that Provably Converges. In Proceedings of the 18th international joint conference on Artificial intelligence, pages 1151–1156. &lt;a id=&quot;15&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Pacejka, H. B. and Bakker, E. (1992). The magic formula tyre model. Vehicle system dynamics, 21(S1):1–18. &lt;a id=&quot;16&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Redmon, J., Divvala, S., Girshick, R., and Farhadi, A. (2016). You only look once: Unified, real-time object detection. In 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pages 779–788. &lt;a id=&quot;17&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Rosolia, U., Carvalho, A., and Borrelli, F. (2017). Autonomous racing using learning model predictive control. In American Control Conference (ACC), pages 5115–5120. IEEE. &lt;a id=&quot;18&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Thrun, S., Burgard, W., and Fox, D. (2005). Probabilistic Robotics (Intelligent Robotics and Autonomous Agents). The MIT Press. &lt;a id=&quot;19&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Xue, Z. and Schwartz, H. (2013). A comparison of several nonlinear filters for mobile robot pose estimation. In 2013 IEEE International Conference on Mechatronics and Automation. &lt;a id=&quot;20&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Tulsiani, S. and Malik, J. (2015). Viewpoints and keypoints. In 2015 IEEE Conference on Computer Vision and Pattern Recognition (CVPR). &lt;a id=&quot;21&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Gosala, N. B., B¨uhler, A., Prajapat, M., Ehmke, C., Gupta, M., Sivanesan, R., Gawel, A., Pfeiffer, M., B¨urki, M., Sa, I., Dub´e, R., and Siegwart, R. (2018). Redundant Perception and State Estimation for Reliable Autonomous Racing. ArXiv e-prints. &lt;a id=&quot;22&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Coulter, R. C. (1992). Implementation of the pure pursuit path tracking algorithm. Technical report, Carnegie-Mellon UNIV Pittsburgh PA Robotics INST. &lt;a id=&quot;23&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;LaValle, Steven M. (October 1998). “Rapidly-exploring random trees: A new tool for path planning” (PDF). Technical Report. Computer Science Department, Iowa State University (TR 98–11). &lt;a id=&quot;24&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Howie Choset, James Kuffner. “Robotic Motion Planning: RRT’s”. Robotic Motion Planning, 16-735. The Robotics Institute, Carnegie Mellon University. &lt;a id=&quot;25&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;K. Hausman, S. Weiss, R. Brockers, L. Matthies, and G. S. Sukhatme, “Self-calibrating multi-sensor fusion with probabilistic measurement validation for seamless sensor switching on a uav,” in 2016 IEEE International Conference on Robotics and Automation (ICRA), pp. 4289– 4296, May 2016. &lt;a id=&quot;26&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Formula Student Rules 2020 v1.0. https://www.formulastudent.de/fileadmin/user_upload/all/2020/rules/FS-Rules_2020_V1.0.pdf &lt;a id=&quot;27&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;J. Ni and J. Hu, “Path following control for autonomous formula racecar: Autonomous formula student competition,” 2017 IEEE Intelligent Vehicles Symposium (IV), Los Angeles, CA, 2017, pp. 1835-1840, doi: 10.1109/IVS.2017.7995972. &lt;a id=&quot;28&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;G. Frison, M. Diehl. HPIPM: a high-performance quadratic programming framework for model predictive control. 2020. arXiv preprint, arXiv:2003.02547 &lt;a id=&quot;29&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;G. Frison, D. K. M. Kufoalor, L. Imsland and J. B. Jørgensen, “Efficient implementation of solvers for linear model predictive control on embedded devices,” 2014 IEEE Conference on Control Applications (CCA), Juan Les Antibes, 2014, pp. 1954-1959, doi: 10.1109/CCA.2014.6981589. &lt;a id=&quot;30&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;J. D. Hol, T. B. Schon, and F. Gustafsson, “On resampling algorithms for particle filters,” in Nonlinear Statistical Signal Processing Workshop, 2006 IEEE, pp. 79–82, IEEE, 2006. &lt;a id=&quot;31&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;SGBM, by Hirschmuller, H. (2008). Stereo processing by semiglobal matching and mutual information. IEEE Transactions on pattern analysis and machine intelligence, 30(2), 328-341. &lt;a id=&quot;32&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Atharva Pusalkar</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="Projects" />
+      
+        <category term="Experiences" />
+      
+
+      
+        <summary type="html">I currently lead the driverless project at DJS Racing, a student team aiming to build a self-driving Formula Student race car. In conjuction, I also developed the data acquisition system for our vehicle.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Wireless Data Transceiver using LoRa mesh</title>
+      <link href="http://localhost:4000/iiot-device" rel="alternate" type="text/html" title="Wireless Data Transceiver using LoRa mesh" />
+      <published>2021-04-25T15:48:00+05:30</published>
+      <updated>2021-04-25T15:48:00+05:30</updated>
+      <id>http://localhost:4000/iiot-device</id>
+      <content type="html" xml:base="http://localhost:4000/iiot-device">&lt;p&gt;I worked on an industrial-grade wireless data transceiver using the LoRa mesh technology for use in ship docking systems.&lt;/p&gt;
+
+&lt;h2 id=&quot;description&quot;&gt;Description&lt;/h2&gt;
+&lt;p&gt;The product mainly serves as an data-collection/transmission device using the PIC32 MCU and mesh networking topology. The PIC MCUs are outdated but they have excellent compatibility with the peripherals of our PCB, and hence it was chosen.&lt;/p&gt;
+
+&lt;p&gt;The board is attached with an ultrasonic sensors to measure ship distance from docks and transmit to a central aggregator node. The data is transmitted using the MODBUS protocol and the mesh topology allows for distances greater than a kilometer which is a requirement for deployments in oceanic areas. The device’s end goal is to determine the number of ships that are currently docked using the calculated distance from a fixed position and count their in and out times. In addition to this, these modules can also be installed in smart power meters across a large area to connect them to the cloud and provide energy usage characteristics on a dashboard. All meters in the mesh network transmit the data reliably and securely to a central collection platform. This is particularly helpful in urban areas with tall high rises where networks such as Zigbee have range issues and low penetration power.&lt;/p&gt;
+
+&lt;p&gt;Here’s an example deployment:
+&lt;img src=&quot;assets/images/iiot_mesh_deployment.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The LoRa end-nodes (EN) communicate with the Gateway using the LoRa physical layer. These gateways are connected to a network server over IP-backhaul with a high throughput, such as 
+Ethernet or a cellular network. These gateways interpret the packets and send the data packets to the backend cloud architecture using the MQTT protocol.&lt;/p&gt;
+
+&lt;p&gt;A proposed end-node solution using a LoMesh data modem:
+&lt;img src=&quot;assets/images/iiot_modem.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Deployed use case scenario:
+&lt;img src=&quot;assets/images/iiot_samples.jpg&quot; alt=&quot;&quot; /&gt;
+The device has operational capability at 868 MHz as well as 2.4 GHz in India. The ultrasonic sensor being used is the A01NYUB by DFRobot. Interfaces such as SPI and USB are provided to connect with the end device.&lt;/p&gt;
+
+&lt;h2 id=&quot;testing&quot;&gt;Testing&lt;/h2&gt;
+&lt;p&gt;Some highlights…&lt;/p&gt;
+&lt;video width=&quot;75%&quot; height=&quot;75%&quot; controls=&quot;&quot;&gt;
+  &lt;source src=&quot;assets/videos/iiot_testing.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/iiot_pcb.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/iiot_delivery.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;outcome&quot;&gt;Outcome&lt;/h2&gt;
+&lt;p&gt;I joined the team a year later after it was created, but I worked on some interesting tasks. I integrated the ultrasonic sensor - both software and hardware, added the capability for over-the-air updates, and MISRA C compliance. Some other improvements were also done to the MODBUS transmission procedure.&lt;/p&gt;
+
+&lt;p&gt;Getting the components, and working with the different radio bands in North America, Europe and Asia was an arduous task and COVID did not help either. Nonetheless, working on this product was fun and we already have clients from Switzerland, Canada, and India. Besides, I also got a look into the workflow of embedded programming happening at the Ford Motor Company (One of my mentor works at the company).&lt;/p&gt;
+
+&lt;p&gt;Thank you for reading.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Atharva Pusalkar</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="Projects" />
+      
+
+      
+        <summary type="html">I worked on an industrial-grade wireless data transceiver using the LoRa mesh technology for use in ship docking systems.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">RRT-Classic</title>
+      <link href="http://localhost:4000/rrt-cpp" rel="alternate" type="text/html" title="RRT-Classic" />
+      <published>2021-01-05T15:48:00+05:30</published>
+      <updated>2021-01-05T15:48:00+05:30</updated>
+      <id>http://localhost:4000/rrt-cpp</id>
+      <content type="html" xml:base="http://localhost:4000/rrt-cpp">&lt;p&gt;Rapidly exploring rapid trees (RRTs) implementation in C++17.&lt;/p&gt;
+
+&lt;p&gt;GitHub Repository - &lt;a href=&quot;https://github.com/atharva-18/rrt-cpp&quot;&gt;https://github.com/atharva-18/rrt-cpp&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Demo:
+&lt;img src=&quot;assets/images/rrt_cpp_demo.gif&quot; alt=&quot;assets/images/rrt_cpp_demo.gif&quot; /&gt;&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Atharva Pusalkar</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="Projects" />
+      
+
+      
+        <summary type="html">Rapidly exploring rapid trees (RRTs) implementation in C++17.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>
