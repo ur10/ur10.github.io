@@ -1,39 +1,69 @@
----
-layout: default
-current: home
-class: 'home-template'
-navigation: True
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Your Name</h1>
+        <p>Robotics Engineer | Researcher</p>
+        <p>
+            <a href="your-cv-link">CV</a> |
+            <a href="your-scholar-profile">Scholar</a> |
+            <a href="your-twitter-profile">Twitter</a> |
+            <a href="your-linkedin-profile">LinkedIn</a>
+        </p>
+        <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+    </header>
 
-<!-- < default -->
-<!-- The tag above means: insert everything in this file
-into the {body} of the default.hbs template -->
-
-<!-- The big featured header, it uses blog cover image as a BG if available -->
-<header class="site-header outer {% if page.cover or site.cover %}" style="background-image:  url({{ site.baseurl }}{% if page.cover %}{{ page.cover }}{% elsif site.cover %}{{ site.cover }}{% endif %}) {% else %}no-cover{% endif %}">
-    <div class="inner">
-        <div class="site-header-content">
-            <h1 class="site-title">
-                {% if site.logo %}
-                    <img class="site-logo" src="{{ site.baseurl }}{{ site.logo }}" alt="{{ site.title }}"/>
-                {% else %}
-                    {{ site.title }}
-                {% endif %}
-            </h1>
-            <h2 class="site-description">{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}</h2>
+    <section id="highlights">
+        <h2>Highlights</h2>
+        <div class="carousel">
+            <img src="assets/highlight1.jpg" alt="Highlight 1">
+            <img src="assets/highlight2.jpg" alt="Highlight 2">
+            <img src="assets/highlight3.jpg" alt="Highlight 3">
         </div>
-        {% include site-nav.html %}
-    </div>
-</header>
+    </section>
 
-<!-- The main content area -->
-<main id="site-main" class="site-main outer" role="main">
-    <div class="inner">
+    <section id="timeline">
+        <h2>Timeline</h2>
+        <ul>
+            <li>May 2024: Attending ICRA 2024 in person.</li>
+            <li>Aug 2023: Accepted into CMU MSR program.</li>
+            <li>Jul 2023: Graduated from XYZ University with a B.Tech in Robotics.</li>
+            <!-- Add more timeline events -->
+        </ul>
+    </section>
 
-        <div class="post-feed">
-            <!-- The tag below includes the markup for each post - partials/post-card.hbs -->
-            {%  include post-card.html %}
-        </div>
+    <section id="publications">
+        <h2>Publications</h2>
+        <ul>
+            <li>
+                <strong>EDMP:</strong> Ensemble-of-costs-guided Diffusion for Motion Planning. 
+                <a href="publication-link">Paper</a> | <a href="code-link">Code</a>
+            </li>
+            <li>
+                <strong>Tabletop Manipulation:</strong> Disentangling Planning and Control.
+                <a href="publication-link">Paper</a> | <a href="code-link">Code</a>
+            </li>
+        </ul>
+    </section>
 
-    </div>
-</main>
+    <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+            <li>
+                <strong>Decision Making for Swarm Robots:</strong> Description and link to code.
+            </li>
+            <!-- Add more projects -->
+        </ul>
+    </section>
+
+    <footer>
+        <p>© 2024 Your Name. Built with ❤️ using GitHub Pages.</p>
+    </footer>
+</body>
+</html>
