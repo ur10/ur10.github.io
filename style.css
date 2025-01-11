@@ -75,12 +75,13 @@ header {
 .carousel {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    gap: 10px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }
 
 .carousel img {
-    max-width: 300px;
+    max-width: 200px;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
