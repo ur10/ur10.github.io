@@ -1,19 +1,25 @@
 /* General Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #f4f4f4;
+    background-color: #f9f9f9;
     color: #333;
+    max-width: 1200px;
+    margin: auto;
 }
 
 /* Header Section */
 header {
     text-align: center;
     padding: 20px;
-    background: #444;
+    background: #222;
     color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* About Section */
@@ -22,23 +28,24 @@ header {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 30px;
     background-color: #fff;
     margin-bottom: 20px;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .profile-image {
-    flex: 1 1 250px;
-    max-width: 300px;
+    flex: 1 1 200px;
+    max-width: 250px;
     margin-right: 20px;
+    text-align: center;
 }
 
 .profile-image img {
     max-width: 100%;
     border-radius: 50%;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .about-text {
@@ -48,42 +55,44 @@ header {
 
 .about-text h1 {
     margin-top: 0;
+    font-size: 2rem;
     color: #444;
 }
 
 .about-text p {
     margin: 10px 0;
+    font-size: 1rem;
 }
 
 /* Highlights Section */
 #highlights {
-    padding: 40px;
+    padding: 30px;
     text-align: center;
-    background-color: #e9ecef;
+    background-color: #f4f4f4;
     margin-bottom: 20px;
 }
 
 .carousel {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
     flex-wrap: wrap;
 }
 
 .carousel img {
-    max-width: 200px;
+    max-width: 150px;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Projects Section */
 #projects {
-    padding: 40px;
+    padding: 30px;
     background-color: #fff;
     margin-bottom: 20px;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .project-item {
@@ -95,27 +104,29 @@ header {
 }
 
 .project-item img {
-    max-width: 200px;
+    max-width: 150px;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .project-text {
-    flex: 1 1 400px;
+    flex: 1 1 300px;
+    font-size: 1rem;
 }
 
 .project-text h3 {
     margin-top: 0;
+    font-size: 1.4rem;
 }
 
 /* Publications Section */
 #publications {
-    padding: 40px;
-    background-color: #e9ecef;
+    padding: 30px;
+    background-color: #f4f4f4;
     margin-bottom: 20px;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .publication-item {
@@ -127,24 +138,50 @@ header {
 }
 
 .publication-item img {
-    max-width: 200px;
+    max-width: 150px;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .publication-text {
-    flex: 1 1 400px;
+    flex: 1 1 300px;
+    font-size: 1rem;
 }
 
 .publication-text h3 {
     margin-top: 0;
+    font-size: 1.4rem;
 }
 
 /* Footer */
 footer {
     text-align: center;
-    padding: 20px;
-    background: #444;
+    padding: 10px;
+    background: #222;
     color: #fff;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-image {
+        margin: 0 auto 20px;
+    }
+
+    .project-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .publication-item {
+        flex-direction: column;
+        text-align: center;
+    }
 }
