@@ -159,7 +159,11 @@
           <div>
             <div class="pub-title">Memory &amp; Partial Observability</div>
             <div class="pub-venue">
-              History-conditioned sequence models, long-context transformers and recurrent memory, for temporal prediction in tasks where the current observation is not sufficient to act. I build the benchmarks alongside the models: environments that ship with a fully observable twin, so any performance gap is attributable to observability rather than to task difficulty, and tasks that force a policy to carry information forward across a long horizon before it can act correctly.
+              History-conditioned sequence models, long-context transformers and recurrent memory, handle tasks
+              where the current observation is not sufficient to act. Each environment ships with a fully
+              observable twin, so any gap in success rate is attributable to observability rather than to task
+              difficulty, and the tasks are built to force a policy to carry information across a long horizon
+              before it can act correctly.
             </div>
           </div>
         </div>
@@ -173,7 +177,11 @@
           <div>
             <div class="pub-title">Long-Context Policies &amp; Latency-Aware Inference</div>
             <div class="pub-venue">
-              A long history is only useful if it fits inside a control budget. I work on making long-context policies deployable on real hardware through action chunking and caching, which keep inference inside the control loop, and memory-efficient attention such as FlashAttention and xFormers, which reduces rollout memory two to three times. Together these let long-context models execute in real time instead of exhausting GPU memory partway through an episode.
+              A long history is only useful if it fits inside a control budget. Action chunking and caching keep
+              inference within the control loop, while memory-efficient attention such as FlashAttention and
+              xFormers reduces rollout memory two to three times. Together these let long-context models execute
+              in real time instead of exhausting GPU memory partway through an episode. Latency, not accuracy, is
+              usually what keeps such a policy off the robot.
             </div>
           </div>
         </div>
@@ -225,7 +233,12 @@
           <div>
             <div class="pub-title">History-Conditioned Policies under Partial Observability</div>
             <div class="pub-venue">
-              Helping Hands Lab, Northeastern University. A policy conditioned only on the current observation is effectively Markov, yet many manipulation tasks hide exactly the information it needs: a route specified before the robot sets off, or objects already handled and no longer in view. I implement history-conditioned sequence models for temporal prediction under partial observability and build the tasks that test them, including route following and a counting task where the robot must track how many objects it has already handled.
+              A policy conditioned only on the current observation is effectively Markov, yet many manipulation
+              tasks hide exactly the information it needs: a route specified before the robot sets off, or objects
+              already handled and no longer in view. Conditioning on a history of observations, through
+              long-context transformers and recurrent memory, carries that information forward. Route following
+              and object counting serve as the test tasks, each paired with a fully observable twin so a drop in
+              success isolates observability from difficulty.
             </div>
             <div class="pub-links">
               <a href="https://github.com/ur10/diffusion-history-env" target="_blank" rel="noopener noreferrer">Environments</a> /
@@ -249,7 +262,12 @@
           <div>
             <div class="pub-title">3D Scene Representations for Online Motion Planning</div>
             <div class="pub-venue">
-              Helping Hands Lab, Northeastern University. Planning in a changing scene needs a representation that is geometrically faithful and cheap enough to query inside a control loop, and those requirements pull against each other: photorealistic reconstructions are expensive to evaluate, while coarse occupancy grids discard the geometry a manipulator needs. I distill Gaussian Splatting reconstructions into point clouds that preserve the detail mattering for contact and clearance, and track dense points online so the representation stays aligned with objects as they move.
+              Planning in a changing scene needs a representation that is geometrically faithful and cheap enough
+              to query inside a control loop, and those requirements pull against each other: photorealistic
+              reconstructions are expensive to evaluate, while coarse occupancy grids discard the geometry a
+              manipulator needs. Gaussian Splatting reconstructions are distilled into point clouds that retain
+              the detail mattering for contact and clearance, while dense point tracking keeps the representation
+              aligned with objects as they move.
             </div>
           </div>
         </div>
@@ -269,7 +287,12 @@
           <div>
             <div class="pub-title">Fine-Grained Point-Cloud Manipulation</div>
             <div class="pub-venue">
-              Sim-trained point-cloud policies generalize well across objects and poses, but real depth breaks their assumptions: holes, occlusion, calibration drift, and contact mismatch. I freeze the sim-trained 3D policy so it keeps its geometry prior and learn a small off-policy residual on top, combining them as a_base plus a gated correction, where the gate decides when the residual is trustworthy and the correction stays bounded for safety. Evaluation targets the precise-contact tasks where 3D policies are weakest, insertion above all.
+              Sim-trained point-cloud policies generalize well across objects and poses, but real depth breaks
+              their assumptions: holes, occlusion, calibration drift, and contact mismatch. The sim-trained 3D
+              policy stays frozen so its geometry prior survives, while a small off-policy residual learns on top
+              of it. A gate decides when that correction is trustworthy, and the correction itself stays bounded
+              for safety. Evaluation targets the precise-contact tasks where 3D policies are weakest, insertion
+              above all.
             </div>
             <div class="pub-links">
               <a href="https://app.notion.com/p/Fine-grained-point-cloud-manipulation-3ac73c3669d2807fa387c1df3e906306?source=copy_link" target="_blank" rel="noopener noreferrer">Writeup</a>
