@@ -176,6 +176,11 @@ h2 {
   gap: 10px;
 }
 
+/* projects carry two clips; centre the text against their combined height */
+.publication-pair {
+  align-items: center;
+}
+
 .pub-links {
   font-size: 14.5px;
   margin-top: 8px;

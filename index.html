@@ -194,34 +194,6 @@
 
         <div class="publication">
           <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-            <source src="assets/research/diffusion.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          <div>
-            <div class="pub-title">Diffusion Policies &amp; Multimodal Trajectory Generation</div>
-            <div class="pub-venue">
-              Conditional diffusion policies for multimodal trajectory generation, conditioned on RGB-D and 3D perception together with proprioception. This includes multimodal input pipelines that fuse point-cloud and proprioceptive features through cross-attention transformers and 3D encoders, so a policy can represent several valid ways of completing a task instead of averaging them into a single trajectory that satisfies none of them. Most manipulation tasks admit more than one correct solution.
-            </div>
-          </div>
-        </div>
-
-        <div class="publication">
-          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-            <source src="assets/research/offlinerl.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          <div>
-            <div class="pub-title">Offline RL &amp; Sim-to-Real Transfer</div>
-            <div class="pub-venue">
-              Learning policies from logged demonstration data with offline reinforcement learning, IQL and CQL, and behavior-regularized methods such as TD3+BC that stay robust when demonstrations are limited. On the transfer side, procedural simulation with visual and dynamics domain randomization to generate synthetic training data, with the resulting generalization gains validated through side-by-side hardware A/B trials rather than in simulation alone. The aim is a policy that survives the gap between the distribution it was trained on and the one it meets on the robot.
-            </div>
-          </div>
-        </div>
-
-        <div class="publication">
-          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
             <source src="assets/research/certifiable.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -238,13 +210,13 @@
       <section id="projects">
         <h2>Selected Projects</h2>
 
-        <div class="publication">
+        <div class="publication publication-pair">
           <div class="pub-media-stack">
             <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
               <source src="assets/thumbs/memory-routestick.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <video class="pub-thumb pub-thumb-video" autoplay loop muted playsinline preload="auto">
+            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
               <source src="assets/thumbs/memory-counting.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
@@ -262,16 +234,45 @@
           </div>
         </div>
 
-        <div class="publication">
-          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-            <source src="assets/thumbs/scene3d.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+        <div class="publication publication-pair">
+          <div class="pub-media-stack">
+            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+              <source src="assets/thumbs/scene3d.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+              <source src="assets/thumbs/robotap.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
 
           <div>
             <div class="pub-title">3D Scene Representations for Online Motion Planning</div>
             <div class="pub-venue">
-              Helping Hands Lab, Northeastern University. Planning in a dynamic environment needs a scene representation that is geometrically faithful and cheap enough to query inside a control loop, and those requirements pull against each other: photorealistic reconstructions are expensive to evaluate, while coarse occupancy grids discard the geometry a manipulator needs. I distill Gaussian Splatting reconstructions into point clouds that preserve the detail mattering for contact and clearance while remaining fast enough to score motions online as the scene changes.
+              Helping Hands Lab, Northeastern University. Planning in a changing scene needs a representation that is geometrically faithful and cheap enough to query inside a control loop, and those requirements pull against each other: photorealistic reconstructions are expensive to evaluate, while coarse occupancy grids discard the geometry a manipulator needs. I distill Gaussian Splatting reconstructions into point clouds that preserve the detail mattering for contact and clearance, and track dense points online so the representation stays aligned with objects as they move.
+            </div>
+          </div>
+        </div>
+
+        <div class="publication publication-pair">
+          <div class="pub-media-stack">
+            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+              <source src="assets/thumbs/peg-ours.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+              <source src="assets/thumbs/adroit-pen.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <div>
+            <div class="pub-title">Fine-Grained Point-Cloud Manipulation</div>
+            <div class="pub-venue">
+              Sim-trained point-cloud policies generalize well across objects and poses, but real depth breaks their assumptions: holes, occlusion, calibration drift, and contact mismatch. I freeze the sim-trained 3D policy so it keeps its geometry prior and learn a small off-policy residual on top, combining them as a_base plus a gated correction, where the gate decides when the residual is trustworthy and the correction stays bounded for safety. Evaluation targets the precise-contact tasks where 3D policies are weakest, insertion above all.
+            </div>
+            <div class="pub-links">
+              <a href="https://app.notion.com/p/Fine-grained-point-cloud-manipulation-3ac73c3669d2807fa387c1df3e906306?source=copy_link" target="_blank" rel="noopener noreferrer">Writeup</a>
             </div>
           </div>
         </div>
