@@ -1,169 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Utkarsh Rai | Robotics Researcher</title>
+
+  <meta name="description" content="Personal academic website of Utkarsh Rai, MS Robotics at Northeastern University, working on memory and long-context diffusion policies for manipulation, certifiable state estimation, and real-world robot deployment." />
+
+  <link rel="canonical" href="https://ur10.github.io/" />
+
+  <meta name="author" content="Utkarsh Rai" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Utkarsh Rai | Robotics Researcher" />
+  <meta property="og:description" content="MS Robotics at Northeastern University. Memory and long-context diffusion policies, certifiable state estimation, and real-world robot deployment." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ur10.github.io/" />
+  <meta property="og:image" content="https://ur10.github.io/assets/thumbs/imu.webp" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Utkarsh Rai | Robotics Researcher" />
+  <meta name="twitter:description" content="MS Robotics at Northeastern University. Memory and long-context diffusion policies, certifiable state estimation, and real-world robot deployment." />
+  <meta name="twitter:image" content="https://ur10.github.io/assets/thumbs/imu.webp" />
+
+  <!-- Font Awesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Utkarsh Rai",
+    "url": "https://ur10.github.io/",
+    "jobTitle": "Robotics Researcher",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Northeastern University",
+      "url": "https://www.northeastern.edu/"
+    },
+    "email": "mailto:rai.ut@northeastern.edu",
+    "sameAs": [
+      "https://github.com/ur10",
+      "https://www.linkedin.com/in/utkarsh-rai-964283169/"
+    ],
+    "knowsAbout": [
+      "Robotics",
+      "Robot Learning",
+      "Diffusion Policies",
+      "Imitation Learning",
+      "Offline Reinforcement Learning",
+      "Partial Observability",
+      "Sequence Modeling",
+      "Certifiable Optimization",
+      "Semidefinite Relaxation",
+      "State Estimation",
+      "Motion Planning",
+      "Model Predictive Control",
+      "Sim-to-Real Transfer",
+      "Multi-Agent Reinforcement Learning"
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
- <!--    <header>
-        <h1>Your Name</h1>
-        <p>Robotics Engineer | Researcher</p>
-        <p>
-            <a href="your-cv-link">CV</a> |
-            <a href="your-scholar-profile">Scholar</a> |
-            <a href="your-twitter-profile">Twitter</a> |
-            <a href="your-linkedin-profile">LinkedIn</a>
+  <main class="page">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <img class="profile-photo" src="assets/profile.jpg" alt="Utkarsh Rai profile photo" />
+
+      <h1 class="sidebar-name">Utkarsh Rai</h1>
+
+      <p class="sidebar-title">
+        Robotics Researcher | Robot Learning &amp; Certifiable Estimation
+      </p>
+
+      <div class="sidebar-info">
+        <div>
+          <span><i class="fa-solid fa-location-dot"></i></span>
+          Boston, Massachusetts
+        </div>
+
+        <div>
+          <span><i class="fa-solid fa-building-columns"></i></span>
+          Northeastern University
+        </div>
+
+        <div>
+          <span><i class="fa-solid fa-envelope"></i></span>
+          <a href="mailto:rai.ut@northeastern.edu">Email</a>
+        </div>
+
+        <div>
+          <span><i class="fa-brands fa-github"></i></span>
+          <a href="https://github.com/ur10" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+
+        <div>
+          <span><i class="fa-brands fa-linkedin"></i></span>
+          <a href="https://www.linkedin.com/in/utkarsh-rai-964283169/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+
+        <div>
+          <span><i class="fa-solid fa-file-lines"></i></span>
+          <a href="assets/cv/Utkarsh_Rai_Resume.pdf" target="_blank" rel="noopener noreferrer">CV</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT MAIN CONTENT -->
+    <section class="main-content">
+
+      <section id="about">
+        <p class="bio">
+          I am a Master's student in Robotics at
+          <a href="https://www.northeastern.edu/">Northeastern University</a>, working in the
+          <a href="https://www2.ccs.neu.edu/research/helpinghands/">Helping Hands Lab</a>
+          on memory and partial observability in learned manipulation policies, and on certifiable
+          optimization for state estimation. My work spans imitation learning, diffusion policies,
+          offline reinforcement learning, sequence modeling, and convex relaxations for factor-graph
+          estimation.
         </p>
-        <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-    </header>
- -->
-    <section id="about">
-    <div class="about-container">
-        <div class="profile-image">
-            <img src="assets/profile.jpg" alt="Your Name">
-        </div>
-        <div class="about-text">
-            <h1>Utkarsh Rai</h1>
-            <p>
-               I am a Master’s student in Robotics at Northeastern University, working at the intersection of multi-agent systems, computer vision, and robotic automation. I have been fortunate to collaborate with leading researchers during my time as a Research Fellow at the Centre for Visual Information Technology, IIIT Hyderabad, and as a Research Intern at the Marmot Lab, NUS, under the guidance of esteemed mentors. Previously, I worked as a Robotics Engineer at Mowito, where I deployed cutting-edge warehouse automation solutions.
 
-My research focuses on creating intelligent robotic systems that bridge the gap between perception, decision-making, and action in dynamic and unstructured environments. I am particularly passionate about developing algorithms that enable robots to collaborate, adapt, and excel in real-world tasks, from automating warehouses to improving autonomous navigation.
+        <p class="bio">
+          I am interested in two questions: how to make policies reason over history rather than the
+          current frame alone, and how to make an estimator return a certificate that its solution is
+          globally optimal rather than a hope that the local solver landed in the right basin. Before
+          Northeastern I spent two years at Mowito deploying 50&nbsp;Hz MPC trajectory generation in
+          C++ on UR5 hardware for warehouse picking, and I have published on driving-scene perception
+          at IROS 2024 and multi-robot coordination in IEEE RA-L.
+        </p>
 
-I envision a future where robots seamlessly integrate into human environments, tackling challenges like urban driving, multi-vehicle teaming, and object manipulation with efficiency and reliability. Beyond research, I am deeply inspired by the potential of robotics to transform industries and redefine possibilities. Let’s shape the future of robotics together.
-            </p>
-            <p>
-                <a href="https://drive.google.com/file/d/1VYk_07dHdirf7Qg7ubIyBZrGMwb6hSBG/view?usp=sharing" target="_blank">CV</a> | 
-                <!-- <a href="your-scholar-profile" target="_blank">Scholar</a> |  -->
-                <!-- <a href="your-twitter-profile" target="_blank">Twitter</a> |  -->
-                <a href="https://www.linkedin.com/in/utkarsh-rai-964283169/" target="_blank">LinkedIn</a>
-            </p>
-            <p>Email: <a href="mailto:rai.ut@northeastern.edu">rai.ut@northeastern.edu</a></p>
+        <div class="links">
+          <a href="mailto:rai.ut@northeastern.edu">&#9993; Email</a> /
+          <a href="assets/cv/Utkarsh_Rai_Resume.pdf">CV</a> /
+          <a href="https://github.com/ur10" target="_blank" rel="noopener noreferrer">GitHub</a> /
+          <a href="https://www.linkedin.com/in/utkarsh-rai-964283169/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
-    </div>
+      </section>
+
+      <section id="research">
+        <h2>Research</h2>
+
+        <div class="publication">
+          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+            <source src="assets/research/tmaze.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div>
+            <div class="pub-title">Memory &amp; Partial Observability</div>
+            <div class="pub-venue">
+              History-conditioned sequence models, long-context transformers and recurrent memory, for temporal prediction in tasks where the current observation is not sufficient to act. I build the benchmarks alongside the models: environments that ship with a fully observable twin, so any performance gap is attributable to observability rather than to task difficulty, and tasks that force a policy to carry information forward across a long horizon before it can act correctly.
+            </div>
+          </div>
+        </div>
+
+        <div class="publication">
+          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+            <source src="assets/research/multipush.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div>
+            <div class="pub-title">Long-Context Policies &amp; Latency-Aware Inference</div>
+            <div class="pub-venue">
+              A long history is only useful if it fits inside a control budget. I work on making long-context policies deployable on real hardware through action chunking and caching, which keep inference inside the control loop, and memory-efficient attention such as FlashAttention and xFormers, which reduces rollout memory two to three times. Together these let long-context models execute in real time instead of exhausting GPU memory partway through an episode.
+            </div>
+          </div>
+        </div>
+
+        <div class="publication">
+          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+            <source src="assets/research/scene3d.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div>
+            <div class="pub-title">3D Scene Representations for Planning</div>
+            <div class="pub-venue">
+              Efficient 3D scene representations that distill Gaussian Splatting reconstructions into point clouds, preserving the geometric detail a manipulator needs for contact and clearance while staying cheap enough to query inside a control loop. The representation is built for fast online motion evaluation in environments that change while the robot is acting, rather than being reconstructed once and then assumed static for the rest of the episode.
+            </div>
+          </div>
+        </div>
+
+        <div class="publication">
+          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+            <source src="assets/research/diffusion.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div>
+            <div class="pub-title">Diffusion Policies &amp; Multimodal Trajectory Generation</div>
+            <div class="pub-venue">
+              Conditional diffusion policies for multimodal trajectory generation, conditioned on RGB-D and 3D perception together with proprioception. This includes multimodal input pipelines that fuse point-cloud and proprioceptive features through cross-attention transformers and 3D encoders, so a policy can represent several valid ways of completing a task instead of averaging them into a single trajectory that satisfies none of them. Most manipulation tasks admit more than one correct solution.
+            </div>
+          </div>
+        </div>
+
+        <div class="publication">
+          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+            <source src="assets/research/offlinerl.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div>
+            <div class="pub-title">Offline RL &amp; Sim-to-Real Transfer</div>
+            <div class="pub-venue">
+              Learning policies from logged demonstration data with offline reinforcement learning, IQL and CQL, and behavior-regularized methods such as TD3+BC that stay robust when demonstrations are limited. On the transfer side, procedural simulation with visual and dynamics domain randomization to generate synthetic training data, with the resulting generalization gains validated through side-by-side hardware A/B trials rather than in simulation alone. The aim is a policy that survives the gap between the distribution it was trained on and the one it meets on the robot.
+            </div>
+          </div>
+        </div>
+
+        <div class="publication">
+          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+            <source src="assets/research/certifiable.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div>
+            <div class="pub-title">Certifiable State Estimation</div>
+            <div class="pub-venue">
+              Convex relaxations of factor-graph maximum likelihood estimation, lifting the problem to a quadratically constrained quadratic program and then to a semidefinite program whose solution carries a dual certificate of global optimality. Where a local solver can converge to a bad minimum and report nothing unusual, a rank-one certificate proves the recovered estimate is the global optimum, and a nonzero gap bounds how far from it you are.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2>Selected Projects</h2>
+
+        <div class="publication">
+          <div class="pub-media-stack">
+            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+              <source src="assets/thumbs/memory-routestick.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <video class="pub-thumb pub-thumb-video" autoplay loop muted playsinline preload="auto">
+              <source src="assets/thumbs/memory-counting.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <div>
+            <div class="pub-title">History-Conditioned Policies under Partial Observability</div>
+            <div class="pub-venue">
+              Helping Hands Lab, Northeastern University. A policy conditioned only on the current observation is effectively Markov, yet many manipulation tasks hide exactly the information it needs: a route specified before the robot sets off, or objects already handled and no longer in view. I implement history-conditioned sequence models for temporal prediction under partial observability and build the tasks that test them, including route following and a counting task where the robot must track how many objects it has already handled.
+            </div>
+            <div class="pub-links">
+              <a href="https://github.com/ur10/diffusion-history-env" target="_blank" rel="noopener noreferrer">Environments</a> /
+              <a href="https://github.com/ur10/mem-diff" target="_blank" rel="noopener noreferrer">Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="publication">
+          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+            <source src="assets/thumbs/scene3d.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div>
+            <div class="pub-title">3D Scene Representations for Online Motion Planning</div>
+            <div class="pub-venue">
+              Helping Hands Lab, Northeastern University. Planning in a dynamic environment needs a scene representation that is geometrically faithful and cheap enough to query inside a control loop, and those requirements pull against each other: photorealistic reconstructions are expensive to evaluate, while coarse occupancy grids discard the geometry a manipulator needs. I distill Gaussian Splatting reconstructions into point clouds that preserve the detail mattering for contact and clearance while remaining fast enough to score motions online as the scene changes.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="publications">
+        <h2>Publications</h2>
+
+        <div class="pub-entry">
+          <div class="pub-title">Visual Place Recognition in Unstructured Driving Environments</div>
+          <div class="pub-venue">
+            <strong>U. Rai</strong>, S. Gangisetty, A. H. Abdul Hafez, A. Subramaniam, C. V. Jawahar.
+            IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2024, pp. 10724&ndash;10731.
+          </div>
+          <div class="pub-links">
+            <a href="https://cvit.iiit.ac.in/images/ConferencePapers/2024/Visual_Place_Recognition_in_Unstructured_Driving_Environments.pdf" target="_blank" rel="noopener noreferrer">Paper</a> /
+            <a href="https://cvit.iiit.ac.in/research/projects/cvit-projects/iddvpr" target="_blank" rel="noopener noreferrer">Project page</a> /
+            <a href="https://github.com/ur10/IDD-VPR" target="_blank" rel="noopener noreferrer">Code</a>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-title">Heterogeneous Multi-robot Task Allocation and Scheduling via Reinforcement Learning</div>
+          <div class="pub-venue">
+            W. Dai, <strong>U. Rai</strong>, J. Chiun, Y. Cao, G. Sartoretti.
+            IEEE Robotics and Automation Letters (RA-L), 10(3):2654&ndash;2661, 2025.
+          </div>
+          <div class="pub-links">
+            <a href="https://www.marmotlab.org/publications/73-RAL2025-HetMRTA.pdf" target="_blank" rel="noopener noreferrer">Paper</a> /
+            <a href="https://ieeexplore.ieee.org/document/10854527" target="_blank" rel="noopener noreferrer">IEEE Xplore</a> /
+            <a href="https://github.com/ur10/hetero-viz" target="_blank" rel="noopener noreferrer">Code</a>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-title">A QCQP-Representable IMU Pre-Integration Factor for Certifiable State Estimation</div>
+          <div class="pub-venue">
+            <strong>U. Rai</strong>, et al. Under review.
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">
+        &copy; 2026 Utkarsh Rai
+      </div>
+
     </section>
-    <section id="highlights">
-        <h2>Highlights</h2>
-        <div class="carousel">
-            <img src="assets/demo.gif" alt="Highlight 1">
-            <img src="assets/auv1.gif" alt="Highlight 2">
-            <img src="assets/auv2.gif" alt="Highlight 3">
-            <img src="assets/uav_hci_cr.gif" alt="Highlight 4">
-            <img src="assets/dba_cr.gif" alt="Highlight 5">
-            <img src="assets/annular_v.gif" alt="Highlight 6">
-        </div>
-    </section>
-
-<!--     <section id="timeline">
-        <h2>Timeline</h2>
-        <ul>
-            <li>May 2024: Attending ICRA 2024 in person.</li>
-            <li>Aug 2023: Accepted into CMU MSR program.</li>
-        </ul>
-    </section> -->
-<section id="publications">
-    <h2>Publications</h2>
-    <!-- <p>(* Denotes equal contribution. Click on publication to view more)</p> -->
-    <div class="publication-item">
-        <img src="assets/vpr.png" alt="">
-        <div class="publication-text">
-            <h3>Visual Place Recognition in Unstructured Driving Environments</h3>
-            <p>
-                <strong>Utkarsh Rai</strong>, Shankar Gangisetty, A. H. Abdul Hafez1, Anbumani Subramanian, C V Jawahar  
-                <em>IROS 2024</em>
-            </p>
-            <p>
-                <a href="https://cvit.iiit.ac.in/research/projects/cvit-projects" target="_blank">Webpage</a> 
-                <a href="https://ieeexplore.ieee.org/document/10802708" target="_blank">Paper</a> |
-                <!-- <a href="publication-video-link" target="_blank">Video</a> | -->
-                <a href="https://github.com/ur10/IDD-VPR/tree/main" target="_blank">Code</a>
-            </p>
-        </div>
-    </div>
-    <div class="publication-item">
-        <img src="assets/RAL.gif" alt="">
-        <div class="publication-text">
-            <h3>Heterogeneous Multi-robot Task Allocation and Scheduling via Reinforcement Learning</h3>
-            <p>
-                 Weiheng Dai*; <strong>Utkarsh Rai</strong>, Jimmy Chiun, Yuhong Cao, Guillaume Adrien Sartoretti
-                <em> IEEE-RAL</em>
-            </p>
-            <p>
-                <a href="https://ieeexplore.ieee.org/document/10854527" target="_blank">Paper</a> |
-                <a href="publication-video-link" target="_blank">Video</a>
-            </p>
-        </div>
-    </div>
-</section>
-
-<section id="projects">
-    <h2>Projects</h2>
-    <!-- <p>(Click on project to view more)</p> -->
-    <div class="project-item">
-        <img src="assets/HSI.png" alt="">
-        <div class="project-text">
-            <h3>Human-Swarm control using active interaction</h3>
-            <p>
-                <!-- Aditya Singhal, <strong>Kallol Saha</strong>, Rikin Ramachandran, Umesh Mane, Soofiyan Atar, Harmanjeet Singh Bilkhu   -->
-                <em>Decision Making for Swarm Robots using human cues</em>
-            </p>
-            <p>
-                <a href="https://swarminteraction.blogspot.com/" target="_blank">Webpage</a> |
-                <!-- <a href="project-certificate-link" target="_blank">Certificate</a> -->
-            </p>
-        </div>
-    </div>
-    <div class="project-item">
-        <img src="assets/auv1.gif" alt="">
-        <div class="project-text">
-            <h3>AUV control for underwater operations</h3>
-            <p>
-                <!-- <strong>Kallol Saha (Team Lead)</strong>, Ashwin Disa, Srujan Kulkarni, Tanaya Gupte   -->
-                <em>Control and operation of Light-weight AUV model for underwater operation under drag and added-mass conditions </em>
-            </p>
-            <p>
-              <!--   <a href="https://drive.google.com/file/d/1cwHAoTNqD7-dE42sqHGTz0YQdoDGXgd6/view?usp=sharing" target="_blank">Video1</a>
-                <a href="https://drive.google.com/file/d/1stUJ5XgSNrXlj0nTSwTHcHUgHZV18jlT/view?usp=sharing" target="_blank">Video2</a>  -->
-                <a href="https://auvcontrol.blogspot.com/2021/10/auv-control-for-underwater-operations.html" target="_blank">Webpage</a>
-            </p>
-        </div>
-    </div>
-    <div class="project-item">
-        <img src="assets/multi-agent.png" alt="">
-        <div class="project-text">
-            <h3>Area Coverage using multi-agent systems</h3>
-            <p>
-                <!-- <strong>Kallol Saha (Team Lead)</strong>, Ashwin Disa, Srujan Kulkarni, Tanaya Gupte   -->
-                <em>Formation control of multi-agent systems using Lissajous curve for area coverage with optimal agents</em>
-            </p>
-            <p>
-<!--                 <a href="https://drive.google.com/file/d/1cwHAoTNqD7-dE42sqHGTz0YQdoDGXgd6/view?usp=sharing" target="_blank">Video1</a>
-                <a href="https://drive.google.com/file/d/1stUJ5XgSNrXlj0nTSwTHcHUgHZV18jlT/view?usp=sharing" target="_blank">Video2</a> --> 
-                <a href="https://areacoverageannular.blogspot.com/2022/12/blog-post.html" target="_blank">Webpage</a>
-            </p>
-        </div>
-    </div>
-    <div class="project-item">
-        <img src="assets/demo.gif" alt="">
-        <div class="project-text">
-            <h3>Public Motorcycle Violations</h3>
-            <p>
-                <!-- <strong>Kallol Saha (Team Lead)</strong>, Ashwin Disa, Srujan Kulkarni, Tanaya Gupte   -->
-                <em>Detecting, Tracking and Counting Motorcycle Rider Traffic Violations on Unconstrained Roads</em>
-            </p>
-            <p>
-<!--                 <a href="https://drive.google.com/file/d/1cwHAoTNqD7-dE42sqHGTz0YQdoDGXgd6/view?usp=sharing" target="_blank">Video1</a>
-                <a href="https://drive.google.com/file/d/1stUJ5XgSNrXlj0nTSwTHcHUgHZV18jlT/view?usp=sharing" target="_blank">Video2</a> --> 
-                <a href="https://github.com/iHubData-Mobility/public-motorcycle-violations/tree/main" target="_blank">Webpage</a>
-            </p>
-        </div>
-    </div>
-</section>
-
-<!-- 
-    <footer>
-        <p>© 2024 Your Name. Built with ❤️ using GitHub Pages.</p>
-    </footer> -->
+  </main>
 </body>
 </html>
