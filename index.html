@@ -18,12 +18,12 @@
   <meta property="og:description" content="MS Robotics at Northeastern University. Memory and long-context diffusion policies, certifiable state estimation, and real-world robot deployment." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ur10.github.io/" />
-  <meta property="og:image" content="https://ur10.github.io/assets/thumbs/imu.webp" />
+  <meta property="og:image" content="https://ur10.github.io/assets/pubs/vpr.webp" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Utkarsh Rai | Robotics Researcher" />
   <meta name="twitter:description" content="MS Robotics at Northeastern University. Memory and long-context diffusion policies, certifiable state estimation, and real-world robot deployment." />
-  <meta name="twitter:image" content="https://ur10.github.io/assets/thumbs/imu.webp" />
+  <meta name="twitter:image" content="https://ur10.github.io/assets/pubs/vpr.webp" />
 
   <!-- Font Awesome Icons -->
   <link
@@ -304,36 +304,55 @@
       <section id="publications">
         <h2>Publications</h2>
 
-        <div class="pub-entry">
-          <div class="pub-title">Visual Place Recognition in Unstructured Driving Environments</div>
-          <div class="pub-venue">
-            <strong>U. Rai</strong>, S. Gangisetty, A. H. Abdul Hafez, A. Subramaniam, C. V. Jawahar.
-            IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2024, pp. 10724&ndash;10731.
-          </div>
-          <div class="pub-links">
-            <a href="https://cvit.iiit.ac.in/images/ConferencePapers/2024/Visual_Place_Recognition_in_Unstructured_Driving_Environments.pdf" target="_blank" rel="noopener noreferrer">Paper</a> /
-            <a href="https://cvit.iiit.ac.in/research/projects/cvit-projects/iddvpr" target="_blank" rel="noopener noreferrer">Project page</a> /
-            <a href="https://github.com/ur10/IDD-VPR" target="_blank" rel="noopener noreferrer">Code</a>
+        <div class="publication">
+          <img class="pub-thumb" src="assets/pubs/vpr.webp" alt="Driving scenes from three city routes showing occlusion, traffic density, viewpoint and illumination changes" />
+
+          <div>
+            <div class="pub-title">Visual Place Recognition in Unstructured Driving Environments</div>
+            <div class="pub-venue">
+              <strong>U. Rai</strong>, S. Gangisetty, A. H. Abdul Hafez, A. Subramaniam, C. V. Jawahar. IEEE/RSJ
+              IROS 2024, pp. 10724&ndash;10731. A place-recognition dataset over three routes through an Indian
+              city, organised around occlusion, traffic density, viewpoint change and illumination change, on
+              which methods that saturate the standard benchmarks drop by up to 15%.
+            </div>
+            <div class="pub-links">
+              <a href="https://cvit.iiit.ac.in/images/ConferencePapers/2024/Visual_Place_Recognition_in_Unstructured_Driving_Environments.pdf" target="_blank" rel="noopener noreferrer">Paper</a> /
+              <a href="https://cvit.iiit.ac.in/research/projects/cvit-projects/iddvpr" target="_blank" rel="noopener noreferrer">Project page</a> /
+              <a href="https://github.com/ur10/IDD-VPR" target="_blank" rel="noopener noreferrer">Code</a>
+            </div>
           </div>
         </div>
 
-        <div class="pub-entry">
-          <div class="pub-title">Heterogeneous Multi-robot Task Allocation and Scheduling via Reinforcement Learning</div>
-          <div class="pub-venue">
-            W. Dai, <strong>U. Rai</strong>, J. Chiun, Y. Cao, G. Sartoretti.
-            IEEE Robotics and Automation Letters (RA-L), 10(3):2654&ndash;2661, 2025.
-          </div>
-          <div class="pub-links">
-            <a href="https://www.marmotlab.org/publications/73-RAL2025-HetMRTA.pdf" target="_blank" rel="noopener noreferrer">Paper</a> /
-            <a href="https://ieeexplore.ieee.org/document/10854527" target="_blank" rel="noopener noreferrer">IEEE Xplore</a> /
-            <a href="https://github.com/ur10/hetero-viz" target="_blank" rel="noopener noreferrer">Code</a>
+        <div class="publication">
+          <img class="pub-thumb" src="assets/pubs/mrta.webp" alt="Hardware validation: high- and low-altitude UAVs servicing tasks marked across a tiled arena" />
+
+          <div>
+            <div class="pub-title">Heterogeneous Multi-robot Task Allocation and Scheduling via Reinforcement Learning</div>
+            <div class="pub-venue">
+              W. Dai, <strong>U. Rai</strong>, J. Chiun, Y. Cao, G. Sartoretti. IEEE Robotics and Automation
+              Letters, 10(3):2654&ndash;2661, 2025. A decentralised policy for heterogeneous teams on tasks that
+              can only begin once every agent whose ability they require has arrived, validated in hardware with
+              high- and low-altitude UAVs servicing a shared set of tasks.
+            </div>
+            <div class="pub-links">
+              <a href="https://www.marmotlab.org/publications/73-RAL2025-HetMRTA.pdf" target="_blank" rel="noopener noreferrer">Paper</a> /
+              <a href="https://ieeexplore.ieee.org/document/10854527" target="_blank" rel="noopener noreferrer">IEEE Xplore</a> /
+              <a href="https://github.com/ur10/hetero-viz" target="_blank" rel="noopener noreferrer">Code</a>
+            </div>
           </div>
         </div>
 
-        <div class="pub-entry">
-          <div class="pub-title">A QCQP-Representable IMU Pre-Integration Factor for Certifiable State Estimation</div>
-          <div class="pub-venue">
-            <strong>U. Rai</strong>, et al. Under review.
+        <div class="publication">
+          <img class="pub-thumb" src="assets/pubs/imu.webp" alt="Trajectory recovered by the certifiable estimator against a local solver started from a poor initialization" />
+
+          <div>
+            <div class="pub-title">A QCQP-Representable IMU Pre-Integration Factor for Certifiable State Estimation</div>
+            <div class="pub-venue">
+              <strong>U. Rai</strong>, et al. Under review. An IMU pre-integration factor built on the Cayley map
+              and representable as a QCQP, so its semidefinite relaxation returns a solution carrying a rank-one
+              certificate of global optimality rather than an unflagged local minimum. The figure contrasts the
+              certified solution with a local solver started from a poor initialization.
+            </div>
           </div>
         </div>
       </section>
