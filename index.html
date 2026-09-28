@@ -147,74 +147,6 @@
         </div>
       </section>
 
-      <section id="research">
-        <h2>Research</h2>
-
-        <div class="publication">
-          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-            <source src="assets/research/tmaze.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          <div>
-            <div class="pub-title">Memory &amp; Partial Observability</div>
-            <div class="pub-venue">
-              History-conditioned sequence models, long-context transformers and recurrent memory, handle tasks
-              where the current observation is not sufficient to act. Each environment ships with a fully
-              observable twin, so any gap in success rate is attributable to observability rather than to task
-              difficulty, and the tasks are built to force a policy to carry information across a long horizon
-              before it can act correctly.
-            </div>
-          </div>
-        </div>
-
-        <div class="publication">
-          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-            <source src="assets/research/multipush.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          <div>
-            <div class="pub-title">Long-Context Policies &amp; Latency-Aware Inference</div>
-            <div class="pub-venue">
-              A long history is only useful if it fits inside a control budget. Action chunking and caching keep
-              inference within the control loop, while memory-efficient attention such as FlashAttention and
-              xFormers reduces rollout memory two to three times. Together these let long-context models execute
-              in real time instead of exhausting GPU memory partway through an episode. Latency, not accuracy, is
-              usually what keeps such a policy off the robot.
-            </div>
-          </div>
-        </div>
-
-        <div class="publication">
-          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-            <source src="assets/research/scene3d.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          <div>
-            <div class="pub-title">3D Scene Representations for Planning</div>
-            <div class="pub-venue">
-              Efficient 3D scene representations that distill Gaussian Splatting reconstructions into point clouds, preserving the geometric detail a manipulator needs for contact and clearance while staying cheap enough to query inside a control loop. The representation is built for fast online motion evaluation in environments that change while the robot is acting, rather than being reconstructed once and then assumed static for the rest of the episode.
-            </div>
-          </div>
-        </div>
-
-        <div class="publication">
-          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-            <source src="assets/research/certifiable.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          <div>
-            <div class="pub-title">Certifiable State Estimation</div>
-            <div class="pub-venue">
-              Convex relaxations of factor-graph maximum likelihood estimation, lifting the problem to a quadratically constrained quadratic program and then to a semidefinite program whose solution carries a dual certificate of global optimality. Where a local solver can converge to a bad minimum and report nothing unusual, a rank-one certificate proves the recovered estimate is the global optimum, and a nonzero gap bounds how far from it you are.
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="projects">
         <h2>Selected Projects</h2>
 
@@ -316,6 +248,74 @@
             </div>
             <div class="pub-links">
               <a href="https://app.notion.com/p/Fine-grained-point-cloud-manipulation-3ac73c3669d2807fa387c1df3e906306?source=copy_link" target="_blank" rel="noopener noreferrer">Writeup</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="research">
+        <h2>Research</h2>
+
+        <div class="publication">
+          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+            <source src="assets/research/tmaze.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div>
+            <div class="pub-title">Memory &amp; Partial Observability</div>
+            <div class="pub-venue">
+              History-conditioned sequence models, long-context transformers and recurrent memory, handle tasks
+              where the current observation is not sufficient to act. Each environment ships with a fully
+              observable twin, so any gap in success rate is attributable to observability rather than to task
+              difficulty, and the tasks are built to force a policy to carry information across a long horizon
+              before it can act correctly.
+            </div>
+          </div>
+        </div>
+
+        <div class="publication">
+          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+            <source src="assets/research/multipush.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div>
+            <div class="pub-title">Long-Context Policies &amp; Latency-Aware Inference</div>
+            <div class="pub-venue">
+              A long history is only useful if it fits inside a control budget. Action chunking and caching keep
+              inference within the control loop, while memory-efficient attention such as FlashAttention and
+              xFormers reduces rollout memory two to three times. Together these let long-context models execute
+              in real time instead of exhausting GPU memory partway through an episode. Latency, not accuracy, is
+              usually what keeps such a policy off the robot.
+            </div>
+          </div>
+        </div>
+
+        <div class="publication">
+          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+            <source src="assets/research/scene3d.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div>
+            <div class="pub-title">3D Scene Representations for Planning</div>
+            <div class="pub-venue">
+              Efficient 3D scene representations that distill Gaussian Splatting reconstructions into point clouds, preserving the geometric detail a manipulator needs for contact and clearance while staying cheap enough to query inside a control loop. The representation is built for fast online motion evaluation in environments that change while the robot is acting, rather than being reconstructed once and then assumed static for the rest of the episode.
+            </div>
+          </div>
+        </div>
+
+        <div class="publication">
+          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+            <source src="assets/research/certifiable.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div>
+            <div class="pub-title">Certifiable State Estimation</div>
+            <div class="pub-venue">
+              Convex relaxations of factor-graph maximum likelihood estimation, lifting the problem to a quadratically constrained quadratic program and then to a semidefinite program whose solution carries a dual certificate of global optimality. Where a local solver can converge to a bad minimum and report nothing unusual, a rank-one certificate proves the recovered estimate is the global optimum, and a nonzero gap bounds how far from it you are.
             </div>
           </div>
         </div>
