@@ -220,6 +220,26 @@
 
         <div class="publication publication-pair">
           <div class="pub-media-stack">
+            <img class="pub-thumb" src="assets/thumbs/softcapture-geometry.webp" alt="Soft-capture geometry: target and chaser body frames, relative position, target tumble rate, control wrench and docking points" />
+            <img class="pub-thumb" src="assets/thumbs/softcapture-constraints.webp" alt="Constraint geometry in the target docking frame: keep-out region, collision margin, docking cone and sensor field of view" />
+          </div>
+
+          <div>
+            <div class="pub-title">Collision-Aware Soft-Capture Trajectory Optimization on SE(3)</div>
+            <div class="pub-venue">
+              Soft capture is the terminal phase of on-orbit servicing, where a chaser must dock with a
+              tumbling target under strict safety and sensing limits. Classical Hill&ndash;Clohessy&ndash;Wiltshire
+              formulations decouple translation from attitude and lose fidelity once rotational coupling
+              dominates. This work poses the problem directly on SE(3) with left-trivialized rigid-body
+              dynamics, encodes mission constraints as smooth penalties on the manifold, and linearizes a
+              differentiable collision factor in Lie-algebra coordinates so keep-out safety is enforced
+              inside the same retraction-based Riemannian solve rather than bolted on afterwards.
+            </div>
+          </div>
+        </div>
+
+        <div class="publication publication-pair">
+          <div class="pub-media-stack">
             <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
               <source src="assets/thumbs/memory-routestick.mp4" type="video/mp4" />
               Your browser does not support the video tag.
@@ -296,26 +316,6 @@
             </div>
             <div class="pub-links">
               <a href="https://app.notion.com/p/Fine-grained-point-cloud-manipulation-3ac73c3669d2807fa387c1df3e906306?source=copy_link" target="_blank" rel="noopener noreferrer">Writeup</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="publication publication-pair">
-          <div class="pub-media-stack">
-            <img class="pub-thumb" src="assets/thumbs/softcapture-geometry.webp" alt="Soft-capture geometry: target and chaser body frames, relative position, target tumble rate, control wrench and docking points" />
-            <img class="pub-thumb" src="assets/thumbs/softcapture-constraints.webp" alt="Constraint geometry in the target docking frame: keep-out region, collision margin, docking cone and sensor field of view" />
-          </div>
-
-          <div>
-            <div class="pub-title">Collision-Aware Soft-Capture Trajectory Optimization on SE(3)</div>
-            <div class="pub-venue">
-              Soft capture is the terminal phase of on-orbit servicing, where a chaser must dock with a
-              tumbling target under strict safety and sensing limits. Classical Hill&ndash;Clohessy&ndash;Wiltshire
-              formulations decouple translation from attitude and lose fidelity once rotational coupling
-              dominates. This work poses the problem directly on SE(3) with left-trivialized rigid-body
-              dynamics, encodes mission constraints as smooth penalties on the manifold, and linearizes a
-              differentiable collision factor in Lie-algebra coordinates so keep-out safety is enforced
-              inside the same retraction-based Riemannian solve rather than bolted on afterwards.
             </div>
           </div>
         </div>
