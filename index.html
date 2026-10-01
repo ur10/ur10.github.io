@@ -152,20 +152,25 @@
 
         <div class="publication publication-pair">
           <div class="pub-media-stack">
-            <img class="pub-thumb" src="assets/thumbs/softcapture-geometry.webp" alt="Soft-capture geometry: target and chaser body frames, relative position, target tumble rate, control wrench and docking points" />
-            <img class="pub-thumb" src="assets/thumbs/softcapture-constraints.webp" alt="Constraint geometry in the target docking frame: keep-out region, collision margin, docking cone and sensor field of view" />
+            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+              <source src="assets/thumbs/scene3d.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
+              <source src="assets/thumbs/robotap.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
 
           <div>
-            <div class="pub-title">Collision-Aware Soft-Capture Trajectory Optimization on SE(3)</div>
+            <div class="pub-title">3D Scene Representations for Online Motion Planning</div>
             <div class="pub-venue">
-              Soft capture is the terminal phase of on-orbit servicing, where a chaser must dock with a
-              tumbling target under strict safety and sensing limits. Classical Hill&ndash;Clohessy&ndash;Wiltshire
-              formulations decouple translation from attitude and lose fidelity once rotational coupling
-              dominates. This work poses the problem directly on SE(3) with left-trivialized rigid-body
-              dynamics, encodes mission constraints as smooth penalties on the manifold, and linearizes a
-              differentiable collision factor in Lie-algebra coordinates so keep-out safety is enforced
-              inside the same retraction-based Riemannian solve rather than bolted on afterwards.
+              Planning in a changing scene needs a representation that is geometrically faithful and cheap enough
+              to query inside a control loop, and those requirements pull against each other: photorealistic
+              reconstructions are expensive to evaluate, while coarse occupancy grids discard the geometry a
+              manipulator needs. Gaussian Splatting reconstructions are distilled into point clouds that retain
+              the detail mattering for contact and clearance, while dense point tracking keeps the representation
+              aligned with objects as they move.
             </div>
           </div>
         </div>
@@ -202,31 +207,6 @@
         <div class="publication publication-pair">
           <div class="pub-media-stack">
             <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-              <source src="assets/thumbs/scene3d.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-              <source src="assets/thumbs/robotap.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-
-          <div>
-            <div class="pub-title">3D Scene Representations for Online Motion Planning</div>
-            <div class="pub-venue">
-              Planning in a changing scene needs a representation that is geometrically faithful and cheap enough
-              to query inside a control loop, and those requirements pull against each other: photorealistic
-              reconstructions are expensive to evaluate, while coarse occupancy grids discard the geometry a
-              manipulator needs. Gaussian Splatting reconstructions are distilled into point clouds that retain
-              the detail mattering for contact and clearance, while dense point tracking keeps the representation
-              aligned with objects as they move.
-            </div>
-          </div>
-        </div>
-
-        <div class="publication publication-pair">
-          <div class="pub-media-stack">
-            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
               <source src="assets/thumbs/peg-ours.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
@@ -246,8 +226,25 @@
               for safety. Evaluation targets the precise-contact tasks where 3D policies are weakest, insertion
               above all.
             </div>
-            <div class="pub-links">
-              <a href="https://app.notion.com/p/Fine-grained-point-cloud-manipulation-3ac73c3669d2807fa387c1df3e906306?source=copy_link" target="_blank" rel="noopener noreferrer">Writeup</a>
+          </div>
+        </div>
+
+        <div class="publication publication-pair">
+          <div class="pub-media-stack">
+            <img class="pub-thumb" src="assets/thumbs/softcapture-geometry.webp" alt="Soft-capture geometry: target and chaser body frames, relative position, target tumble rate, control wrench and docking points" />
+            <img class="pub-thumb" src="assets/thumbs/softcapture-constraints.webp" alt="Constraint geometry in the target docking frame: keep-out region, collision margin, docking cone and sensor field of view" />
+          </div>
+
+          <div>
+            <div class="pub-title">Collision-Aware Soft-Capture Trajectory Optimization on SE(3)</div>
+            <div class="pub-venue">
+              Soft capture is the terminal phase of on-orbit servicing, where a chaser must dock with a
+              tumbling target under strict safety and sensing limits. Classical Hill&ndash;Clohessy&ndash;Wiltshire
+              formulations decouple translation from attitude and lose fidelity once rotational coupling
+              dominates. This work poses the problem directly on SE(3) with left-trivialized rigid-body
+              dynamics, encodes mission constraints as smooth penalties on the manifold, and linearizes a
+              differentiable collision factor in Lie-algebra coordinates so keep-out safety is enforced
+              inside the same retraction-based Riemannian solve rather than bolted on afterwards.
             </div>
           </div>
         </div>
@@ -368,10 +365,13 @@
           <div>
             <div class="pub-title">A QCQP-Representable IMU Pre-Integration Factor for Certifiable State Estimation</div>
             <div class="pub-venue">
-              <strong>U. Rai</strong>, et al. Under review. An IMU pre-integration factor built on the Cayley map
-              and representable as a QCQP, so its semidefinite relaxation returns a solution carrying a rank-one
-              certificate of global optimality rather than an unflagged local minimum. The figure contrasts the
-              certified solution with a local solver started from a poor initialization.
+              <strong>U. Rai</strong>, Z. Xu, B.-S. Chen, D. Rosen. arXiv:2609.38048, 2026. An IMU pre-integration
+              factor built on the Cayley map and representable as a QCQP, so its semidefinite relaxation returns a
+              solution carrying a rank-one certificate of global optimality rather than an unflagged local minimum.
+              The figure contrasts the certified solution with a local solver started from a poor initialization.
+            </div>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2609.38048" target="_blank" rel="noopener noreferrer">arXiv</a>
             </div>
           </div>
         </div>
