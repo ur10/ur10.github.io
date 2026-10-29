@@ -77,56 +77,6 @@
       </div>
     </section>
 
-    <section class="showcase" id="showcase" aria-labelledby="sc" aria-roledescription="carousel">
-      <div class="sc-head">
-        <h2 id="sc" class="eyebrow">Highlights</h2>
-        <div class="sc-nav" hidden>
-          <button type="button" class="sc-btn" data-dir="-1" aria-label="Previous highlight">&#8249;</button>
-          <div class="dots" role="tablist" aria-label="Choose a highlight"></div>
-          <button type="button" class="sc-btn" data-dir="1" aria-label="Next highlight">&#8250;</button>
-        </div>
-      </div>
-      <div class="slides" aria-live="polite">
-      <article class="slide is-active" id="slide-0" role="tabpanel" aria-roledescription="slide" aria-label="1 of 4">
-        <div class="sc-media"><video class="scv" loop muted playsinline preload="metadata" poster="assets/real/peg-comparison-front.jpg" aria-label="UR10 ring-on-peg insertion: base policy with residual correction versus base policy alone"><source src="assets/real/peg-comparison-front.mp4" type="video/mp4"></video></div>
-        <div class="sc-text">
-          <p class="sc-kick">Real hardware &middot; UR10</p>
-          <h3>Fine-Grained Point-Cloud Manipulation</h3>
-          <p>Sim-trained 3D policies break on real depth &mdash; holes, occlusion, calibration drift. A frozen geometry prior with a bounded, gated residual on top seats the ring (left) where the base policy alone misses (right).</p>
-          <p class="lnk"><a href="#p-manip">See the project &darr;</a></p>
-        </div>
-      </article>
-      <article class="slide" id="slide-1" role="tabpanel" aria-roledescription="slide" aria-label="2 of 4">
-        <div class="sc-media"><video class="scv" loop muted playsinline preload="metadata" poster="assets/thumbs/memory-routestick.jpg" aria-label="UR5 route-following benchmark with a cue given before the robot sets off"><source src="assets/thumbs/memory-routestick.mp4" type="video/mp4"></video></div>
-        <div class="sc-text">
-          <p class="sc-kick">Real hardware &middot; UR5</p>
-          <h3>History-Conditioned Policies under Partial Observability</h3>
-          <p>The route is specified before the robot sets off, so the cue is long gone by the time it decides. Long-context transformers and recurrent memory carry that information forward instead of acting on the current frame alone.</p>
-          <p class="lnk"><a href="#p-memory">See the project &darr;</a></p>
-        </div>
-      </article>
-      <article class="slide" id="slide-2" role="tabpanel" aria-roledescription="slide" aria-label="3 of 4">
-        <div class="sc-media"><video class="scv" loop muted playsinline preload="metadata" poster="assets/thumbs/scene3d.jpg" aria-label="Point-cloud scene reconstructions distilled from Gaussian Splatting"><source src="assets/thumbs/scene3d.mp4" type="video/mp4"></video></div>
-        <div class="sc-text">
-          <p class="sc-kick">Real-world data &middot; tracked scenes</p>
-          <h3>3D Scene Representations for Online Motion Planning</h3>
-          <p>Gaussian Splatting reconstructions distilled into point clouds that keep the geometry mattering for contact and clearance, while staying cheap enough to query inside a control loop as the scene changes.</p>
-          <p class="lnk"><a href="#p-scene">See the project &darr;</a></p>
-        </div>
-      </article>
-      <article class="slide" id="slide-3" role="tabpanel" aria-roledescription="slide" aria-label="4 of 4">
-        <div class="sc-media"><img class="scv" src="assets/thumbs/softcapture-constraints.webp" alt="Keep-out region, collision margin, docking cone and sensor field of view" loading="lazy"></div>
-        <div class="sc-text">
-          <p class="sc-kick">Trajectory optimization &middot; SE(3)</p>
-          <h3>Collision-Aware Soft-Capture on SE(3)</h3>
-          <p>Docking with a tumbling target posed directly on SE(3): keep-out regions, the approach cone and sensor field of view become smooth penalties, with collision linearized in Lie-algebra coordinates inside one Riemannian solve.</p>
-          <p class="lnk"><a href="#p-se3">See the project &darr;</a></p>
-        </div>
-      </article>
-      </div>
-      <div class="sc-bar" hidden><span></span></div>
-    </section>
-
     <section aria-labelledby="pr">
       <h2 id="pr">Selected Projects</h2>
       <article class="row" id="p-scene">
