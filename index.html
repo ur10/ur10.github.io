@@ -1,403 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Utkarsh Rai | Robotics Researcher</title>
+<meta name="description" content="Utkarsh Rai - MS Robotics, Northeastern University. Robot learning under partial observability, 3D scene representations, and certifiable state estimation, demonstrated on real hardware." />
+<link rel="canonical" href="https://ur10.github.io/" />
+<meta name="author" content="Utkarsh Rai" />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="Utkarsh Rai | Robotics Researcher" />
+<meta property="og:description" content="Robot learning under partial observability, 3D scene representations, and certifiable state estimation - demonstrated on real hardware." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ur10.github.io/" />
+<meta property="og:image" content="https://ur10.github.io/assets/real/peg-insert-moment.webp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Utkarsh Rai | Robotics Researcher" />
+<meta name="twitter:description" content="Robot learning under partial observability, 3D scene representations, and certifiable state estimation - demonstrated on real hardware." />
+<meta name="twitter:image" content="https://ur10.github.io/assets/real/peg-insert-moment.webp" />
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
 
-  <title>Utkarsh Rai | Robotics Researcher</title>
-
-  <meta name="description" content="Personal academic website of Utkarsh Rai, MS Robotics at Northeastern University, working on memory and long-context diffusion policies for manipulation, certifiable state estimation, and real-world robot deployment." />
-
-  <link rel="canonical" href="https://ur10.github.io/" />
-
-  <meta name="author" content="Utkarsh Rai" />
-  <meta name="robots" content="index, follow" />
-
-  <meta property="og:title" content="Utkarsh Rai | Robotics Researcher" />
-  <meta property="og:description" content="MS Robotics at Northeastern University. Memory and long-context diffusion policies, certifiable state estimation, and real-world robot deployment." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ur10.github.io/" />
-  <meta property="og:image" content="https://ur10.github.io/assets/pubs/vpr.webp" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Utkarsh Rai | Robotics Researcher" />
-  <meta name="twitter:description" content="MS Robotics at Northeastern University. Memory and long-context diffusion policies, certifiable state estimation, and real-world robot deployment." />
-  <meta name="twitter:image" content="https://ur10.github.io/assets/pubs/vpr.webp" />
-
-  <!-- Font Awesome Icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Utkarsh Rai",
-    "url": "https://ur10.github.io/",
-    "jobTitle": "Robotics Researcher",
-    "affiliation": {
-      "@type": "Organization",
-      "name": "Northeastern University",
-      "url": "https://www.northeastern.edu/"
-    },
-    "email": "mailto:rai.ut@northeastern.edu",
-    "sameAs": [
-      "https://github.com/ur10",
-      "https://www.linkedin.com/in/utkarsh-rai-964283169/",
-      "https://scholar.google.com/citations?hl=en&user=DcbuBXoAAAAJ"
-    ],
-    "knowsAbout": [
-      "Robotics",
-      "Robot Learning",
-      "Diffusion Policies",
-      "Imitation Learning",
-      "Offline Reinforcement Learning",
-      "Partial Observability",
-      "Sequence Modeling",
-      "Certifiable Optimization",
-      "Semidefinite Relaxation",
-      "State Estimation",
-      "Motion Planning",
-      "Model Predictive Control",
-      "Sim-to-Real Transfer",
-      "Multi-Agent Reinforcement Learning"
-    ]
-  }
-  </script>
-
-  <link rel="stylesheet" href="styles.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Utkarsh Rai",
+  "url": "https://ur10.github.io/",
+  "jobTitle": "Robotics Researcher",
+  "affiliation": { "@type": "Organization", "name": "Northeastern University", "url": "https://www.northeastern.edu/" },
+  "email": "mailto:rai.ut@northeastern.edu",
+  "sameAs": [
+    "https://github.com/ur10",
+    "https://www.linkedin.com/in/utkarsh-rai-964283169/",
+    "https://scholar.google.com/citations?hl=en&user=DcbuBXoAAAAJ"
+  ],
+  "knowsAbout": ["Robot Learning","Diffusion Policies","Partial Observability","Residual Reinforcement Learning",
+    "3D Scene Representations","Certifiable Optimization","State Estimation","Motion Planning",
+    "Model Predictive Control","Sim-to-Real Transfer"]
+}
+</script>
+<link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-  <main class="page">
+<a class="skip" href="#main">Skip to content</a>
 
-    <!-- LEFT SIDEBAR -->
-    <aside class="sidebar">
-      <img class="profile-photo" src="assets/profile.jpg" alt="Utkarsh Rai profile photo" />
+<div class="page">
 
-      <h1 class="sidebar-name">Utkarsh Rai</h1>
+  <header class="hero">
+    <img class="portrait" src="assets/profile.jpg" alt="Utkarsh Rai" width="150" height="150">
+    <div class="ident">
+      <h1>Utkarsh Rai</h1>
+      <p class="tag">Robot learning &middot; Certifiable state estimation</p>
+      <p class="aff">MS Robotics, Northeastern University &middot; Boston, Massachusetts</p>
+      <nav class="links" aria-label="Contact and profiles">
+        <a href="mailto:rai.ut@northeastern.edu">Email</a>
+        <a href="assets/cv/Utkarsh_Rai_Resume.pdf">CV</a>
+        <a href="https://github.com/ur10" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://scholar.google.com/citations?hl=en&amp;user=DcbuBXoAAAAJ" target="_blank" rel="noopener noreferrer">Scholar</a>
+        <a href="https://www.linkedin.com/in/utkarsh-rai-964283169/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </nav>
+    </div>
+  </header>
 
-      <p class="sidebar-title">
-        Robotics Researcher | Robot Learning &amp; Certifiable Estimation
-      </p>
+  <main id="main">
 
-      <div class="sidebar-info">
-        <div>
-          <span><i class="fa-solid fa-location-dot"></i></span>
-          Boston, Massachusetts
-        </div>
-
-        <div>
-          <span><i class="fa-solid fa-building-columns"></i></span>
-          Northeastern University
-        </div>
-
-        <div>
-          <span><i class="fa-solid fa-envelope"></i></span>
-          <a href="mailto:rai.ut@northeastern.edu">Email</a>
-        </div>
-
-        <div>
-          <span><i class="fa-brands fa-github"></i></span>
-          <a href="https://github.com/ur10" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </div>
-
-        <div>
-          <span><i class="fa-brands fa-linkedin"></i></span>
-          <a href="https://www.linkedin.com/in/utkarsh-rai-964283169/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </div>
-
-        <div>
-          <span><i class="fa-solid fa-graduation-cap"></i></span>
-          <a href="https://scholar.google.com/citations?hl=en&amp;user=DcbuBXoAAAAJ" target="_blank" rel="noopener noreferrer">Scholar</a>
-        </div>
-
-        <div>
-          <span><i class="fa-solid fa-file-lines"></i></span>
-          <a href="assets/cv/Utkarsh_Rai_Resume.pdf" target="_blank" rel="noopener noreferrer">CV</a>
-        </div>
-      </div>
-    </aside>
-
-    <!-- RIGHT MAIN CONTENT -->
-    <section class="main-content">
-
-      <section id="about">
-        <p class="bio">
-          I am a Master's student in Robotics at
-          <a href="https://www.northeastern.edu/">Northeastern University</a>, working in the
-          <a href="https://www2.ccs.neu.edu/research/helpinghands/">Helping Hands Lab</a>
-          on memory and partial observability in learned manipulation policies, and on certifiable
-          optimization for state estimation. My work spans imitation learning, diffusion policies,
-          offline reinforcement learning, sequence modeling, and convex relaxations for factor-graph
-          estimation.
-        </p>
-
-        <p class="bio">
-          I am interested in two questions: how to make policies reason over history rather than the
-          current frame alone, and how to make an estimator return a certificate that its solution is
-          globally optimal rather than a hope that the local solver landed in the right basin. Before
-          Northeastern I spent two years at Mowito deploying 50&nbsp;Hz MPC trajectory generation in
-          C++ on UR5 hardware for warehouse picking, and I have published on driving-scene perception
-          at IROS 2024 and multi-robot coordination in IEEE RA-L.
-        </p>
-
-        <div class="links">
-          <a href="mailto:rai.ut@northeastern.edu">&#9993; Email</a> /
-          <a href="assets/cv/Utkarsh_Rai_Resume.pdf">CV</a> /
-          <a href="https://github.com/ur10" target="_blank" rel="noopener noreferrer">GitHub</a> /
-          <a href="https://www.linkedin.com/in/utkarsh-rai-964283169/" target="_blank" rel="noopener noreferrer">LinkedIn</a> /
-          <a href="https://scholar.google.com/citations?hl=en&amp;user=DcbuBXoAAAAJ" target="_blank" rel="noopener noreferrer">Scholar</a>
-        </div>
-      </section>
-
-      <section id="projects">
-        <h2>Selected Projects</h2>
-
-        <div class="publication publication-pair">
-          <div class="pub-media-stack">
-            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-              <source src="assets/thumbs/scene3d.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-              <source src="assets/thumbs/robotap.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-
-          <div>
-            <div class="pub-title">3D Scene Representations for Online Motion Planning</div>
-            <div class="pub-venue">
-              Planning in a changing scene needs a representation that is geometrically faithful and cheap enough
-              to query inside a control loop, and those requirements pull against each other: photorealistic
-              reconstructions are expensive to evaluate, while coarse occupancy grids discard the geometry a
-              manipulator needs. Gaussian Splatting reconstructions are distilled into point clouds that retain
-              the detail mattering for contact and clearance, while dense point tracking keeps the representation
-              aligned with objects as they move.
-            </div>
-            <div class="pub-links">
-              <span class="pub-soon">Code coming soon</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="publication publication-pair">
-          <div class="pub-media-stack">
-            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-              <source src="assets/thumbs/memory-routestick.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-              <source src="assets/thumbs/memory-counting.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-
-          <div>
-            <div class="pub-title">History-Conditioned Policies under Partial Observability</div>
-            <div class="pub-venue">
-              A policy conditioned only on the current observation is effectively Markov, yet many manipulation
-              tasks hide exactly the information it needs: a route specified before the robot sets off, or objects
-              already handled and no longer in view. Conditioning on a history of observations, through
-              long-context transformers and recurrent memory, carries that information forward. Route following
-              and object counting serve as the test tasks, each paired with a fully observable twin so a drop in
-              success isolates observability from difficulty.
-            </div>
-            <div class="pub-links">
-              <a href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer">Code</a> /
-              <a href="https://github.com/ur10/mem-diff" target="_blank" rel="noopener noreferrer">Policy training</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="publication publication-pair">
-          <div class="pub-media-stack">
-            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-              <source src="assets/thumbs/peg-ours.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-              <source src="assets/thumbs/adroit-pen.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-
-          <div>
-            <div class="pub-title">Fine-Grained Point-Cloud Manipulation</div>
-            <div class="pub-venue">
-              Sim-trained point-cloud policies generalize well across objects and poses, but real depth breaks
-              their assumptions: holes, occlusion, calibration drift, and contact mismatch. The sim-trained 3D
-              policy stays frozen so its geometry prior survives, while a small off-policy residual learns on top
-              of it. A gate decides when that correction is trustworthy, and the correction itself stays bounded
-              for safety. Evaluation targets the precise-contact tasks where 3D policies are weakest, insertion
-              above all.
-            </div>
-            <div class="pub-links">
-              <span class="pub-soon">Code coming soon</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="publication publication-pair">
-          <div class="pub-media-stack">
-            <img class="pub-thumb" src="assets/thumbs/softcapture-geometry.webp" alt="Soft-capture geometry: target and chaser body frames, relative position, target tumble rate, control wrench and docking points" />
-            <img class="pub-thumb" src="assets/thumbs/softcapture-constraints.webp" alt="Constraint geometry in the target docking frame: keep-out region, collision margin, docking cone and sensor field of view" />
-          </div>
-
-          <div>
-            <div class="pub-title">Collision-Aware Soft-Capture Trajectory Optimization on SE(3)</div>
-            <div class="pub-venue">
-              Soft capture is the terminal phase of on-orbit servicing, where a chaser must dock with a
-              tumbling target under strict safety and sensing limits. Classical Hill&ndash;Clohessy&ndash;Wiltshire
-              formulations decouple translation from attitude and lose fidelity once rotational coupling
-              dominates. This work poses the problem directly on SE(3) with left-trivialized rigid-body
-              dynamics, encodes mission constraints as smooth penalties on the manifold, and linearizes a
-              differentiable collision factor in Lie-algebra coordinates so keep-out safety is enforced
-              inside the same retraction-based Riemannian solve rather than bolted on afterwards.
-            </div>
-            <div class="pub-links">
-              <a href="https://github.com/ur10/se3-soft-capture" target="_blank" rel="noopener noreferrer">Code</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="research">
-        <h2>Research</h2>
-
-        <div class="publication">
-          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-            <source src="assets/research/tmaze.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          <div>
-            <div class="pub-title">Memory &amp; Partial Observability</div>
-            <div class="pub-venue">
-              History-conditioned sequence models, long-context transformers and recurrent memory, handle tasks
-              where the current observation is not sufficient to act. Each environment ships with a fully
-              observable twin, so any gap in success rate is attributable to observability rather than to task
-              difficulty, and the tasks are built to force a policy to carry information across a long horizon
-              before it can act correctly.
-            </div>
-          </div>
-        </div>
-
-        <div class="publication">
-          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-            <source src="assets/research/multipush.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          <div>
-            <div class="pub-title">Long-Context Policies &amp; Latency-Aware Inference</div>
-            <div class="pub-venue">
-              A long history is only useful if it fits inside a control budget. Action chunking and caching keep
-              inference within the control loop, while memory-efficient attention such as FlashAttention and
-              xFormers reduces rollout memory two to three times. Together these let long-context models execute
-              in real time instead of exhausting GPU memory partway through an episode. Latency, not accuracy, is
-              usually what keeps such a policy off the robot.
-            </div>
-          </div>
-        </div>
-
-        <div class="publication">
-          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-            <source src="assets/research/scene3d.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          <div>
-            <div class="pub-title">3D Scene Representations for Planning</div>
-            <div class="pub-venue">
-              Efficient 3D scene representations that distill Gaussian Splatting reconstructions into point clouds, preserving the geometric detail a manipulator needs for contact and clearance while staying cheap enough to query inside a control loop. The representation is built for fast online motion evaluation in environments that change while the robot is acting, rather than being reconstructed once and then assumed static for the rest of the episode.
-            </div>
-          </div>
-        </div>
-
-        <div class="publication">
-          <video class="pub-thumb" autoplay loop muted playsinline preload="auto">
-            <source src="assets/research/certifiable.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          <div>
-            <div class="pub-title">Certifiable State Estimation</div>
-            <div class="pub-venue">
-              Convex relaxations of factor-graph maximum likelihood estimation, lifting the problem to a quadratically constrained quadratic program and then to a semidefinite program whose solution carries a dual certificate of global optimality. Where a local solver can converge to a bad minimum and report nothing unusual, a rank-one certificate proves the recovered estimate is the global optimum, and a nonzero gap bounds how far from it you are.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="publications">
-        <h2>Publications</h2>
-
-        <div class="publication">
-          <img class="pub-thumb" src="assets/pubs/vpr.webp" alt="Driving scenes from three city routes showing occlusion, traffic density, viewpoint and illumination changes" />
-
-          <div>
-            <div class="pub-title">Visual Place Recognition in Unstructured Driving Environments</div>
-            <div class="pub-venue">
-              <strong>U. Rai</strong>, S. Gangisetty, A. H. Abdul Hafez, A. Subramaniam, C. V. Jawahar. IEEE/RSJ
-              IROS 2024, pp. 10724&ndash;10731. A place-recognition dataset over three routes through an Indian
-              city, organised around occlusion, traffic density, viewpoint change and illumination change, on
-              which methods that saturate the standard benchmarks drop by up to 15%.
-            </div>
-            <div class="pub-links">
-              <a href="https://cvit.iiit.ac.in/images/ConferencePapers/2024/Visual_Place_Recognition_in_Unstructured_Driving_Environments.pdf" target="_blank" rel="noopener noreferrer">Paper</a> /
-              <a href="https://cvit.iiit.ac.in/research/projects/cvit-projects/iddvpr" target="_blank" rel="noopener noreferrer">Project page</a> /
-              <a href="https://github.com/ur10/IDD-VPR" target="_blank" rel="noopener noreferrer">Code</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="publication">
-          <img class="pub-thumb" src="assets/pubs/mrta.webp" alt="Hardware validation: high- and low-altitude UAVs servicing tasks marked across a tiled arena" />
-
-          <div>
-            <div class="pub-title">Heterogeneous Multi-robot Task Allocation and Scheduling via Reinforcement Learning</div>
-            <div class="pub-venue">
-              W. Dai, <strong>U. Rai</strong>, J. Chiun, Y. Cao, G. Sartoretti. IEEE Robotics and Automation
-              Letters, 10(3):2654&ndash;2661, 2025. A decentralised policy for heterogeneous teams on tasks that
-              can only begin once every agent whose ability they require has arrived, validated in hardware with
-              high- and low-altitude UAVs servicing a shared set of tasks.
-            </div>
-            <div class="pub-links">
-              <a href="https://www.marmotlab.org/publications/73-RAL2025-HetMRTA.pdf" target="_blank" rel="noopener noreferrer">Paper</a> /
-              <a href="https://ieeexplore.ieee.org/document/10854527" target="_blank" rel="noopener noreferrer">IEEE Xplore</a> /
-              <a href="https://github.com/ur10/hetero-viz" target="_blank" rel="noopener noreferrer">Code</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="publication">
-          <img class="pub-thumb" src="assets/pubs/imu.webp" alt="Trajectory recovered by the certifiable estimator against a local solver started from a poor initialization" />
-
-          <div>
-            <div class="pub-title">A QCQP-Representable IMU Pre-Integration Factor for Certifiable State Estimation</div>
-            <div class="pub-venue">
-              <strong>U. Rai</strong>, Z. Xu, B.-S. Chen, D. Rosen. arXiv:2609.38048, 2026. An IMU pre-integration
-              factor built on the Cayley map and representable as a QCQP, so its semidefinite relaxation returns a
-              solution carrying a rank-one certificate of global optimality rather than an unflagged local minimum.
-              The figure contrasts the certified solution with a local solver started from a poor initialization.
-            </div>
-            <div class="pub-links">
-              <a href="https://arxiv.org/abs/2609.38048" target="_blank" rel="noopener noreferrer">arXiv</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="footer">
-        &copy; 2026 Utkarsh Rai
-      </div>
-
+    <section class="intro">
+      <p>I am a Master's student in Robotics at Northeastern University, working in the Helping Hands Lab on memory and partial observability in learned manipulation policies, and on certifiable optimization for state estimation. My work spans imitation learning, diffusion policies, offline reinforcement learning, sequence modeling, and convex relaxations for factor-graph estimation.</p>
+        <p>I am interested in two questions: how to make policies reason over history rather than the current frame alone, and how to make an estimator return a certificate that its solution is globally optimal rather than a hope that the local solver landed in the right basin. Before Northeastern I spent two years at Mowito deploying 50&nbsp;Hz MPC trajectory generation in C++ on UR5 hardware for warehouse picking, and I have published on driving-scene perception at IROS 2024 and multi-robot coordination in IEEE RA-L.</p>
     </section>
+
+    <section class="showcase" aria-labelledby="sc">
+      <h2 id="sc" class="eyebrow">On real hardware</h2>
+      <figure class="wide">
+        <video autoplay loop muted playsinline preload="metadata"
+               poster="assets/real/peg-comparison-front.jpg"
+               aria-label="UR10 ring-on-peg insertion, residual policy versus base policy, played side by side">
+          <source src="assets/real/peg-comparison-front.mp4" type="video/mp4">
+        </video>
+        <figcaption><b>Ring-on-peg insertion on a UR10.</b> Same task, same peg, both episodes in real time:
+          base policy with a learned residual correction (left) seats the ring; the base policy alone (right)
+          misses. End-effector paths, commanded steps and gripper state are overlaid from the logged run.</figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="pr">
+      <h2 id="pr">Selected Projects</h2>
+      <article class="row">
+        <div class="media">
+          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/thumbs/scene3d.jpg" aria-label="Point-cloud scene reconstructions distilled from Gaussian Splatting"><source src="assets/thumbs/scene3d.mp4" type="video/mp4"></video><figcaption>Point-cloud scene reconstructions distilled from Gaussian Splatting</figcaption></figure>
+          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/thumbs/robotap.jpg" aria-label="Dense point tracking on a real tabletop scene"><source src="assets/thumbs/robotap.mp4" type="video/mp4"></video><figcaption>Dense point tracking on a real tabletop scene</figcaption></figure>
+        </div>
+        <div class="body">
+          <h3>3D Scene Representations for Online Motion Planning <span class="real" title="Shown on physical hardware or real-world sensor data">REAL-WORLD&nbsp;DATA<i>tracked on real scenes</i></span></h3>
+          <p>Planning in a changing scene needs a representation that is geometrically faithful and cheap enough to query inside a control loop, and those requirements pull against each other: photorealistic reconstructions are expensive to evaluate, while coarse occupancy grids discard the geometry a manipulator needs. Gaussian Splatting reconstructions are distilled into point clouds that retain the detail mattering for contact and clearance, while dense point tracking keeps the representation aligned with objects as they move.</p>
+          <p class="lnk"><a href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer">Code</a></p>
+        </div>
+      </article>
+      <article class="row">
+        <div class="media">
+          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/thumbs/memory-counting.jpg" aria-label="UR5 wrist camera during the counting task"><source src="assets/thumbs/memory-counting.mp4" type="video/mp4"></video><figcaption>UR5 wrist camera during the counting task</figcaption></figure>
+          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/thumbs/memory-routestick.jpg" aria-label="Route-following benchmark with a cue given before the robot sets off"><source src="assets/thumbs/memory-routestick.mp4" type="video/mp4"></video><figcaption>Route-following benchmark with a cue given before the robot sets off</figcaption></figure>
+        </div>
+        <div class="body">
+          <h3>History-Conditioned Policies under Partial Observability <span class="real" title="Shown on physical hardware or real-world sensor data">REAL&nbsp;HARDWARE<i>UR5</i></span></h3>
+          <p>A policy conditioned only on the current observation is effectively Markov, yet many manipulation tasks hide exactly the information it needs: a route specified before the robot sets off, or objects already handled and no longer in view. Conditioning on a history of observations, through long-context transformers and recurrent memory, carries that information forward. Route following and object counting serve as the test tasks, each paired with a fully observable twin so a drop in success isolates observability from difficulty.</p>
+          <p class="lnk"><a href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer">Code</a> <span>·</span> <a href="https://github.com/ur10/mem-diff" target="_blank" rel="noopener noreferrer">Policy training</a></p>
+        </div>
+      </article>
+      <article class="row">
+        <div class="media">
+          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-comparison-front.jpg" aria-label="UR10 ring-on-peg: base policy + residual (left) vs base policy alone (right)"><source src="assets/real/peg-comparison-front.mp4" type="video/mp4"></video><figcaption>UR10 ring-on-peg: base policy + residual (left) vs base policy alone (right)</figcaption></figure>
+          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-ep0-composite.jpg" aria-label="Per-episode dashboard: point cloud reprojected onto the RealSense images"><source src="assets/real/peg-ep0-composite.mp4" type="video/mp4"></video><figcaption>Per-episode dashboard: point cloud reprojected onto the RealSense images</figcaption></figure>
+          <details class="more"><summary>More views, and the simulation counterpart</summary>
+            <div class="grid2"><figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-rerun.jpg" aria-label="Rerun timeline of both episodes"><source src="assets/real/peg-rerun.mp4" type="video/mp4"></video><figcaption>Rerun timeline of both episodes</figcaption></figure>
+            <figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-ep0-overlay.jpg" aria-label="Front camera with the depth-segmented task box"><source src="assets/real/peg-ep0-overlay.mp4" type="video/mp4"></video><figcaption>Front camera with the depth-segmented task box</figcaption></figure>
+            <figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-comparison-right.jpg" aria-label="Right camera view of the same two episodes"><source src="assets/real/peg-comparison-right.mp4" type="video/mp4"></video><figcaption>Right camera, same two episodes</figcaption></figure>
+            <figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/thumbs/peg-ours.jpg" aria-label="Peg insertion in simulation"><source src="assets/thumbs/peg-ours.mp4" type="video/mp4"></video><figcaption>Simulation counterpart: peg insertion</figcaption></figure>
+            <figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/thumbs/adroit-pen.jpg" aria-label="Dexterous in-hand reorientation in simulation"><source src="assets/thumbs/adroit-pen.mp4" type="video/mp4"></video><figcaption>Simulation: dexterous in-hand reorientation</figcaption></figure></div>
+          </details>
+        </div>
+        <div class="body">
+          <h3>Fine-Grained Point-Cloud Manipulation <span class="real" title="Shown on physical hardware or real-world sensor data">REAL&nbsp;HARDWARE<i>UR10</i></span></h3>
+          <p>Sim-trained point-cloud policies generalize well across objects and poses, but real depth breaks their assumptions: holes, occlusion, calibration drift, and contact mismatch. The sim-trained 3D policy stays frozen so its geometry prior survives, while a small off-policy residual learns on top of it. A gate decides when that correction is trustworthy, and the correction itself stays bounded for safety. Evaluation targets the precise-contact tasks where 3D policies are weakest, insertion above all.</p>
+          <p class="lnk"><a href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer">Code</a></p>
+        </div>
+      </article>
+      <article class="row">
+        <div class="media">
+          <figure><img class="m" src="assets/thumbs/softcapture-geometry.webp" alt="Soft-capture geometry: target and chaser frames, tumble rate, docking points" loading="lazy"><figcaption>Soft-capture geometry: target and chaser frames, tumble rate, docking points</figcaption></figure>
+          <figure><img class="m" src="assets/thumbs/softcapture-constraints.webp" alt="Keep-out region, collision margin, docking cone and sensor field of view" loading="lazy"><figcaption>Keep-out region, collision margin, docking cone and sensor field of view</figcaption></figure>
+        </div>
+        <div class="body">
+          <h3>Collision-Aware Soft-Capture Trajectory Optimization on SE(3) </h3>
+          <p>Soft capture is the terminal phase of on-orbit servicing, where a chaser must dock with a tumbling target under strict safety and sensing limits. Classical Hill&ndash;Clohessy&ndash;Wiltshire formulations decouple translation from attitude and lose fidelity once rotational coupling dominates. This work poses the problem directly on SE(3) with left-trivialized rigid-body dynamics, encodes mission constraints as smooth penalties on the manifold, and linearizes a differentiable collision factor in Lie-algebra coordinates so keep-out safety is enforced inside the same retraction-based Riemannian solve rather than bolted on afterwards.</p>
+          <p class="lnk"><a href="https://github.com/ur10/se3-soft-capture" target="_blank" rel="noopener noreferrer">Code</a></p>
+        </div>
+      </article>
+    </section>
+
+    <section aria-labelledby="rs">
+      <h2 id="rs">Research</h2>
+      <article class="row tight">
+        <div class="media">
+          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/research/tmaze.jpg" aria-label="Memory &amp; Partial Observability"><source src="assets/research/tmaze.mp4" type="video/mp4"></video></figure>
+        </div>
+        <div class="body">
+          <h3>Memory &amp; Partial Observability</h3>
+          <p>History-conditioned sequence models, long-context transformers and recurrent memory, handle tasks where the current observation is not sufficient to act. Each environment ships with a fully observable twin, so any gap in success rate is attributable to observability rather than to task difficulty, and the tasks are built to force a policy to carry information across a long horizon before it can act correctly.</p>
+        </div>
+      </article>
+      <article class="row tight">
+        <div class="media">
+          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/research/multipush.jpg" aria-label="Long-Context Policies &amp; Latency-Aware Inference"><source src="assets/research/multipush.mp4" type="video/mp4"></video></figure>
+        </div>
+        <div class="body">
+          <h3>Long-Context Policies &amp; Latency-Aware Inference</h3>
+          <p>A long history is only useful if it fits inside a control budget. Action chunking and caching keep inference within the control loop, while memory-efficient attention such as FlashAttention and xFormers reduces rollout memory two to three times. Together these let long-context models execute in real time instead of exhausting GPU memory partway through an episode. Latency, not accuracy, is usually what keeps such a policy off the robot.</p>
+        </div>
+      </article>
+      <article class="row tight">
+        <div class="media">
+          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/research/scene3d.jpg" aria-label="3D Scene Representations for Planning"><source src="assets/research/scene3d.mp4" type="video/mp4"></video></figure>
+        </div>
+        <div class="body">
+          <h3>3D Scene Representations for Planning</h3>
+          <p>Efficient 3D scene representations that distill Gaussian Splatting reconstructions into point clouds, preserving the geometric detail a manipulator needs for contact and clearance while staying cheap enough to query inside a control loop. The representation is built for fast online motion evaluation in environments that change while the robot is acting, rather than being reconstructed once and then assumed static for the rest of the episode.</p>
+        </div>
+      </article>
+      <article class="row tight">
+        <div class="media">
+          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/research/certifiable.jpg" aria-label="Certifiable State Estimation"><source src="assets/research/certifiable.mp4" type="video/mp4"></video></figure>
+        </div>
+        <div class="body">
+          <h3>Certifiable State Estimation</h3>
+          <p>Convex relaxations of factor-graph maximum likelihood estimation, lifting the problem to a quadratically constrained quadratic program and then to a semidefinite program whose solution carries a dual certificate of global optimality. Where a local solver can converge to a bad minimum and report nothing unusual, a rank-one certificate proves the recovered estimate is the global optimum, and a nonzero gap bounds how far from it you are.</p>
+        </div>
+      </article>
+    </section>
+
+    <section aria-labelledby="pb">
+      <h2 id="pb">Publications</h2>
+      <article class="row tight">
+        <div class="media">
+          <figure><img class="m" src="assets/pubs/vpr.webp" alt="Visual Place Recognition in Unstructured Driving Environments" loading="lazy"></figure>
+        </div>
+        <div class="body">
+          <h3>Visual Place Recognition in Unstructured Driving Environments <span class="real" title="Shown on physical hardware or real-world sensor data">REAL-WORLD&nbsp;DATA<i>three city routes</i></span></h3>
+          <p class="auth"><b>U. Rai</b>, S. Gangisetty, A. H. Abdul Hafez, A. Subramaniam, C. V. Jawahar</p>
+          <p class="venue">IEEE/RSJ IROS 2024, pp. 10724&ndash;10731</p>
+          <p class="lnk"><a href="https://cvit.iiit.ac.in/images/ConferencePapers/2024/Visual_Place_Recognition_in_Unstructured_Driving_Environments.pdf" target="_blank" rel="noopener noreferrer">Paper</a> <span>·</span> <a href="https://cvit.iiit.ac.in/research/projects/cvit-projects/iddvpr" target="_blank" rel="noopener noreferrer">Project page</a> <span>·</span> <a href="https://github.com/ur10/IDD-VPR" target="_blank" rel="noopener noreferrer">Code</a></p>
+        </div>
+      </article>
+      <article class="row tight">
+        <div class="media">
+          <figure><img class="m" src="assets/pubs/mrta.webp" alt="Heterogeneous Multi-robot Task Allocation and Scheduling via Reinforcement Learning" loading="lazy"></figure>
+        </div>
+        <div class="body">
+          <h3>Heterogeneous Multi-robot Task Allocation and Scheduling via Reinforcement Learning <span class="real" title="Shown on physical hardware or real-world sensor data">REAL&nbsp;HARDWARE<i>UAV validation</i></span></h3>
+          <p class="auth">W. Dai, <b>U. Rai</b>, J. Chiun, Y. Cao, G. Sartoretti</p>
+          <p class="venue">IEEE Robotics and Automation Letters, 10(3):2654&ndash;2661, 2025</p>
+          <p class="lnk"><a href="https://www.marmotlab.org/publications/73-RAL2025-HetMRTA.pdf" target="_blank" rel="noopener noreferrer">Paper</a> <span>·</span> <a href="https://ieeexplore.ieee.org/document/10854527" target="_blank" rel="noopener noreferrer">IEEE Xplore</a> <span>·</span> <a href="https://github.com/ur10/hetero-viz" target="_blank" rel="noopener noreferrer">Code</a></p>
+        </div>
+      </article>
+      <article class="row tight">
+        <div class="media">
+          <figure><img class="m" src="assets/pubs/imu.webp" alt="A QCQP-Representable IMU Pre-Integration Factor for Certifiable State Estimation" loading="lazy"></figure>
+        </div>
+        <div class="body">
+          <h3>A QCQP-Representable IMU Pre-Integration Factor for Certifiable State Estimation <span class="real" title="Shown on physical hardware or real-world sensor data">REAL-WORLD&nbsp;DATA<i>EuRoC, UrbanNav</i></span></h3>
+          <p class="auth"><b>U. Rai</b>, Z. Xu, B.-S. Chen, D. Rosen</p>
+          <p class="venue">arXiv:2609.38048, 2026</p>
+          <p class="lnk"><a href="https://arxiv.org/abs/2609.38048" target="_blank" rel="noopener noreferrer">arXiv</a></p>
+        </div>
+      </article>
+    </section>
+
   </main>
+
+  <footer>
+    <p><a href="mailto:rai.ut@northeastern.edu">rai.ut@northeastern.edu</a> <span>·</span>
+       <a href="assets/cv/Utkarsh_Rai_Resume.pdf">CV</a> <span>·</span>
+       <a href="https://github.com/ur10" target="_blank" rel="noopener noreferrer">GitHub</a> <span>·</span>
+       <a href="https://scholar.google.com/citations?hl=en&amp;user=DcbuBXoAAAAJ" target="_blank" rel="noopener noreferrer">Scholar</a></p>
+  </footer>
+</div>
+
+<script src="media.js" defer></script>
 </body>
 </html>
