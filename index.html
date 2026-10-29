@@ -67,10 +67,15 @@
   <main id="main">
 
     <section class="intro">
-      <p>I am a Master&rsquo;s student in Robotics at Northeastern University, and I build motion generation for robots that have to work outside simulation &mdash; learned policies with classical planning and optimization underneath them, taken all the way to hardware. My research runs across two labs: robot learning and 3D scene representations in the Helping Hands Lab, and certifiable estimation and trajectory optimization on manifolds in the NEURAL Lab.</p>
-      <p>Most of my work sits where a learned component meets a guarantee someone still needs to hold. Hybrid stacks that keep a diffusion or transformer policy inside a model-predictive safety envelope. Neural proposals that bias sampling-based planners toward the parts of configuration space worth searching. Privileged-state reinforcement-learning teachers distilled into students that see only cameras and proprioception, and residual corrections that absorb what simulation never models &mdash; depth holes, occlusion, calibration drift, contact that does not behave. Where a single frame cannot determine the right action, history-conditioned sequence models carry the missing context forward.</p>
-      <p>Getting any of that onto a robot is its own problem, so I have built the surrounding machinery too: leader&ndash;follower teleoperation rigs for collecting demonstrations, bidirectional sim-to-real and real-to-sim adaptation for point-cloud policies, and scenario-based simulation CI that gates a change on collision and accuracy before it is allowed near hardware. Underneath, the geometry: collision-aware trajectory optimization on SE(3) for docking with a tumbling target, and factor-graph estimation with Cayley-map IMU pre-integration whose convex relaxation returns a certificate of global optimality rather than a hope that the local solver landed in the right basin.</p>
-      <p>Before Northeastern I spent two years at Mowito shipping real-time MPC in production C++ on UR5 arms inside a hard per-cycle budget, with stereo-depth pose estimation feeding the controller directly. Published at IROS 2024 and in IEEE RA-L.</p>
+      <p class="lede">I bridge deep learning and classical control to build fast, certifiable motion generation stacks that work on physical hardware.</p>
+      <p>Currently a Graduate Researcher across Northeastern&rsquo;s Helping Hands Lab and NEURAL Lab, my research focuses on placing learned components (diffusion policies, history-conditioned transformers) inside safety envelopes (MPC, QP filters, manifold optimization) so autonomous systems retain real-world guarantees.</p>
+      <div class="focus">
+        <p class="focus-h">Technical Focus</p>
+        <p><b>Learned Control &amp; Safety:</b> Diffusion Policy, Residual RL, History-Conditioned Sequence Models, Real-Time QP Safety Filters.</p>
+        <p><b>Optimization &amp; Geometry:</b> Trajectory Optimization on SE(3), Factor Graphs, Convex Relaxations / SDP Certificates, IMU Pre-integration.</p>
+        <p><b>Robotics Stack &amp; Hardware:</b> Production C++ (ROS&nbsp;2, GTSAM, Eigen, CUDA), Isaac Gym, 3D Point Clouds/Splatting, Teleoperation Rigs, Automated Sim-to-Real CI.</p>
+      </div>
+      <p class="pubs">Published at IROS 2024 and IEEE RA-L.</p>
     </section>
 
     <section class="showcase" aria-labelledby="sc">
