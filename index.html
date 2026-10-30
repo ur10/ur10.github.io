@@ -115,7 +115,7 @@
         </div>
         <div class="body">
           <h3>Fine-Grained Point-Cloud Manipulation <span class="real" title="Shown on physical hardware or real-world sensor data">REAL&nbsp;HARDWARE<i>UR10</i></span></h3>
-          <p>Sim-trained point-cloud policies generalize well across objects and poses, but real depth breaks their assumptions: holes, occlusion, calibration drift, and contact mismatch. The sim-trained 3D policy stays frozen so its geometry prior survives, while a small off-policy residual learns on top of it. A gate decides when that correction is trustworthy, and the correction itself stays bounded for safety. Evaluation targets the precise-contact tasks where 3D policies are weakest, insertion above all.</p>
+          <p>Point-cloud policies trained in simulation often struggle on real robots, where depth observations contain missing points, occlusions, and calibration errors. I worked on adapting a pretrained 3D manipulation policy without changing the base model, using a lightweight residual policy trained with off-policy learning. A gate controls when the residual can modify the base policy&rsquo;s actions, keeping those corrections bounded. The videos compare the base and adapted policies on a real UR10 performing ring-on-peg insertion.</p>
           <p class="lnk"><a href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer">Code</a></p>
         </div>
       </article>
@@ -126,7 +126,7 @@
         </div>
         <div class="body">
           <h3>3D Scene Representations for Online Motion Planning <span class="real" title="Shown on physical hardware or real-world sensor data">REAL-WORLD&nbsp;DATA<i>tracked on real scenes</i></span></h3>
-          <p>Planning in a changing scene needs a representation that is geometrically faithful and cheap enough to query inside a control loop, and those requirements pull against each other: photorealistic reconstructions are expensive to evaluate, while coarse occupancy grids discard the geometry a manipulator needs. Gaussian Splatting reconstructions are distilled into point clouds that retain the detail mattering for contact and clearance, while dense point tracking keeps the representation aligned with objects as they move.</p>
+          <p>This project explores how to represent changing 3D environments in a form that&rsquo;s useful for robot planning. I used Gaussian Splatting to reconstruct real tabletop scenes and dense point tracking to follow objects as they move. The reconstructed scenes are converted into point clouds that are easier to work with for geometric queries, with the longer-term goal of supporting motion planning in dynamic environments.</p>
           <p class="lnk"><a href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer">Code</a></p>
         </div>
       </article>
@@ -137,7 +137,7 @@
         </div>
         <div class="body">
           <h3>History-Conditioned Policies under Partial Observability <span class="real" title="Shown on physical hardware or real-world sensor data">REAL&nbsp;HARDWARE<i>UR5</i></span></h3>
-          <p>A policy conditioned only on the current observation is effectively Markov, yet many manipulation tasks hide exactly the information it needs: a route specified before the robot sets off, or objects already handled and no longer in view. Conditioning on a history of observations, through long-context transformers and recurrent memory, carries that information forward. Route following and object counting serve as the test tasks, each paired with a fully observable twin so a drop in success isolates observability from difficulty.</p>
+          <p>Some robot tasks require remembering information that is no longer visible in the current camera view. I studied how recurrent policies and long-context transformers handle these situations, using route-following and object-counting tasks where the robot has to remember earlier observations to act correctly. Each task also has a fully observable version, allowing us to compare performance with and without the need for memory. The counting task is also demonstrated on a physical UR5.</p>
           <p class="lnk"><a href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer">Code</a> <span>·</span> <a href="https://github.com/ur10/mem-diff" target="_blank" rel="noopener noreferrer">Policy training</a></p>
         </div>
       </article>
@@ -148,7 +148,7 @@
         </div>
         <div class="body">
           <h3>Collision-Aware Soft-Capture Trajectory Optimization on SE(3) </h3>
-          <p>Soft capture is the terminal phase of on-orbit servicing, where a chaser must dock with a tumbling target under strict safety and sensing limits. Classical Hill&ndash;Clohessy&ndash;Wiltshire formulations decouple translation from attitude and lose fidelity once rotational coupling dominates. This work poses the problem directly on SE(3) with left-trivialized rigid-body dynamics, encodes mission constraints as smooth penalties on the manifold, and linearizes a differentiable collision factor in Lie-algebra coordinates so keep-out safety is enforced inside the same retraction-based Riemannian solve rather than bolted on afterwards.</p>
+          <p>Docking with a tumbling spacecraft requires planning both position and orientation while respecting collision and sensing constraints. I formulated this as a trajectory optimization problem directly on SE(3), using left-trivialized rigid-body dynamics to capture the coupled motion. The optimization incorporates keep-out regions, collision clearance, and sensing limits through differentiable penalties, with collision terms linearized in local Lie-algebra coordinates. This allows the motion and geometric constraints to be handled within the same manifold-based optimization framework.</p>
           <p class="lnk"><a href="https://github.com/ur10/se3-soft-capture" target="_blank" rel="noopener noreferrer">Code</a></p>
         </div>
       </article>
