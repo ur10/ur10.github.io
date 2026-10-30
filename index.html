@@ -101,6 +101,24 @@
 
     <section aria-labelledby="pr">
       <h2 id="pr">Selected Projects</h2>
+      <article class="row" id="p-manip">
+        <div class="media">
+          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-comparison-front.jpg" aria-label="UR10 ring-on-peg: base policy + residual (left) vs base policy alone (right)"><source src="assets/real/peg-comparison-front.mp4" type="video/mp4"></video><figcaption>UR10 ring-on-peg: base policy + residual (left) vs base policy alone (right)</figcaption></figure>
+          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-ep0-composite.jpg" aria-label="Per-episode dashboard: point cloud reprojected onto the RealSense images"><source src="assets/real/peg-ep0-composite.mp4" type="video/mp4"></video><figcaption>Per-episode dashboard: point cloud reprojected onto the RealSense images</figcaption></figure>
+          <details class="more"><summary>More views, and the simulation counterpart</summary>
+            <div class="grid2"><figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-rerun.jpg" aria-label="Rerun timeline of both episodes"><source src="assets/real/peg-rerun.mp4" type="video/mp4"></video><figcaption>Rerun timeline of both episodes</figcaption></figure>
+            <figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-ep0-overlay.jpg" aria-label="Front camera with the depth-segmented task box"><source src="assets/real/peg-ep0-overlay.mp4" type="video/mp4"></video><figcaption>Front camera with the depth-segmented task box</figcaption></figure>
+            <figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-comparison-right.jpg" aria-label="Right camera view of the same two episodes"><source src="assets/real/peg-comparison-right.mp4" type="video/mp4"></video><figcaption>Right camera, same two episodes</figcaption></figure>
+            <figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/thumbs/peg-ours.jpg" aria-label="Peg insertion in simulation"><source src="assets/thumbs/peg-ours.mp4" type="video/mp4"></video><figcaption>Simulation counterpart: peg insertion</figcaption></figure>
+            <figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/thumbs/adroit-pen.jpg" aria-label="Dexterous in-hand reorientation in simulation"><source src="assets/thumbs/adroit-pen.mp4" type="video/mp4"></video><figcaption>Simulation: dexterous in-hand reorientation</figcaption></figure></div>
+          </details>
+        </div>
+        <div class="body">
+          <h3>Fine-Grained Point-Cloud Manipulation <span class="real" title="Shown on physical hardware or real-world sensor data">REAL&nbsp;HARDWARE<i>UR10</i></span></h3>
+          <p>Sim-trained point-cloud policies generalize well across objects and poses, but real depth breaks their assumptions: holes, occlusion, calibration drift, and contact mismatch. The sim-trained 3D policy stays frozen so its geometry prior survives, while a small off-policy residual learns on top of it. A gate decides when that correction is trustworthy, and the correction itself stays bounded for safety. Evaluation targets the precise-contact tasks where 3D policies are weakest, insertion above all.</p>
+          <p class="lnk"><a href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer">Code</a></p>
+        </div>
+      </article>
       <article class="row" id="p-scene">
         <div class="media">
           <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/thumbs/scene3d.jpg" aria-label="Point-cloud scene reconstructions distilled from Gaussian Splatting"><source src="assets/thumbs/scene3d.mp4" type="video/mp4"></video><figcaption>Point-cloud scene reconstructions distilled from Gaussian Splatting</figcaption></figure>
@@ -121,24 +139,6 @@
           <h3>History-Conditioned Policies under Partial Observability <span class="real" title="Shown on physical hardware or real-world sensor data">REAL&nbsp;HARDWARE<i>UR5</i></span></h3>
           <p>A policy conditioned only on the current observation is effectively Markov, yet many manipulation tasks hide exactly the information it needs: a route specified before the robot sets off, or objects already handled and no longer in view. Conditioning on a history of observations, through long-context transformers and recurrent memory, carries that information forward. Route following and object counting serve as the test tasks, each paired with a fully observable twin so a drop in success isolates observability from difficulty.</p>
           <p class="lnk"><a href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer">Code</a> <span>·</span> <a href="https://github.com/ur10/mem-diff" target="_blank" rel="noopener noreferrer">Policy training</a></p>
-        </div>
-      </article>
-      <article class="row" id="p-manip">
-        <div class="media">
-          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-comparison-front.jpg" aria-label="UR10 ring-on-peg: base policy + residual (left) vs base policy alone (right)"><source src="assets/real/peg-comparison-front.mp4" type="video/mp4"></video><figcaption>UR10 ring-on-peg: base policy + residual (left) vs base policy alone (right)</figcaption></figure>
-          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-ep0-composite.jpg" aria-label="Per-episode dashboard: point cloud reprojected onto the RealSense images"><source src="assets/real/peg-ep0-composite.mp4" type="video/mp4"></video><figcaption>Per-episode dashboard: point cloud reprojected onto the RealSense images</figcaption></figure>
-          <details class="more"><summary>More views, and the simulation counterpart</summary>
-            <div class="grid2"><figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-rerun.jpg" aria-label="Rerun timeline of both episodes"><source src="assets/real/peg-rerun.mp4" type="video/mp4"></video><figcaption>Rerun timeline of both episodes</figcaption></figure>
-            <figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-ep0-overlay.jpg" aria-label="Front camera with the depth-segmented task box"><source src="assets/real/peg-ep0-overlay.mp4" type="video/mp4"></video><figcaption>Front camera with the depth-segmented task box</figcaption></figure>
-            <figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-comparison-right.jpg" aria-label="Right camera view of the same two episodes"><source src="assets/real/peg-comparison-right.mp4" type="video/mp4"></video><figcaption>Right camera, same two episodes</figcaption></figure>
-            <figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/thumbs/peg-ours.jpg" aria-label="Peg insertion in simulation"><source src="assets/thumbs/peg-ours.mp4" type="video/mp4"></video><figcaption>Simulation counterpart: peg insertion</figcaption></figure>
-            <figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/thumbs/adroit-pen.jpg" aria-label="Dexterous in-hand reorientation in simulation"><source src="assets/thumbs/adroit-pen.mp4" type="video/mp4"></video><figcaption>Simulation: dexterous in-hand reorientation</figcaption></figure></div>
-          </details>
-        </div>
-        <div class="body">
-          <h3>Fine-Grained Point-Cloud Manipulation <span class="real" title="Shown on physical hardware or real-world sensor data">REAL&nbsp;HARDWARE<i>UR10</i></span></h3>
-          <p>Sim-trained point-cloud policies generalize well across objects and poses, but real depth breaks their assumptions: holes, occlusion, calibration drift, and contact mismatch. The sim-trained 3D policy stays frozen so its geometry prior survives, while a small off-policy residual learns on top of it. A gate decides when that correction is trustworthy, and the correction itself stays bounded for safety. Evaluation targets the precise-contact tasks where 3D policies are weakest, insertion above all.</p>
-          <p class="lnk"><a href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer">Code</a></p>
         </div>
       </article>
       <article class="row" id="p-se3">
