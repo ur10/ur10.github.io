@@ -41,7 +41,7 @@
     "Model Predictive Control","Sim-to-Real Transfer"]
 }
 </script>
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=20261103" />
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -78,11 +78,11 @@
       <p class="tag">Robot learning &middot; Certifiable state estimation</p>
       <p class="aff">MS Robotics, Northeastern University &middot; Boston, Massachusetts</p>
       <nav class="links" aria-label="Contact and profiles">
-        <a class="btn" href="mailto:rai.ut@northeastern.edu"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Email</a>
-        <a class="btn" href="assets/cv/Utkarsh_Rai_Resume.pdf"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>CV</a>
-        <a class="btn" href="https://github.com/ur10" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
-        <a class="btn" href="https://scholar.google.com/citations?hl=en&amp;user=DcbuBXoAAAAJ" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg>Scholar</a>
-        <a class="btn" href="https://www.linkedin.com/in/utkarsh-rai-964283169/" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn</a>
+        <a class="btn" href="mailto:rai.ut@northeastern.edu"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-mail"/></svg>Email</a>
+        <a class="btn" href="assets/cv/Utkarsh_Rai_Resume.pdf"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-doc"/></svg>CV</a>
+        <a class="btn" href="https://github.com/ur10" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
+        <a class="btn" href="https://scholar.google.com/citations?hl=en&amp;user=DcbuBXoAAAAJ" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-book"/></svg>Scholar</a>
+        <a class="btn" href="https://www.linkedin.com/in/utkarsh-rai-964283169/" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn</a>
       </nav>
     </div>
   </header>
@@ -140,7 +140,7 @@
           <h3>Fine-Grained Point-Cloud Manipulation</h3>
           <p class="chips"><span class="chip hw" title="Shown on physical hardware or real-world sensor data">Real robot &middot; <i>UR10</i></span></p>
           <p>Point-cloud policies trained in simulation often struggle on real robots, where depth observations contain missing points, occlusions, and calibration errors. I worked on adapting a pretrained 3D manipulation policy without changing the base model, using a lightweight residual policy trained with off-policy learning. A gate controls when the residual can modify the base policy&rsquo;s actions, keeping those corrections bounded. The videos compare the base and adapted policies on a real UR10 performing ring-on-peg insertion.</p>
-          <p class="btns"><a class="btn" href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
+          <p class="btns"><a class="btn" href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
       </article>
       <article class="row" id="p-r2r2r">
@@ -151,7 +151,7 @@
           <h3>Robot Demonstrations from a Single Human Video</h3>
           <p class="chips"><span class="chip data" title="Captured on a physical bench with real sensors; robot motion is rendered">Real-world data &middot; <i>UR5e bench, rendered robot</i></span></p>
           <p>Collecting robot demonstrations by teleoperation is slow. I reproduced Real2Render2Real on my own UR5e bench: one human demonstration, recorded by two calibrated RealSense cameras and a phone scan, is turned into robot demonstrations without teleoperation. I aligned the scan to the robot to within a few millimetres, tracked the object in 3D, and ported the rendering pipeline to the UR5e with a Robotiq gripper, so each demo can be varied into many.</p>
-          <p class="btns"><a class="btn" href="projects/real2render2real/"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg>Project page</a> <a class="btn" href="https://github.com/ur10/real2render2real-ur5e" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
+          <p class="btns"><a class="btn" href="projects/real2render2real/"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-globe"/></svg>Project page</a> <a class="btn" href="https://github.com/ur10/real2render2real-ur5e" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
       </article>
       <article class="row" id="p-scene">
@@ -163,7 +163,7 @@
           <h3>3D Scene Representations for Online Motion Planning</h3>
           <p class="chips"><span class="chip data" title="Shown on physical hardware or real-world sensor data">Real-world data &middot; <i>tracked on real scenes</i></span></p>
           <p>This project explores how to represent changing 3D environments in a form that&rsquo;s useful for robot planning. I used Gaussian Splatting to reconstruct real tabletop scenes and dense point tracking to follow objects as they move. The reconstructed scenes are converted into point clouds that are easier to work with for geometric queries, with the longer-term goal of supporting motion planning in dynamic environments.</p>
-          <p class="btns"><a class="btn" href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
+          <p class="btns"><a class="btn" href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
       </article>
       <article class="row" id="p-memory">
@@ -175,7 +175,7 @@
           <h3>History-Conditioned Policies under Partial Observability</h3>
           <p class="chips"><span class="chip hw" title="Shown on physical hardware or real-world sensor data">Real robot &middot; <i>UR5</i></span></p>
           <p>Some robot tasks require remembering information that is no longer visible in the current camera view. I studied how recurrent policies and long-context transformers handle these situations, using route-following and object-counting tasks where the robot has to remember earlier observations to act correctly. Each task also has a fully observable version, allowing us to compare performance with and without the need for memory. The counting task is also demonstrated on a physical UR5.</p>
-          <p class="btns"><a class="btn" href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-github"/></svg>Code</a> <a class="btn" href="https://github.com/ur10/mem-diff" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-github"/></svg>Policy training</a></p>
+          <p class="btns"><a class="btn" href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a> <a class="btn" href="https://github.com/ur10/mem-diff" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Policy training</a></p>
         </div>
       </article>
       <article class="row" id="p-se3">
@@ -186,7 +186,7 @@
         <div class="body">
           <h3>Collision-Aware Soft-Capture Trajectory Optimization on SE(3)</h3>
           <p>Docking with a tumbling spacecraft requires planning both position and orientation while respecting collision and sensing constraints. I formulated this as a trajectory optimization problem directly on SE(3), using left-trivialized rigid-body dynamics to capture the coupled motion. The optimization incorporates keep-out regions, collision clearance, and sensing limits through differentiable penalties, with collision terms linearized in local Lie-algebra coordinates. This allows the motion and geometric constraints to be handled within the same manifold-based optimization framework.</p>
-          <p class="btns"><a class="btn" href="https://github.com/ur10/se3-soft-capture" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
+          <p class="btns"><a class="btn" href="https://github.com/ur10/se3-soft-capture" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
       </article>
     </section>
@@ -242,7 +242,7 @@
           <p class="chips"><span class="chip data" title="Shown on physical hardware or real-world sensor data">Real-world data &middot; <i>three city routes</i></span></p>
           <p class="auth"><b>U. Rai</b>, S. Gangisetty, A. H. Abdul Hafez, A. Subramaniam, C. V. Jawahar</p>
           <p class="venue">IEEE/RSJ IROS 2024, pp. 10724&ndash;10731</p>
-          <p class="btns"><a class="btn" href="https://cvit.iiit.ac.in/images/ConferencePapers/2024/Visual_Place_Recognition_in_Unstructured_Driving_Environments.pdf" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>Paper</a> <a class="btn" href="https://cvit.iiit.ac.in/research/projects/cvit-projects/iddvpr" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg>Project page</a> <a class="btn" href="https://github.com/ur10/IDD-VPR" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
+          <p class="btns"><a class="btn" href="https://cvit.iiit.ac.in/images/ConferencePapers/2024/Visual_Place_Recognition_in_Unstructured_Driving_Environments.pdf" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-doc"/></svg>Paper</a> <a class="btn" href="https://cvit.iiit.ac.in/research/projects/cvit-projects/iddvpr" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-globe"/></svg>Project page</a> <a class="btn" href="https://github.com/ur10/IDD-VPR" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
       </article>
       <article class="row tight">
@@ -254,7 +254,7 @@
           <p class="chips"><span class="chip hw" title="Shown on physical hardware or real-world sensor data">Real robot &middot; <i>UAV validation</i></span></p>
           <p class="auth">W. Dai, <b>U. Rai</b>, J. Chiun, Y. Cao, G. Sartoretti</p>
           <p class="venue">IEEE Robotics and Automation Letters, 10(3):2654&ndash;2661, 2025</p>
-          <p class="btns"><a class="btn" href="https://www.marmotlab.org/publications/73-RAL2025-HetMRTA.pdf" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>Paper</a> <a class="btn" href="https://ieeexplore.ieee.org/document/10854527" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>IEEE Xplore</a> <a class="btn" href="https://github.com/ur10/hetero-viz" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
+          <p class="btns"><a class="btn" href="https://www.marmotlab.org/publications/73-RAL2025-HetMRTA.pdf" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-doc"/></svg>Paper</a> <a class="btn" href="https://ieeexplore.ieee.org/document/10854527" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-doc"/></svg>IEEE Xplore</a> <a class="btn" href="https://github.com/ur10/hetero-viz" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
       </article>
       <article class="row tight">
@@ -266,7 +266,7 @@
           <p class="chips"><span class="chip data" title="Shown on physical hardware or real-world sensor data">Real-world data &middot; <i>EuRoC, UrbanNav</i></span></p>
           <p class="auth"><b>U. Rai</b>, Z. Xu, B.-S. Chen, D. Rosen</p>
           <p class="venue">arXiv:2609.38048, 2026</p>
-          <p class="btns"><a class="btn" href="https://arxiv.org/abs/2609.38048" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>arXiv</a></p>
+          <p class="btns"><a class="btn" href="https://arxiv.org/abs/2609.38048" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-doc"/></svg>arXiv</a></p>
         </div>
       </article>
     </section>
@@ -281,6 +281,6 @@
   </footer>
 </div>
 
-<script src="media.js" defer></script>
+<script src="media.js?v=20261103" defer></script>
 </body>
 </html>
