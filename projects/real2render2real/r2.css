@@ -1,66 +1,70 @@
-/* Project page extras; builds on ../../styles.css tokens only. Everything is prefixed r2- so it
-   can't affect the rest of the site. */
-.r2-back{font-family:var(--mono); font-size:12.5px; display:inline-block; margin-bottom:22px}
-.r2-title{font-family:var(--serif); font-weight:700; font-size:clamp(30px,5.2vw,40px); line-height:1.1; letter-spacing:-0.02em; margin:0 0 10px}
-.r2-sub{font-family:var(--serif); font-size:19px; line-height:1.45; color:var(--ink); margin:0 0 14px; max-width:62ch}
-.r2-badges{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 18px}
-.r2-badges .real{top:0}
-.r2-stats{
-  display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; margin:6px 0 34px;
-  background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden;
-}
-.r2-stats div{background:var(--card); padding:12px 14px}
-.r2-stats b{display:block; font-family:var(--serif); font-size:24px; font-weight:600; line-height:1.1; color:var(--accent)}
-.r2-stats span{display:block; margin-top:4px; font-family:var(--mono); font-size:10.5px; line-height:1.4; color:var(--muted); letter-spacing:.02em}
+/* Project page in the usual robotics project-page layout: centered title block, dark link buttons,
+   teaser first, centered section titles. Builds on ../../styles.css tokens; everything is r2- prefixed. */
+.r2-hero{text-align:center; padding:46px 0 22px}
+.r2-hero h1{font-size:clamp(30px,5.4vw,46px); font-weight:700; line-height:1.12; letter-spacing:-0.015em; margin:0 auto 10px; max-width:24ch; text-wrap:balance}
+.r2-subtitle{font-size:clamp(18px,2.6vw,22px); color:var(--muted); margin:0 auto 14px; max-width:44ch; line-height:1.35; text-wrap:balance}
+.r2-author{font-size:18px; margin:0}
+.r2-aff{font-size:16px; color:var(--muted); margin:0 0 18px}
+.r2-btns{display:flex; flex-wrap:wrap; justify-content:center; gap:10px}
 
-.r2-block{margin:0 0 38px}
-.r2-block h2{margin-top:0}
-.r2-block > p{max-width:70ch}
-.r2-cap{font-family:var(--mono); font-size:10.5px; line-height:1.5; color:var(--muted); margin-top:7px}
+.r2-block{margin:0 0 54px; --col:720px}
+.r2-h{text-align:center; border-bottom:0; margin:36px 0 12px; padding:0; font-size:28px}
+.r2-lead{max-width:var(--col); margin:0 auto 16px}
+.r2-tags{justify-content:center; margin:4px 0 18px !important}
+.r2-cap{font-size:14px; line-height:1.45; color:var(--muted); margin-top:8px; text-align:center}
+.r2-fig{margin-top:24px}
+
+.r2-stats{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:8px 0 0}
+.r2-stats div{background:var(--surface); border-radius:12px; padding:14px 16px; text-align:center}
+.r2-stats b{display:block; font-size:28px; font-weight:700; line-height:1.15; color:var(--link)}
+.r2-stats span{display:block; margin-top:4px; font-size:14px; line-height:1.35; color:var(--muted)}
 
 /* scrubber */
-.r2-trip{width:100%; height:auto; display:block; border:1px solid var(--rule); border-radius:3px; background:#131517}
-.r2-ctl{display:flex; align-items:center; gap:12px; margin-top:10px; flex-wrap:wrap}
+.r2-trip{width:100%; height:auto; display:block; border-radius:12px; background:#131517}
+.r2-ctl{display:flex; align-items:center; gap:14px; margin-top:12px}
 .r2-ctl button{
-  font-family:var(--mono); font-size:12px; letter-spacing:.04em; cursor:pointer;
-  color:var(--accent); background:var(--accent-soft); border:1px solid var(--accent); border-radius:2px;
-  padding:5px 12px; min-width:70px;
+  font-family:var(--font); font-size:14px; font-weight:600; cursor:pointer; min-width:84px;
+  color:var(--btn-ink); background:var(--btn); border:0; border-radius:999px; padding:7px 16px;
 }
-.r2-ctl input[type=range]{flex:1 1 260px; accent-color:var(--accent); min-width:0}
-.r2-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px}
+.r2-ctl input[type=range]{flex:1 1 auto; accent-color:var(--link); min-width:0}
+.r2-chips{display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:12px}
 .r2-chip{
-  font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; cursor:pointer;
-  color:var(--muted); background:transparent; border:1px solid var(--rule); border-radius:2px; padding:3px 9px;
+  font-family:var(--font); font-size:14px; font-weight:600; cursor:pointer;
+  color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 14px;
 }
-.r2-chip.on{color:var(--accent); border-color:var(--accent); background:var(--accent-soft)}
-.r2-ctl button:focus-visible,.r2-chip:focus-visible,.r2-ctl input:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.r2-chip:hover{color:var(--ink); border-color:var(--ink)}
+.r2-chip.on{color:var(--btn-ink); background:var(--link); border-color:var(--link)}
 
 /* 3D */
-.r2-3d{position:relative; width:100%; aspect-ratio:16 / 10; border:1px solid var(--rule); border-radius:3px; overflow:hidden; background:var(--card)}
-.r2-3d img{width:100%; height:100%; object-fit:cover; display:block; filter:saturate(.9)}
+.r2-3d{position:relative; width:100%; aspect-ratio:16 / 10; border-radius:12px; overflow:hidden; background:var(--surface)}
+.r2-3d img{width:100%; height:100%; object-fit:cover; display:block}
 .r2-3d button{
   position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-  font-family:var(--mono); font-size:13px; letter-spacing:.03em; cursor:pointer;
-  color:#fff; background:rgba(20,97,109,.92); border:0; border-radius:3px; padding:11px 18px;
-  box-shadow:0 4px 18px rgba(0,0,0,.25);
+  display:inline-flex; align-items:center; gap:8px; cursor:pointer; white-space:nowrap;
+  font-family:var(--font); font-size:15.5px; font-weight:600;
+  color:#fff; background:rgba(20,24,29,.86); border:0; border-radius:999px; padding:12px 22px;
+  box-shadow:0 6px 24px rgba(0,0,0,.25);
 }
-.r2-3d button:hover{background:rgba(20,97,109,1)}
+.r2-3d button:hover{background:rgba(20,24,29,.97)}
+.r2-3d button .ic{width:17px; height:17px}
 .r2-3d.live iframe{width:100%; height:100%; border:0; display:block}
 
-/* pipeline */
-.r2-steps{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px 20px}
-.r2-steps figure img{width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; display:block; border:1px solid var(--rule); border-radius:3px; background:var(--card)}
-.r2-steps h3{font-family:var(--serif); font-size:17px; font-weight:600; margin:10px 0 4px}
-.r2-steps h3 i{font-family:var(--mono); font-style:normal; font-size:11px; color:var(--accent); letter-spacing:.08em; margin-right:7px}
-.r2-steps p{margin:0; font-size:14.5px; line-height:1.55; color:var(--muted)}
+/* method */
+.r2-steps{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px 24px; margin-top:8px}
+.r2-steps figure img{width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; display:block; border-radius:10px; background:var(--surface)}
+.r2-steps h3{font-size:19px; font-weight:700; margin:12px 0 4px}
+.r2-steps h3 span{display:block; font-size:13px; font-weight:600; color:var(--link); letter-spacing:.02em; margin-bottom:1px}
+.r2-steps p{margin:0; font-size:15.5px; line-height:1.55; color:var(--muted)}
 
-.r2-media{width:100%; height:auto; display:block; border:1px solid var(--rule); border-radius:3px; background:var(--card)}
-.r2-list{margin:0; padding-left:20px; max-width:72ch}
-.r2-list li{margin:0 0 8px}
-.r2-note{border-left:2px solid var(--real); background:var(--real-soft); padding:12px 16px; border-radius:0 3px 3px 0; font-size:15px; max-width:72ch}
+.r2-media{width:100%; height:auto; display:block; border-radius:12px; background:var(--surface)}
+.r2-list{margin:0 auto; padding-left:20px; max-width:var(--col)}
+.r2-list li{margin:0 0 10px}
+.r2-note{max-width:var(--col); margin:0 auto 16px; padding:12px 16px; background:var(--data-bg); color:var(--ink); border-radius:10px; font-size:15.5px}
+.r2-bib{max-width:var(--col); margin:0 auto; padding:14px 16px; background:var(--surface); border-radius:10px; overflow-x:auto; font-family:var(--code); font-size:12.5px; line-height:1.55}
 
 @media (max-width:720px){
+  .r2-hero{padding-top:30px}
   .r2-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .r2-steps{grid-template-columns:1fr}
-  .r2-sub{font-size:17px}
+  .r2-h{font-size:24px}
 }
