@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Real2Render2Real on a UR5e bench | Utkarsh Rai</title>
+<meta name="description" content="One human demonstration on a real UR5e bench, scanned, tracked with calibrated RGB-D cameras and re-rendered as robot training data: a reproduction of Real2Render2Real." />
+<link rel="canonical" href="https://ur10.github.io/projects/real2render2real/" />
+<meta property="og:title" content="Real2Render2Real on a UR5e bench" />
+<meta property="og:description" content="Scan, track, render: one human demo on a real bench becomes robot demonstrations, without teleoperation." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ur10.github.io/projects/real2render2real/" />
+<meta property="og:image" content="https://ur10.github.io/projects/real2render2real/media/triptych.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
+<link rel="stylesheet" href="../../styles.css" />
+<link rel="stylesheet" href="r2.css" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="page">
+  <a class="r2-back" href="../../#p-r2r2r">&larr; Utkarsh Rai</a>
+
+  <main id="main">
+    <header>
+      <h1 class="r2-title">One human demo, rendered into robot data</h1>
+      <p class="r2-sub">I moved a cube between two fixtures on a real UR5e bench while two calibrated RealSense cameras recorded. The scene was scanned with a phone, the cube was tracked in 3D, and the motion was re-rendered as a UR5e + Robotiq demonstration that can be varied and scaled without teleoperation.</p>
+      <div class="r2-badges">
+        <span class="real" title="Captured on a physical bench with real sensors">REAL-WORLD&nbsp;DATA<i>human demo, phone scan, 2&times; RealSense</i></span>
+        <span class="real" style="color:var(--accent);background:var(--accent-soft)" title="Robot motion is rendered in IsaacLab">RENDERED<i>UR5e + 2F-85 in IsaacLab</i></span>
+      </div>
+      <div class="r2-stats" role="list">
+        <div role="listitem"><b>1</b><span>human demonstration in</span></div>
+        <div role="listitem"><b>0.2%</b><span>agreement of two independent scan-scale estimates</span></div>
+        <div role="listitem"><b>4&nbsp;mm</b><span>median scan-to-robot registration residual</span></div>
+        <div role="listitem"><b>2</b><span>calibrated RGB-D views; the second one checks the first</span></div>
+      </div>
+    </header>
+
+    <section class="r2-block" aria-labelledby="h-str">
+      <h2 id="h-str">Scan, Track, Render</h2>
+      <p>Drag the slider: the three panels show the same moment. 01 is the real human demo, 02 the cube&rsquo;s tracked 6-DoF pose drawn back onto the real frame, and 03 the robot replay rendered from the same camera.</p>
+      <video id="r2-trip" class="r2-trip" muted playsinline loop preload="metadata" poster="media/triptych.jpg" data-tall="media/triptych_tall" aria-label="Real demo, tracked cube and rendered robot replay, side by side">
+        <source src="media/triptych.mp4" type="video/mp4">
+      </video>
+      <div class="r2-ctl">
+        <button id="r2-play" type="button" aria-pressed="false">Play</button>
+        <input id="r2-range" type="range" min="0" max="1000" value="0" aria-label="Scrub through the demonstration">
+      </div>
+      <div class="r2-chips" role="group" aria-label="Jump to phase">
+        <button class="r2-chip on" type="button" data-t="0">Reach</button>
+        <button class="r2-chip" type="button" data-t="1.0">Grasp</button>
+        <button class="r2-chip" type="button" data-t="1.27">Carry</button>
+        <button class="r2-chip" type="button" data-t="3.7">Place</button>
+        <button class="r2-chip" type="button" data-t="3.97">Retreat</button>
+      </div>
+    </section>
+
+    <section class="r2-block" aria-labelledby="h-3d">
+      <h2 id="h-3d">The replay in 3D</h2>
+      <p>The same generated demonstration as an interactive scene: the robot URDF, the cube as the Gaussian splat cut from my phone scan, the scanned bench, and both camera frustums showing their rendered views.</p>
+      <div id="r2-3d" class="r2-3d" data-src="viewer/index.html?playbackPath=../media/ur5e_cube_replay.viser&amp;initialCameraPosition=0.42,-1.32,0.42&amp;initialCameraLookAt=0.08,-0.7,0.06&amp;initialCameraUp=0,0,1">
+        <img src="media/viewer_poster.jpg" alt="Still of the 3D replay: UR5e above the scanned bench" loading="lazy">
+        <button id="r2-load3d" type="button">Load interactive 3D (&asymp;10&nbsp;MB)</button>
+      </div>
+      <p class="r2-cap">Drag to orbit, scroll to zoom. Built on viser, the same playback format as the Real2Render2Real project page.</p>
+    </section>
+
+    <section class="r2-block" aria-labelledby="h-how">
+      <h2 id="h-how">How it works</h2>
+      <div class="r2-steps">
+        <figure>
+          <img src="media/step_scan.jpg" alt="Phone scan rendered from the RealSense pose and blended with the real frame" loading="lazy">
+          <h3><i>01</i>Scan</h3>
+          <p>A Gaussian splat of the bench from a phone video. I registered the RealSense frames into its COLMAP model to recover metric scale and the scan-to-robot transform: two independent estimates agree to 0.2%.</p>
+        </figure>
+        <figure>
+          <img src="media/step_track.jpg" alt="Tracked cube box drawn on both RealSense views through the transfer" loading="lazy">
+          <h3><i>02</i>Track</h3>
+          <p>The cube&rsquo;s pose per frame from both depth cameras: the scanned cube model fitted with ICP, re-detected on fast lifts and kept consistent across the cube&rsquo;s 24 symmetric orientations.</p>
+        </figure>
+        <figure>
+          <img src="media/step_robot.jpg" alt="UR5e and gripper model overlaid on the real arm in both cameras" loading="lazy">
+          <h3><i>03</i>Embody</h3>
+          <p>A UR5e + Robotiq 2F-85 model in the calibrated base frame, with the gripper mount fitted against the real images, so simulated cameras and robot line up with the real ones.</p>
+        </figure>
+        <figure>
+          <img src="media/step_render.jpg" alt="Rendered UR5e grasping the cube in IsaacLab" loading="lazy">
+          <h3><i>04</i>Render</h3>
+          <p>IsaacLab replays the object motion kinematically. IK follows a grasp on the cube; a feasibility filter rejects rollouts with IK error, joint-limit violations or finger&ndash;fixture contact.</p>
+        </figure>
+      </div>
+    </section>
+
+    <section class="r2-block" aria-labelledby="h-rand">
+      <h2 id="h-rand">One demo, many demos</h2>
+      <p>Each rollout re-samples the cube&rsquo;s start pose, warps the demonstrated path to it, and randomizes lighting, camera pose and table appearance. The background is a 360&deg; render of the lab from the same phone scan.</p>
+      <video class="r2-media" autoplay loop muted playsinline preload="metadata" poster="media/randomized.jpg" aria-label="Grid of randomized generated rollouts"><source src="media/randomized.mp4" type="video/mp4"></video>
+      <p class="r2-cap" id="r2-rand-cap">Generated rollouts from the single demonstration (front camera).</p>
+      <img class="r2-media" src="media/traj_fan.jpg" alt="The tracked demo trajectory and 64 interpolated variants drawn on the real camera view" loading="lazy" style="margin-top:18px">
+      <p class="r2-cap">Trajectory interpolation on the real front view: the tracked demo (teal) and the warped variants the generator samples (amber).</p>
+    </section>
+
+    <section class="r2-block" aria-labelledby="h-eng">
+      <h2 id="h-eng">Engineering notes</h2>
+      <ul class="r2-list">
+        <li><b>Metric alignment without a metric scanner.</b> The phone scan has arbitrary scale; registering the calibrated RealSense views into it gave scale and pose with a 4&nbsp;mm median residual and camera centres within 8&nbsp;mm.</li>
+        <li><b>Replacing the tracker where it failed.</b> The paper&rsquo;s feature-based tracker slid off this small black cube onto the fixture. Calibrated depth from two views made a geometric tracker the more reliable tool, validated in the camera it never used.</li>
+        <li><b>Porting to a new embodiment.</b> The released pipeline targets YuMi and Franka; I built the UR5e + 2F-85 model, scene, IK and simulator, and fixed several upstream issues along the way (NaN gradients with missing depth, a hard-coded GPU architecture).</li>
+      </ul>
+    </section>
+
+    <section class="r2-block" aria-labelledby="h-cred">
+      <h2 id="h-cred">Credit and status</h2>
+      <p class="r2-note">This is my reproduction of <a href="https://real2render2real.com/" target="_blank" rel="noopener noreferrer">Real2Render2Real</a> (Yu, Fu et al., 2025) on my own bench and data. The robot motion shown is rendered, not executed on hardware. Training a policy on the generated data and evaluating it on the real UR5e is the next step.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="../../">ur10.github.io</a> <span>·</span> <a href="mailto:rai.ut@northeastern.edu">rai.ut@northeastern.edu</a> <span>·</span> <a href="https://github.com/ur10" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+  </footer>
+</div>
+<script src="r2.js" defer></script>
+</body>
+</html>
