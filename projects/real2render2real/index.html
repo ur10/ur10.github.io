@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
 <link rel="stylesheet" href="../../styles.css?v=20261103" />
-<link rel="stylesheet" href="r2.css?v=20261103" />
+<link rel="stylesheet" href="r2.css?v=20261105" />
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -101,9 +101,9 @@
       <h2 id="h-how" class="r2-h">Method</h2>
       <div class="r2-steps">
         <figure>
-          <img src="media/step_scan.jpg" alt="Phone scan rendered from the RealSense pose and blended with the real frame" loading="lazy">
+          <video autoplay loop muted playsinline preload="metadata" poster="media/splat_orbit.jpg" aria-label="Orbit around the Gaussian-splat scan of the bench, ending on a wipe against a real RealSense frame"><source src="media/splat_orbit.mp4" type="video/mp4"></video>
           <h3><span>Step 1</span>Scan</h3>
-          <p>A Gaussian splat of the bench from a phone video. I registered the RealSense frames into its COLMAP model to recover metric scale and the scan-to-robot transform; two independent estimates agree to 0.2%.</p>
+          <p>A Gaussian splat of the bench from a phone video (450k Gaussians). I registered the RealSense frames into its COLMAP model to recover metric scale and the scan-to-robot transform; two independent estimates agree to 0.2%. The clip ends on a wipe between the splat, rendered from the right RealSense pose, and that camera&rsquo;s real frame.</p>
         </figure>
         <figure>
           <img src="media/step_track.jpg" alt="Tracked cube box drawn on the RealSense views through the transfer" loading="lazy">

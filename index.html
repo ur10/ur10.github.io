@@ -92,7 +92,7 @@
 
     <section class="intro">
       <p class="lede">I bridge deep learning and classical control to build fast, certifiable motion generation stacks that work on physical hardware.</p>
-      <p>Currently a Graduate Researcher across Northeastern&rsquo;s Helping Hands Lab and NEURAL Lab, my research focuses on placing learned components (diffusion policies, history-conditioned transformers) inside safety envelopes (MPC, QP filters, manifold optimization) so autonomous systems retain real-world guarantees.</p>
+      <p>Currently a Graduate Researcher across Northeastern&rsquo;s Helping Hands Lab and NEURAL Lab, my research focuses on placing learned components (diffusion policies, history-conditioned transformers) inside safety envelopes (MPC, QP filters, manifold optimization) so autonomous systems retain real-world guarantees. The second thread is real-world geometry: I turn phone scans of my robot benches into Gaussian-splat digital twins, registered to the robot, that serve as a planning representation and as a source of robot training data.</p>
       <div class="exp" id="experience">
         <p class="exp-h">Industry experience</p>
         <ul class="exp-list">
@@ -111,21 +111,21 @@
     <section class="strip" aria-labelledby="demos">
       <h2 id="demos" class="eyebrow">Demos</h2>
       <ul class="films">
-        <li><a href="#p-memory">
-          <video class="fv" loop muted playsinline preload="metadata" poster="assets/thumbs/memory-counting.jpg" aria-label="UR5 wrist camera during the counting task"><source src="assets/thumbs/memory-counting.mp4" type="video/mp4"></video>
-          <span class="fc"><b>Counting under occlusion</b><small>UR5 &middot; real</small></span>
-        </a></li>
         <li><a href="#p-manip">
           <video class="fv" loop muted playsinline preload="metadata" poster="assets/real/peg-ep0-overlay.jpg" aria-label="UR10 insertion episode with the depth-segmented task box"><source src="assets/real/peg-ep0-overlay.mp4" type="video/mp4"></video>
           <span class="fc"><b>Ring-on-peg insertion</b><small>UR10 &middot; real</small></span>
+        </a></li>
+        <li><a href="#p-r2r2r">
+          <video class="fv" loop muted playsinline preload="metadata" poster="projects/real2render2real/media/splat_strip.jpg" aria-label="Orbit around the Gaussian-splat scan of the UR5e bench"><source src="projects/real2render2real/media/splat_strip.mp4" type="video/mp4"></video>
+          <span class="fc"><b>Gaussian-splat twin</b><small>UR5e bench &middot; real scan</small></span>
         </a></li>
         <li><a href="#p-scene">
           <video class="fv" loop muted playsinline preload="metadata" poster="assets/thumbs/robotap.jpg" aria-label="Dense point tracking on a real tabletop scene"><source src="assets/thumbs/robotap.mp4" type="video/mp4"></video>
           <span class="fc"><b>Dense point tracking</b><small>real scene</small></span>
         </a></li>
-        <li><a href="#p-manip">
-          <video class="fv" loop muted playsinline preload="metadata" poster="assets/thumbs/adroit-pen.jpg" aria-label="Dexterous in-hand reorientation in simulation"><source src="assets/thumbs/adroit-pen.mp4" type="video/mp4"></video>
-          <span class="fc"><b>In-hand reorientation</b><small>simulation</small></span>
+        <li><a href="#p-memory">
+          <video class="fv" loop muted playsinline preload="metadata" poster="assets/thumbs/memory-counting.jpg" aria-label="UR5 wrist camera during the counting task"><source src="assets/thumbs/memory-counting.mp4" type="video/mp4"></video>
+          <span class="fc"><b>Counting under occlusion</b><small>UR5 &middot; real</small></span>
         </a></li>
       </ul>
     </section>
@@ -153,12 +153,14 @@
       </article>
       <article class="row" id="p-r2r2r">
         <div class="media">
-          <figure><a href="projects/real2render2real/" aria-label="Open the interactive Scan, Track, Render page"><video class="m" autoplay loop muted playsinline preload="metadata" poster="projects/real2render2real/media/teaser.jpg" aria-label="Real human demo, tracked cube pose, and the rendered UR5e replay"><source src="projects/real2render2real/media/teaser.mp4" type="video/mp4"></video></a><figcaption>Real human demo &rarr; tracked cube pose &rarr; rendered UR5e replay</figcaption></figure>
+          <figure><a href="projects/real2render2real/" aria-label="Open the interactive project page"><video class="m" autoplay loop muted playsinline preload="metadata" poster="projects/real2render2real/media/splat_orbit_640.jpg" aria-label="Orbit around the Gaussian-splat scan of the bench, ending on a wipe against a real RealSense frame"><source src="projects/real2render2real/media/splat_orbit_640.mp4" type="video/mp4"></video></a><figcaption>Gaussian splat of the bench from a phone video, registered to the robot, ending on a wipe against the real RealSense frame</figcaption></figure>
+          <figure><a href="projects/real2render2real/" aria-label="Open the interactive project page"><video class="m" autoplay loop muted playsinline preload="metadata" poster="projects/real2render2real/media/teaser.jpg" aria-label="Real human demo, tracked cube pose, and the rendered UR5e replay"><source src="projects/real2render2real/media/teaser.mp4" type="video/mp4"></video></a><figcaption>Real human demo &rarr; tracked cube pose &rarr; rendered UR5e replay</figcaption></figure>
         </div>
         <div class="body">
-          <h3>Robot Demonstrations from a Single Human Video</h3>
-          <p class="chips"><span class="chip data" title="Captured on a physical bench with real sensors; robot motion is rendered">Real-world data &middot; <i>UR5e bench, rendered robot</i></span></p>
-          <p>Collecting robot demonstrations by teleoperation is slow. I reproduced Real2Render2Real on my own UR5e bench: one human demonstration, recorded by two calibrated RealSense cameras and a phone scan, is turned into robot demonstrations without teleoperation. I aligned the scan to the robot to within a few millimetres, tracked the object in 3D, and ported the rendering pipeline to the UR5e with a Robotiq gripper, so each demo can be varied into many.</p>
+          <h3>Gaussian-Splat Twin: Robot Demos from One Human Video</h3>
+          <p class="chips"><span class="chip data" title="Captured on a physical bench with real sensors; robot motion is rendered">Real-world data &middot; <i>phone scan, 2&times; RealSense, rendered robot</i></span></p>
+          <p>Teleoperated robot data is slow to collect, and simulated data rarely looks like the real cell. I built a Gaussian-splat twin of my UR5e bench from a phone video and registered it to the robot by placing the calibrated RealSense views inside the scan&rsquo;s COLMAP model. That recovers metric scale, with two independent estimates agreeing to 0.2%, and aligns scan and robot to a 4&nbsp;mm median residual.</p>
+          <p>On that twin, one human demonstration, with the object tracked in 3D from two RGB-D cameras, is re-rendered as UR5e + Robotiq demonstrations under varied object poses, lighting and camera placement, without teleoperation. This is my reproduction of Real2Render2Real, ported to my own hardware.</p>
           <p class="btns"><a class="btn" href="projects/real2render2real/"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-globe"/></svg>Project page</a> <a class="btn" href="https://github.com/ur10/real2render2real-ur5e" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
       </article>
@@ -170,7 +172,7 @@
         <div class="body">
           <h3>3D Scene Representations for Online Motion Planning</h3>
           <p class="chips"><span class="chip data" title="Shown on physical hardware or real-world sensor data">Real-world data &middot; <i>tracked on real scenes</i></span></p>
-          <p>This project explores how to represent changing 3D environments in a form that&rsquo;s useful for robot planning. I used Gaussian Splatting to reconstruct real tabletop scenes and dense point tracking to follow objects as they move. The reconstructed scenes are converted into point clouds that are easier to work with for geometric queries, with the longer-term goal of supporting motion planning in dynamic environments.</p>
+          <p>This project explores how to represent changing 3D environments in a form that&rsquo;s useful for robot planning. I used Gaussian Splatting to reconstruct real tabletop scenes and dense point tracking to follow objects as they move. The reconstructed scenes are converted into point clouds that are easier to work with for geometric queries, with the longer-term goal of supporting motion planning in dynamic environments. It uses the same kind of Gaussian-splat reconstruction as the digital twin above, here as a planning representation rather than for rendering training data.</p>
           <p class="btns"><a class="btn" href="https://github.com/ur10/splat-scene-representations" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
       </article>
