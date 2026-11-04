@@ -41,7 +41,7 @@
     "Model Predictive Control","Sim-to-Real Transfer"]
 }
 </script>
-<link rel="stylesheet" href="styles.css?v=20261103" />
+<link rel="stylesheet" href="styles.css?v=20261104" />
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -61,9 +61,10 @@
   <div class="wrap">
     <a class="brand" href="#top">Utkarsh Rai</a>
     <div class="nav-links">
+      <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
-      <a href="#research">Research</a>
-      <a href="#publications">Publications</a>
+      <a class="nav-o1" href="#research">Research</a>
+      <a class="nav-o2" href="#publications">Publications</a>
       <a href="assets/cv/Utkarsh_Rai_Resume.pdf">CV</a>
     </div>
   </div>
@@ -120,6 +121,41 @@
           <span class="fc"><b>In-hand reorientation</b><small>simulation</small></span>
         </a></li>
       </ul>
+    </section>
+
+    <section aria-labelledby="experience">
+      <h2 id="experience">Industry Experience</h2>
+      <div class="xp">
+        <article class="xp-card">
+          <div class="xp-head">
+            <h3>ManiroAI</h3>
+            <p class="xp-role">Robotics Intern &middot; May&ndash;Dec 2025 &middot; Boston</p>
+          </div>
+          <p class="chips"><span class="chip hw">Real robot &middot; <i>7-DoF arm</i></span></p>
+          <p class="xp-what">Robot learning for contact-rich manipulation, taken from simulation to a physical arm.</p>
+          <ul class="xp-list">
+            <li><b>Policy deployment.</b> Distilled a privileged-state RL teacher into a vision and proprioception student that runs on the real arm.</li>
+            <li><b>Teleoperation data.</b> Built the data-collection framework on custom leader&ndash;follower hardware, with DAgger-style human corrections to reduce drift during execution.</li>
+            <li><b>Regression testing.</b> Built an Isaac Gym CI suite of edge-case scenarios, gated on collision rate and terminal accuracy, that every policy change passes before it reaches the robot.</li>
+            <li><b>Hand tracking.</b> Lifted synchronized multi-view camera footage with depth into 3D wrist and joint trajectories for demonstrations.</li>
+          </ul>
+          <p class="xp-out"><b>Outcome:</b> regressions surfaced in simulation instead of on hardware, and hardware A/B tests confirmed the gains in task success.</p>
+        </article>
+        <article class="xp-card">
+          <div class="xp-head">
+            <h3>Mowito</h3>
+            <p class="xp-role">Robotics Engineer &middot; Sep 2022&ndash;Jul 2024 &middot; Bangalore</p>
+          </div>
+          <p class="chips"><span class="chip hw">Production &middot; <i>UR5 arms</i></span></p>
+          <p class="xp-what">Warehouse pick-and-place cells running UR5 arms in production.</p>
+          <ul class="xp-list">
+            <li><b>Real-time control.</b> Implemented model predictive control in production C++, running inside a fixed per-cycle time budget on the robot.</li>
+            <li><b>Perception to control.</b> Integrated a stereo-depth pose-estimation pipeline with the MPC controller, from formulation through live deployment.</li>
+            <li><b>Grasp selection.</b> Ranked grasp candidates in dense, unstructured bins using RGB pose estimation and 3D voxel segmentation.</li>
+          </ul>
+          <p class="xp-out"><b>Outcome:</b> shipped to live warehouse cells, where it raised pick-and-place throughput.</p>
+        </article>
+      </div>
     </section>
 
     <section aria-labelledby="projects">
