@@ -184,19 +184,15 @@ footer span{margin:0 6px; color:var(--line)}
   .films a:hover .fv{transform:none}
 }
 
-/* ---------- industry experience ---------- */
-.xp{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:18px}
-.xp-card{background:var(--surface); border-radius:12px; padding:18px 20px 16px; display:flex; flex-direction:column; min-width:0}
-.xp-head h3{font-size:19.5px; font-weight:700; line-height:1.3; margin:0}
-.xp-role{font-size:14.5px; color:var(--muted); margin:2px 0 10px}
-.xp-what{margin:0 0 10px; font-weight:500}
-.xp-list{margin:0 0 12px; padding-left:18px; font-size:15.5px; line-height:1.55}
-.xp-list li{margin:0 0 7px}
-.xp-list li::marker{color:var(--muted)}
-.xp-list b{font-weight:600}
-.xp-out{margin:auto 0 0; padding-top:11px; border-top:1px solid var(--line); font-size:15px; line-height:1.5; color:var(--muted)}
-.xp-out b{color:var(--ink); font-weight:600}
-@media (max-width:720px){
-  .xp{grid-template-columns:1fr; gap:12px}
-  .xp-card{padding:16px 16px 14px}
+/* ---------- industry experience: dated one-liners inside the intro ---------- */
+.exp{margin:20px 0 0}
+.exp-h{font-size:16px; font-weight:700; margin:0 0 6px !important}
+.exp-list{list-style:none; margin:0; padding:0}
+.exp-list li{display:grid; grid-template-columns:72px minmax(0,1fr); gap:12px; padding:5px 0}
+.exp-when{font-size:14.5px; color:var(--muted); font-variant-numeric:tabular-nums; padding-top:1px}
+.exp-list b{font-weight:700}
+.exp-role{font-size:14.5px; color:var(--muted); margin-left:4px}
+.exp-list p{margin:1px 0 0 !important; font-size:15.5px; line-height:1.5; color:var(--muted)}
+@media (max-width:440px){
+  .exp-list li{grid-template-columns:58px minmax(0,1fr); gap:10px}
 }
