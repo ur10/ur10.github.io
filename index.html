@@ -140,7 +140,7 @@
           <h3>Fine-Grained Point-Cloud Manipulation</h3>
           <p class="chips"><span class="chip hw" title="Shown on physical hardware or real-world sensor data">Real robot &middot; <i>UR10</i></span></p>
           <p>Point-cloud policies trained in simulation often struggle on real robots, where depth observations contain missing points, occlusions, and calibration errors. I worked on adapting a pretrained 3D manipulation policy without changing the base model, using a lightweight residual policy trained with off-policy learning. A gate controls when the residual can modify the base policy&rsquo;s actions, keeping those corrections bounded. The videos compare the base and adapted policies on a real UR10 performing ring-on-peg insertion.</p>
-          <p class="btns"><a class="btn" href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
+          <p class="btns"><a class="btn" href="https://github.com/ur10/residual-pointcloud-adaptation" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
       </article>
       <article class="row" id="p-r2r2r">
@@ -163,7 +163,7 @@
           <h3>3D Scene Representations for Online Motion Planning</h3>
           <p class="chips"><span class="chip data" title="Shown on physical hardware or real-world sensor data">Real-world data &middot; <i>tracked on real scenes</i></span></p>
           <p>This project explores how to represent changing 3D environments in a form that&rsquo;s useful for robot planning. I used Gaussian Splatting to reconstruct real tabletop scenes and dense point tracking to follow objects as they move. The reconstructed scenes are converted into point clouds that are easier to work with for geometric queries, with the longer-term goal of supporting motion planning in dynamic environments.</p>
-          <p class="btns"><a class="btn" href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
+          <p class="btns"><a class="btn" href="https://github.com/ur10/splat-scene-representations" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
       </article>
       <article class="row" id="p-memory">
