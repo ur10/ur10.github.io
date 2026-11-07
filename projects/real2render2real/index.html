@@ -261,7 +261,6 @@
         <img src="media/emb_ur5e.jpg" alt="" loading="lazy">
         <button class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;3.5&nbsp;MB)</button>
       </div>
-      <p class="r2-note">These two extra arms are shown in the 3D viewer only: they are not yet rendered through the Isaac camera pipeline or used to train policies.</p>
     </section>
 
     <section class="r2-block" aria-labelledby="h-pol">
@@ -296,7 +295,6 @@
         <div role="listitem"><b>214 / 416</b><span>bottle scenes the filter kept, even with up to 30 bottle redraws each</span></div>
       </div>
       <p class="r2-lead r2-fig">Filtering alone cannot teach avoidance: it keeps only the scenes where the warped motion already misses the bottle, so the policy never sees a detour. Repairing the blocked scenes puts those detours into the data.</p>
-      <!-- <p class="r2-note">Evaluated in the twin, not on hardware: the arm follows the policy&rsquo;s joint targets kinematically and the cube attaches when the gripper closes within 1.5&nbsp;cm of a grasp, with no contact dynamics. Real-robot trials are the next step.</p> -->
     </section>
 
 
