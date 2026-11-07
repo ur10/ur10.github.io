@@ -136,6 +136,21 @@
       </figure>
     </section>
 
+    <section class="r2-block" aria-labelledby="h-rep">
+      <h2 id="h-rep" class="r2-h">Edit the Scene, Repair the Demo</h2>
+      <p class="r2-lead">Warping the demonstrated path only works in the scene it was recorded in. Put a new object on the route and the warped motion can run straight through it, so the filter throws the rollout away. I added a repair step: insert the object (here a scanned bottle), check the generated motion against it with a sphere model of the arm, gripper, wrist cameras and held cube, and re-optimize only the free segments, the transit and the middle of the carry. The grasp, lift-off, set-down and release stay exactly as generated; if the object blocks one of those, the rollout is still rejected.</p>
+      <figure>
+        <video class="r2-media" autoplay loop muted playsinline preload="metadata" poster="media/repair_compare.jpg" aria-label="Side by side: the plain generator carries the cube through a bottle, the repaired motion lifts over it"><source src="media/repair_compare.mp4" type="video/mp4"></video>
+        <figcaption class="r2-cap">Same scene, same grasp, front and right cameras. Left: the warped demo carries the cube through the bottle (outlined red while in collision; the bottle is visual-only, so the arm passes through it). Right: the repaired motion lifts over it with 2.7&nbsp;cm to spare.</figcaption>
+      </figure>
+      <div class="r2-stats r2-fig" role="list">
+        <div role="listitem"><b>5 &rarr; 17</b><span>valid demos from 21 bottle placements on the route: filter only &rarr; with repair</span></div>
+        <div role="listitem"><b>1.5&nbsp;cm</b><span>minimum clearance of the repaired paths (median 2.7&nbsp;cm)</span></div>
+        <div role="listitem"><b>6.4&nbsp;cm</b><span>median largest gripper detour from the warped path</span></div>
+        <div role="listitem"><b>4 / 21</b><span>still rejected: the bottle blocks the grasp or the set-down</span></div>
+      </div>
+    </section>
+
     <section class="r2-block" aria-labelledby="h-eng">
       <h2 id="h-eng" class="r2-h">Engineering Notes</h2>
       <ul class="r2-list">
@@ -148,7 +163,7 @@
     <section class="r2-block" aria-labelledby="h-cred">
       <h2 id="h-cred" class="r2-h">Status and Acknowledgements</h2>
       <p class="r2-note">The robot motion shown is rendered, not executed on hardware. Replaying the generated demonstrations on the real UR5e, and then training a policy on them, is the next step.</p>
-      <p class="r2-lead">This project builds on Real2Render2Real by Justin Yu, Letian Fu, Huang Huang, Karim El-Refai, Rares Andrei Ambrus, Richard Cheng, Muhammad Zubair Irshad and Ken Goldberg; the scanning, tracking, bench calibration and UR5e port shown here are my own work on my own data.</p>
+      <p class="r2-lead">This project builds on Real2Render2Real by Justin Yu, Letian Fu, Huang Huang, Karim El-Refai, Rares Andrei Ambrus, Richard Cheng, Muhammad Zubair Irshad and Ken Goldberg; the scanning, tracking, bench calibration, UR5e port and demo repair shown here are my own work on my own data. The bottle is a Google Scanned Objects model (CC-BY 4.0, Google LLC).</p>
       <pre class="r2-bib"><code>@misc{yu2025real2render2real,
   title  = {Real2Render2Real: Scaling Robot Data Without Dynamics Simulation
             or Robot Hardware},
