@@ -41,7 +41,7 @@
     "Model Predictive Control","Sim-to-Real Transfer"]
 }
 </script>
-<link rel="stylesheet" href="styles.css?v=20261105" />
+<link rel="stylesheet" href="styles.css?v=20261107" />
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -147,9 +147,23 @@
         <div class="body">
           <h3>Fine-Grained Point-Cloud Manipulation</h3>
           <p class="chips"><span class="chip hw" title="Shown on physical hardware or real-world sensor data">Real robot &middot; <i>UR10</i></span></p>
+          <ul class="tags" aria-label="Concepts"><li>Residual RL</li><li>Off-policy RL (SAC)</li><li>Sim2Real</li><li>Point-cloud policies</li><li>Diffusion policy</li><li>Policy adaptation</li><li>Bounded corrections</li></ul>
           <p>Point-cloud policies trained in simulation often struggle on real robots, where depth observations contain missing points, occlusions, and calibration errors. I worked on adapting a pretrained 3D manipulation policy without changing the base model, using a lightweight residual policy trained with off-policy learning. A gate controls when the residual can modify the base policy&rsquo;s actions, keeping those corrections bounded. The videos compare the base and adapted policies on a real UR10 performing ring-on-peg insertion.</p>
+          <p class="tools"><span class="tools-h">Tools</span><span class="tool">PyTorch</span><span class="tool">3D Diffusion Policy (DP3)</span><span class="tool">Open3D</span><span class="tool">Intel RealSense</span><span class="tool">UR RTDE</span><span class="tool">Rerun</span></p>
           <p class="btns"><a class="btn" href="https://github.com/ur10/residual-pointcloud-adaptation" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
+        <figure class="pipe" aria-labelledby="pipe-manip">
+          <figcaption class="pipe-h"><span id="pipe-manip">Pipeline<small>sim-trained policy, corrected on the real robot</small></span><span class="pipe-key" aria-hidden="true"><i class="k real">Real</i><i class="k sim">Sim</i><i class="k learn">Learning</i></span></figcaption>
+          <ol class="pipe-steps">
+            <li class="ps sim"><span class="ps-n">1 &middot; Sim</span><b>Pretrain</b><span class="ps-d">3D Diffusion Policy trained on point clouds in simulation, then frozen</span><span class="ps-t">DP3 &middot; PyTorch</span></li>
+            <li class="ps real"><span class="ps-n">2 &middot; Real</span><b>Sense</b><span class="ps-d">Two RealSense depth views fused, cropped and FPS-sampled to 1,024 points</span><span class="ps-t">RealSense &middot; Open3D</span></li>
+            <li class="ps learn"><span class="ps-n">3 &middot; Learning</span><b>Base action</b><span class="ps-d">Frozen policy proposes a 6-DoF end-effector delta + gripper</span><span class="ps-t">DP3</span></li>
+            <li class="ps learn"><span class="ps-n">4 &middot; Learning</span><b>Residual</b><span class="ps-d">SAC actor adds a tanh-bounded correction: &le;5&nbsp;mm, &le;0.02&nbsp;rad per step</span><span class="ps-t">SAC</span></li>
+            <li class="ps learn"><span class="ps-n">5 &middot; Learning</span><b>Gate</b><span class="ps-d">Twin-Q advantage gate with hysteresis picks base only or base + residual</span><span class="ps-t">Twin Q critic</span></li>
+            <li class="ps real"><span class="ps-n">6 &middot; Real</span><b>Execute</b><span class="ps-d">UR10 + Robotiq 2F at 10&nbsp;Hz, logged for side-by-side review</span><span class="ps-t">UR RTDE &middot; Rerun</span></li>
+          </ol>
+          <p class="pipe-note">&#8634; Real transitions go to a replay buffer and SAC updates only the residual and critic; the base policy&rsquo;s weights never change.</p>
+        </figure>
       </article>
       <article class="row" id="p-r2r2r">
         <div class="media">
@@ -159,10 +173,24 @@
         <div class="body">
           <h3>Gaussian-Splat Twin: Robot Demos from One Human Video</h3>
           <p class="chips"><span class="chip data" title="Captured on a physical bench with real sensors; robot motion is rendered">Real-world data &middot; <i>phone scan, 2&times; RealSense, rendered robot</i></span></p>
+          <ul class="tags" aria-label="Concepts"><li>Real2Sim</li><li>3D reconstruction</li><li>Gaussian splatting</li><li>Digital twin</li><li>Synthetic data generation</li><li>Domain randomization</li><li>Imitation learning</li><li>Policy training</li><li>Trajectory optimization</li><li>Cross-embodiment</li></ul>
           <p>Teleoperated robot data is slow to collect, and simulated data rarely looks like the real cell. I built a Gaussian-splat twin of my UR5e bench from a phone video and registered it to the robot by placing the calibrated RealSense views inside the scan&rsquo;s COLMAP model. That recovers metric scale, with two independent estimates agreeing to 0.2%, and aligns scan and robot to a 4&nbsp;mm median residual.</p>
           <p>On that twin, one human demonstration, with the object tracked in 3D from two RGB-D cameras, is re-rendered as UR5e + Robotiq demonstrations under varied object poses, lighting and camera placement, without teleoperation.</p>
+          <p class="tools"><span class="tools-h">Tools</span><span class="tool">Isaac Lab / Isaac Sim</span><span class="tool">COLMAP</span><span class="tool">Gaussian Splatting</span><span class="tool">Intel RealSense</span><span class="tool">ICP</span><span class="tool">jaxls</span><span class="tool">PyTorch</span><span class="tool">Viser</span></p>
           <p class="btns"><a class="btn" href="projects/real2render2real/"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-globe"/></svg>Project page</a> <a class="btn" href="https://github.com/ur10/real2render2real-ur5e" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
+        <figure class="pipe" aria-labelledby="pipe-r2r2r">
+          <figcaption class="pipe-h"><span id="pipe-r2r2r">Pipeline<small>real scan &rarr; simulated robot data &rarr; policy</small></span><span class="pipe-key" aria-hidden="true"><i class="k real">Real</i><i class="k sim">Sim</i><i class="k learn">Learning</i></span></figcaption>
+          <ol class="pipe-steps">
+            <li class="ps real"><span class="ps-n">1 &middot; Real</span><b>Scan</b><span class="ps-d">Phone video &rarr; 450k-Gaussian splat; RealSense views registered in COLMAP for metric scale</span><span class="ps-t">Gaussian splatting &middot; COLMAP</span></li>
+            <li class="ps real"><span class="ps-n">2 &middot; Real</span><b>Track</b><span class="ps-d">Cube&rsquo;s 6-DoF pose from two RGB-D cameras, its 24 symmetric orientations resolved</span><span class="ps-t">RealSense &middot; ICP</span></li>
+            <li class="ps sim"><span class="ps-n">3 &middot; Sim</span><b>Embody</b><span class="ps-d">UR5e + Robotiq 2F-85 URDF placed in the calibrated robot base frame</span><span class="ps-t">URDF &middot; Isaac Sim</span></li>
+            <li class="ps sim"><span class="ps-n">4 &middot; Sim</span><b>Generate</b><span class="ps-d">Warp the demo to new start poses; randomize lighting, cameras and table; filter infeasible rollouts</span><span class="ps-t">Isaac Lab</span></li>
+            <li class="ps sim"><span class="ps-n">5 &middot; Sim</span><b>Repair</b><span class="ps-d">Re-optimize the free segments around obstacles the demo never saw</span><span class="ps-t">jaxls (Levenberg&ndash;Marquardt)</span></li>
+            <li class="ps learn"><span class="ps-n">6 &middot; Learning</span><b>Train</b><span class="ps-d">ResNet-18 visuomotor policy, 16-step action chunks: 3% &rarr; 94% success</span><span class="ps-t">PyTorch</span></li>
+          </ol>
+          <p class="pipe-note">Policy success is measured closed-loop in the twin on 96 held-out scenes per set; real-robot trials are next.</p>
+        </figure>
       </article>
       <article class="row" id="p-scene">
         <div class="media">
@@ -172,6 +200,7 @@
         <div class="body">
           <h3>3D Scene Representations for Online Motion Planning</h3>
           <p class="chips"><span class="chip data" title="Shown on physical hardware or real-world sensor data">Real-world data &middot; <i>tracked on real scenes</i></span></p>
+          <ul class="tags" aria-label="Concepts"><li>3D reconstruction</li><li>Gaussian splatting</li><li>Point clouds</li><li>Dense point tracking</li><li>Motion planning</li><li>Collision checking</li></ul>
           <p>This project explores how to represent changing 3D environments in a form that&rsquo;s useful for robot planning. I used Gaussian Splatting to reconstruct real tabletop scenes and dense point tracking to follow objects as they move. The reconstructed scenes are converted into point clouds that are easier to work with for geometric queries, with the longer-term goal of supporting motion planning in dynamic environments. It uses the same kind of Gaussian-splat reconstruction as the digital twin above, here as a planning representation rather than for rendering training data.</p>
           <p class="btns"><a class="btn" href="https://github.com/ur10/splat-scene-representations" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
@@ -184,6 +213,7 @@
         <div class="body">
           <h3>History-Conditioned Policies under Partial Observability</h3>
           <p class="chips"><span class="chip hw" title="Shown on physical hardware or real-world sensor data">Real robot &middot; <i>UR5</i></span></p>
+          <ul class="tags" aria-label="Concepts"><li>Imitation learning</li><li>Diffusion policy</li><li>Policy training</li><li>Partial observability (POMDP)</li><li>Memory</li><li>Transformers</li><li>Recurrent policies</li><li>Benchmark design</li></ul>
           <p>Some robot tasks require remembering information that is no longer visible in the current camera view. I studied how recurrent policies and long-context transformers handle these situations, using route-following and object-counting tasks where the robot has to remember earlier observations to act correctly. Each task also has a fully observable version, allowing us to compare performance with and without the need for memory. The counting task is also demonstrated on a physical UR5.</p>
           <p class="btns"><a class="btn" href="https://github.com/ur10/diffusion-policy-for-pomdps" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a> <a class="btn" href="https://github.com/ur10/mem-diff" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Policy training</a></p>
         </div>
@@ -195,6 +225,7 @@
         </div>
         <div class="body">
           <h3>Collision-Aware Soft-Capture Trajectory Optimization on SE(3)</h3>
+          <ul class="tags" aria-label="Concepts"><li>Trajectory optimization</li><li>Lie groups / SE(3)</li><li>Rigid-body dynamics</li><li>Collision avoidance</li><li>Space robotics</li></ul>
           <p>Docking with a tumbling spacecraft requires planning both position and orientation while respecting collision and sensing constraints. I formulated this as a trajectory optimization problem directly on SE(3), using left-trivialized rigid-body dynamics to capture the coupled motion. The optimization incorporates keep-out regions, collision clearance, and sensing limits through differentiable penalties, with collision terms linearized in local Lie-algebra coordinates. This allows the motion and geometric constraints to be handled within the same manifold-based optimization framework.</p>
           <p class="btns"><a class="btn" href="https://github.com/ur10/se3-soft-capture" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
