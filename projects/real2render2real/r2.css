@@ -109,3 +109,21 @@
   .r2-sub{font-size:19px}
   .r2-emb-row{display:none}  /* phones: the chips switch the one poster / 3D view */
 }
+
+/* three tasks: chip-selected panels and the per-task comparison table */
+.r2-task-panels{margin-top:14px}
+.r2-task-panel[hidden]{display:none}
+.r2-cmp td{width:auto; font-size:14.5px; line-height:1.45; vertical-align:top}
+.r2-cmp tbody th{vertical-align:top; font-weight:600; white-space:nowrap}
+.r2-cmp thead th:not(:first-child){width:29%}
+@media (max-width:720px){
+  /* phones: one block per row, each cell labelled with its task */
+  .r2-cmp thead{display:none}
+  .r2-cmp,.r2-cmp tbody,.r2-cmp tr,.r2-cmp th,.r2-cmp td{display:block; width:auto}
+  .r2-cmp tr{border-bottom:1px solid var(--line); padding:8px 0}
+  .r2-cmp tbody th{border:0; padding:4px 0 2px; font-size:15px}
+  .r2-cmp td{border:0; padding:3px 0 3px 84px; position:relative; font-size:14px}
+  .r2-cmp td::before{content:attr(data-label); position:absolute; left:0; top:3px; width:78px; font-weight:600; color:var(--muted); font-size:13px}
+  .r2-cmp{display:flex; flex-direction:column}
+  .r2-cmp caption{display:block; order:2; padding-top:10px}
+}

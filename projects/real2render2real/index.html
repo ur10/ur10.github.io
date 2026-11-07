@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>One Human Demo, Rendered into Robot Data | Utkarsh Rai</title>
-<meta name="description" content="One human demonstration on a real UR5e bench, scanned, tracked with calibrated RGB-D cameras and re-rendered as UR5e + Robotiq robot demonstrations without teleoperation." />
+<meta name="description" content="One human demonstration per task on a real UR5e bench, tracked with two calibrated cameras and re-rendered as UR5e + Robotiq robot demonstrations without teleoperation: a cube transfer, hanging a tape roll on a mug tree, and putting a nut on a bolt." />
 <link rel="canonical" href="https://ur10.github.io/projects/real2render2real/" />
 <meta property="og:title" content="One Human Demo, Rendered into Robot Data" />
 <meta property="og:description" content="Scan, track, render: one human demo on a real UR5e bench becomes robot demonstrations, without teleoperation." />
@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
 <link rel="stylesheet" href="../../styles.css?v=20261103" />
-<link rel="stylesheet" href="r2.css?v=20261107d" />
+<link rel="stylesheet" href="r2.css?v=20261108a" />
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -37,7 +37,7 @@
     <a class="brand" href="../../">Utkarsh Rai</a>
     <div class="nav-links">
       <a href="#r2-video">Video</a>
-      <a href="#h-3d">3D</a>
+      <a href="#h-tasks">Tasks</a>
       <a href="#h-how">Method</a>
       <a href="#h-pol">Results</a>
       <a href="https://github.com/ur10/real2render2real-ur5e" target="_blank" rel="noopener noreferrer">Code</a>
@@ -49,12 +49,13 @@
   <main id="main">
     <header class="r2-hero">
       <h1>One Human Demo, Rendered into Robot Data</h1>
-      <p class="r2-subtitle">Real2Render2Real ported to a UR5e + Robotiq 2F-85 on my own bench</p>
+      <p class="r2-subtitle">Real2Render2Real ported to a UR5e + Robotiq 2F-85 on my own bench: three tasks, each from one human video</p>
       <p class="r2-author"><a href="../../">Utkarsh Rai</a></p>
       <p class="r2-aff">Northeastern University</p>
       <div class="r2-btns">
         <a class="btn" href="https://github.com/ur10/real2render2real-ur5e" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a>
         <a class="btn" href="#r2-video"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-play"/></svg>Video</a>
+        <a class="btn" href="#h-tasks"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-doc"/></svg>Three tasks</a>
         <a class="btn" href="#h-3d"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Interactive 3D</a>
       </div>
     </header>
@@ -88,6 +89,64 @@
       </div>
     </section>
 
+    <section class="r2-block" id="r2-tasks" aria-labelledby="h-tasks">
+      <h2 id="h-tasks" class="r2-h">Three Tasks, One Pipeline</h2>
+      <p class="r2-lead">The same pipeline on three tasks, each from a single human demonstration recorded by the same two calibrated cameras: move a cube between two fixtures, hang a roll of tape on a mug tree, and put a nut on a bolt. The cube demo had depth; the tape and nut demos are colour video only. For those two, each object is a simple shape measured from both camera views, and its pose is tracked by fitting that shape&rsquo;s outline in both views at once. Everything after tracking is shared: the calibrated cameras, the robot model, warping the demo to new start poses, the planner&rsquo;s collision checks, the renderer and the randomization.</p>
+      <div class="r2-chips" role="tablist" aria-label="Choose a task">
+        <button class="r2-chip r2-task on" type="button" role="tab" aria-selected="true" data-task="cube">Cube between fixtures</button>
+        <button class="r2-chip r2-task" type="button" role="tab" aria-selected="false" data-task="tape">Tape roll onto a mug tree</button>
+        <button class="r2-chip r2-task" type="button" role="tab" aria-selected="false" data-task="nut">Nut onto a bolt</button>
+      </div>
+      <div class="r2-task-panels">
+      <div class="r2-task-panel" data-task="cube" role="tabpanel" aria-label="Cube between fixtures">
+        <video class="r2-media r2-task-vid" muted loop playsinline preload="metadata" poster="media/triptych.jpg" aria-label="Cube between fixtures: real demo, tracked object and rendered UR5e replay, side by side">
+          <source src="media/triptych_tall.mp4" type="video/mp4" media="(max-width:720px)">
+          <source src="media/triptych.mp4" type="video/mp4">
+        </video>
+        <figure class="r2-fig">
+          <video class="r2-media r2-task-vid" muted loop playsinline preload="metadata" poster="media/randomized.jpg" aria-label="Cube between fixtures: grid of randomized generated rollouts"><source src="media/randomized.mp4" type="video/mp4"></video>
+          <figcaption class="r2-cap">Generated cube rollouts, randomized start pose, lighting, camera pose and table look (front camera).</figcaption>
+        </figure>
+      </div>
+      <div class="r2-task-panel" data-task="tape" role="tabpanel" aria-label="Tape roll onto a mug tree" hidden>
+        <video class="r2-media r2-task-vid" muted loop playsinline preload="none" poster="media/tape_triptych.jpg" aria-label="Tape roll onto a mug tree: real demo, tracked object and rendered UR5e replay, side by side">
+          <source src="media/tape_triptych_tall.mp4" type="video/mp4" media="(max-width:720px)">
+          <source src="media/tape_triptych.mp4" type="video/mp4">
+        </video>
+        <figure class="r2-fig">
+          <video class="r2-media r2-task-vid" muted loop playsinline preload="none" poster="media/tape_randomized.jpg" aria-label="Tape roll onto a mug tree: grid of randomized generated rollouts"><source src="media/tape_randomized.mp4" type="video/mp4"></video>
+          <figcaption class="r2-cap">Generated tape rollouts: new roll start poses on the bench, the tree turned 240&ndash;260&deg;, randomized lighting, camera pose and table look.</figcaption>
+        </figure>
+      </div>
+      <div class="r2-task-panel" data-task="nut" role="tabpanel" aria-label="Nut onto a bolt" hidden>
+        <video class="r2-media r2-task-vid" muted loop playsinline preload="none" poster="media/nut_triptych.jpg" aria-label="Nut onto a bolt: real demo, tracked object and rendered UR5e replay, side by side">
+          <source src="media/nut_triptych_tall.mp4" type="video/mp4" media="(max-width:720px)">
+          <source src="media/nut_triptych.mp4" type="video/mp4">
+        </video>
+        <figure class="r2-fig">
+          <video class="r2-media r2-task-vid" muted loop playsinline preload="none" poster="media/nut_randomized.jpg" aria-label="Nut onto a bolt: grid of randomized generated rollouts"><source src="media/nut_randomized.mp4" type="video/mp4"></video>
+          <figcaption class="r2-cap">Generated nut rollouts: new nut start poses within reach, randomized lighting, camera pose and table look.</figcaption>
+        </figure>
+      </div>
+      </div>
+      <h3 class="r2-sub">What each task needed</h3>
+      <div class="r2-res-wrap">
+        <table class="r2-res r2-cmp">
+          <caption>Rollouts pass when the planned motion has no IK error, joint-limit violation or collision with the bench or the fixture. The tape&rsquo;s rejections are fingertips reaching the bench as the roll tips up on its edge.</caption>
+          <thead><tr><th scope="col"></th><th scope="col">Cube</th><th scope="col">Tape roll</th><th scope="col">Nut</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Recording</th><td data-label="Cube">Colour + depth, front and right RealSense</td><td data-label="Tape roll">Colour only, same two cameras</td><td data-label="Nut">Colour only; the hand hides the nut from the right camera for about 1.3&nbsp;s</td></tr>
+            <tr><th scope="row">Object model</th><td data-label="Cube">Cut out of the phone-scan Gaussian splat</td><td data-label="Tape roll">Measured ring of tape on a core: 51&nbsp;mm radius, 24&nbsp;mm wide. Mug tree measured from both views</td><td data-label="Nut">Measured ring: 32&nbsp;mm across, 21&nbsp;mm hole, 16&nbsp;mm thick. Bolt stand measured from both views</td></tr>
+            <tr><th scope="row">Tracking</th><td data-label="Cube">Scanned mesh fitted to both depth images</td><td data-label="Tape roll">Shape outline fitted in both views at once</td><td data-label="Nut">The same, re-detected after fast moves; front view alone while hidden</td></tr>
+            <tr><th scope="row">Grasp</th><td data-label="Cube">From above, at the cube&rsquo;s 4 symmetric yaws</td><td data-label="Tape roll">Pinch the tape band from the top face, 12 positions around the rim</td><td data-label="Nut">From above, across the outside, 12 positions</td></tr>
+            <tr><th scope="row">Demo clean-up</th><td data-label="Cube">Level the cube; smallest yaw under its 90&deg; symmetry</td><td data-label="Tape roll">Tilt the roll the shorter way, using its end-for-end symmetry; release once it is 4.5&nbsp;cm onto the branch. The branch used faces away from the robot, so the twin&rsquo;s tree is turned 250&deg;</td><td data-label="Nut">Level; end centred on the rod (tracked 1.4&nbsp;mm off, 2.9&nbsp;mm of hole clearance) and lowered from above its tip. The human&rsquo;s start is out of reach, so starts move 14&nbsp;cm closer</td></tr>
+            <tr><th scope="row">Generated</th><td data-label="Cube"><span>448 / 448 pass</span></td><td data-label="Tape roll"><span>25 / 48 pass</span></td><td data-label="Nut"><span>48 / 48 pass</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="r2-lead r2-fig">The rest of this page follows the cube task in detail: the 3D replay, the method, scene edits with demo repair, trajectory interpolation, other embodiments and the policy experiment.</p>
+    </section>
+
     <section class="r2-block" aria-labelledby="h-3d">
       <h2 id="h-3d" class="r2-h">Interactive 3D Replay</h2>
       <p class="r2-lead">The same generated demonstration as a 3D scene: the robot URDF, the cube as the Gaussian splat cut from my phone scan, the scanned bench, and both camera frustums showing their rendered views. Drag to orbit, scroll to zoom.</p>
@@ -108,7 +167,7 @@
         <figure>
           <img src="media/step_track.jpg" alt="Tracked cube box drawn on the RealSense views through the transfer" loading="lazy">
           <h3><span>Step 2</span>Track</h3>
-          <p>The cube&rsquo;s pose per frame from both depth cameras: the scanned cube model fitted with ICP, re-detected on fast lifts and kept consistent across the cube&rsquo;s 24 symmetric orientations.</p>
+          <p>The cube&rsquo;s pose per frame from both depth cameras: the scanned cube model fitted with ICP, re-detected on fast lifts and kept consistent across the cube&rsquo;s 24 symmetric orientations. Without depth, as for the tape and the nut, a measured shape is fitted to the object&rsquo;s outline in both views at once.</p>
         </figure>
         <figure>
           <img src="media/step_robot.jpg" alt="UR5e and gripper model overlaid on the real arm in both cameras" loading="lazy">
@@ -243,7 +302,7 @@
 
     <section class="r2-block" aria-labelledby="h-cred">
       <h2 id="h-cred" class="r2-h">Status and Acknowledgements</h2>
-      <p class="r2-note">The robot motion shown is rendered, not executed on hardware, and the policies are evaluated in the twin. Replaying the generated demonstrations and running the trained policies on the real UR5e is the next step.</p>
+      <p class="r2-note">The robot motion shown is rendered, not executed on hardware, and the policies are evaluated in the twin. The tape and nut rollouts are generated but not yet used to train policies, and real trials of the tape task need the real mug tree turned like the twin&rsquo;s. Replaying the generated demonstrations and running the trained policies on the real UR5e is the next step.</p>
       <p class="r2-lead">This project builds on Real2Render2Real by Justin Yu, Letian Fu, Huang Huang, Karim El-Refai, Rares Andrei Ambrus, Richard Cheng, Muhammad Zubair Irshad and Ken Goldberg; the scanning, tracking, bench calibration, UR5e port and demo repair shown here are my own work on my own data.</p>
       <pre class="r2-bib"><code>@misc{yu2025real2render2real,
   title  = {Real2Render2Real: Scaling Robot Data Without Dynamics Simulation
@@ -261,6 +320,6 @@
     <p><a href="../../">ur10.github.io</a><span>|</span><a href="mailto:rai.ut@northeastern.edu">rai.ut@northeastern.edu</a><span>|</span><a href="https://github.com/ur10" target="_blank" rel="noopener noreferrer">GitHub</a></p>
   </footer>
 </div>
-<script src="r2.js?v=20261107b" defer></script>
+<script src="r2.js?v=20261108a" defer></script>
 </body>
 </html>
