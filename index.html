@@ -41,7 +41,7 @@
     "Model Predictive Control","Sim-to-Real Transfer"]
 }
 </script>
-<link rel="stylesheet" href="styles.css?v=20261107" />
+<link rel="stylesheet" href="styles.css?v=20261108" />
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -136,6 +136,15 @@
         <div class="media">
           <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-comparison-front.jpg" aria-label="UR10 ring-on-peg: base policy + residual (left) vs base policy alone (right)"><source src="assets/real/peg-comparison-front.mp4" type="video/mp4"></video><figcaption>UR10 ring-on-peg: base policy + residual (left) vs base policy alone (right)</figcaption></figure>
           <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-ep0-composite.jpg" aria-label="Per-episode dashboard: point cloud reprojected onto the RealSense images"><source src="assets/real/peg-ep0-composite.mp4" type="video/mp4"></video><figcaption>Per-episode dashboard: point cloud reprojected onto the RealSense images</figcaption></figure>
+          <figure class="flow" aria-labelledby="flow-manip">
+            <figcaption class="flow-h"><span id="flow-manip">Pipeline</span><span class="flow-key" aria-hidden="true"><i class="k real">Real</i><i class="k sim">Sim</i><i class="k learn">Learn</i></span></figcaption>
+            <div class="rail">
+              <div class="st sim"><b>Pretrain point-cloud policy</b><span>DP3 in simulation, then frozen</span></div>
+              <div class="st real"><b>Fuse 2&times; depth &rarr; 1,024 pts</b><span>RealSense &middot; Open3D</span></div>
+              <div class="st learn"><b>Base action</b><span>6-DoF end-effector delta + gripper</span></div>
+              <div class="cycle"><div class="st learn"><b>Bounded residual</b><span>SAC &middot; &le;5&nbsp;mm, &le;0.02&nbsp;rad per step</span></div><div class="st learn"><b>Q-advantage gate</b><span>base only, or base + residual</span></div><div class="st real end"><b>Execute on UR10</b><span>UR RTDE &middot; 10&nbsp;Hz</span></div><p class="cycle-l">&#8634; real transitions &rarr; replay buffer &rarr; SAC update; base never changes</p></div>
+            </div>
+          </figure>
           <details class="more"><summary>More views, and the simulation counterpart</summary>
             <div class="grid2"><figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-rerun.jpg" aria-label="Rerun timeline of both episodes"><source src="assets/real/peg-rerun.mp4" type="video/mp4"></video><figcaption>Rerun timeline of both episodes</figcaption></figure>
             <figure><video class="m sm" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-ep0-overlay.jpg" aria-label="Front camera with the depth-segmented task box"><source src="assets/real/peg-ep0-overlay.mp4" type="video/mp4"></video><figcaption>Front camera with the depth-segmented task box</figcaption></figure>
@@ -152,23 +161,21 @@
           <p class="tools"><span class="tools-h">Tools</span><span class="tool">PyTorch</span><span class="tool">3D Diffusion Policy (DP3)</span><span class="tool">Open3D</span><span class="tool">Intel RealSense</span><span class="tool">UR RTDE</span><span class="tool">Rerun</span></p>
           <p class="btns"><a class="btn" href="https://github.com/ur10/residual-pointcloud-adaptation" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
-        <figure class="pipe" aria-labelledby="pipe-manip">
-          <figcaption class="pipe-h"><span id="pipe-manip">Pipeline<small>sim-trained policy, corrected on the real robot</small></span><span class="pipe-key" aria-hidden="true"><i class="k real">Real</i><i class="k sim">Sim</i><i class="k learn">Learning</i></span></figcaption>
-          <ol class="pipe-steps">
-            <li class="ps sim"><span class="ps-n">1 &middot; Sim</span><b>Pretrain</b><span class="ps-d">3D Diffusion Policy trained on point clouds in simulation, then frozen</span><span class="ps-t">DP3 &middot; PyTorch</span></li>
-            <li class="ps real"><span class="ps-n">2 &middot; Real</span><b>Sense</b><span class="ps-d">Two RealSense depth views fused, cropped and FPS-sampled to 1,024 points</span><span class="ps-t">RealSense &middot; Open3D</span></li>
-            <li class="ps learn"><span class="ps-n">3 &middot; Learning</span><b>Base action</b><span class="ps-d">Frozen policy proposes a 6-DoF end-effector delta + gripper</span><span class="ps-t">DP3</span></li>
-            <li class="ps learn"><span class="ps-n">4 &middot; Learning</span><b>Residual</b><span class="ps-d">SAC actor adds a tanh-bounded correction: &le;5&nbsp;mm, &le;0.02&nbsp;rad per step</span><span class="ps-t">SAC</span></li>
-            <li class="ps learn"><span class="ps-n">5 &middot; Learning</span><b>Gate</b><span class="ps-d">Twin-Q advantage gate with hysteresis picks base only or base + residual</span><span class="ps-t">Twin Q critic</span></li>
-            <li class="ps real"><span class="ps-n">6 &middot; Real</span><b>Execute</b><span class="ps-d">UR10 + Robotiq 2F at 10&nbsp;Hz, logged for side-by-side review</span><span class="ps-t">UR RTDE &middot; Rerun</span></li>
-          </ol>
-          <p class="pipe-note">&#8634; Real transitions go to a replay buffer and SAC updates only the residual and critic; the base policy&rsquo;s weights never change.</p>
-        </figure>
       </article>
       <article class="row" id="p-r2r2r">
         <div class="media">
           <figure><a href="projects/real2render2real/" aria-label="Open the interactive project page"><video class="m" autoplay loop muted playsinline preload="metadata" poster="projects/real2render2real/media/splat_orbit_640.jpg" aria-label="Orbit around the Gaussian-splat scan of the bench, ending on a wipe against a real RealSense frame"><source src="projects/real2render2real/media/splat_orbit_640.mp4" type="video/mp4"></video></a><figcaption>Gaussian splat of the bench from a phone video, registered to the robot, ending on a wipe against the real RealSense frame</figcaption></figure>
           <figure><a href="projects/real2render2real/" aria-label="Open the interactive project page"><video class="m" autoplay loop muted playsinline preload="metadata" poster="projects/real2render2real/media/teaser.jpg" aria-label="Real human demo, tracked cube pose, and the rendered UR5e replay"><source src="projects/real2render2real/media/teaser.mp4" type="video/mp4"></video></a><figcaption>Real human demo &rarr; tracked cube pose &rarr; rendered UR5e replay</figcaption></figure>
+          <figure class="flow" aria-labelledby="flow-r2r2r">
+            <figcaption class="flow-h"><span id="flow-r2r2r">Pipeline</span><span class="flow-key" aria-hidden="true"><i class="k real">Real</i><i class="k sim">Sim</i><i class="k learn">Learn</i></span></figcaption>
+            <div class="rail">
+              <div class="st real"><b>Scan the bench</b><span>phone video &rarr; Gaussian splat &middot; COLMAP</span></div>
+              <div class="st real"><b>Track the cube in 6-DoF</b><span>2&times; RGB-D &middot; ICP</span></div>
+              <div class="st sim"><b>Put the robot in the twin</b><span>UR5e + 2F-85 URDF &middot; Isaac Sim</span></div>
+              <div class="cycle"><div class="st sim"><b>Generate demos</b><span>warp + randomize &middot; Isaac Lab</span></div><div class="st sim"><b>Repair around obstacles</b><span>trajectory optimization &middot; jaxls</span></div><p class="cycle-l">&#8634; repeat: 1 human demo &rarr; 400 robot rollouts</p></div>
+              <div class="st learn end"><b>Train visuomotor policy</b><span>ResNet-18 &middot; 3% &rarr; 94% in the twin</span></div>
+            </div>
+          </figure>
         </div>
         <div class="body">
           <h3>Gaussian-Splat Twin: Robot Demos from One Human Video</h3>
@@ -179,18 +186,6 @@
           <p class="tools"><span class="tools-h">Tools</span><span class="tool">Isaac Lab / Isaac Sim</span><span class="tool">COLMAP</span><span class="tool">Gaussian Splatting</span><span class="tool">Intel RealSense</span><span class="tool">ICP</span><span class="tool">jaxls</span><span class="tool">PyTorch</span><span class="tool">Viser</span></p>
           <p class="btns"><a class="btn" href="projects/real2render2real/"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-globe"/></svg>Project page</a> <a class="btn" href="https://github.com/ur10/real2render2real-ur5e" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
-        <figure class="pipe" aria-labelledby="pipe-r2r2r">
-          <figcaption class="pipe-h"><span id="pipe-r2r2r">Pipeline<small>real scan &rarr; simulated robot data &rarr; policy</small></span><span class="pipe-key" aria-hidden="true"><i class="k real">Real</i><i class="k sim">Sim</i><i class="k learn">Learning</i></span></figcaption>
-          <ol class="pipe-steps">
-            <li class="ps real"><span class="ps-n">1 &middot; Real</span><b>Scan</b><span class="ps-d">Phone video &rarr; 450k-Gaussian splat; RealSense views registered in COLMAP for metric scale</span><span class="ps-t">Gaussian splatting &middot; COLMAP</span></li>
-            <li class="ps real"><span class="ps-n">2 &middot; Real</span><b>Track</b><span class="ps-d">Cube&rsquo;s 6-DoF pose from two RGB-D cameras, its 24 symmetric orientations resolved</span><span class="ps-t">RealSense &middot; ICP</span></li>
-            <li class="ps sim"><span class="ps-n">3 &middot; Sim</span><b>Embody</b><span class="ps-d">UR5e + Robotiq 2F-85 URDF placed in the calibrated robot base frame</span><span class="ps-t">URDF &middot; Isaac Sim</span></li>
-            <li class="ps sim"><span class="ps-n">4 &middot; Sim</span><b>Generate</b><span class="ps-d">Warp the demo to new start poses; randomize lighting, cameras and table; filter infeasible rollouts</span><span class="ps-t">Isaac Lab</span></li>
-            <li class="ps sim"><span class="ps-n">5 &middot; Sim</span><b>Repair</b><span class="ps-d">Re-optimize the free segments around obstacles the demo never saw</span><span class="ps-t">jaxls (Levenberg&ndash;Marquardt)</span></li>
-            <li class="ps learn"><span class="ps-n">6 &middot; Learning</span><b>Train</b><span class="ps-d">ResNet-18 visuomotor policy, 16-step action chunks: 3% &rarr; 94% success</span><span class="ps-t">PyTorch</span></li>
-          </ol>
-          <p class="pipe-note">Policy success is measured closed-loop in the twin on 96 held-out scenes per set; real-robot trials are next.</p>
-        </figure>
       </article>
       <article class="row" id="p-scene">
         <div class="media">
