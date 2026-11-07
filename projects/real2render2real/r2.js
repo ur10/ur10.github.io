@@ -3,7 +3,7 @@
   var vid = document.getElementById('r2-trip');
   var range = document.getElementById('r2-range');
   var btn = document.getElementById('r2-play');
-  var chips = Array.prototype.slice.call(document.querySelectorAll('.r2-chip'));
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.r2-chip[data-t]'));
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   // Phones get the same timeline with the three panels stacked, so each stays legible.
@@ -60,19 +60,30 @@
     setBtn();
   }
 
-  // The 3D replay is ~10 MB and needs WebGL: load it only on request.
-  var load = document.getElementById('r2-load3d');
-  if (load) {
+  // 3D replays are several MB and need WebGL: load each one only on request.
+  Array.prototype.slice.call(document.querySelectorAll('.r2-3d .r2-load3d')).forEach(function (load) {
     load.addEventListener('click', function () {
-      var box = document.getElementById('r2-3d');
+      var box = load.closest('.r2-3d');
       var f = document.createElement('iframe');
       f.src = box.dataset.src;
-      f.title = 'Interactive 3D replay of the generated UR5e demonstration';
-      f.setAttribute('loading', 'lazy');
+      f.title = box.dataset.title || 'Interactive 3D replay of the generated UR5e demonstration';
       f.setAttribute('allow', 'fullscreen');
       box.innerHTML = '';
       box.appendChild(f);
       box.classList.add('live');
     });
-  }
+  });
+
+  // Embodiment chips: pick which arm the 3D view shows (swaps the poster, or the live replay).
+  var emb = document.getElementById('r2-emb3d');
+  Array.prototype.slice.call(document.querySelectorAll('.r2-emb')).forEach(function (chip, _, all) {
+    chip.addEventListener('click', function () {
+      all.forEach(function (c) { c.classList.toggle('on', c === chip); c.setAttribute('aria-pressed', String(c === chip)); });
+      emb.dataset.src = chip.dataset.src;
+      emb.dataset.title = chip.dataset.title;
+      var f = emb.querySelector('iframe'), img = emb.querySelector('img');
+      if (f) { f.src = chip.dataset.src; f.title = chip.dataset.title; }
+      else if (img) { img.src = chip.dataset.poster; }
+    });
+  });
 })();

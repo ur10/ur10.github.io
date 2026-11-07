@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
 <link rel="stylesheet" href="../../styles.css?v=20261103" />
-<link rel="stylesheet" href="r2.css?v=20261105" />
+<link rel="stylesheet" href="r2.css?v=20261107d" />
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -39,7 +39,7 @@
       <a href="#r2-video">Video</a>
       <a href="#h-3d">3D</a>
       <a href="#h-how">Method</a>
-      <a href="#h-rand">Results</a>
+      <a href="#h-pol">Results</a>
       <a href="https://github.com/ur10/real2render2real-ur5e" target="_blank" rel="noopener noreferrer">Code</a>
     </div>
   </div>
@@ -93,7 +93,7 @@
       <p class="r2-lead">The same generated demonstration as a 3D scene: the robot URDF, the cube as the Gaussian splat cut from my phone scan, the scanned bench, and both camera frustums showing their rendered views. Drag to orbit, scroll to zoom.</p>
       <div id="r2-3d" class="r2-3d" data-src="viewer/index.html?playbackPath=../media/ur5e_cube_replay.viser&amp;initialCameraPosition=0.42,-1.32,0.42&amp;initialCameraLookAt=0.08,-0.7,0.06&amp;initialCameraUp=0,0,1">
         <img src="media/viewer_poster.jpg" alt="Still of the 3D replay: UR5e carrying the cube above the scanned bench" loading="lazy">
-        <button id="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;10&nbsp;MB)</button>
+        <button id="r2-load3d" class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;10&nbsp;MB)</button>
       </div>
     </section>
 
@@ -126,13 +126,16 @@
     <section class="r2-block" aria-labelledby="h-rand">
       <h2 id="h-rand" class="r2-h">One Demo, Many Demos</h2>
       <p class="r2-lead">Each rollout re-samples the cube&rsquo;s start pose, warps the demonstrated path to it, and randomizes lighting, camera pose and table appearance. The background is a 360&deg; render of the lab from the same phone scan.</p>
+      <div class="r2-dist" role="list" aria-label="Data distribution clips">
+        <figure role="listitem"><video autoplay loop muted playsinline preload="metadata" poster="media/dist_r2r2r_front.jpg" aria-label="Start frames of generated rollouts, front camera"><source src="media/dist_r2r2r_front.mp4" type="video/mp4"></video><figcaption>Front camera</figcaption></figure>
+        <figure role="listitem"><video autoplay loop muted playsinline preload="metadata" poster="media/dist_r2r2r_right.jpg" aria-label="Start frames of generated rollouts, right camera"><source src="media/dist_r2r2r_right.mp4" type="video/mp4"></video><figcaption>Right camera</figcaption></figure>
+        <figure role="listitem"><video autoplay loop muted playsinline preload="metadata" poster="media/dist_bottle_front.jpg" aria-label="Start frames of generated rollouts with the bottle, front camera"><source src="media/dist_bottle_front.mp4" type="video/mp4"></video><figcaption>With the bottle, front</figcaption></figure>
+        <figure role="listitem"><video autoplay loop muted playsinline preload="metadata" poster="media/dist_bottle_right.jpg" aria-label="Start frames of generated rollouts with the bottle, right camera"><source src="media/dist_bottle_right.mp4" type="video/mp4"></video><figcaption>With the bottle, right</figcaption></figure>
+      </div>
+      <p class="r2-cap">Data distribution: every frame is the first frame of a different generated rollout (448 without the bottle, 225 with it), so the clips flick through the spread of cube start poses, lighting, camera poses, table looks and bottle placements.</p>
       <figure>
         <video class="r2-media" autoplay loop muted playsinline preload="metadata" poster="media/randomized.jpg?v=2" aria-label="Grid of randomized generated rollouts"><source src="media/randomized.mp4?v=2" type="video/mp4"></video>
         <figcaption class="r2-cap">Generated rollouts from the single demonstration (front camera).</figcaption>
-      </figure>
-      <figure class="r2-fig">
-        <img class="r2-media" src="media/traj_fan.jpg" alt="The tracked demo trajectory and 64 interpolated variants drawn on the real camera view" loading="lazy">
-        <figcaption class="r2-cap">Trajectory interpolation on the real front view: the tracked demo (teal) and the warped variants the generator samples (amber).</figcaption>
       </figure>
     </section>
 
@@ -151,6 +154,92 @@
       </div>
     </section>
 
+    <section class="r2-block" aria-labelledby="h-traj">
+      <h2 id="h-traj" class="r2-h">Trajectory Interpolation</h2>
+      <p class="r2-lead">From one demonstration the generator samples a distribution of cube trajectories: each new start pose on the pick fixture gets the tracked path warped to it over its first 60%, ending at the demonstrated place pose. Permuting the objects in the scene multiplies that again: every interpolated trajectory is checked against the inserted object and repaired where it collides.</p>
+      <div class="r2-pair">
+        <figure><img class="r2-media" src="media/traj3d_demo.jpg" alt="The tracked cube trajectory above the scanned bench, with coordinate frames along it" loading="lazy"><figcaption class="r2-cap">The tracked demo (teal), with 6-DoF cube frames along it.</figcaption></figure>
+        <figure><img class="r2-media" src="media/traj3d_fan.jpg" alt="Twelve interpolated cube trajectories fanning out from new start poses on the pick fixture" loading="lazy"><figcaption class="r2-cap">12 interpolated trajectories (amber) from new start poses (frames).</figcaption></figure>
+      </div>
+      <figure class="r2-fig">
+        <img class="r2-media" src="media/traj_fan.jpg" alt="The tracked demo trajectory and 64 interpolated variants drawn on the real camera view" loading="lazy">
+        <figcaption class="r2-cap">The same distribution on the real front camera view: the tracked demo (teal) and 64 sampled variants (amber).</figcaption>
+      </figure>
+      <h3 class="r2-sub">Permuting the collision objects</h3>
+      <p class="r2-lead">Three Google Scanned Objects, a bottle, a mug and a cereal box, placed on or beside the route. Red: interpolated trajectories whose plain motion collides with the object (the filter would drop them). Amber: the trajectories the generator keeps, repaired where needed.</p>
+      <div class="r2-trio">
+        <figure><img class="r2-media" src="media/traj3d_perm_sauce_bottle.jpg" alt="Bottle between the fixtures: colliding paths in red, repaired paths in amber arching over it" loading="lazy"><figcaption class="r2-cap">Bottle on the route: all 6 collide, all 6 repaired over it.</figcaption></figure>
+        <figure><img class="r2-media" src="media/traj3d_perm_mug.jpg" alt="Mug just off the route with colliding and repaired paths" loading="lazy"><figcaption class="r2-cap">Mug just off the route: 6 collide, 3 repaired, 3 rejected (it blocks a segment repair keeps fixed: grasp, lift-off or set-down).</figcaption></figure>
+        <figure><img class="r2-media" src="media/traj3d_perm_cereal_box.jpg" alt="Cereal box between the robot and the route with colliding and repaired paths" loading="lazy"><figcaption class="r2-cap">Cereal box on the arm&rsquo;s side: 6 collide, 4 repaired with the cube&rsquo;s other grasp yaw, 2 rejected.</figcaption></figure>
+      </div>
+      <div class="r2-stats r2-fig" role="list">
+        <div role="listitem"><b>48</b><span>trajectories: 8 placements of 3 objects &times; 6 starts</span></div>
+        <div role="listitem"><b>37</b><span>collide as generated</span></div>
+        <div role="listitem"><b>11 &rarr; 43</b><span>kept: filter only &rarr; with repair and grasp-yaw retry</span></div>
+        <div role="listitem"><b>5</b><span>still rejected: the object blocks a grasp or set-down</span></div>
+      </div>
+      <div class="r2-3d r2-fig" data-src="viewer/index.html?playbackPath=../media/traj_perm.viser&amp;initialCameraPosition=0.36,-1.12,0.34&amp;initialCameraLookAt=0.08,-0.74,0.06&amp;initialCameraUp=0,0,1" data-title="Interactive 3D view of the interpolated trajectories and object permutations">
+        <img src="media/traj3d_perm_sauce_bottle.jpg" alt="" loading="lazy">
+        <button class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;4&nbsp;MB)</button>
+      </div>
+      <p class="r2-cap">Interactive: the demo, the interpolated fan, then each object placement in turn with a cube riding one repaired trajectory.</p>
+    </section>
+
+    <section class="r2-block" aria-labelledby="h-emb">
+      <h2 id="h-emb" class="r2-h">Rendering More Embodiments</h2>
+      <p class="r2-lead">The generated robot motion comes from the cube&rsquo;s motion and a grasp on it, not from a recorded robot motion, so the same tracked trajectory retargets to any arm that can reach it. The UR5e and a UR10e on the same bench mount, and a Franka Panda standing on the table, all execute it with the demo&rsquo;s grasp; whole-trajectory IK tracks every gripper target to within 0.01&nbsp;mm.</p>
+      <div class="r2-trio r2-emb-row">
+        <figure><img class="r2-media" src="media/emb_ur5e.jpg" alt="UR5e + Robotiq 2F-85 lifting the cube off the pick fixture on the scanned bench" loading="lazy"><figcaption class="r2-cap">UR5e + Robotiq 2F-85</figcaption></figure>
+        <figure><img class="r2-media" src="media/emb_ur10e.jpg" alt="UR10e + Robotiq 2F-85 lifting the cube off the pick fixture on the scanned bench" loading="lazy"><figcaption class="r2-cap">UR10e + Robotiq 2F-85</figcaption></figure>
+        <figure><img class="r2-media" src="media/emb_panda.jpg" alt="Franka Panda + Franka Hand lifting the cube off the pick fixture on the scanned bench" loading="lazy"><figcaption class="r2-cap">Franka Panda + Franka Hand</figcaption></figure>
+      </div>
+      <div class="r2-chips" role="group" aria-label="Arm shown in the 3D view">
+        <button type="button" class="r2-chip r2-emb on" aria-pressed="true" data-src="viewer/index.html?playbackPath=../media/emb_ur5e.viser&amp;initialCameraPosition=0.62,-1.32,0.5&amp;initialCameraLookAt=0.05,-0.48,0.14&amp;initialCameraUp=0,0,1" data-poster="media/emb_ur5e.jpg" data-title="Interactive 3D replay: UR5e + Robotiq 2F-85">UR5e</button>
+        <button type="button" class="r2-chip r2-emb" aria-pressed="false" data-src="viewer/index.html?playbackPath=../media/emb_ur10e.viser&amp;initialCameraPosition=0.62,-1.32,0.5&amp;initialCameraLookAt=0.05,-0.48,0.14&amp;initialCameraUp=0,0,1" data-poster="media/emb_ur10e.jpg" data-title="Interactive 3D replay: UR10e + Robotiq 2F-85">UR10e</button>
+        <button type="button" class="r2-chip r2-emb" aria-pressed="false" data-src="viewer/index.html?playbackPath=../media/emb_panda.viser&amp;initialCameraPosition=0.62,-1.32,0.5&amp;initialCameraLookAt=0.05,-0.48,0.14&amp;initialCameraUp=0,0,1" data-poster="media/emb_panda.jpg" data-title="Interactive 3D replay: Franka Panda + Franka Hand">Franka Panda</button>
+      </div>
+      <div id="r2-emb3d" class="r2-3d r2-fig" data-src="viewer/index.html?playbackPath=../media/emb_ur5e.viser&amp;initialCameraPosition=0.62,-1.32,0.5&amp;initialCameraLookAt=0.05,-0.48,0.14&amp;initialCameraUp=0,0,1" data-title="Interactive 3D replay: UR5e + Robotiq 2F-85">
+        <img src="media/emb_ur5e.jpg" alt="" loading="lazy">
+        <button class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;3.5&nbsp;MB)</button>
+      </div>
+      <p class="r2-note">These two extra arms are shown in the 3D viewer only: they are not yet rendered through the Isaac camera pipeline or used to train policies.</p>
+    </section>
+
+    <section class="r2-block" aria-labelledby="h-pol">
+      <h2 id="h-pol" class="r2-h">Does More Diverse Data Train a Better Policy?</h2>
+      <p class="r2-lead">The point of generating data is a better policy, so I tested that directly. I trained the same visuomotor policy (ResNet-18 on the front and right camera images plus joint state, predicting chunks of 16 joint targets) on generated datasets of increasing diversity, then ran each policy closed-loop in the twin on the same 192 held-out scenes: 96 clean ones with new cube start poses, lighting, camera poses and table looks, and 96 where a bottle stands on the route so that the plain warped motion would hit it.</p>
+      <div class="r2-res-wrap">
+        <table class="r2-res">
+          <caption>Closed-loop success on held-out scenes (cube placed on the goal fixture without touching the bottle), 96 scenes per cell. The two bottle sets also have 400 rollouts: 200 R2R2R plus 200 bottle scenes. Hover a bar for its 95% interval.</caption>
+          <thead><tr><th scope="col">Training data</th><th scope="col">Clean scenes</th><th scope="col">Bottle on the route</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">One demo, replayed</th><td><div class="r2-bar" title="3/96, 95% interval 1&ndash;9%"><i style="width:3%"></i></div><span>3%<small> (3/96)</small></span></td><td><div class="r2-bar" title="0/96, 95% interval 0&ndash;4%"><i style="width:0.5%"></i></div><span>0%<small> (0/96)</small></span></td></tr>
+            <tr><th scope="row">R2R2R, 25 rollouts</th><td><div class="r2-bar" title="34/96, 95% interval 27&ndash;45%"><i style="width:35%"></i></div><span>35%<small> (34/96)</small></span></td><td><div class="r2-bar" title="1/96, 95% interval 0&ndash;6%"><i style="width:1%"></i></div><span>1%<small> (1/96)</small></span></td></tr>
+            <tr><th scope="row">R2R2R, 100 rollouts</th><td><div class="r2-bar" title="82/96, 95% interval 77&ndash;91%"><i style="width:85%"></i></div><span>85%<small> (82/96)</small></span></td><td><div class="r2-bar" title="0/96, 95% interval 0&ndash;4%"><i style="width:0.5%"></i></div><span>0%<small> (0/96)</small></span></td></tr>
+            <tr><th scope="row">R2R2R, 400 rollouts</th><td><div class="r2-bar" title="90/96, 95% interval 87&ndash;97%"><i style="width:94%"></i></div><span>94%<small> (90/96)</small></span></td><td><div class="r2-bar" title="1/96, 95% interval 0&ndash;6%"><i style="width:1%"></i></div><span>1%<small> (1/96)</small></span></td></tr>
+            <tr><th scope="row">R2R2R + filtered bottle scenes</th><td><div class="r2-bar" title="92/96, 95% interval 90&ndash;98%"><i style="width:96%"></i></div><span>96%<small> (92/96)</small></span></td><td><div class="r2-bar" title="4/96, 95% interval 2&ndash;10%"><i style="width:4%"></i></div><span>4%<small> (4/96)</small></span></td></tr>
+            <tr class="r2-best"><th scope="row">R2R2R + repaired bottle scenes</th><td><div class="r2-bar" title="91/96, 95% interval 88&ndash;98%"><i style="width:95%"></i></div><span>95%<small> (91/96)</small></span></td><td><div class="r2-bar" title="82/96, 95% interval 77&ndash;91%"><i style="width:85%"></i></div><span>85%<small> (82/96)</small></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <figure class="r2-fig">
+        <video class="r2-media" autoplay loop muted playsinline preload="metadata" poster="media/policy_clean.jpg" aria-label="Grid of policy rollouts on clean held-out scenes: one row per training set"><source src="media/policy_clean_phone.mp4" type="video/mp4" media="(max-width:720px)"><source src="media/policy_clean.mp4" type="video/mp4"></video>
+        <figcaption class="r2-cap">Clean held-out scenes, the same scenes in every row (front camera). Trained on the single demo the policy misses the grasp; with 100 or more generated rollouts it places the cube.</figcaption>
+      </figure>
+      <figure class="r2-fig">
+        <video class="r2-media" autoplay loop muted playsinline preload="metadata" poster="media/policy_blocked.jpg" aria-label="Grid of policy rollouts with a bottle on the route: one row per training set"><source src="media/policy_blocked_phone.mp4" type="video/mp4" media="(max-width:720px)"><source src="media/policy_blocked.mp4" type="video/mp4"></video>
+        <figcaption class="r2-cap">Bottle on the route. Policies trained without bottle scenes, or with bottle scenes the filter kept, carry the cube through the bottle; the policy trained with repaired scenes goes over it.</figcaption>
+      </figure>
+      <div class="r2-stats r2-fig" role="list">
+        <div role="listitem"><b>3% &rarr; 94%</b><span>clean-scene success: one demo &rarr; 400 generated rollouts</span></div>
+        <div role="listitem"><b>4% &rarr; 85%</b><span>success with a bottle on the route: filtered &rarr; repaired bottle scenes</span></div>
+        <div role="listitem"><b>95%</b><span>clean-scene success of the repaired-data policy: no loss from the edit</span></div>
+        <div role="listitem"><b>214 / 416</b><span>bottle scenes the filter kept, even with up to 30 bottle redraws each</span></div>
+      </div>
+      <p class="r2-lead r2-fig">Filtering alone cannot teach avoidance: it keeps only the scenes where the warped motion already misses the bottle, so the policy never sees a detour. Repairing the blocked scenes puts those detours into the data.</p>
+      <p class="r2-note">Evaluated in the twin, not on hardware: the arm follows the policy&rsquo;s joint targets kinematically and the cube attaches when the gripper closes within 1.5&nbsp;cm of a grasp, with no contact dynamics. Real-robot trials are the next step.</p>
+    </section>
+
     <section class="r2-block" aria-labelledby="h-eng">
       <h2 id="h-eng" class="r2-h">Engineering Notes</h2>
       <ul class="r2-list">
@@ -162,8 +251,8 @@
 
     <section class="r2-block" aria-labelledby="h-cred">
       <h2 id="h-cred" class="r2-h">Status and Acknowledgements</h2>
-      <p class="r2-note">The robot motion shown is rendered, not executed on hardware. Replaying the generated demonstrations on the real UR5e, and then training a policy on them, is the next step.</p>
-      <p class="r2-lead">This project builds on Real2Render2Real by Justin Yu, Letian Fu, Huang Huang, Karim El-Refai, Rares Andrei Ambrus, Richard Cheng, Muhammad Zubair Irshad and Ken Goldberg; the scanning, tracking, bench calibration, UR5e port and demo repair shown here are my own work on my own data. The bottle is a Google Scanned Objects model (CC-BY 4.0, Google LLC).</p>
+      <p class="r2-note">The robot motion shown is rendered, not executed on hardware, and the policies are evaluated in the twin. Replaying the generated demonstrations and running the trained policies on the real UR5e is the next step.</p>
+      <p class="r2-lead">This project builds on Real2Render2Real by Justin Yu, Letian Fu, Huang Huang, Karim El-Refai, Rares Andrei Ambrus, Richard Cheng, Muhammad Zubair Irshad and Ken Goldberg; the scanning, tracking, bench calibration, UR5e port and demo repair shown here are my own work on my own data. The bottle, mug and cereal box are Google Scanned Objects models (CC-BY 4.0, Google LLC); the Panda model is from example-robot-data and the UR10e from Universal Robots&rsquo; ROS description.</p>
       <pre class="r2-bib"><code>@misc{yu2025real2render2real,
   title  = {Real2Render2Real: Scaling Robot Data Without Dynamics Simulation
             or Robot Hardware},
@@ -180,6 +269,6 @@
     <p><a href="../../">ur10.github.io</a><span>|</span><a href="mailto:rai.ut@northeastern.edu">rai.ut@northeastern.edu</a><span>|</span><a href="https://github.com/ur10" target="_blank" rel="noopener noreferrer">GitHub</a></p>
   </footer>
 </div>
-<script src="r2.js?v=20261103" defer></script>
+<script src="r2.js?v=20261107b" defer></script>
 </body>
 </html>

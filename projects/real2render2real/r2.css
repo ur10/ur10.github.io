@@ -68,3 +68,44 @@
   .r2-steps{grid-template-columns:1fr}
   .r2-h{font-size:24px}
 }
+
+/* data distribution row (R2R2R-style): four small looping clips, scrolls sideways on phones */
+.r2-dist{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:8px 0 0}
+.r2-dist figure{margin:0}
+.r2-dist video{width:100%; height:auto; aspect-ratio:16 / 9; display:block; border-radius:8px; background:var(--surface)}
+.r2-dist figcaption{font-size:13.5px; font-weight:600; color:var(--muted); text-align:center; margin-top:6px}
+
+/* policy results table with inline bars */
+.r2-res-wrap{max-width:var(--col); margin:8px auto 0; overflow-x:auto}
+.r2-res{width:100%; border-collapse:collapse; font-size:15px}
+.r2-res caption{caption-side:bottom; font-size:14px; line-height:1.45; color:var(--muted); text-align:center; padding-top:10px}
+.r2-res th,.r2-res td{padding:8px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:middle}
+.r2-res thead th{font-size:13.5px; font-weight:600; color:var(--muted)}
+.r2-res tbody th{font-weight:500; white-space:normal}
+.r2-res td{width:31%}
+.r2-res td span{display:block; font-variant-numeric:tabular-nums; font-weight:600; margin-top:3px}
+.r2-res td small{font-weight:400; color:var(--muted); font-size:13px}
+.r2-bar{height:8px; background:var(--surface); border-radius:4px; overflow:hidden}
+.r2-bar i{display:block; height:100%; background:var(--link); border-radius:4px}
+.r2-best th{font-weight:700}
+
+@media (max-width:720px){
+  .r2-dist{display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:10px; padding-bottom:6px}
+  .r2-dist figure{flex:0 0 72%; scroll-snap-align:start}
+  .r2-res{font-size:14px}
+  .r2-res th,.r2-res td{padding:7px 6px}
+}
+
+/* trajectory interpolation and embodiment panels */
+.r2-sub{text-align:center; font-size:21px; font-weight:700; margin:34px 0 8px}
+.r2-pair,.r2-trio{display:grid; gap:14px; margin-top:8px}
+.r2-pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+.r2-trio{grid-template-columns:repeat(3,minmax(0,1fr))}
+.r2-pair figure,.r2-trio figure{margin:0}
+.r2-pair .r2-media,.r2-trio .r2-media{border-radius:10px}
+
+@media (max-width:720px){
+  .r2-pair,.r2-trio{grid-template-columns:1fr}
+  .r2-sub{font-size:19px}
+  .r2-emb-row{display:none}  /* phones: the chips switch the one poster / 3D view */
+}
