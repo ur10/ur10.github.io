@@ -88,37 +88,40 @@
   });
 })();
 
-// Three tasks: chips pick which task's clips are shown; only the visible clips play.
+// Task chips (Three Tasks, and the per-task panels of the later sections): in each section the
+// chips pick which task's panel is shown; only visible clips play, and only while on screen.
 (function () {
-  var chips = Array.prototype.slice.call(document.querySelectorAll('.r2-task'));
-  var panels = Array.prototype.slice.call(document.querySelectorAll('.r2-task-panel'));
-  if (!chips.length) return;
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var inView = false;
-  function vids(p) { return Array.prototype.slice.call(p.querySelectorAll('video')); }
-  function sync() {
-    panels.forEach(function (p) {
-      vids(p).forEach(function (v) {
-        if (!p.hidden && inView && !reduced) {
-          if (v.preload === 'none') { v.preload = 'metadata'; v.load(); }
-          var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
-        } else { v.pause(); }
-      });
-    });
-  }
-  if (reduced) panels.forEach(function (p) { vids(p).forEach(function (v) { v.controls = true; }); });
-  chips.forEach(function (chip) {
-    chip.addEventListener('click', function () {
-      chips.forEach(function (c) { var on = c === chip; c.classList.toggle('on', on); c.setAttribute('aria-selected', String(on)); });
+  Array.prototype.slice.call(document.querySelectorAll('section')).forEach(function (sec) {
+    var chips = Array.prototype.slice.call(sec.querySelectorAll('.r2-task'));
+    var panels = Array.prototype.slice.call(sec.querySelectorAll('.r2-task-panel'));
+    if (!chips.length || !panels.length) return;
+    var inView = false;
+    function vids(p) { return Array.prototype.slice.call(p.querySelectorAll('video')); }
+    function sync() {
       panels.forEach(function (p) {
-        p.hidden = p.dataset.task !== chip.dataset.task;
-        if (!p.hidden && reduced) vids(p).forEach(function (v) { if (v.preload === 'none') { v.preload = 'metadata'; v.load(); } });
+        vids(p).forEach(function (v) {
+          if (!p.hidden && inView && !reduced) {
+            if (v.preload === 'none') { v.preload = 'metadata'; v.load(); }
+            var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
+          } else { v.pause(); }
+        });
       });
-      sync();
+    }
+    if (reduced) panels.forEach(function (p) { vids(p).forEach(function (v) { v.controls = true; }); });
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) { var on = c === chip; c.classList.toggle('on', on); c.setAttribute('aria-selected', String(on)); });
+        panels.forEach(function (p) {
+          p.hidden = p.dataset.task !== chip.dataset.task;
+          if (!p.hidden && reduced) vids(p).forEach(function (v) { if (v.preload === 'none') { v.preload = 'metadata'; v.load(); } });
+        });
+        sync();
+      });
     });
+    var box = panels[0].parentNode;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { es.forEach(function (e) { inView = e.isIntersecting; }); sync(); }, { threshold: 0.15 }).observe(box);
+    }
   });
-  var box = document.querySelector('.r2-task-panels');
-  if ('IntersectionObserver' in window && box) {
-    new IntersectionObserver(function (es) { es.forEach(function (e) { inView = e.isIntersecting; }); sync(); }, { threshold: 0.15 }).observe(box);
-  }
 })();

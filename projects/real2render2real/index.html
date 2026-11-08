@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
 <link rel="stylesheet" href="../../styles.css?v=20261103" />
-<link rel="stylesheet" href="r2.css?v=20261108a" />
+<link rel="stylesheet" href="r2.css?v=20261108b" />
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -149,10 +149,31 @@
 
     <section class="r2-block" aria-labelledby="h-3d">
       <h2 id="h-3d" class="r2-h">Interactive 3D Replay</h2>
-      <p class="r2-lead">The same generated demonstration as a 3D scene: the robot URDF, the cube as the Gaussian splat cut from my phone scan, the scanned bench, and both camera frustums showing their rendered views. Drag to orbit, scroll to zoom.</p>
-      <div id="r2-3d" class="r2-3d" data-src="viewer/index.html?playbackPath=../media/ur5e_cube_replay.viser&amp;initialCameraPosition=0.42,-1.32,0.42&amp;initialCameraLookAt=0.08,-0.7,0.06&amp;initialCameraUp=0,0,1">
+      <p class="r2-lead">A generated demonstration as a 3D scene: the robot URDF, the object (the cube as the Gaussian splat cut from my phone scan; the tape roll and the nut as their measured shapes), the scanned bench, and both camera frustums showing their rendered views. Drag to orbit, scroll to zoom.</p>
+      <div class="r2-chips" role="tablist" aria-label="Choose a task">
+        <button class="r2-chip r2-task on" type="button" role="tab" aria-selected="true" data-task="cube">Cube</button>
+        <button class="r2-chip r2-task" type="button" role="tab" aria-selected="false" data-task="tape">Tape roll</button>
+        <button class="r2-chip r2-task" type="button" role="tab" aria-selected="false" data-task="nut">Nut</button>
+      </div>
+      <div class="r2-task-panels">
+        <div class="r2-task-panel" data-task="cube" role="tabpanel" aria-label="Cube">
+  <div id="r2-3d" class="r2-3d" data-src="viewer/index.html?playbackPath=../media/ur5e_cube_replay.viser&amp;initialCameraPosition=0.42,-1.32,0.42&amp;initialCameraLookAt=0.08,-0.7,0.06&amp;initialCameraUp=0,0,1">
         <img src="media/viewer_poster.jpg" alt="Still of the 3D replay: UR5e carrying the cube above the scanned bench" loading="lazy">
         <button id="r2-load3d" class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;10&nbsp;MB)</button>
+      </div>
+        </div>
+        <div class="r2-task-panel" data-task="tape" role="tabpanel" aria-label="Tape roll" hidden>
+        <div class="r2-3d" data-src="viewer/index.html?playbackPath=../media/tape_replay.viser&amp;initialCameraPosition=0.55,-1.30,0.62&amp;initialCameraLookAt=0.05,-0.72,0.12&amp;initialCameraUp=0,0,1" data-title="Interactive 3D replay of a generated tape-roll demonstration">
+          <img src="media/tape_viewer_poster.jpg" alt="Still of the 3D replay: UR5e hanging the tape roll on the mug tree above the scanned bench" loading="lazy">
+          <button class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;5&nbsp;MB)</button>
+        </div>
+        </div>
+        <div class="r2-task-panel" data-task="nut" role="tabpanel" aria-label="Nut" hidden>
+        <div class="r2-3d" data-src="viewer/index.html?playbackPath=../media/nut_replay.viser&amp;initialCameraPosition=0.45,-1.25,0.50&amp;initialCameraLookAt=0.02,-0.74,0.08&amp;initialCameraUp=0,0,1" data-title="Interactive 3D replay of a generated nut demonstration">
+          <img src="media/nut_viewer_poster.jpg" alt="Still of the 3D replay: UR5e above the bolt stand after placing the nut" loading="lazy">
+          <button class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;5&nbsp;MB)</button>
+        </div>
+        </div>
       </div>
     </section>
 
@@ -200,48 +221,143 @@
 
     <section class="r2-block" aria-labelledby="h-rep">
       <h2 id="h-rep" class="r2-h">Edit the Scene, Repair the Demo</h2>
-      <p class="r2-lead">Warping the demonstrated path only works in the scene it was recorded in. Put a new object on the route and the warped motion can run straight through it, so the filter throws the rollout away. I added a repair step: insert the object (here a scanned bottle), check the generated motion against it with a sphere model of the arm, gripper, wrist cameras and held cube, and re-optimize only the free segments, the transit and the middle of the carry. The grasp, lift-off, set-down and release stay exactly as generated; if the object blocks one of those, the rollout is still rejected.</p>
-      <figure>
-        <video class="r2-media" autoplay loop muted playsinline preload="metadata" poster="media/repair_compare.jpg" aria-label="Side by side: the plain generator carries the cube through a bottle, the repaired motion lifts over it"><source src="media/repair_compare.mp4" type="video/mp4"></video>
-        <figcaption class="r2-cap">Same scene, same grasp, front and right cameras. Left: the warped demo carries the cube through the bottle (outlined red while in collision; the bottle is visual-only, so the arm passes through it). Right: the repaired motion lifts over it with 2.7&nbsp;cm to spare.</figcaption>
-      </figure>
-      <div class="r2-stats r2-fig" role="list">
-        <div role="listitem"><b>5 &rarr; 17</b><span>valid demos from 21 bottle placements on the route: filter only &rarr; with repair</span></div>
-        <div role="listitem"><b>1.5&nbsp;cm</b><span>minimum clearance of the repaired paths (median 2.7&nbsp;cm)</span></div>
-        <div role="listitem"><b>6.4&nbsp;cm</b><span>median largest gripper detour from the warped path</span></div>
-        <div role="listitem"><b>4 / 21</b><span>still rejected: the bottle blocks the grasp or the set-down</span></div>
+      <p class="r2-lead">Warping the demonstrated path only works in the scene it was recorded in. Put a new object on the route and the warped motion can run straight through it, so the filter throws the rollout away. I added a repair step: insert the object (here a scanned bottle), check the generated motion against it with a sphere model of the arm, gripper, wrist cameras and held object, and re-optimize only the free segments, the transit and the middle of the carry. The grasp, lift-off, set-down and release stay exactly as generated; if the object blocks one of those, the rollout is still rejected.</p>
+      <div class="r2-chips" role="tablist" aria-label="Choose a task">
+        <button class="r2-chip r2-task on" type="button" role="tab" aria-selected="true" data-task="cube">Cube</button>
+        <button class="r2-chip r2-task" type="button" role="tab" aria-selected="false" data-task="tape">Tape roll</button>
+        <button class="r2-chip r2-task" type="button" role="tab" aria-selected="false" data-task="nut">Nut</button>
+      </div>
+      <div class="r2-task-panels">
+        <div class="r2-task-panel" data-task="cube" role="tabpanel" aria-label="Cube">
+        <figure>
+          <video class="r2-media" loop muted playsinline preload="metadata" poster="media/repair_compare.jpg" aria-label="Side by side: the plain generator carries the cube through a bottle, the repaired motion lifts over it"><source src="media/repair_compare.mp4" type="video/mp4"></video>
+          <figcaption class="r2-cap">Same scene, same grasp, front and right cameras. Left: the warped demo carries the cube through the bottle (outlined red while in collision; the bottle is visual-only, so the arm passes through it). Right: the repaired motion lifts over it with 2.7&nbsp;cm to spare.</figcaption>
+        </figure>
+        <div class="r2-stats r2-fig" role="list">
+          <div role="listitem"><b>5 &rarr; 17</b><span>valid demos from 21 bottle placements on the route: filter only &rarr; with repair</span></div>
+          <div role="listitem"><b>1.5&nbsp;cm</b><span>minimum clearance of the repaired paths (median 2.7&nbsp;cm)</span></div>
+          <div role="listitem"><b>6.4&nbsp;cm</b><span>median largest gripper detour from the warped path</span></div>
+          <div role="listitem"><b>4 / 21</b><span>still rejected: the bottle blocks the grasp or the set-down</span></div>
+        </div>
+        </div>
+        <div class="r2-task-panel" data-task="tape" role="tabpanel" aria-label="Tape roll" hidden>
+          <figure>
+            <video class="r2-media" muted loop playsinline preload="none" poster="media/tape_repair_compare.jpg" aria-label="Side by side: the plain generator carries the tape roll through a bottle, the repaired motion goes around it"><source src="media/tape_repair_compare.mp4" type="video/mp4"></video>
+            <figcaption class="r2-cap">Same scene, front and right cameras. Left: the warped demo carries the roll through the bottle (red while in collision). Right: the repaired motion, here with another grasp position on the rim, keeps 2.6&nbsp;cm from it.</figcaption>
+          </figure>
+          <div class="r2-stats r2-fig" role="list">
+          <div role="listitem"><b>0 &rarr; 15</b><span>valid demos from 18 bottle trajectories on the route: filter only &rarr; with repair</span></div>
+          <div role="listitem"><b>1.5&nbsp;cm</b><span>minimum clearance of the repaired paths (median 2.8&nbsp;cm)</span></div>
+          <div role="listitem"><b>7 / 15</b><span>repaired with another grasp position on the rim</span></div>
+          <div role="listitem"><b>3 / 18</b><span>repair found no collision-free path</span></div>
+          </div>
+        </div>
+        <div class="r2-task-panel" data-task="nut" role="tabpanel" aria-label="Nut" hidden>
+          <figure>
+            <video class="r2-media" muted loop playsinline preload="none" poster="media/nut_repair_compare.jpg" aria-label="Side by side: the plain generator sweeps the gripper through a bottle on its way to the nut, the repaired motion goes around it"><source src="media/nut_repair_compare.mp4" type="video/mp4"></video>
+            <figcaption class="r2-cap">Same scene, front and right cameras. Left: on its way to the nut the plain motion sweeps the gripper through the bottle (red while in collision). Right: the repaired transit, with another grasp position, keeps 0.9&nbsp;cm from it.</figcaption>
+          </figure>
+          <div class="r2-stats r2-fig" role="list">
+          <div role="listitem"><b>1 &rarr; 11</b><span>valid demos from 24 bottle trajectories (one placement on the route, three beside it)</span></div>
+          <div role="listitem"><b>1.8&nbsp;cm</b><span>minimum clearance of the repaired paths (median 2.8&nbsp;cm)</span></div>
+          <div role="listitem"><b>6 / 6</b><span>rejected with the bottle on the short route: it blocks the descent to the nut or onto the rod</span></div>
+          <div role="listitem"><b>13 / 24</b><span>rejected in all: the bottle blocks a segment the repair keeps fixed</span></div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="r2-block" aria-labelledby="h-traj">
       <h2 id="h-traj" class="r2-h">Trajectory Interpolation</h2>
-      <p class="r2-lead">From one demonstration the generator samples a distribution of cube trajectories: each new start pose on the pick fixture gets the tracked path warped to it over its first 60%, ending at the demonstrated place pose. Permuting the objects in the scene multiplies that again: every interpolated trajectory is checked against the inserted object and repaired where it collides.</p>
-      <div class="r2-pair">
-        <figure><img class="r2-media" src="media/traj3d_demo.jpg" alt="The tracked cube trajectory above the scanned bench, with coordinate frames along it" loading="lazy"><figcaption class="r2-cap">The tracked demo (teal), with 6-DoF cube frames along it.</figcaption></figure>
-        <figure><img class="r2-media" src="media/traj3d_fan.jpg" alt="Twelve interpolated cube trajectories fanning out from new start poses on the pick fixture" loading="lazy"><figcaption class="r2-cap">12 interpolated trajectories (amber) from new start poses (frames).</figcaption></figure>
+      <p class="r2-lead">From one demonstration the generator samples a distribution of object trajectories: each new start pose gets the tracked path warped to it over its first 60%, ending at the demonstrated place pose. Permuting the objects in the scene multiplies that again: every interpolated trajectory is checked against the inserted object and repaired where it collides.</p>
+      <div class="r2-chips" role="tablist" aria-label="Choose a task">
+        <button class="r2-chip r2-task on" type="button" role="tab" aria-selected="true" data-task="cube">Cube</button>
+        <button class="r2-chip r2-task" type="button" role="tab" aria-selected="false" data-task="tape">Tape roll</button>
+        <button class="r2-chip r2-task" type="button" role="tab" aria-selected="false" data-task="nut">Nut</button>
       </div>
-      <figure class="r2-fig">
-        <img class="r2-media" src="media/traj_fan.jpg" alt="The tracked demo trajectory and 64 interpolated variants drawn on the real camera view" loading="lazy">
-        <figcaption class="r2-cap">The same distribution on the real front camera view: the tracked demo (teal) and 64 sampled variants (amber).</figcaption>
-      </figure>
-      <h3 class="r2-sub">Permuting the collision objects</h3>
-      <p class="r2-lead">Three Google Scanned Objects, a bottle, a mug and a cereal box, placed on or beside the route. Red: interpolated trajectories whose plain motion collides with the object (the filter would drop them). Amber: the trajectories the generator keeps, repaired where needed.</p>
-      <div class="r2-trio">
-        <figure><img class="r2-media" src="media/traj3d_perm_sauce_bottle.jpg" alt="Bottle between the fixtures: colliding paths in red, repaired paths in amber arching over it" loading="lazy"><figcaption class="r2-cap">Bottle on the route: all 6 collide, all 6 repaired over it.</figcaption></figure>
-        <figure><img class="r2-media" src="media/traj3d_perm_mug.jpg" alt="Mug just off the route with colliding and repaired paths" loading="lazy"><figcaption class="r2-cap">Mug just off the route: 6 collide, 3 repaired, 3 rejected (it blocks a segment repair keeps fixed: grasp, lift-off or set-down).</figcaption></figure>
-        <figure><img class="r2-media" src="media/traj3d_perm_cereal_box.jpg" alt="Cereal box between the robot and the route with colliding and repaired paths" loading="lazy"><figcaption class="r2-cap">Cereal box on the arm&rsquo;s side: 6 collide, 4 repaired with the cube&rsquo;s other grasp yaw, 2 rejected.</figcaption></figure>
+      <div class="r2-task-panels">
+        <div class="r2-task-panel" data-task="cube" role="tabpanel" aria-label="Cube">
+        <div class="r2-pair">
+          <figure><img class="r2-media" src="media/traj3d_demo.jpg" alt="The tracked cube trajectory above the scanned bench, with coordinate frames along it" loading="lazy"><figcaption class="r2-cap">The tracked demo (teal), with 6-DoF cube frames along it.</figcaption></figure>
+          <figure><img class="r2-media" src="media/traj3d_fan.jpg" alt="Twelve interpolated cube trajectories fanning out from new start poses on the pick fixture" loading="lazy"><figcaption class="r2-cap">12 interpolated trajectories (amber) from new start poses (frames).</figcaption></figure>
+        </div>
+        <figure class="r2-fig">
+          <img class="r2-media" src="media/traj_fan.jpg" alt="The tracked demo trajectory and 64 interpolated variants drawn on the real camera view" loading="lazy">
+          <figcaption class="r2-cap">The same distribution on the real front camera view: the tracked demo (teal) and 64 sampled variants (amber).</figcaption>
+        </figure>
+        <h3 class="r2-sub">Permuting the collision objects</h3>
+        <p class="r2-lead">Three Google Scanned Objects, a bottle, a mug and a cereal box, placed on or beside the route. Red: interpolated trajectories whose plain motion collides with the object (the filter would drop them). Amber: the trajectories the generator keeps, repaired where needed.</p>
+        <div class="r2-trio">
+          <figure><img class="r2-media" src="media/traj3d_perm_sauce_bottle.jpg" alt="Bottle between the fixtures: colliding paths in red, repaired paths in amber arching over it" loading="lazy"><figcaption class="r2-cap">Bottle on the route: all 6 collide, all 6 repaired over it.</figcaption></figure>
+          <figure><img class="r2-media" src="media/traj3d_perm_mug.jpg" alt="Mug just off the route with colliding and repaired paths" loading="lazy"><figcaption class="r2-cap">Mug just off the route: 6 collide, 3 repaired, 3 rejected (it blocks a segment repair keeps fixed: grasp, lift-off or set-down).</figcaption></figure>
+          <figure><img class="r2-media" src="media/traj3d_perm_cereal_box.jpg" alt="Cereal box between the robot and the route with colliding and repaired paths" loading="lazy"><figcaption class="r2-cap">Cereal box on the arm&rsquo;s side: 6 collide, 4 repaired with the cube&rsquo;s other grasp yaw, 2 rejected.</figcaption></figure>
+        </div>
+        <div class="r2-stats r2-fig" role="list">
+          <div role="listitem"><b>48</b><span>trajectories: 8 placements of 3 objects &times; 6 starts</span></div>
+          <div role="listitem"><b>37</b><span>collide as generated</span></div>
+          <div role="listitem"><b>11 &rarr; 43</b><span>kept: filter only &rarr; with repair and grasp-yaw retry</span></div>
+          <div role="listitem"><b>5</b><span>still rejected: the object blocks a grasp or set-down</span></div>
+        </div>
+        <div class="r2-3d r2-fig" data-src="viewer/index.html?playbackPath=../media/traj_perm.viser&amp;initialCameraPosition=0.36,-1.12,0.34&amp;initialCameraLookAt=0.08,-0.74,0.06&amp;initialCameraUp=0,0,1" data-title="Interactive 3D view of the interpolated trajectories and object permutations">
+          <img src="media/traj3d_perm_sauce_bottle.jpg" alt="" loading="lazy">
+          <button class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;4&nbsp;MB)</button>
+        </div>
+        <p class="r2-cap">Interactive: the demo, the interpolated fan, then each object placement in turn with a cube riding one repaired trajectory.</p>
+    
+        </div>
+        <div class="r2-task-panel" data-task="tape" role="tabpanel" aria-label="Tape roll" hidden>
+          <div class="r2-pair">
+            <figure><img class="r2-media" src="media/tape_traj3d_demo.jpg" alt="The tracked tape-roll trajectory above the scanned bench, with coordinate frames along it" loading="lazy"><figcaption class="r2-cap">The tracked demo (teal) in the twin, where the mug tree is turned 250&deg;, with 6-DoF roll frames along it.</figcaption></figure>
+            <figure><img class="r2-media" src="media/tape_traj3d_fan.jpg" alt="Twelve interpolated tape-roll trajectories from new start poses on the bench" loading="lazy"><figcaption class="r2-cap">12 interpolated trajectories (amber) from new roll start poses (frames).</figcaption></figure>
+          </div>
+          <h3 class="r2-sub">Permuting the collision objects</h3>
+          <p class="r2-lead">The same three objects on or beside the roll&rsquo;s route to the tree. Red: trajectories whose plain motion collides. Amber: the ones the generator keeps, repaired where needed.</p>
+          <div class="r2-trio">
+            <figure><img class="r2-media" src="media/tape_traj3d_perm_sauce_bottle.jpg" alt="Bottle on the route with colliding and repaired paths" loading="lazy"><figcaption class="r2-cap">Bottle on the route: all 6 collide, all 6 repaired, 2 with another grasp position.</figcaption></figure>
+            <figure><img class="r2-media" src="media/tape_traj3d_perm_mug.jpg" alt="Mug on the route with colliding and repaired paths" loading="lazy"><figcaption class="r2-cap">Mug on the route: 6 collide, 4 repaired, 2 rejected (it blocks a segment repair keeps fixed).</figcaption></figure>
+            <figure><img class="r2-media" src="media/tape_traj3d_perm_cereal_box.jpg" alt="Cereal box on the route with colliding and repaired paths" loading="lazy"><figcaption class="r2-cap">Cereal box on the route: 6 collide, 5 repaired, 1 rejected.</figcaption></figure>
+          </div>
+          <div class="r2-stats r2-fig" role="list">
+          <div role="listitem"><b>48</b><span>trajectories: 8 placements of 3 objects &times; 6 starts</span></div>
+          <div role="listitem"><b>48</b><span>collide as generated</span></div>
+          <div role="listitem"><b>0 &rarr; 29</b><span>kept: filter only &rarr; with repair and grasp retry</span></div>
+          <div role="listitem"><b>19</b><span>still rejected: 16 blocked a fixed segment, 3 found no path</span></div>
+          </div>
+  <div class="r2-3d r2-fig" data-src="viewer/index.html?playbackPath=../media/tape_traj_perm.viser&amp;initialCameraPosition=0.36,-1.06,0.44&amp;initialCameraLookAt=0.03,-0.75,0.13&amp;initialCameraUp=0,0,1" data-title="Interactive 3D view of the tape-roll trajectories and object permutations">
+          <img src="media/tape_traj3d_perm_sauce_bottle.jpg" alt="" loading="lazy">
+          <button class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;4&nbsp;MB)</button>
+        </div>
+          <p class="r2-cap">Interactive: the demo, the interpolated fan, then each object placement in turn with the roll riding one kept trajectory.</p>
+        </div>
+        <div class="r2-task-panel" data-task="nut" role="tabpanel" aria-label="Nut" hidden>
+          <div class="r2-pair">
+            <figure><img class="r2-media" src="media/nut_traj3d_demo.jpg" alt="The tracked nut trajectory from the bench to the bolt stand, with coordinate frames along it" loading="lazy"><figcaption class="r2-cap">The tracked demo (teal), with 6-DoF nut frames along it.</figcaption></figure>
+            <figure><img class="r2-media" src="media/nut_traj3d_fan.jpg" alt="Twelve interpolated nut trajectories from new start poses within reach" loading="lazy"><figcaption class="r2-cap">12 interpolated trajectories (amber) from new start poses within reach (frames).</figcaption></figure>
+          </div>
+          <figure class="r2-fig">
+            <img class="r2-media" src="media/nut_traj_fan.jpg" alt="The tracked nut trajectory and 64 interpolated variants drawn on the real camera view" loading="lazy">
+            <figcaption class="r2-cap">On the real front camera view: the tracked demo (teal), whose start is out of the UR5e&rsquo;s reach, and 64 sampled variants (amber) starting closer.</figcaption>
+          </figure>
+          <h3 class="r2-sub">Permuting the collision objects</h3>
+          <p class="r2-lead">The same three objects. On the nut&rsquo;s short route any of them blocks a segment the repair keeps fixed (all 6 trajectories rejected with the bottle there), so the placements shown are beside the route.</p>
+          <div class="r2-trio">
+            <figure><img class="r2-media" src="media/nut_traj3d_perm_sauce_bottle.jpg" alt="Bottle beside the route with colliding and repaired paths" loading="lazy"><figcaption class="r2-cap">Bottle beside the route: 6 collide, 3 repaired, 1 valid with another grasp, 2 rejected.</figcaption></figure>
+            <figure><img class="r2-media" src="media/nut_traj3d_perm_mug.jpg" alt="Mug beside the route: no path collides" loading="lazy"><figcaption class="r2-cap">Mug beside the route: none of the 6 collide.</figcaption></figure>
+            <figure><img class="r2-media" src="media/nut_traj3d_perm_cereal_box.jpg" alt="Cereal box beside the route with colliding and repaired paths" loading="lazy"><figcaption class="r2-cap">Cereal box beside the route: 5 collide, all 5 repaired.</figcaption></figure>
+          </div>
+          <div class="r2-stats r2-fig" role="list">
+          <div role="listitem"><b>54</b><span>trajectories: 9 placements of 3 objects &times; 6 starts</span></div>
+          <div role="listitem"><b>40</b><span>collide as generated</span></div>
+          <div role="listitem"><b>14 &rarr; 34</b><span>kept: filter only &rarr; with repair and grasp retry</span></div>
+          <div role="listitem"><b>20</b><span>still rejected: the object blocks a fixed segment</span></div>
+          </div>
+  <div class="r2-3d r2-fig" data-src="viewer/index.html?playbackPath=../media/nut_traj_perm.viser&amp;initialCameraPosition=0.26,-1.00,0.30&amp;initialCameraLookAt=0.0,-0.72,0.07&amp;initialCameraUp=0,0,1" data-title="Interactive 3D view of the nut trajectories and object permutations">
+          <img src="media/nut_traj3d_perm_sauce_bottle.jpg" alt="" loading="lazy">
+          <button class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;4&nbsp;MB)</button>
+        </div>
+          <p class="r2-cap">Interactive: the demo, the interpolated fan, then each object placement in turn with the nut riding one kept trajectory.</p>
+        </div>
       </div>
-      <div class="r2-stats r2-fig" role="list">
-        <div role="listitem"><b>48</b><span>trajectories: 8 placements of 3 objects &times; 6 starts</span></div>
-        <div role="listitem"><b>37</b><span>collide as generated</span></div>
-        <div role="listitem"><b>11 &rarr; 43</b><span>kept: filter only &rarr; with repair and grasp-yaw retry</span></div>
-        <div role="listitem"><b>5</b><span>still rejected: the object blocks a grasp or set-down</span></div>
-      </div>
-      <div class="r2-3d r2-fig" data-src="viewer/index.html?playbackPath=../media/traj_perm.viser&amp;initialCameraPosition=0.36,-1.12,0.34&amp;initialCameraLookAt=0.08,-0.74,0.06&amp;initialCameraUp=0,0,1" data-title="Interactive 3D view of the interpolated trajectories and object permutations">
-        <img src="media/traj3d_perm_sauce_bottle.jpg" alt="" loading="lazy">
-        <button class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;4&nbsp;MB)</button>
-      </div>
-      <p class="r2-cap">Interactive: the demo, the interpolated fan, then each object placement in turn with a cube riding one repaired trajectory.</p>
     </section>
 
     <section class="r2-block" aria-labelledby="h-emb">
@@ -317,6 +433,6 @@
     <p><a href="../../">ur10.github.io</a><span>|</span><a href="mailto:rai.ut@northeastern.edu">rai.ut@northeastern.edu</a><span>|</span><a href="https://github.com/ur10" target="_blank" rel="noopener noreferrer">GitHub</a></p>
   </footer>
 </div>
-<script src="r2.js?v=20261108a" defer></script>
+<script src="r2.js?v=20261108b" defer></script>
 </body>
 </html>
