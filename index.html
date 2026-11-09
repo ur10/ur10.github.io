@@ -149,18 +149,19 @@
           </figure>
         </div>
         <div class="body">
-          <h3>Gaussian-Splat Twin: Robot Demos from One Human Video</h3>
+          <h3>From One Human Demonstration to Robot Training Data</h3>
           <p class="chips"><span class="chip data" title="Captured on a physical bench with real sensors; robot motion is rendered">Real-world data &middot; <i>phone scan, 2&times; RealSense, rendered robot</i></span></p>
           <ul class="tags" aria-label="Concepts"><li>Real2Sim</li><li>3D reconstruction</li><li>Gaussian splatting</li><li>Digital twin</li><li>Synthetic data generation</li><li>Domain randomization</li><li>Imitation learning</li><li>Policy training</li><li>Trajectory optimization</li><li>Cross-embodiment</li></ul>
-          <p>Teleoperated robot data is slow to collect, and simulated data rarely looks like the real cell. I built a Gaussian-splat twin of my UR5e bench from a phone video and registered it to the robot by placing the calibrated RealSense views inside the scan&rsquo;s COLMAP model. That recovers metric scale, with two independent estimates agreeing to 0.2%, and aligns scan and robot to a 4&nbsp;mm median residual.</p>
-          <p>On that twin, one human demonstration, with the object tracked in 3D from two RGB-D cameras, is re-rendered as UR5e + Robotiq demonstrations under varied object poses, lighting and camera placement, without teleoperation.</p>
+          <p>Teaching a robot a new task usually means collecting many demonstrations through teleoperation. I adapted Real2Render2Real to my UR5e bench to turn one human demonstration per task into varied robot training examples. A phone scan provides the scene; two calibrated cameras recover the object motion; a robot model reproduces it under new starting poses and visual conditions.</p>
+          <p>My work covers bench calibration, object tracking, the UR5e integration, and trajectory repair when new obstacles block the demonstrated path. The pipeline generates demonstrations for cube transfer, hanging a tape roll, and placing a nut on a bolt.</p>
+          <p>On the cube task, 400 generated demonstrations raised policy success from <b>3% to 94%</b> on held-out clean scenes. Training with repaired obstacle demonstrations achieved <b>85%</b> on blocked routes. These are closed-loop evaluations in the rendered twin; physical robot policy trials remain future work.</p>
           <p class="tools"><span class="tools-h">Tools</span><span class="tool">Isaac Lab / Isaac Sim</span><span class="tool">COLMAP</span><span class="tool">Gaussian Splatting</span><span class="tool">Intel RealSense</span><span class="tool">ICP</span><span class="tool">jaxls</span><span class="tool">PyTorch</span><span class="tool">Viser</span></p>
           <p class="btns"><a class="btn" href="projects/real2render2real/"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-globe"/></svg>Project page</a> <a class="btn" href="https://github.com/ur10/real2render2real-ur5e" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
       </article>
       <article class="row" id="p-manip">
         <div class="media">
-          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-comparison-front.jpg" aria-label="UR10 ring-on-peg: base policy + residual (left) vs base policy alone (right)"><source src="assets/real/peg-comparison-front.mp4" type="video/mp4"></video><figcaption>UR10 ring-on-peg: base policy + residual (left) vs base policy alone (right)</figcaption></figure>
+          <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-comparison-front.jpg" aria-label="UR10 ring-on-peg: base policy + residual (left) vs base policy alone (right)"><source src="assets/real/peg-comparison-front.mp4" type="video/mp4"></video><figcaption>Example UR10 runs: base policy + residual (left), base policy alone (right)</figcaption></figure>
           <figure><video class="m" autoplay loop muted playsinline preload="metadata" poster="assets/real/peg-ep0-composite.jpg" aria-label="Per-episode dashboard: point cloud reprojected onto the RealSense images"><source src="assets/real/peg-ep0-composite.mp4" type="video/mp4"></video><figcaption>Per-episode dashboard: point cloud reprojected onto the RealSense images</figcaption></figure>
           <figure class="flow" aria-labelledby="flow-manip">
             <figcaption class="flow-h"><span id="flow-manip">Pipeline</span><span class="flow-key" aria-hidden="true"><i class="k real">Real</i><i class="k sim">Sim</i><i class="k learn">Learn</i></span></figcaption>
@@ -180,10 +181,12 @@
           </details>
         </div>
         <div class="body">
-          <h3>Fine-Grained Point-Cloud Manipulation</h3>
+          <h3>Adapting a 3D Policy for Precise Robot Insertion</h3>
           <p class="chips"><span class="chip hw" title="Shown on physical hardware or real-world sensor data">Real robot &middot; <i>UR10</i></span></p>
           <ul class="tags" aria-label="Concepts"><li>Residual RL</li><li>Off-policy RL (SAC)</li><li>Sim2Real</li><li>Point-cloud policies</li><li>Diffusion policy</li><li>Policy adaptation</li><li>Bounded corrections</li></ul>
-          <p>Point-cloud policies trained in simulation often struggle on real robots, where depth observations contain missing points, occlusions, and calibration errors. I worked on adapting a pretrained 3D manipulation policy without changing the base model, using a lightweight residual policy trained with off-policy learning. A gate controls when the residual can modify the base policy&rsquo;s actions, keeping those corrections bounded. The videos compare the base and adapted policies on a real UR10 performing ring-on-peg insertion.</p>
+          <p>A robot can approach a peg correctly and still miss the final insertion. This project studies how to adapt a simulation-trained 3D policy for precise ring-on-peg manipulation on a physical UR10, where missing depth points, occlusion, and calibration errors make alignment harder.</p>
+          <p>I worked on a residual controller that learns small corrections while the pretrained policy stays fixed. Two RealSense cameras supply the point cloud; a learned gate selects when to apply a correction, and explicit limits bound its size. The aim is to improve alignment while retaining the base policy&rsquo;s learned behavior.</p>
+          <p>The videos show example runs with and without the residual on the real robot. The public repository documents the adaptation components and their integration interfaces; it does not yet include an aggregate hardware evaluation or the complete lab deployment.</p>
           <p class="tools"><span class="tools-h">Tools</span><span class="tool">PyTorch</span><span class="tool">3D Diffusion Policy (DP3)</span><span class="tool">Open3D</span><span class="tool">Intel RealSense</span><span class="tool">UR RTDE</span><span class="tool">Rerun</span></p>
           <p class="btns"><a class="btn" href="https://github.com/ur10/residual-pointcloud-adaptation" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>

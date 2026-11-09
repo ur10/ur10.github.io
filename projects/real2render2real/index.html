@@ -75,17 +75,21 @@
         <button class="r2-chip" type="button" data-t="3.7">Place</button>
         <button class="r2-chip" type="button" data-t="3.97">Retreat</button>
       </div>
-      <h2 id="h-str" class="r2-h">Scan, Track, Render</h2>
-      <p class="r2-lead">I moved a cube between two fixtures on a real UR5e bench while two calibrated RealSense cameras recorded. The scene was scanned with a phone, the cube was tracked in 3D, and the motion was re-rendered as a UR5e + Robotiq demonstration that can be varied and scaled without teleoperation. The three panels show the same moment: <b>01</b> the human demo, <b>02</b> the cube&rsquo;s tracked 6-DoF pose drawn on the real frame, and <b>03</b> the robot replay rendered from the same camera. Drag the slider or jump to a phase.</p>
+      <h2 id="h-str" class="r2-h">Turning a human example into a robot training set</h2>
+      <p class="r2-lead">A single demonstration shows a robot one way to complete a task. Learning to handle new object positions and obstacles requires more varied examples. I adapted Real2Render2Real to my own UR5e bench to generate those examples from one human demonstration per task, using a scanned scene and tracked object motion.</p>
+      <p class="r2-lead">My contributions span bench calibration, object tracking, UR5e integration, and a trajectory repair step that creates detours around added obstacles. The central experiment asks whether this generated data teaches a policy to complete the task in unfamiliar scenes.</p>
+      <p class="r2-lead">For cube transfer, 400 generated demonstrations raised success from <b>3% to 94%</b> on 96 held-out clean scenes. Training on repaired obstacle demonstrations reached <b>85%</b> on 96 blocked routes, compared with <b>4%</b> when obstacle scenes were only filtered. <a href="#h-pol">See the evaluation and comparisons.</a></p>
+      <p class="r2-lead">The captures are real; robot demonstrations and policy evaluation take place in the rendered twin. Contact dynamics are not simulated: the cube attaches when the gripper closes around it. Physical robot policy trials remain future work. Tape and nut tasks demonstrate data generation and planning; policy training has so far been evaluated on the cube task.</p>
+      <p class="r2-cap">The video follows one cube transfer: the human demonstration, the recovered object pose, and the rendered robot replay at the same instant. Use the slider to inspect how the human motion becomes a robot demonstration.</p>
       <p class="chips r2-tags">
         <span class="chip data" title="Captured on a physical bench with real sensors">Real-world data &middot; <i>human demo, phone scan, 2&times; RealSense</i></span>
         <span class="chip hw" title="Robot motion is rendered in IsaacLab">Rendered &middot; <i>UR5e + 2F-85 in IsaacLab</i></span>
       </p>
       <div class="r2-stats" role="list">
-        <div role="listitem"><b>1</b><span>human demonstration in</span></div>
+        <div role="listitem"><b>1</b><span>human demonstration per task</span></div>
         <div role="listitem"><b>0.2%</b><span>agreement of two independent scan-scale estimates</span></div>
         <div role="listitem"><b>4&nbsp;mm</b><span>median scan-to-robot registration residual</span></div>
-        <div role="listitem"><b>12 / 12</b><span>randomized rollouts pass the feasibility filter</span></div>
+        <div role="listitem"><b>12 / 12</b><span>cube rollouts in the initial feasibility check</span></div>
       </div>
     </section>
 
@@ -361,8 +365,8 @@
     </section>
 
     <section class="r2-block" aria-labelledby="h-emb">
-      <h2 id="h-emb" class="r2-h">Rendering More Embodiments</h2>
-      <p class="r2-lead">The generated robot motion comes from the cube&rsquo;s motion and a grasp on it, not from a recorded robot motion, so the same tracked trajectory retargets to any arm that can reach it. The UR5e and a UR10e on the same bench mount, and a Franka Panda standing on the table, all execute it with the demo&rsquo;s grasp; whole-trajectory IK tracks every gripper target to within 0.01&nbsp;mm.</p>
+      <h2 id="h-emb" class="r2-h">Retargeting the motion to other robot models</h2>
+      <p class="r2-lead">The generated robot motion comes from the cube&rsquo;s motion and a grasp on it, not from a recorded robot motion, so the same tracked trajectory retargets to any arm that can reach it. The UR5e and a UR10e on the same bench mount, and a Franka Panda standing on the table, reproduce it in a kinematic replay using the demo&rsquo;s grasp. The reported error below 0.01&nbsp;mm measures the numerical IK fit to the target poses. UR10e and Panda replays have not yet been used for camera-based policy training or physical robot evaluation.</p>
       <div class="r2-trio r2-emb-row">
         <figure><img class="r2-media" src="media/emb_ur5e.jpg" alt="UR5e + Robotiq 2F-85 lifting the cube off the pick fixture on the scanned bench" loading="lazy"><figcaption class="r2-cap">UR5e + Robotiq 2F-85</figcaption></figure>
         <figure><img class="r2-media" src="media/emb_ur10e.jpg" alt="UR10e + Robotiq 2F-85 lifting the cube off the pick fixture on the scanned bench" loading="lazy"><figcaption class="r2-cap">UR10e + Robotiq 2F-85</figcaption></figure>
@@ -410,7 +414,7 @@
         <div role="listitem"><b>95%</b><span>clean-scene success of the repaired-data policy: no loss from the edit</span></div>
         <div role="listitem"><b>214 / 416</b><span>bottle scenes the filter kept, even with up to 30 bottle redraws each</span></div>
       </div>
-      <p class="r2-lead r2-fig">Filtering alone cannot teach avoidance: it keeps only the scenes where the warped motion already misses the bottle, so the policy never sees a detour. Repairing the blocked scenes puts those detours into the data.</p>
+      <p class="r2-lead r2-fig">In this experiment, filtering alone supplied no examples of obstacle avoidance: it keeps only the scenes where the warped motion already misses the bottle, so the policy never sees a detour. Repairing the blocked scenes puts those detours into the data.</p>
     </section>
 
 
