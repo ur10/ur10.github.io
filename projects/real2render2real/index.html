@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
 <link rel="stylesheet" href="../../styles.css?v=20261103" />
-<link rel="stylesheet" href="r2.css?v=20261109-story" />
+<link rel="stylesheet" href="r2.css?v=20261109-showcase" />
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -36,7 +36,7 @@
   <div class="wrap">
     <a class="brand" href="../../">Utkarsh Rai</a>
     <div class="nav-links">
-      <a href="#r2-video">Video</a>
+      <a href="#h-3d">Explore 3D</a>
       <a href="#h-pol">Results</a>
       <a href="#h-how">Method</a>
       <a href="#h-tasks">Tasks</a>
@@ -54,7 +54,7 @@
       <p class="r2-aff">Northeastern University</p>
       <div class="r2-btns">
         <a class="btn" href="https://github.com/ur10/real2render2real-ur5e" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a>
-        <a class="btn" href="#r2-video"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-play"/></svg>Video</a>
+        <a class="btn" href="#h-rep"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-play"/></svg>Obstacle demos</a>
         <a class="btn" href="#h-tasks"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-doc"/></svg>Three tasks</a>
         <a class="btn" href="#h-3d"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Interactive 3D</a>
       </div>
@@ -88,67 +88,9 @@
       <p class="r2-note"><b>Where Gaussian splatting fits:</b> it reconstructs the appearance of the real bench from images. Calibration puts that reconstruction in the robot&rsquo;s coordinate frame. Tracking and motion planning then turn it into a source of training data. The reported policy experiments run in a rendered, kinematic twin: the cube attaches to the gripper during replay.</p>
     </section>
 
-    <section class="r2-block" aria-labelledby="h-pol">
-      <h2 id="h-pol" class="r2-h">Did the generated data help the robot learn?</h2>
-      <p class="r2-lead">Yes, in the cube experiment in the twin. More varied examples helped with new starting positions. Obstacles required another change: the training data needed to show the robot how to take a detour.</p>
-      <div class="story-grid story-results">
-        <div><span class="story-label">NEW STARTING POSITIONS</span><strong>3% → 94%</strong><p>Clean-scene success when training grows from one demonstration to 400 generated examples.</p></div>
-        <div><span class="story-label">AN OBSTACLE IN THE WAY</span><strong>4% → 85%</strong><p>Blocked-route success using repaired demonstrations instead of merely filtering out collisions.</p></div>
-      </div>
-      <p class="r2-lead">I kept the policy architecture fixed and evaluated every version on the same 192 held-out scenes: 96 with a clear route and 96 with a bottle blocking it. Success means placing the cube on the goal fixture without intersecting the bottle. The numbers below are closed-loop policy outcomes in the twin.</p>
-      <div class="r2-res-wrap">
-        <table class="r2-res">
-          <caption>Closed-loop success on held-out scenes (cube placed on the goal fixture without touching the bottle), 96 scenes per cell. The two bottle sets also have 400 rollouts: 200 R2R2R plus 200 bottle scenes. Hover a bar for its 95% interval.</caption>
-          <thead><tr><th scope="col">Training data</th><th scope="col">Clean scenes</th><th scope="col">Bottle on the route</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">Original demonstration</th><td><div class="r2-bar" title="3/96, 95% interval 1&ndash;9%"><i style="width:3%"></i></div><span>3%<small> (3/96)</small></span></td><td><div class="r2-bar" title="0/96, 95% interval 0&ndash;4%"><i style="width:0.5%"></i></div><span>0%<small> (0/96)</small></span></td></tr>
-            <tr><th scope="row">25 generated demonstrations</th><td><div class="r2-bar" title="34/96, 95% interval 27&ndash;45%"><i style="width:35%"></i></div><span>35%<small> (34/96)</small></span></td><td><div class="r2-bar" title="1/96, 95% interval 0&ndash;6%"><i style="width:1%"></i></div><span>1%<small> (1/96)</small></span></td></tr>
-            <tr><th scope="row">100 generated demonstrations</th><td><div class="r2-bar" title="82/96, 95% interval 77&ndash;91%"><i style="width:85%"></i></div><span>85%<small> (82/96)</small></span></td><td><div class="r2-bar" title="0/96, 95% interval 0&ndash;4%"><i style="width:0.5%"></i></div><span>0%<small> (0/96)</small></span></td></tr>
-            <tr><th scope="row">400 generated demonstrations</th><td><div class="r2-bar" title="90/96, 95% interval 87&ndash;97%"><i style="width:94%"></i></div><span>94%<small> (90/96)</small></span></td><td><div class="r2-bar" title="1/96, 95% interval 0&ndash;6%"><i style="width:1%"></i></div><span>1%<small> (1/96)</small></span></td></tr>
-            <tr><th scope="row">Generated data + filtered obstacle scenes</th><td><div class="r2-bar" title="92/96, 95% interval 90&ndash;98%"><i style="width:96%"></i></div><span>96%<small> (92/96)</small></span></td><td><div class="r2-bar" title="4/96, 95% interval 2&ndash;10%"><i style="width:4%"></i></div><span>4%<small> (4/96)</small></span></td></tr>
-            <tr class="r2-best"><th scope="row">Generated data + repaired obstacle scenes</th><td><div class="r2-bar" title="91/96, 95% interval 88&ndash;98%"><i style="width:95%"></i></div><span>95%<small> (91/96)</small></span></td><td><div class="r2-bar" title="82/96, 95% interval 77&ndash;91%"><i style="width:85%"></i></div><span>85%<small> (82/96)</small></span></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <figure class="r2-fig">
-        <video class="r2-media" autoplay loop muted playsinline preload="metadata" poster="media/policy_clean.jpg" aria-label="Grid of policy rollouts on clean held-out scenes: one row per training set"><source src="media/policy_clean_phone.mp4" type="video/mp4" media="(max-width:720px)"><source src="media/policy_clean.mp4" type="video/mp4"></video>
-        <figcaption class="r2-cap">Clean held-out scenes, the same scenes in every row (front camera). Trained on the single demo the policy misses the grasp; with 100 or more generated rollouts it places the cube.</figcaption>
-      </figure>
-      <figure class="r2-fig">
-        <video class="r2-media" autoplay loop muted playsinline preload="metadata" poster="media/policy_blocked.jpg" aria-label="Grid of policy rollouts with a bottle on the route: one row per training set"><source src="media/policy_blocked_phone.mp4" type="video/mp4" media="(max-width:720px)"><source src="media/policy_blocked.mp4" type="video/mp4"></video>
-        <figcaption class="r2-cap">Bottle on the route. Policies trained without bottle scenes, or with bottle scenes the filter kept, carry the cube through the bottle; the policy trained with repaired scenes goes over it.</figcaption>
-      </figure>
-      <div class="r2-stats r2-fig" role="list">
-        <div role="listitem"><b>3% &rarr; 94%</b><span>clean-scene success: one demo &rarr; 400 generated rollouts</span></div>
-        <div role="listitem"><b>4% &rarr; 85%</b><span>success with a bottle on the route: filtered &rarr; repaired bottle scenes</span></div>
-        <div role="listitem"><b>95%</b><span>clean-scene success of the repaired-data policy: no loss from the edit</span></div>
-        <div role="listitem"><b>214 / 416</b><span>bottle scenes the filter kept, even with up to 30 bottle redraws each</span></div>
-      </div>
-      <p class="r2-lead r2-fig">In this experiment, filtering alone supplied no examples of obstacle avoidance: it keeps only the scenes where the warped motion already misses the bottle, so the policy never sees a detour. Repairing the blocked scenes puts those detours into the data.</p>
-    </section>
-
-    <section class="r2-block" aria-labelledby="h-how">
-      <h2 id="h-how" class="r2-h">How a human example becomes robot training data</h2>
-      <div class="r2-steps">
-        <figure>
-          <video autoplay loop muted playsinline preload="metadata" poster="media/splat_orbit.jpg" aria-label="Orbit around the Gaussian-splat scan of the bench, ending on a wipe against a real RealSense frame"><source src="media/splat_orbit.mp4" type="video/mp4"></video>
-          <h3><span>Step 1</span>Build a digital copy of the bench</h3><p>I reconstruct the scene from a phone video and align it with the robot and its cameras. Every object must end up at the right size and position; a good-looking scan alone is not enough.</p><details class="story-detail"><summary>Implementation and engineering challenge</summary><p>A phone reconstruction has arbitrary scale and coordinates. I register the RealSense images in COLMAP, lift their observed feature locations into 3D using measured depth, and estimate a similarity transform into the robot base frame with RANSAC and Umeyama alignment. The calibrated distance between camera centers provides an independent scale check.</p><p>A visually convincing reconstruction can still put a grasp in the wrong physical location. Metric alignment makes scan geometry, robot kinematics, and rendered observations consistent. The two scale estimates agree to 0.2%, with a 4 mm median registration residual; the scale agreement measures consistency between estimates.</p></details></figure>
-        <figure>
-          <img src="media/step_track.jpg" alt="Tracked cube box drawn on the RealSense views through the transfer" loading="lazy">
-          <h3><span>Step 2</span>Recover where the object moved</h3><p>I estimate the object&rsquo;s position and orientation through the human demonstration. This gives the task a reusable description: where the object starts, how it moves, and where it ends.</p><details class="story-detail"><summary>Implementation and engineering challenge</summary><p>For the small, dark cube, I fuse both depth views, select candidates by position, color, and height above the table, and fit the scanned model with coarse-to-fine point-to-point ICP. Velocity prediction initializes each fit; workspace-wide clustering re-detects the cube after fast lifts. Low-confidence fits fall back to motion prediction.</p><p>The cube has 24 equivalent orientations, which can make a tracker invent sudden rotations. Choosing the equivalent orientation nearest the preceding pose and smoothing the track prevents those jumps from becoming training actions. For RGB-only tape and nut recordings, measured shapes are fitted to silhouettes in both views. During the nut&rsquo;s one-view occlusion, the visible camera ray constrains its center and depth is interpolated between reliable endpoint poses.</p></details></figure>
-        <figure>
-          <img src="media/step_robot.jpg" alt="UR5e and gripper model overlaid on the real arm in both cameras" loading="lazy">
-          <h3><span>Step 3</span>Find a robot motion that performs the task</h3><p>I choose a grasp and solve for robot joint movements that follow the object path. The motion must fit the arm&rsquo;s reach and leave enough space for the gripper.</p><details class="story-detail"><summary>Implementation and engineering challenge</summary><p>I combine the tracked object poses with a grasp transform to obtain tool targets, then solve whole-trajectory inverse kinematics for the calibrated UR5e and Robotiq model. The sequence includes approach, grasp, carry, release, and retreat. Cube symmetry supplies four grasp yaws; the ring tasks test grasp positions around the rim.</p><p>Human demonstrations can be unreachable or leave too little space for the gripper. The tape fixture is rotated in the twin to expose an accessible branch, and nut starts are moved within reach. Leveling rest poses and resolving equivalent rotations also remove unnecessary wrist motion. These adjustments make the generated actions compatible with the robot&rsquo;s geometry.</p></details></figure>
-        <figure>
-          <img src="media/step_render.jpg" alt="Rendered UR5e carrying the cube between the fixtures in IsaacLab" loading="lazy">
-          <h3><span>Step 4</span>Create new examples and render the robot&rsquo;s view</h3><p>I vary the starting position, lighting, and camera placement. Each accepted trajectory becomes camera images paired with robot joint targets: the inputs and labels used to train the policy.</p><details class="story-detail"><summary>Implementation and engineering challenge</summary><p>The generator samples a new object start and warps the leading 60% of the demonstrated path while preserving the placement target. IsaacLab renders the calibrated camera views and records robot joint targets. Scan-derived assets and a panoramic background retain the workspace appearance, while lighting, camera pose, and table appearance vary across episodes.</p><p>This supports the sim-to-real objective by anchoring training data in the physical workspace while reducing dependence on one exact capture. Image observations and action labels must describe the same state: the cube attaches to the gripper during kinematic replay. Feasibility checks reject joint-limit violations, excessive IK error, and collisions before examples enter the dataset.</p></details></figure>
-      </div>
-    </section>
-
-    <section class="r2-block" aria-labelledby="h-rep">
-      <h2 id="h-rep" class="r2-h">What happens when a bottle blocks the path?</h2>
-      <p class="r2-lead">The human example shows a clear route between the fixtures. If I add a bottle, replaying that same route can carry the object straight through it. Throwing that example away avoids a bad training sample, but it does not show the policy how to go around the bottle.</p>
-      <p class="r2-lead">I added a repair step that searches for a different route while preserving the important parts of the task: picking up the object and placing it at the goal. In the videos, compare the original route on the left with the repaired robot motion on the right. These repaired examples supply the detours that improve the policy&rsquo;s obstacle performance.</p>
+    <section class="r2-block" aria-labelledby="h-3d">
+      <h2 id="h-3d" class="r2-h">Interactive 3D Replay</h2>
+      <p class="r2-lead">Explore a generated robot demonstration inside the reconstructed workspace. Choose a task, load the replay, then drag to look around the robot and scroll to zoom. The two camera frames show the views used to generate training images.</p>
       <div class="r2-chips" role="tablist" aria-label="Choose a task">
         <button class="r2-chip r2-task on" type="button" role="tab" aria-selected="true" data-task="cube">Cube</button>
         <button class="r2-chip r2-task" type="button" role="tab" aria-selected="false" data-task="tape">Tape roll</button>
@@ -156,54 +98,25 @@
       </div>
       <div class="r2-task-panels">
         <div class="r2-task-panel" data-task="cube" role="tabpanel" aria-label="Cube">
-        <figure>
-          <video class="r2-media" loop muted playsinline preload="metadata" poster="media/repair_compare.jpg" aria-label="Side by side: the plain generator carries the cube through a bottle, the repaired motion lifts over it"><source src="media/repair_compare.mp4" type="video/mp4"></video>
-          <figcaption class="r2-cap">Same scene, same grasp, front and right cameras. Left: the warped demo carries the cube through the bottle (outlined red while in collision; the bottle is visual-only, so the arm passes through it). Right: the repaired motion lifts over it with 2.7&nbsp;cm to spare.</figcaption>
-        </figure>
-        <div class="r2-stats r2-fig" role="list">
-          <div role="listitem"><b>5 &rarr; 17</b><span>valid demos from 21 bottle placements on the route: filter only &rarr; with repair</span></div>
-          <div role="listitem"><b>1.5&nbsp;cm</b><span>minimum clearance of the repaired paths (median 2.7&nbsp;cm)</span></div>
-          <div role="listitem"><b>6.4&nbsp;cm</b><span>median largest gripper detour from the warped path</span></div>
-          <div role="listitem"><b>4 / 21</b><span>still rejected: the bottle blocks the grasp or the set-down</span></div>
-        </div>
+  <div id="r2-3d" class="r2-3d" data-src="viewer/index.html?playbackPath=../media/ur5e_cube_replay.viser&amp;initialCameraPosition=0.42,-1.32,0.42&amp;initialCameraLookAt=0.08,-0.7,0.06&amp;initialCameraUp=0,0,1">
+        <img src="media/viewer_poster.jpg" alt="Still of the 3D replay: UR5e carrying the cube above the scanned bench" loading="lazy">
+        <button id="r2-load3d" class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;10&nbsp;MB)</button>
+      </div>
         </div>
         <div class="r2-task-panel" data-task="tape" role="tabpanel" aria-label="Tape roll" hidden>
-          <figure>
-            <video class="r2-media" muted loop playsinline preload="none" poster="media/tape_repair_compare.jpg" aria-label="Side by side: the plain generator carries the tape roll through a bottle, the repaired motion goes around it"><source src="media/tape_repair_compare.mp4" type="video/mp4"></video>
-            <figcaption class="r2-cap">Same scene, front and right cameras. Left: the warped demo carries the roll through the bottle (red while in collision). Right: the repaired motion, here with another grasp position on the rim, keeps 2.6&nbsp;cm from it.</figcaption>
-          </figure>
-          <div class="r2-stats r2-fig" role="list">
-          <div role="listitem"><b>0 &rarr; 15</b><span>valid demos from 18 bottle trajectories on the route: filter only &rarr; with repair</span></div>
-          <div role="listitem"><b>1.5&nbsp;cm</b><span>minimum clearance of the repaired paths (median 2.8&nbsp;cm)</span></div>
-          <div role="listitem"><b>7 / 15</b><span>repaired with another grasp position on the rim</span></div>
-          <div role="listitem"><b>3 / 18</b><span>repair found no collision-free path</span></div>
-          </div>
+        <div class="r2-3d" data-src="viewer/index.html?playbackPath=../media/tape_replay.viser&amp;initialCameraPosition=0.55,-1.30,0.62&amp;initialCameraLookAt=0.05,-0.72,0.12&amp;initialCameraUp=0,0,1" data-title="Interactive 3D replay of a generated tape-roll demonstration">
+          <img src="media/tape_viewer_poster.jpg" alt="Still of the 3D replay: UR5e hanging the tape roll on the mug tree above the scanned bench" loading="lazy">
+          <button class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;5&nbsp;MB)</button>
+        </div>
         </div>
         <div class="r2-task-panel" data-task="nut" role="tabpanel" aria-label="Nut" hidden>
-          <figure>
-            <video class="r2-media" muted loop playsinline preload="none" poster="media/nut_repair_compare.jpg" aria-label="Side by side: the plain generator sweeps the gripper through a bottle on its way to the nut, the repaired motion goes around it"><source src="media/nut_repair_compare.mp4" type="video/mp4"></video>
-            <figcaption class="r2-cap">Same scene, front and right cameras. Left: on its way to the nut the plain motion sweeps the gripper through the bottle (red while in collision). Right: the repaired transit, with another grasp position, keeps 0.9&nbsp;cm from it.</figcaption>
-          </figure>
-          <div class="r2-stats r2-fig" role="list">
-          <div role="listitem"><b>1 &rarr; 11</b><span>valid demos from 24 bottle trajectories (one placement on the route, three beside it)</span></div>
-          <div role="listitem"><b>1.8&nbsp;cm</b><span>minimum clearance of the repaired paths (median 2.8&nbsp;cm)</span></div>
-          <div role="listitem"><b>6 / 6</b><span>rejected with the bottle on the short route: it blocks the descent to the nut or onto the rod</span></div>
-          <div role="listitem"><b>13 / 24</b><span>rejected in all: the bottle blocks a segment the repair keeps fixed</span></div>
-          </div>
+        <div class="r2-3d" data-src="viewer/index.html?playbackPath=../media/nut_replay.viser&amp;initialCameraPosition=0.45,-1.25,0.50&amp;initialCameraLookAt=0.02,-0.74,0.08&amp;initialCameraUp=0,0,1" data-title="Interactive 3D replay of a generated nut demonstration">
+          <img src="media/nut_viewer_poster.jpg" alt="Still of the 3D replay: UR5e above the bolt stand after placing the nut" loading="lazy">
+          <button class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;5&nbsp;MB)</button>
+        </div>
         </div>
       </div>
     </section>
-
-    <details class="story-appendix"><summary>Technical detail: trajectory optimization and policy architecture</summary>    <section class="r2-block" aria-labelledby="h-control-method">
-      <h2 id="h-control-method" class="r2-h">Inside the planner and learned policy</h2>
-      <h3 class="r2-sub">Obstacle-aware trajectory optimization</h3>
-      <p class="r2-lead">Warping a demonstration to a new start does not teach the generator to avoid an added obstacle. I approximate the arm, gripper, wrist-camera bracket, and held object with collision spheres against planes, cylinders, and boxes. A joint-space least-squares problem in jaxls balances trajectory deviation, velocity and acceleration smoothness, collision penalties, tool orientation, and joint and velocity limits. Levenberg&ndash;Marquardt solves from multiple initial paths bent over or around the obstacle.</p>
-      <p class="r2-lead">Strong pose constraints preserve task-critical segments around grasp, lift-off, set-down, and release. Candidate solutions undergo a denser collision check with a 5 mm obstacle-clearance threshold, and alternative grasps are tried before rejection. Recomputing the held object trajectory from the repaired arm motion keeps rendered observations consistent with action labels. This creates useful detours while preserving the task.</p>
-      <h3 class="r2-sub">Visual imitation learning and controlled evaluation</h3>
-      <p class="r2-lead">Both camera views are cropped to 224 &times; 128 pixels and processed by a ResNet-18 backbone with per-view spatial-softmax heads. An MLP encodes seven joint positions; a final MLP predicts 16 steps of seven-dimensional joint targets. Training minimizes L1 error on normalized actions. The controller executes action chunks and repeatedly observes and replans.</p>
-      <p class="r2-lead">The architecture stays fixed across training datasets, and every policy is evaluated on the same 96 clean and 96 blocked-route scenes. Filtering retains examples whose original path already misses the obstacle; repair adds examples that actively detour around it. The resulting 4% versus 85% blocked-route success shows why generating the right motions matters alongside visual realism.</p>
-      <p class="r2-cap">Code: <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/scan_to_base_from_colmap.py">registration</a> &middot; <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/track_cube_rgbd.py">tracking</a> &middot; <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/demo_repair.py">trajectory repair</a> &middot; <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/policy.py">policy architecture</a></p>
-    </section></details>
 
     <section class="r2-block" id="r2-tasks" aria-labelledby="h-tasks">
       <h2 id="h-tasks" class="r2-h">The same idea, applied to three tasks</h2>
@@ -260,12 +173,52 @@
           </tbody>
         </table>
       </div></details>
-      <p class="r2-lead r2-fig">The policy results above use the cube task. The tape and nut examples show how the tracking and planning pipeline handles different object shapes and fixtures.</p>
+      <p class="r2-lead r2-fig">The policy results below use the cube task. The tape and nut examples show how the tracking and planning pipeline handles different object shapes and fixtures.</p>
     </section>
 
-    <details class="story-appendix"><summary>Explore the generated demonstrations in 3D</summary>    <section class="r2-block" aria-labelledby="h-3d">
-      <h2 id="h-3d" class="r2-h">Interactive 3D Replay</h2>
-      <p class="r2-lead">A generated demonstration as a 3D scene: the robot URDF, the object (the cube as the Gaussian splat cut from my phone scan; the tape roll and the nut as their measured shapes), the scanned bench, and both camera frustums showing their rendered views. Drag to orbit, scroll to zoom.</p>
+    <section class="r2-block" aria-labelledby="h-pol">
+      <h2 id="h-pol" class="r2-h">Did the generated data help the robot learn?</h2>
+      <p class="r2-lead">Yes, in the cube experiment in the twin. More varied examples helped with new starting positions. Obstacles required another change: the training data needed to show the robot how to take a detour.</p>
+      <div class="story-grid story-results">
+        <div><span class="story-label">NEW STARTING POSITIONS</span><strong>3% → 94%</strong><p>Clean-scene success when training grows from one demonstration to 400 generated examples.</p></div>
+        <div><span class="story-label">AN OBSTACLE IN THE WAY</span><strong>4% → 85%</strong><p>Blocked-route success using repaired demonstrations instead of merely filtering out collisions.</p></div>
+      </div>
+      <p class="r2-lead">I kept the policy architecture fixed and evaluated every version on the same 192 held-out scenes: 96 with a clear route and 96 with a bottle blocking it. Success means placing the cube on the goal fixture without intersecting the bottle. The numbers below are closed-loop policy outcomes in the twin.</p>
+      <div class="r2-res-wrap">
+        <table class="r2-res">
+          <caption>Closed-loop success on held-out scenes (cube placed on the goal fixture without touching the bottle), 96 scenes per cell. The two bottle sets also have 400 rollouts: 200 R2R2R plus 200 bottle scenes. Hover a bar for its 95% interval.</caption>
+          <thead><tr><th scope="col">Training data</th><th scope="col">Clean scenes</th><th scope="col">Bottle on the route</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Original demonstration</th><td><div class="r2-bar" title="3/96, 95% interval 1&ndash;9%"><i style="width:3%"></i></div><span>3%<small> (3/96)</small></span></td><td><div class="r2-bar" title="0/96, 95% interval 0&ndash;4%"><i style="width:0.5%"></i></div><span>0%<small> (0/96)</small></span></td></tr>
+            <tr><th scope="row">25 generated demonstrations</th><td><div class="r2-bar" title="34/96, 95% interval 27&ndash;45%"><i style="width:35%"></i></div><span>35%<small> (34/96)</small></span></td><td><div class="r2-bar" title="1/96, 95% interval 0&ndash;6%"><i style="width:1%"></i></div><span>1%<small> (1/96)</small></span></td></tr>
+            <tr><th scope="row">100 generated demonstrations</th><td><div class="r2-bar" title="82/96, 95% interval 77&ndash;91%"><i style="width:85%"></i></div><span>85%<small> (82/96)</small></span></td><td><div class="r2-bar" title="0/96, 95% interval 0&ndash;4%"><i style="width:0.5%"></i></div><span>0%<small> (0/96)</small></span></td></tr>
+            <tr><th scope="row">400 generated demonstrations</th><td><div class="r2-bar" title="90/96, 95% interval 87&ndash;97%"><i style="width:94%"></i></div><span>94%<small> (90/96)</small></span></td><td><div class="r2-bar" title="1/96, 95% interval 0&ndash;6%"><i style="width:1%"></i></div><span>1%<small> (1/96)</small></span></td></tr>
+            <tr><th scope="row">Generated data + filtered obstacle scenes</th><td><div class="r2-bar" title="92/96, 95% interval 90&ndash;98%"><i style="width:96%"></i></div><span>96%<small> (92/96)</small></span></td><td><div class="r2-bar" title="4/96, 95% interval 2&ndash;10%"><i style="width:4%"></i></div><span>4%<small> (4/96)</small></span></td></tr>
+            <tr class="r2-best"><th scope="row">Generated data + repaired obstacle scenes</th><td><div class="r2-bar" title="91/96, 95% interval 88&ndash;98%"><i style="width:95%"></i></div><span>95%<small> (91/96)</small></span></td><td><div class="r2-bar" title="82/96, 95% interval 77&ndash;91%"><i style="width:85%"></i></div><span>85%<small> (82/96)</small></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <figure class="r2-fig">
+        <video class="r2-media" autoplay loop muted playsinline preload="metadata" poster="media/policy_clean.jpg" aria-label="Grid of policy rollouts on clean held-out scenes: one row per training set"><source src="media/policy_clean_phone.mp4" type="video/mp4" media="(max-width:720px)"><source src="media/policy_clean.mp4" type="video/mp4"></video>
+        <figcaption class="r2-cap">Clean held-out scenes, the same scenes in every row (front camera). Trained on the single demo the policy misses the grasp; with 100 or more generated rollouts it places the cube.</figcaption>
+      </figure>
+      <figure class="r2-fig">
+        <video class="r2-media" autoplay loop muted playsinline preload="metadata" poster="media/policy_blocked.jpg" aria-label="Grid of policy rollouts with a bottle on the route: one row per training set"><source src="media/policy_blocked_phone.mp4" type="video/mp4" media="(max-width:720px)"><source src="media/policy_blocked.mp4" type="video/mp4"></video>
+        <figcaption class="r2-cap">Bottle on the route. Policies trained without bottle scenes, or with bottle scenes the filter kept, carry the cube through the bottle; the policy trained with repaired scenes goes over it.</figcaption>
+      </figure>
+      <div class="r2-stats r2-fig" role="list">
+        <div role="listitem"><b>3% &rarr; 94%</b><span>clean-scene success: one demo &rarr; 400 generated rollouts</span></div>
+        <div role="listitem"><b>4% &rarr; 85%</b><span>success with a bottle on the route: filtered &rarr; repaired bottle scenes</span></div>
+        <div role="listitem"><b>95%</b><span>clean-scene success of the repaired-data policy: no loss from the edit</span></div>
+        <div role="listitem"><b>214 / 416</b><span>bottle scenes the filter kept, even with up to 30 bottle redraws each</span></div>
+      </div>
+      <p class="r2-lead r2-fig">In this experiment, filtering alone supplied no examples of obstacle avoidance: it keeps only the scenes where the warped motion already misses the bottle, so the policy never sees a detour. Repairing the blocked scenes puts those detours into the data.</p>
+    </section>
+
+    <section class="r2-block" aria-labelledby="h-rep">
+      <h2 id="h-rep" class="r2-h">What happens when a bottle blocks the path?</h2>
+      <p class="r2-lead">The human example shows a clear route between the fixtures. If I add a bottle, replaying that same route can carry the object straight through it. Throwing that example away avoids a bad training sample, but it does not show the policy how to go around the bottle.</p>
+      <p class="r2-lead">I added a repair step that searches for a different route while preserving the important parts of the task: picking up the object and placing it at the goal. In the videos, compare the original route on the left with the repaired robot motion on the right. These repaired examples supply the detours that improve the policy&rsquo;s obstacle performance.</p>
       <div class="r2-chips" role="tablist" aria-label="Choose a task">
         <button class="r2-chip r2-task on" type="button" role="tab" aria-selected="true" data-task="cube">Cube</button>
         <button class="r2-chip r2-task" type="button" role="tab" aria-selected="false" data-task="tape">Tape roll</button>
@@ -273,43 +226,45 @@
       </div>
       <div class="r2-task-panels">
         <div class="r2-task-panel" data-task="cube" role="tabpanel" aria-label="Cube">
-  <div id="r2-3d" class="r2-3d" data-src="viewer/index.html?playbackPath=../media/ur5e_cube_replay.viser&amp;initialCameraPosition=0.42,-1.32,0.42&amp;initialCameraLookAt=0.08,-0.7,0.06&amp;initialCameraUp=0,0,1">
-        <img src="media/viewer_poster.jpg" alt="Still of the 3D replay: UR5e carrying the cube above the scanned bench" loading="lazy">
-        <button id="r2-load3d" class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;10&nbsp;MB)</button>
-      </div>
+        <figure>
+          <video class="r2-media" loop muted playsinline preload="metadata" poster="media/repair_compare.jpg" aria-label="Side by side: the plain generator carries the cube through a bottle, the repaired motion lifts over it"><source src="media/repair_compare.mp4" type="video/mp4"></video>
+          <figcaption class="r2-cap">Same scene, same grasp, front and right cameras. Left: the warped demo carries the cube through the bottle (outlined red while in collision; the bottle is visual-only, so the arm passes through it). Right: the repaired motion lifts over it with 2.7&nbsp;cm to spare.</figcaption>
+        </figure>
+        <div class="r2-stats r2-fig" role="list">
+          <div role="listitem"><b>5 &rarr; 17</b><span>valid demos from 21 bottle placements on the route: filter only &rarr; with repair</span></div>
+          <div role="listitem"><b>1.5&nbsp;cm</b><span>minimum clearance of the repaired paths (median 2.7&nbsp;cm)</span></div>
+          <div role="listitem"><b>6.4&nbsp;cm</b><span>median largest gripper detour from the warped path</span></div>
+          <div role="listitem"><b>4 / 21</b><span>still rejected: the bottle blocks the grasp or the set-down</span></div>
+        </div>
         </div>
         <div class="r2-task-panel" data-task="tape" role="tabpanel" aria-label="Tape roll" hidden>
-        <div class="r2-3d" data-src="viewer/index.html?playbackPath=../media/tape_replay.viser&amp;initialCameraPosition=0.55,-1.30,0.62&amp;initialCameraLookAt=0.05,-0.72,0.12&amp;initialCameraUp=0,0,1" data-title="Interactive 3D replay of a generated tape-roll demonstration">
-          <img src="media/tape_viewer_poster.jpg" alt="Still of the 3D replay: UR5e hanging the tape roll on the mug tree above the scanned bench" loading="lazy">
-          <button class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;5&nbsp;MB)</button>
-        </div>
+          <figure>
+            <video class="r2-media" muted loop playsinline preload="none" poster="media/tape_repair_compare.jpg" aria-label="Side by side: the plain generator carries the tape roll through a bottle, the repaired motion goes around it"><source src="media/tape_repair_compare.mp4" type="video/mp4"></video>
+            <figcaption class="r2-cap">Same scene, front and right cameras. Left: the warped demo carries the roll through the bottle (red while in collision). Right: the repaired motion, here with another grasp position on the rim, keeps 2.6&nbsp;cm from it.</figcaption>
+          </figure>
+          <div class="r2-stats r2-fig" role="list">
+          <div role="listitem"><b>0 &rarr; 15</b><span>valid demos from 18 bottle trajectories on the route: filter only &rarr; with repair</span></div>
+          <div role="listitem"><b>1.5&nbsp;cm</b><span>minimum clearance of the repaired paths (median 2.8&nbsp;cm)</span></div>
+          <div role="listitem"><b>7 / 15</b><span>repaired with another grasp position on the rim</span></div>
+          <div role="listitem"><b>3 / 18</b><span>repair found no collision-free path</span></div>
+          </div>
         </div>
         <div class="r2-task-panel" data-task="nut" role="tabpanel" aria-label="Nut" hidden>
-        <div class="r2-3d" data-src="viewer/index.html?playbackPath=../media/nut_replay.viser&amp;initialCameraPosition=0.45,-1.25,0.50&amp;initialCameraLookAt=0.02,-0.74,0.08&amp;initialCameraUp=0,0,1" data-title="Interactive 3D replay of a generated nut demonstration">
-          <img src="media/nut_viewer_poster.jpg" alt="Still of the 3D replay: UR5e above the bolt stand after placing the nut" loading="lazy">
-          <button class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;5&nbsp;MB)</button>
-        </div>
+          <figure>
+            <video class="r2-media" muted loop playsinline preload="none" poster="media/nut_repair_compare.jpg" aria-label="Side by side: the plain generator sweeps the gripper through a bottle on its way to the nut, the repaired motion goes around it"><source src="media/nut_repair_compare.mp4" type="video/mp4"></video>
+            <figcaption class="r2-cap">Same scene, front and right cameras. Left: on its way to the nut the plain motion sweeps the gripper through the bottle (red while in collision). Right: the repaired transit, with another grasp position, keeps 0.9&nbsp;cm from it.</figcaption>
+          </figure>
+          <div class="r2-stats r2-fig" role="list">
+          <div role="listitem"><b>1 &rarr; 11</b><span>valid demos from 24 bottle trajectories (one placement on the route, three beside it)</span></div>
+          <div role="listitem"><b>1.8&nbsp;cm</b><span>minimum clearance of the repaired paths (median 2.8&nbsp;cm)</span></div>
+          <div role="listitem"><b>6 / 6</b><span>rejected with the bottle on the short route: it blocks the descent to the nut or onto the rod</span></div>
+          <div role="listitem"><b>13 / 24</b><span>rejected in all: the bottle blocks a segment the repair keeps fixed</span></div>
+          </div>
         </div>
       </div>
-    </section></details>
+    </section>
 
-    <details class="story-appendix"><summary>See how the training images vary</summary>    <section class="r2-block" aria-labelledby="h-rand">
-      <h2 id="h-rand" class="r2-h">One Demo, Many Demos</h2>
-      <p class="r2-lead">Each rollout re-samples the cube&rsquo;s start pose, warps the demonstrated path to it, and randomizes lighting, camera pose and table appearance. The background is a 360&deg; render of the lab from the same phone scan.</p>
-      <div class="r2-dist" role="list" aria-label="Data distribution clips">
-        <figure role="listitem"><video autoplay loop muted playsinline preload="metadata" poster="media/dist_r2r2r_front.jpg" aria-label="Start frames of generated rollouts, front camera"><source src="media/dist_r2r2r_front.mp4" type="video/mp4"></video><figcaption>Front camera</figcaption></figure>
-        <figure role="listitem"><video autoplay loop muted playsinline preload="metadata" poster="media/dist_r2r2r_right.jpg" aria-label="Start frames of generated rollouts, right camera"><source src="media/dist_r2r2r_right.mp4" type="video/mp4"></video><figcaption>Right camera</figcaption></figure>
-        <figure role="listitem"><video autoplay loop muted playsinline preload="metadata" poster="media/dist_bottle_front.jpg" aria-label="Start frames of generated rollouts with the bottle, front camera"><source src="media/dist_bottle_front.mp4" type="video/mp4"></video><figcaption>With the bottle, front</figcaption></figure>
-        <figure role="listitem"><video autoplay loop muted playsinline preload="metadata" poster="media/dist_bottle_right.jpg" aria-label="Start frames of generated rollouts with the bottle, right camera"><source src="media/dist_bottle_right.mp4" type="video/mp4"></video><figcaption>With the bottle, right</figcaption></figure>
-      </div>
-      <p class="r2-cap">Data distribution: every frame is the first frame of a different generated rollout (448 without the bottle, 225 with it), so the clips flick through the spread of cube start poses, lighting, camera poses, table looks and bottle placements.</p>
-      <figure>
-        <video class="r2-media" autoplay loop muted playsinline preload="metadata" poster="media/randomized.jpg?v=2" aria-label="Grid of randomized generated rollouts"><source src="media/randomized.mp4?v=2" type="video/mp4"></video>
-        <figcaption class="r2-cap">Generated rollouts from the single demonstration (front camera).</figcaption>
-      </figure>
-    </section></details>
-
-    <details class="story-appendix"><summary>Inspect trajectory variations and obstacle tests</summary>    <section class="r2-block" aria-labelledby="h-traj">
+    <section class="r2-block" aria-labelledby="h-traj">
       <h2 id="h-traj" class="r2-h">Trajectory Interpolation</h2>
       <p class="r2-lead">From one demonstration the generator samples a distribution of object trajectories: each new start pose gets the tracked path warped to it over its first 60%, ending at the demonstrated place pose. Permuting the objects in the scene multiplies that again: every interpolated trajectory is checked against the inserted object and repaired where it collides.</p>
       <div class="r2-chips" role="tablist" aria-label="Choose a task">
@@ -400,9 +355,9 @@
           <p class="r2-cap">Interactive: the demo, the interpolated fan, then each object placement in turn with the nut riding one kept trajectory.</p>
         </div>
       </div>
-    </section></details>
+    </section>
 
-    <details class="story-appendix"><summary>See the motion on other robot models</summary>    <section class="r2-block" aria-labelledby="h-emb">
+    <section class="r2-block" aria-labelledby="h-emb">
       <h2 id="h-emb" class="r2-h">Retargeting the motion to other robot models</h2>
       <p class="r2-lead">The generated robot motion comes from the cube&rsquo;s motion and a grasp on it, not from a recorded robot motion, so the same tracked trajectory retargets to any arm that can reach it. The UR5e and a UR10e on the same bench mount, and a Franka Panda standing on the table, reproduce it in a kinematic replay using the demo&rsquo;s grasp. The reported error below 0.01&nbsp;mm measures the numerical IK fit to the target poses.</p>
       <div class="r2-trio r2-emb-row">
@@ -419,6 +374,51 @@
         <img src="media/emb_ur5e.jpg" alt="" loading="lazy">
         <button class="r2-load3d" type="button"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-box"/></svg>Load interactive 3D (&asymp;3.5&nbsp;MB)</button>
       </div>
+    </section>
+
+    <section class="r2-block" aria-labelledby="h-rand">
+      <h2 id="h-rand" class="r2-h">One Demo, Many Demos</h2>
+      <p class="r2-lead">Each rollout re-samples the cube&rsquo;s start pose, warps the demonstrated path to it, and randomizes lighting, camera pose and table appearance. The background is a 360&deg; render of the lab from the same phone scan.</p>
+      <div class="r2-dist" role="list" aria-label="Data distribution clips">
+        <figure role="listitem"><video autoplay loop muted playsinline preload="metadata" poster="media/dist_r2r2r_front.jpg" aria-label="Start frames of generated rollouts, front camera"><source src="media/dist_r2r2r_front.mp4" type="video/mp4"></video><figcaption>Front camera</figcaption></figure>
+        <figure role="listitem"><video autoplay loop muted playsinline preload="metadata" poster="media/dist_r2r2r_right.jpg" aria-label="Start frames of generated rollouts, right camera"><source src="media/dist_r2r2r_right.mp4" type="video/mp4"></video><figcaption>Right camera</figcaption></figure>
+        <figure role="listitem"><video autoplay loop muted playsinline preload="metadata" poster="media/dist_bottle_front.jpg" aria-label="Start frames of generated rollouts with the bottle, front camera"><source src="media/dist_bottle_front.mp4" type="video/mp4"></video><figcaption>With the bottle, front</figcaption></figure>
+        <figure role="listitem"><video autoplay loop muted playsinline preload="metadata" poster="media/dist_bottle_right.jpg" aria-label="Start frames of generated rollouts with the bottle, right camera"><source src="media/dist_bottle_right.mp4" type="video/mp4"></video><figcaption>With the bottle, right</figcaption></figure>
+      </div>
+      <p class="r2-cap">Data distribution: every frame is the first frame of a different generated rollout (448 without the bottle, 225 with it), so the clips flick through the spread of cube start poses, lighting, camera poses, table looks and bottle placements.</p>
+      <figure>
+        <video class="r2-media" autoplay loop muted playsinline preload="metadata" poster="media/randomized.jpg?v=2" aria-label="Grid of randomized generated rollouts"><source src="media/randomized.mp4?v=2" type="video/mp4"></video>
+        <figcaption class="r2-cap">Generated rollouts from the single demonstration (front camera).</figcaption>
+      </figure>
+    </section>
+
+    <section class="r2-block" aria-labelledby="h-how">
+      <h2 id="h-how" class="r2-h">How a human example becomes robot training data</h2>
+      <div class="r2-steps">
+        <figure>
+          <video autoplay loop muted playsinline preload="metadata" poster="media/splat_orbit.jpg" aria-label="Orbit around the Gaussian-splat scan of the bench, ending on a wipe against a real RealSense frame"><source src="media/splat_orbit.mp4" type="video/mp4"></video>
+          <h3><span>Step 1</span>Build a digital copy of the bench</h3><p>I reconstruct the scene from a phone video and align it with the robot and its cameras. Every object must end up at the right size and position; a good-looking scan alone is not enough.</p><details class="story-detail"><summary>Implementation and engineering challenge</summary><p>A phone reconstruction has arbitrary scale and coordinates. I register the RealSense images in COLMAP, lift their observed feature locations into 3D using measured depth, and estimate a similarity transform into the robot base frame with RANSAC and Umeyama alignment. The calibrated distance between camera centers provides an independent scale check.</p><p>A visually convincing reconstruction can still put a grasp in the wrong physical location. Metric alignment makes scan geometry, robot kinematics, and rendered observations consistent. The two scale estimates agree to 0.2%, with a 4 mm median registration residual; the scale agreement measures consistency between estimates.</p></details></figure>
+        <figure>
+          <img src="media/step_track.jpg" alt="Tracked cube box drawn on the RealSense views through the transfer" loading="lazy">
+          <h3><span>Step 2</span>Recover where the object moved</h3><p>I estimate the object&rsquo;s position and orientation through the human demonstration. This gives the task a reusable description: where the object starts, how it moves, and where it ends.</p><details class="story-detail"><summary>Implementation and engineering challenge</summary><p>For the small, dark cube, I fuse both depth views, select candidates by position, color, and height above the table, and fit the scanned model with coarse-to-fine point-to-point ICP. Velocity prediction initializes each fit; workspace-wide clustering re-detects the cube after fast lifts. Low-confidence fits fall back to motion prediction.</p><p>The cube has 24 equivalent orientations, which can make a tracker invent sudden rotations. Choosing the equivalent orientation nearest the preceding pose and smoothing the track prevents those jumps from becoming training actions. For RGB-only tape and nut recordings, measured shapes are fitted to silhouettes in both views. During the nut&rsquo;s one-view occlusion, the visible camera ray constrains its center and depth is interpolated between reliable endpoint poses.</p></details></figure>
+        <figure>
+          <img src="media/step_robot.jpg" alt="UR5e and gripper model overlaid on the real arm in both cameras" loading="lazy">
+          <h3><span>Step 3</span>Find a robot motion that performs the task</h3><p>I choose a grasp and solve for robot joint movements that follow the object path. The motion must fit the arm&rsquo;s reach and leave enough space for the gripper.</p><details class="story-detail"><summary>Implementation and engineering challenge</summary><p>I combine the tracked object poses with a grasp transform to obtain tool targets, then solve whole-trajectory inverse kinematics for the calibrated UR5e and Robotiq model. The sequence includes approach, grasp, carry, release, and retreat. Cube symmetry supplies four grasp yaws; the ring tasks test grasp positions around the rim.</p><p>Human demonstrations can be unreachable or leave too little space for the gripper. The tape fixture is rotated in the twin to expose an accessible branch, and nut starts are moved within reach. Leveling rest poses and resolving equivalent rotations also remove unnecessary wrist motion. These adjustments make the generated actions compatible with the robot&rsquo;s geometry.</p></details></figure>
+        <figure>
+          <img src="media/step_render.jpg" alt="Rendered UR5e carrying the cube between the fixtures in IsaacLab" loading="lazy">
+          <h3><span>Step 4</span>Create new examples and render the robot&rsquo;s view</h3><p>I vary the starting position, lighting, and camera placement. Each accepted trajectory becomes camera images paired with robot joint targets: the inputs and labels used to train the policy.</p><details class="story-detail"><summary>Implementation and engineering challenge</summary><p>The generator samples a new object start and warps the leading 60% of the demonstrated path while preserving the placement target. IsaacLab renders the calibrated camera views and records robot joint targets. Scan-derived assets and a panoramic background retain the workspace appearance, while lighting, camera pose, and table appearance vary across episodes.</p><p>This supports the sim-to-real objective by anchoring training data in the physical workspace while reducing dependence on one exact capture. Image observations and action labels must describe the same state: the cube attaches to the gripper during kinematic replay. Feasibility checks reject joint-limit violations, excessive IK error, and collisions before examples enter the dataset.</p></details></figure>
+      </div>
+    </section>
+
+    <details class="story-appendix"><summary>Technical detail: trajectory optimization and policy architecture</summary>    <section class="r2-block" aria-labelledby="h-control-method">
+      <h2 id="h-control-method" class="r2-h">Inside the planner and learned policy</h2>
+      <h3 class="r2-sub">Obstacle-aware trajectory optimization</h3>
+      <p class="r2-lead">Warping a demonstration to a new start does not teach the generator to avoid an added obstacle. I approximate the arm, gripper, wrist-camera bracket, and held object with collision spheres against planes, cylinders, and boxes. A joint-space least-squares problem in jaxls balances trajectory deviation, velocity and acceleration smoothness, collision penalties, tool orientation, and joint and velocity limits. Levenberg&ndash;Marquardt solves from multiple initial paths bent over or around the obstacle.</p>
+      <p class="r2-lead">Strong pose constraints preserve task-critical segments around grasp, lift-off, set-down, and release. Candidate solutions undergo a denser collision check with a 5 mm obstacle-clearance threshold, and alternative grasps are tried before rejection. Recomputing the held object trajectory from the repaired arm motion keeps rendered observations consistent with action labels. This creates useful detours while preserving the task.</p>
+      <h3 class="r2-sub">Visual imitation learning and controlled evaluation</h3>
+      <p class="r2-lead">Both camera views are cropped to 224 &times; 128 pixels and processed by a ResNet-18 backbone with per-view spatial-softmax heads. An MLP encodes seven joint positions; a final MLP predicts 16 steps of seven-dimensional joint targets. Training minimizes L1 error on normalized actions. The controller executes action chunks and repeatedly observes and replans.</p>
+      <p class="r2-lead">The architecture stays fixed across training datasets, and every policy is evaluated on the same 96 clean and 96 blocked-route scenes. Filtering retains examples whose original path already misses the obstacle; repair adds examples that actively detour around it. The resulting 4% versus 85% blocked-route success shows why generating the right motions matters alongside visual realism.</p>
+      <p class="r2-cap">Code: <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/scan_to_base_from_colmap.py">registration</a> &middot; <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/track_cube_rgbd.py">tracking</a> &middot; <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/demo_repair.py">trajectory repair</a> &middot; <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/policy.py">policy architecture</a></p>
     </section></details>
 
     <section class="r2-block" aria-labelledby="h-cred">
