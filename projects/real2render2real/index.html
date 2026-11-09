@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>One Human Demo, Rendered into Robot Data | Utkarsh Rai</title>
+<title>Real-to-Sim Robot Learning with a Gaussian-Splat Twin | Utkarsh Rai</title>
 <meta name="description" content="One human demonstration per task on a real UR5e bench, tracked with two calibrated cameras and re-rendered as UR5e + Robotiq robot demonstrations without teleoperation: a cube transfer, hanging a tape roll on a mug tree, and putting a nut on a bolt." />
 <link rel="canonical" href="https://ur10.github.io/projects/real2render2real/" />
-<meta property="og:title" content="One Human Demo, Rendered into Robot Data" />
+<meta property="og:title" content="Real-to-Sim Robot Learning with a Gaussian-Splat Twin" />
 <meta property="og:description" content="Scan, track, render: one human demo on a real UR5e bench becomes robot demonstrations, without teleoperation." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://ur10.github.io/projects/real2render2real/" />
@@ -48,8 +48,8 @@
 <div class="page">
   <main id="main">
     <header class="r2-hero">
-      <h1>One Human Demo, Rendered into Robot Data</h1>
-      <p class="r2-subtitle">Real2Render2Real ported to a UR5e + Robotiq 2F-85 on my own bench: three tasks, each from one human video</p>
+      <h1>Real-to-Sim Robot Learning with a Gaussian-Splat Twin</h1>
+      <p class="r2-subtitle">Reconstructing a real workspace and generating robot training data toward sim-to-real transfer</p>
       <p class="r2-author"><a href="../../">Utkarsh Rai</a></p>
       <p class="r2-aff">Northeastern University</p>
       <div class="r2-btns">
@@ -75,9 +75,9 @@
         <button class="r2-chip" type="button" data-t="3.7">Place</button>
         <button class="r2-chip" type="button" data-t="3.97">Retreat</button>
       </div>
-      <h2 id="h-str" class="r2-h">Turning a human example into a robot training set</h2>
-      <p class="r2-lead">A single demonstration shows a robot one way to complete a task. Learning to handle new object positions and obstacles requires more varied examples. I reconstruct the bench from a phone scan, recover object motion from two calibrated cameras, and generate UR5e demonstrations under varied starting poses and scene conditions. Each task begins with one human demonstration.</p>
-      <p class="r2-lead">My contributions span bench calibration, object tracking, UR5e integration, and a trajectory repair step that creates detours around added obstacles. The central experiment asks whether this generated data teaches a policy to complete the task in unfamiliar scenes.</p>
+      <h2 id="h-str" class="r2-h">From a real workspace to a robot learning environment</h2>
+      <p class="r2-lead">The goal is to make simulation a useful source of training data for a real robot. The real-to-sim stage aligns the reconstructed workspace, cameras, objects, and robot in a common metric frame. I reconstruct the bench from a phone scan, recover object motion from two calibrated cameras, and generate UR5e demonstrations under varied starting poses and scene conditions. Each task begins with one human demonstration.</p>
+      <p class="r2-lead">My contributions span bench calibration, object tracking, UR5e integration, and a trajectory repair step that creates detours around added obstacles. The sim-to-real objective motivates preserving the physical camera geometry and robot embodiment while varying appearance and task conditions. The experiments measure whether this generated data teaches a policy to handle unfamiliar scenes in the twin.</p>
       <p class="r2-lead">For cube transfer, 400 generated demonstrations raised success from <b>3% to 94%</b> on 96 held-out clean scenes. Training on repaired obstacle demonstrations reached <b>85%</b> on 96 blocked routes, compared with <b>4%</b> when obstacle scenes were only filtered. <a href="#h-pol">See the evaluation and comparisons.</a></p>
       <p class="r2-lead">The captures are real; robot demonstrations and policy evaluation take place in the rendered twin. The cube attaches to the gripper during the kinematic replay. The policy experiment evaluates cube transfer; the tape and nut examples demonstrate data generation and planning.</p>
       <p class="r2-cap">The video follows one cube transfer: the human demonstration, the recovered object pose, and the rendered robot replay at the same instant. Use the slider to inspect how the human motion becomes a robot demonstration.</p>
@@ -186,25 +186,40 @@
       <div class="r2-steps">
         <figure>
           <video autoplay loop muted playsinline preload="metadata" poster="media/splat_orbit.jpg" aria-label="Orbit around the Gaussian-splat scan of the bench, ending on a wipe against a real RealSense frame"><source src="media/splat_orbit.mp4" type="video/mp4"></video>
-          <h3><span>Step 1</span>Scan</h3>
-          <p>A Gaussian splat of the bench from a phone video (450k Gaussians). I registered the RealSense frames into its COLMAP model to recover metric scale and the scan-to-robot transform; two independent estimates agree to 0.2%. The clip ends on a wipe between the splat, rendered from the right RealSense pose, and that camera&rsquo;s real frame.</p>
+          <h3><span>Step 1</span>Recover metric scale and camera geometry</h3>
+<p>A phone reconstruction has arbitrary scale and coordinates. I register the RealSense images in COLMAP, lift their observed feature locations into 3D using measured depth, and estimate a similarity transform into the robot base frame with RANSAC and Umeyama alignment. The calibrated distance between camera centers provides an independent scale check.</p>
+<p>A visually convincing reconstruction can still put a grasp in the wrong physical location. Metric alignment makes scan geometry, robot kinematics, and rendered observations consistent. The two scale estimates agree to 0.2%, with a 4 mm median registration residual; the scale agreement measures consistency between estimates.</p>
         </figure>
         <figure>
           <img src="media/step_track.jpg" alt="Tracked cube box drawn on the RealSense views through the transfer" loading="lazy">
-          <h3><span>Step 2</span>Track</h3>
-          <p>The cube&rsquo;s pose per frame from both depth cameras: the scanned cube model fitted with ICP, re-detected on fast lifts and kept consistent across the cube&rsquo;s 24 symmetric orientations. Without depth, as for the tape and the nut, a measured shape is fitted to the object&rsquo;s outline in both views at once.</p>
+          <h3><span>Step 2</span>Track objects through occlusion and symmetry</h3>
+<p>For the small, dark cube, I fuse both depth views, select candidates by position, color, and height above the table, and fit the scanned model with coarse-to-fine point-to-point ICP. Velocity prediction initializes each fit; workspace-wide clustering re-detects the cube after fast lifts. Low-confidence fits fall back to motion prediction.</p>
+<p>The cube has 24 equivalent orientations, which can make a tracker invent sudden rotations. Choosing the equivalent orientation nearest the preceding pose and smoothing the track prevents those jumps from becoming training actions. For RGB-only tape and nut recordings, measured shapes are fitted to silhouettes in both views. During the nut&rsquo;s one-view occlusion, the visible camera ray constrains its center and depth is interpolated between reliable endpoint poses.</p>
         </figure>
         <figure>
           <img src="media/step_robot.jpg" alt="UR5e and gripper model overlaid on the real arm in both cameras" loading="lazy">
-          <h3><span>Step 3</span>Embody</h3>
-          <p>A UR5e + Robotiq 2F-85 model in the calibrated base frame, with the gripper mount fitted against the real images, so the simulated cameras and robot line up with the real ones.</p>
+          <h3><span>Step 3</span>Convert object motion into feasible robot motion</h3>
+<p>I combine the tracked object poses with a grasp transform to obtain tool targets, then solve whole-trajectory inverse kinematics for the calibrated UR5e and Robotiq model. The sequence includes approach, grasp, carry, release, and retreat. Cube symmetry supplies four grasp yaws; the ring tasks test grasp positions around the rim.</p>
+<p>Human demonstrations can be unreachable or leave too little space for the gripper. The tape fixture is rotated in the twin to expose an accessible branch, and nut starts are moved within reach. Leveling rest poses and resolving equivalent rotations also remove unnecessary wrist motion. These adjustments make the generated actions compatible with the robot&rsquo;s geometry.</p>
         </figure>
         <figure>
           <img src="media/step_render.jpg" alt="Rendered UR5e carrying the cube between the fixtures in IsaacLab" loading="lazy">
-          <h3><span>Step 4</span>Render</h3>
-          <p>IsaacLab replays the object motion kinematically. IK follows a grasp on the cube; a feasibility filter rejects rollouts with IK error, joint-limit violations or finger&ndash;fixture contact.</p>
+          <h3><span>Step 4</span>Generate consistent observations and actions</h3>
+<p>The generator samples a new object start and warps the leading 60% of the demonstrated path while preserving the placement target. IsaacLab renders the calibrated camera views and records robot joint targets. Scan-derived assets and a panoramic background retain the workspace appearance, while lighting, camera pose, and table appearance vary across episodes.</p>
+<p>This supports the sim-to-real objective by anchoring training data in the physical workspace while reducing dependence on one exact capture. Image observations and action labels must describe the same state: the cube attaches to the gripper during kinematic replay. Feasibility checks reject joint-limit violations, excessive IK error, and collisions before examples enter the dataset.</p>
         </figure>
       </div>
+    </section>
+
+    <section class="r2-block" aria-labelledby="h-control-method">
+      <h2 id="h-control-method" class="r2-h">Repair the route, then learn the control policy</h2>
+      <h3 class="r2-sub">Obstacle-aware trajectory optimization</h3>
+      <p class="r2-lead">Warping a demonstration to a new start does not teach the generator to avoid an added obstacle. I approximate the arm, gripper, wrist-camera bracket, and held object with collision spheres against planes, cylinders, and boxes. A joint-space least-squares problem in jaxls balances trajectory deviation, velocity and acceleration smoothness, collision penalties, tool orientation, and joint and velocity limits. Levenberg&ndash;Marquardt solves from multiple initial paths bent over or around the obstacle.</p>
+      <p class="r2-lead">Strong pose constraints preserve task-critical segments around grasp, lift-off, set-down, and release. Candidate solutions undergo a denser collision check with a 5 mm obstacle-clearance threshold, and alternative grasps are tried before rejection. Recomputing the held object trajectory from the repaired arm motion keeps rendered observations consistent with action labels. This creates useful detours while preserving the task.</p>
+      <h3 class="r2-sub">Visual imitation learning and controlled evaluation</h3>
+      <p class="r2-lead">Both camera views are cropped to 224 &times; 128 pixels and processed by a ResNet-18 backbone with per-view spatial-softmax heads. An MLP encodes seven joint positions; a final MLP predicts 16 steps of seven-dimensional joint targets. Training minimizes L1 error on normalized actions. The controller executes action chunks and repeatedly observes and replans.</p>
+      <p class="r2-lead">The architecture stays fixed across training datasets, and every policy is evaluated on the same 96 clean and 96 blocked-route scenes. Filtering retains examples whose original path already misses the obstacle; repair adds examples that actively detour around it. The resulting 4% versus 85% blocked-route success shows why generating the right motions matters alongside visual realism.</p>
+      <p class="r2-cap">Code: <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/scan_to_base_from_colmap.py">registration</a> &middot; <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/track_cube_rgbd.py">tracking</a> &middot; <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/demo_repair.py">trajectory repair</a> &middot; <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/policy.py">policy architecture</a></p>
     </section>
 
     <section class="r2-block" aria-labelledby="h-rand">
