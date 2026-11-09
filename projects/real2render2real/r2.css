@@ -127,3 +127,28 @@
   .r2-cmp{display:flex; flex-direction:column}
   .r2-cmp caption{display:block; order:2; padding-top:10px}
 }
+
+/* A short narrative first; implementation detail on demand. */
+.story-ownership{max-width:760px;margin:0 auto 24px;text-align:center;color:var(--muted);font-size:15px}
+.story-caption{margin:12px auto 26px;max-width:720px;font-size:16px;line-height:1.6}
+.story-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:24px 0}
+.story-grid>div{padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.story-grid h3{font-size:20px;line-height:1.25;margin:9px 0}
+.story-grid p{font-size:16px;line-height:1.55;margin:8px 0 0}
+.story-label{font-size:12px;letter-spacing:.08em;font-weight:700;color:var(--link)}
+.story-results{grid-template-columns:repeat(2,minmax(0,1fr));max-width:760px;margin:24px auto}
+.story-results strong{display:block;font-size:38px;line-height:1.2;margin:8px 0;color:var(--link)}
+.story-detail{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.story-detail summary,.story-appendix>summary{cursor:pointer;font-weight:600;color:var(--link);line-height:1.5}
+.story-detail p{margin:12px 0!important}
+.story-appendix{border:1px solid var(--line);border-radius:12px;margin:18px 0;padding:18px 22px}
+.story-appendix>summary{font-size:19px}
+.story-appendix .r2-block{margin-bottom:12px}
+.r2-steps{grid-template-columns:1fr;gap:32px;max-width:850px;margin:26px auto}
+.r2-steps figure{display:flow-root;border-bottom:1px solid var(--line);padding-bottom:28px}
+.r2-steps figure>img,.r2-steps figure>video{float:left;width:38%;margin:0 24px 14px 0}
+.r2-steps h3{margin-top:0}
+.r2-steps .story-detail{clear:both}
+.r2-steps p{color:var(--ink);font-size:17px;line-height:1.6}
+.r2-lead{line-height:1.65}
+@media(max-width:720px){.story-grid{grid-template-columns:1fr}.story-results{grid-template-columns:1fr 1fr;gap:10px}.story-grid>div{padding:16px}.story-results strong{font-size:30px}.r2-steps figure>img,.r2-steps figure>video{float:none;width:100%;margin:0 0 16px}.story-appendix{padding:14px}.r2-hero h1{font-size:34px}}

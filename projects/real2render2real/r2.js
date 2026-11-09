@@ -125,3 +125,21 @@
     }
   });
 })();
+
+// Reveal technical appendices when following a link to a section inside one.
+(function () {
+  function reveal() {
+    var id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch (_) { return; }
+    var target = document.getElementById(id);
+    if (!target) return;
+    var parent = target.parentElement, opened = false;
+    while (parent) {
+      if (parent.tagName === 'DETAILS' && !parent.open) { parent.open = true; opened = true; }
+      parent = parent.parentElement;
+    }
+    if (opened) requestAnimationFrame(function () { target.scrollIntoView(); });
+  }
+  window.addEventListener('hashchange', reveal);
+  reveal();
+})();
