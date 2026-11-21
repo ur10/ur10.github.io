@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>One Human Demonstration. Hundreds of Robot Examples. | Utkarsh Rai</title>
-<meta name="description" content="One human demonstration per task on a real UR5e bench, tracked with two calibrated cameras and re-rendered as UR5e + Robotiq robot demonstrations without teleoperation: a cube transfer, hanging a tape roll on a mug tree, and putting a nut on a bolt." />
+<meta name="description" content="One human demonstration per task on a real UR5e bench, tracked with two calibrated cameras and re-rendered as UR5e + Robotiq robot demonstrations without teleoperation: a cube transfer, hanging a tape roll on a mug tree, and putting a nut on a bolt. A phone scan becomes simulation assets through COLMAP, Gaussian splatting, GARField, DiG and SuGaR." />
 <link rel="canonical" href="https://ur10.github.io/projects/real2render2real/" />
 <meta property="og:title" content="One Human Demonstration. Hundreds of Robot Examples." />
 <meta property="og:description" content="Scan, track, render: one human demo on a real UR5e bench becomes robot demonstrations, without teleoperation." />
@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
 <link rel="stylesheet" href="../../styles.css?v=20261103" />
-<link rel="stylesheet" href="r2.css?v=20261109-showcase" />
+<link rel="stylesheet" href="r2.css?v=20261121-models" />
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -39,6 +39,7 @@
       <a href="#h-3d">Explore 3D</a>
       <a href="#h-pol">Results</a>
       <a href="#h-how">Method</a>
+      <a href="#h-models">Models</a>
       <a href="#h-tasks">Tasks</a>
       <a href="https://github.com/ur10/real2render2real-ur5e" target="_blank" rel="noopener noreferrer">Code</a>
     </div>
@@ -60,7 +61,7 @@
       </div>
     </header>
 
-    <p class="story-ownership"><b>What I built:</b> the calibration and tracking for my own bench, UR5e integration, obstacle-aware trajectory repair, and the policy evaluation. Built on <a href="https://real2render2real.com/">Real2Render2Real</a>.</p>
+    <p class="story-ownership"><b>What I built:</b> the calibration and tracking for my own bench, the scan-to-asset model chain on this bench and the fixes where it broke, UR5e integration, obstacle-aware trajectory repair, and the policy evaluation. Built on <a href="https://real2render2real.com/">Real2Render2Real</a>.</p>
 
     <section class="r2-block" id="r2-video" aria-labelledby="h-str">
       <video id="r2-trip" class="r2-trip" muted playsinline loop preload="metadata" poster="media/triptych.jpg" data-tall="media/triptych_tall" aria-label="Real demo, tracked cube and rendered robot replay, side by side">
@@ -85,7 +86,7 @@
         <div><span class="story-label">OUTPUT</span><h3>A dataset of robot demonstrations</h3><p>The pipeline plans robot motion and renders camera images paired with joint targets, under varied starts and scene conditions.</p></div>
         <div><span class="story-label">PURPOSE</span><h3>A policy that handles new situations</h3><p>A visual policy learns from these examples. I test whether it can complete the task in scenes held out from training.</p></div>
       </div>
-      <p class="r2-note"><b>Where Gaussian splatting fits:</b> it reconstructs the appearance of the real bench from images. Calibration puts that reconstruction in the robot&rsquo;s coordinate frame. Tracking and motion planning then turn it into a source of training data. The reported policy experiments run in a rendered, kinematic twin: the cube attaches to the gripper during replay.</p>
+      <p class="r2-note"><b>Where the learned models fit:</b> COLMAP and Gaussian splatting reconstruct the real bench from a phone video, and calibration puts that reconstruction in the robot&rsquo;s coordinate frame. GARField (trained on SAM masks) and DiG (DINOv2 features) make the object selectable, and SuGaR turns its Gaussians into the mesh that the tracker and the simulator both use. <a href="#h-models">See the model stack</a>. The reported policy experiments run in a rendered, kinematic twin: the cube attaches to the gripper during replay.</p>
     </section>
 
     <section class="r2-block" aria-labelledby="h-3d">
@@ -397,10 +398,10 @@
       <div class="r2-steps">
         <figure>
           <video autoplay loop muted playsinline preload="metadata" poster="media/splat_orbit.jpg" aria-label="Orbit around the Gaussian-splat scan of the bench, ending on a wipe against a real RealSense frame"><source src="media/splat_orbit.mp4" type="video/mp4"></video>
-          <h3><span>Step 1</span>Build a digital copy of the bench</h3><p>I reconstruct the scene from a phone video and align it with the robot and its cameras. Every object must end up at the right size and position; a good-looking scan alone is not enough.</p><details class="story-detail"><summary>Implementation and engineering challenge</summary><p>A phone reconstruction has arbitrary scale and coordinates. I register the RealSense images in COLMAP, lift their observed feature locations into 3D using measured depth, and estimate a similarity transform into the robot base frame with RANSAC and Umeyama alignment. The calibrated distance between camera centers provides an independent scale check.</p><p>A visually convincing reconstruction can still put a grasp in the wrong physical location. Metric alignment makes scan geometry, robot kinematics, and rendered observations consistent. The two scale estimates agree to 0.2%, with a 4 mm median registration residual; the scale agreement measures consistency between estimates.</p></details></figure>
+          <h3><span>Step 1</span>Build a digital copy of the bench</h3><p>I reconstruct the scene from a phone video and align it with the robot and its cameras. Every object must end up at the right size and position; a good-looking scan alone is not enough.</p><details class="story-detail"><summary>Implementation and engineering challenge</summary><p>COLMAP poses the 319 phone frames and nerfstudio&rsquo;s splatfacto fits a 450,534-Gaussian splat to them; GARField, DiG and SuGaR then turn the cube&rsquo;s Gaussians into a mesh (<a href="#h-models">the model stack</a>). A phone reconstruction has arbitrary scale and coordinates. I register the RealSense images in COLMAP, lift their observed feature locations into 3D using measured depth, and estimate a similarity transform into the robot base frame with RANSAC and Umeyama alignment. The calibrated distance between camera centers provides an independent scale check.</p><p>A visually convincing reconstruction can still put a grasp in the wrong physical location. Metric alignment makes scan geometry, robot kinematics, and rendered observations consistent. The two scale estimates agree to 0.2%, with a 4 mm median registration residual; the scale agreement measures consistency between estimates.</p></details></figure>
         <figure>
           <img src="media/step_track.jpg" alt="Tracked cube box drawn on the RealSense views through the transfer" loading="lazy">
-          <h3><span>Step 2</span>Recover where the object moved</h3><p>I estimate the object&rsquo;s position and orientation through the human demonstration. This gives the task a reusable description: where the object starts, how it moves, and where it ends.</p><details class="story-detail"><summary>Implementation and engineering challenge</summary><p>For the small, dark cube, I fuse both depth views, select candidates by position, color, and height above the table, and fit the scanned model with coarse-to-fine point-to-point ICP. Velocity prediction initializes each fit; workspace-wide clustering re-detects the cube after fast lifts. Low-confidence fits fall back to motion prediction.</p><p>The cube has 24 equivalent orientations, which can make a tracker invent sudden rotations. Choosing the equivalent orientation nearest the preceding pose and smoothing the track prevents those jumps from becoming training actions. For RGB-only tape and nut recordings, measured shapes are fitted to silhouettes in both views. During the nut&rsquo;s one-view occlusion, the visible camera ray constrains its center and depth is interpolated between reliable endpoint poses.</p></details></figure>
+          <h3><span>Step 2</span>Recover where the object moved</h3><p>I estimate the object&rsquo;s position and orientation through the human demonstration. This gives the task a reusable description: where the object starts, how it moves, and where it ends.</p><details class="story-detail"><summary>Implementation and engineering challenge</summary><p>Real2Render2Real tracks objects with RSRD, which matches DINOv2 features rendered from the object&rsquo;s Gaussians against the video. On this 4&nbsp;cm black cube, about 25 pixels across, it slid onto the fixture even after I added a metric-depth loss and a calibrated first pose. So for the small, dark cube, I fuse both depth views, select candidates by position, color, and height above the table, and fit the SuGaR mesh of the scanned cube with coarse-to-fine point-to-point ICP. Velocity prediction initializes each fit; workspace-wide clustering re-detects the cube after fast lifts. Low-confidence fits fall back to motion prediction.</p><p>The cube has 24 equivalent orientations, which can make a tracker invent sudden rotations. Choosing the equivalent orientation nearest the preceding pose and smoothing the track prevents those jumps from becoming training actions. For RGB-only tape and nut recordings, measured shapes are fitted to silhouettes in both views. During the nut&rsquo;s one-view occlusion, the visible camera ray constrains its center and depth is interpolated between reliable endpoint poses.</p></details></figure>
         <figure>
           <img src="media/step_robot.jpg" alt="UR5e and gripper model overlaid on the real arm in both cameras" loading="lazy">
           <h3><span>Step 3</span>Find a robot motion that performs the task</h3><p>I choose a grasp and solve for robot joint movements that follow the object path. The motion must fit the arm&rsquo;s reach and leave enough space for the gripper.</p><details class="story-detail"><summary>Implementation and engineering challenge</summary><p>I combine the tracked object poses with a grasp transform to obtain tool targets, then solve whole-trajectory inverse kinematics for the calibrated UR5e and Robotiq model. The sequence includes approach, grasp, carry, release, and retreat. Cube symmetry supplies four grasp yaws; the ring tasks test grasp positions around the rim.</p><p>Human demonstrations can be unreachable or leave too little space for the gripper. The tape fixture is rotated in the twin to expose an accessible branch, and nut starts are moved within reach. Leveling rest poses and resolving equivalent rotations also remove unnecessary wrist motion. These adjustments make the generated actions compatible with the robot&rsquo;s geometry.</p></details></figure>
@@ -408,6 +409,64 @@
           <img src="media/step_render.jpg" alt="Rendered UR5e carrying the cube between the fixtures in IsaacLab" loading="lazy">
           <h3><span>Step 4</span>Create new examples and render the robot&rsquo;s view</h3><p>I vary the starting position, lighting, and camera placement. Each accepted trajectory becomes camera images paired with robot joint targets: the inputs and labels used to train the policy.</p><details class="story-detail"><summary>Implementation and engineering challenge</summary><p>The generator samples a new object start and warps the leading 60% of the demonstrated path while preserving the placement target. IsaacLab renders the calibrated camera views and records robot joint targets. Scan-derived assets and a panoramic background retain the workspace appearance, while lighting, camera pose, and table appearance vary across episodes.</p><p>This supports the sim-to-real objective by anchoring training data in the physical workspace while reducing dependence on one exact capture. Image observations and action labels must describe the same state: the cube attaches to the gripper during kinematic replay. Feasibility checks reject joint-limit violations, excessive IK error, and collisions before examples enter the dataset.</p></details></figure>
       </div>
+    </section>
+
+    <section class="r2-block" id="r2-models" aria-labelledby="h-models">
+      <h2 id="h-models" class="r2-h">From phone video to simulation asset: the model stack</h2>
+      <p class="r2-lead">Before any robot motion is planned, a chain of learned models turns the phone video into things a tracker and a simulator can use: camera poses, a Gaussian splat, an object selection and a mesh. Here the cube passes through each stage. Panels 1&ndash;5 are drawn from the same phone-scan camera, so the stages line up.</p>
+      <div class="r2-stack" role="list" aria-label="The cube at each stage of the model stack">
+        <figure role="listitem"><img src="media/stack_photo.jpg" alt="Phone video frame: the black cube on its orange fixture, taped to the bench" loading="lazy" width="480" height="480"><figcaption><b>1 &middot; Phone video</b><span>319 frames, posed by COLMAP</span></figcaption></figure>
+        <figure role="listitem"><img src="media/stack_splat.jpg" alt="The Gaussian splat rendered from the same camera, nearly identical to the photo" loading="lazy" width="480" height="480"><figcaption><b>2 &middot; Gaussian splat</b><span>splatfacto: 450,534 Gaussians</span></figcaption></figure>
+        <figure role="listitem"><img src="media/stack_select.jpg" alt="The GARField and DiG selection: the cube plus pieces of the fixture top and yellow tape" loading="lazy" width="480" height="480"><figcaption><b>3 &middot; GARField + DiG</b><span>SAM groups, DINOv2 features: 724 Gaussians, fixture top included</span></figcaption></figure>
+        <figure role="listitem"><img src="media/stack_cut.jpg" alt="The selection after the cut in the robot frame: only the cube remains" loading="lazy" width="480" height="480"><figcaption><b>4 &middot; Metric cut</b><span>above the fixture top, robot frame: 493 Gaussians</span></figcaption></figure>
+        <figure role="listitem"><img src="media/stack_sugar.jpg" alt="SuGaR surface mesh of the cube: box-shaped with rippled faces" loading="lazy" width="480" height="480"><figcaption><b>5 &middot; SuGaR mesh</b><span>surface from the Gaussians: 285,568 triangles</span></figcaption></figure>
+        <figure role="listitem"><img src="media/stack_asset.jpg" alt="Close-up of the cleaned, decimated cube mesh with its triangle edges drawn" loading="lazy" width="480" height="480"><figcaption><b>6 &middot; Sim and ICP asset</b><span>cube frame, metres: 3,965 triangles</span></figcaption></figure>
+      </div>
+      <p class="r2-cap">Panel 6 is a close-up of the asset in its own frame. Its faces are rippled and one side has a dent: 493 Gaussians on a dark, nearly textureless 4&nbsp;cm cube are a thin basis for a surface, and the mesh&rsquo;s bounding box is 46.6 &times; 43.6 &times; 41.0&nbsp;mm.</p>
+
+      <div class="r2-res-wrap r2-fig">
+        <table class="r2-res r2-cmp r2-mtab">
+          <caption>The learned models in the cube task, in pipeline order. Steps 4 and 6 in the figure are my additions; they use geometry, not a model.</caption>
+          <thead><tr><th scope="col">Model</th><th scope="col">Its job</th><th scope="col">On this bench</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">COLMAP</th><td data-label="Job">Camera poses from the hand-held video</td><td data-label="Here">The RealSense images, registered into the same model, give the metric scale: two estimates 0.2% apart, 4&nbsp;mm median residual</td></tr>
+            <tr><th scope="row">3D Gaussian Splatting <small>(splatfacto)</small></th><td data-label="Job">The bench&rsquo;s appearance</td><td data-label="Here">Becomes the 360&deg; dome light and background of every IsaacLab render, and the bench in the 3D replays</td></tr>
+            <tr><th scope="row">GARField <small>(SAM ViT-H)</small></th><td data-label="Job">3D groups from 2D SAM masks, at every physical scale</td><td data-label="Here">Merged the cube with the fixture under it at every scale; I cut the selection in the robot frame</td></tr>
+            <tr><th scope="row">DiG <small>(DINOv2 ViT-B/14)</small></th><td data-label="Job">A feature on every Gaussian, so a click selects the object</td><td data-label="Here">724 Gaussians selected; 493 left after the cut</td></tr>
+            <tr><th scope="row">SuGaR</th><td data-label="Job">A triangle mesh from Gaussians</td><td data-label="Here">285,568 triangles, cleaned to the 3,965-triangle cube that the tracker fits and IsaacLab renders</td></tr>
+            <tr><th scope="row">RSRD <small>(4D-DPM)</small></th><td data-label="Job">Object pose per video frame, by matching rendered DINOv2 features</td><td data-label="Here">Slid onto the fixture even with my patches; replaced by two-view RGB-D ICP of the SuGaR mesh</td></tr>
+            <tr><th scope="row">HaMeR</th><td data-label="Job">Hand pose, to sample grasps near the hand</td><td data-label="Here">Not needed: grasps come from the cube&rsquo;s four symmetric yaws</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="r2-sub">Where each model&rsquo;s output lands in a training sample</h3>
+      <p class="r2-lead">A generated sample is two camera images, the joint state, and the next 16 joint targets. Each model reaches it through the geometry that defines the robot frame, the motion that becomes the action labels, or the appearance of the images the policy sees.</p>
+      <div class="r2-res-wrap">
+        <table class="r2-res r2-cmp r2-impact">
+          <caption>The registration reaches everything indirectly, through the scan&rsquo;s scale and pose. SuGaR&rsquo;s mesh is the only model output that is itself in the labels (as the ICP template) and in the images (as the rendered cube).</caption>
+          <thead><tr><th scope="col"></th><th scope="col">Robot-frame geometry</th><th scope="col">Action labels</th><th scope="col">Policy images</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">COLMAP + registration</th><td data-label="Geometry"><b>Puts the scan in the robot frame, in metres</b></td><td data-label="Labels">Scales the ICP template; the track&rsquo;s first pose</td><td data-label="Images">Aligns the scan background</td></tr>
+            <tr><th scope="row">Gaussian splat</th><td data-label="Geometry">&mdash;</td><td data-label="Labels">&mdash;</td><td data-label="Images"><b>Background and dome light</b></td></tr>
+            <tr><th scope="row">GARField + DiG</th><td data-label="Geometry">&mdash;</td><td data-label="Labels">Choose what is tracked</td><td data-label="Images">&mdash;</td></tr>
+            <tr><th scope="row">SuGaR</th><td data-label="Geometry">Object shape</td><td data-label="Labels"><b>ICP template for the track</b></td><td data-label="Images"><b>The cube the policy sees</b></td></tr>
+            <tr><th scope="row">RSRD</th><td data-label="Geometry">Object-frame convention</td><td data-label="Labels">Replaced by ICP</td><td data-label="Images">&mdash;</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="story-grid">
+        <div><span class="story-label">GEOMETRY DECIDES THE LABELS</span><h3>Errors here repeat in every rollout</h3><p>The joint targets come from the ICP track, which takes its template&rsquo;s size and its first pose from the registration. An offset there is copied into all 448 cube rollouts, and a policy trained on them would grasp where the real cube is not. So the scale has two independent estimates, and the track is checked by overlaying the fitted cube on both camera views.</p></div>
+        <div><span class="story-label">SUGAR IS THE BRIDGE</span><h3>Gaussians become a surface</h3><p>A splat has no surface, so ICP and IsaacLab cannot use it. SuGaR&rsquo;s mesh is the only model output that reaches both the labels and the images, and it comes from the same phone video as the background, with no CAD.</p></div>
+        <div><span class="story-label">WHERE THE MODELS STOPPED</span><h3>Small, dark objects need metric geometry</h3><p>SAM-supervised grouping merged the cube with its fixture, and DINOv2 tracking drifted off it. Both were fixed with the metric frame from the registration: a height cut for the selection, two-view depth ICP for the motion.</p></div>
+      </div>
+      <details class="story-detail"><summary>How each model works here, and what I changed</summary>
+        <p><b>Gaussian splat.</b> splatfacto fits 450,534 anisotropic Gaussians with degree-3 spherical harmonics (30k steps). It is not rendered inside IsaacLab: six cube-map faces rendered from above the workspace, with the scan&rsquo;s arm, cube and table top removed, become the equirectangular dome light. The same splat, moved into the robot frame, is the bench in the interactive replays and checks the registration against real RealSense frames.</p>
+        <p><b>GARField and DiG.</b> GARField runs SAM on every training image and distils the masks into a scale-conditioned affinity field over 3D (8k steps). DiG trains a second splat whose Gaussians each carry a 64-d feature distilled from DINOv2, grouped by GARField&rsquo;s field (8k steps); clicking the cube selects its group. At no scale did the cube separate from the fixture top and its tape, so I keep only Gaussians above z&nbsp;=&nbsp;9.5&nbsp;mm in the robot base frame (the fixture top is at 9.2&nbsp;mm) and within 3.5&nbsp;cm of the cube&rsquo;s axis, then re-export with DiG&rsquo;s writers so SuGaR and RSRD read it unchanged.</p>
+        <p><b>SuGaR.</b> 7k iterations of regularization make the Gaussians&rsquo; density agree with a signed-distance function, which pulls them flat onto a surface. Points sampled on a level set of that density go through Poisson surface reconstruction (200k vertices), and a 2k-iteration refinement binds six Gaussians to each triangle and optimizes them together with the mesh. I move the mesh into the cube frame in metres, keep its largest connected component, decimate it to 3,965 triangles, and convert it to the USD that IsaacLab loads. The planner&rsquo;s collision model uses a nominal 4&nbsp;cm cube instead.</p>
+        <p><b>RSRD and HaMeR.</b> My RSRD patches add RealSense metric depth as a loss, scan-unit distances, a 2&times; digital zoom (it rasterizes at 490&nbsp;px), NaN fixes, and a first-frame pose from calibration instead of DINO seed search. The tape and nut tasks skip GARField, DiG, SuGaR and RSRD: their colour-only demos use measured shapes fitted to outlines in both views. GARField, DiG and SuGaR took about 35, 22 and 45 minutes on one 11&ndash;12&nbsp;GB GPU.</p>
+        <p>Full write-up with commands: <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/docs/model_stack.md">docs/model_stack.md</a> &middot; figure: <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/make_model_stack_figure.py">make_model_stack_figure.py</a> &middot; <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/filter_rigid_state.py">metric cut</a> &middot; <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/mesh_to_object_frame.py">mesh to asset</a></p>
+      </details>
     </section>
 
     <details class="story-appendix"><summary>Technical detail: trajectory optimization and policy architecture</summary>    <section class="r2-block" aria-labelledby="h-control-method">

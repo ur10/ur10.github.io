@@ -140,8 +140,9 @@
           <figure class="flow" aria-labelledby="flow-r2r2r">
             <figcaption class="flow-h"><span id="flow-r2r2r">Pipeline</span><span class="flow-key" aria-hidden="true"><i class="k real">Real</i><i class="k sim">Sim</i><i class="k learn">Learn</i></span></figcaption>
             <div class="rail">
-              <div class="st real"><b>Scan the bench</b><span>phone video &rarr; Gaussian splat &middot; COLMAP</span></div>
-              <div class="st real"><b>Track the cube in 6-DoF</b><span>2&times; RGB-D &middot; ICP</span></div>
+              <div class="st real"><b>Scan the bench</b><span>phone video &rarr; COLMAP &middot; Gaussian splat</span></div>
+              <div class="st real"><b>Extract the object</b><span>GARField (SAM) + DiG (DINOv2) &rarr; SuGaR mesh</span></div>
+              <div class="st real"><b>Track the cube in 6-DoF</b><span>2&times; RGB-D &middot; ICP on the SuGaR mesh</span></div>
               <div class="st sim"><b>Put the robot in the twin</b><span>UR5e + 2F-85 URDF &middot; Isaac Sim</span></div>
               <div class="cycle"><div class="st sim"><b>Generate demos</b><span>warp + randomize &middot; Isaac Lab</span></div><div class="st sim"><b>Repair around obstacles</b><span>trajectory optimization &middot; jaxls</span></div><p class="cycle-l">&#8634; repeat: 1 human demo &rarr; 400 robot rollouts</p></div>
               <div class="st learn end"><b>Train visuomotor policy</b><span>ResNet-18 &middot; 3% &rarr; 94% in the twin</span></div>
@@ -151,10 +152,11 @@
         <div class="body">
           <h3>One Human Demonstration to Robot Training Data</h3>
           <p class="chips"><span class="chip data" title="Captured on a physical bench with real sensors; robot motion is rendered">Real-world data &middot; <i>phone scan, 2&times; RealSense, rendered robot</i></span></p>
-          <ul class="tags" aria-label="Concepts"><li>Real2Sim</li><li>3D reconstruction</li><li>Gaussian splatting</li><li>Digital twin</li><li>Synthetic data generation</li><li>Domain randomization</li><li>Imitation learning</li><li>Policy training</li><li>Trajectory optimization</li><li>Cross-embodiment</li></ul>
+          <ul class="tags" aria-label="Concepts"><li>Real2Sim</li><li>3D reconstruction</li><li>Gaussian splatting</li><li>3D segmentation</li><li>Surface reconstruction</li><li>Digital twin</li><li>Synthetic data generation</li><li>Domain randomization</li><li>Imitation learning</li><li>Policy training</li><li>Trajectory optimization</li><li>Cross-embodiment</li></ul>
           <p>I turn a recorded human demonstration into many robot training examples. A phone scan reconstructs the bench, two cameras track the object, and a planner finds UR5e motions that carry it to its goal. The generator varies object starts and scene appearance, then renders camera images paired with robot actions.</p>
+          <p>A chain of learned models turns the phone video into simulation assets: COLMAP and a Gaussian splat reconstruct the bench, GARField (SAM masks) and DiG (DINOv2 features) make the object selectable, and SuGaR converts its Gaussians into the mesh that both the tracker and the simulator use. On a 4&nbsp;cm black cube the models broke: segmentation merged it with its fixture and feature tracking drifted off it. I fixed both with metric geometry: a height cut in the robot frame, and two-view depth ICP.</p>
           <p>My work covers calibration, object tracking, robot integration, and repairing motions when a new obstacle blocks the original path. Those detours matter: in the cube experiment, training with repaired obstacle demonstrations achieved <b>85% success</b> on blocked routes, compared with <b>4%</b> using filtered demonstrations. These are policy evaluations in the rendered twin.</p>
-          <p class="tools"><span class="tools-h">Tools</span><span class="tool">Isaac Lab / Isaac Sim</span><span class="tool">COLMAP</span><span class="tool">Gaussian Splatting</span><span class="tool">Intel RealSense</span><span class="tool">ICP</span><span class="tool">jaxls</span><span class="tool">PyTorch</span><span class="tool">Viser</span></p>
+          <p class="tools"><span class="tools-h">Tools</span><span class="tool">Isaac Lab / Isaac Sim</span><span class="tool">COLMAP</span><span class="tool">nerfstudio / 3DGS</span><span class="tool">GARField + SAM</span><span class="tool">DiG + DINOv2</span><span class="tool">SuGaR</span><span class="tool">Intel RealSense</span><span class="tool">ICP</span><span class="tool">jaxls</span><span class="tool">PyTorch</span><span class="tool">Viser</span></p>
           <p class="btns"><a class="btn" href="projects/real2render2real/"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-globe"/></svg>Project page</a> <a class="btn" href="https://github.com/ur10/real2render2real-ur5e" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a></p>
         </div>
       </article>
