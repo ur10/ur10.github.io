@@ -143,3 +143,45 @@
   window.addEventListener('hashchange', reveal);
   reveal();
 })();
+
+// Pipeline video: phone poster, chapter buttons, autoplay while in view until the visitor takes over.
+(function () {
+  var vid = document.getElementById('r2-pipe-v');
+  if (!vid) return;
+  if (vid.dataset.tallPoster && window.matchMedia('(max-width: 640px)').matches) vid.poster = vid.dataset.tallPoster;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.r2-pipe-ch button'));
+  var user = false;
+  function play() { var pr = vid.play(); if (pr && pr.catch) pr.catch(function () {}); }
+  function mark() {
+    var t = vid.currentTime, cur = btns[0];
+    btns.forEach(function (b) { if (t + 0.05 >= parseFloat(b.dataset.t)) cur = b; });
+    btns.forEach(function (b) {
+      var on = b === cur;
+      b.classList.toggle('on', on);
+      if (on) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current');
+    });
+  }
+  vid.addEventListener('timeupdate', mark);
+  vid.addEventListener('seeked', mark);
+  ['pointerdown', 'keydown'].forEach(function (ev) { vid.addEventListener(ev, function () { user = true; }); });
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      user = true;
+      vid.currentTime = parseFloat(b.dataset.t);
+      play();
+      mark();
+      var r = vid.getBoundingClientRect();
+      if (r.top < 0 || r.bottom > window.innerHeight) vid.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+    });
+  });
+  if ('IntersectionObserver' in window && !reduced) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { if (!user && vid.paused && !vid.ended) play(); }
+        else if (!vid.paused) vid.pause();
+      });
+    }, { threshold: 0.5 }).observe(vid);
+  }
+  mark();
+})();

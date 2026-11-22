@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
 <link rel="stylesheet" href="../../styles.css?v=20261103" />
-<link rel="stylesheet" href="r2.css?v=20261121-models" />
+<link rel="stylesheet" href="r2.css?v=20261121-video" />
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -54,6 +54,7 @@
       <p class="r2-author"><a href="../../">Utkarsh Rai</a></p>
       <p class="r2-aff">Northeastern University</p>
       <div class="r2-btns">
+        <a class="btn" href="#r2-pipeline"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-play"/></svg>Pipeline video</a>
         <a class="btn" href="https://github.com/ur10/real2render2real-ur5e" target="_blank" rel="noopener noreferrer"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-github"/></svg>Code</a>
         <a class="btn" href="#h-rep"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-play"/></svg>Obstacle demos</a>
         <a class="btn" href="#h-tasks"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-doc"/></svg>Three tasks</a>
@@ -62,6 +63,27 @@
     </header>
 
     <p class="story-ownership"><b>What I built:</b> the calibration and tracking for my own bench, the scan-to-asset model chain on this bench and the fixes where it broke, UR5e integration, obstacle-aware trajectory repair, and the policy evaluation. Built on <a href="https://real2render2real.com/">Real2Render2Real</a>.</p>
+
+    <section class="r2-block r2-pipe" id="r2-pipeline" aria-labelledby="h-pipe">
+      <h2 id="h-pipe" class="r2-h">The whole pipeline in 80 seconds</h2>
+      <p class="r2-lead">Every stage from a phone video to a trained policy, with the model used and the numbers it produced, for all three tasks. Select a chapter to jump to it.</p>
+      <video id="r2-pipe-v" class="r2-pipe-v" controls muted playsinline preload="metadata" poster="media/pipeline_wide.jpg" data-tall-poster="media/pipeline_tall.jpg" aria-label="Pipeline video: phone scan, learned 3D segmentation, SuGaR mesh, measured shapes for the tape and nut, tracking, planning, generation, obstacle repair and policy results, with the models and numbers at each stage">
+        <source src="media/pipeline_tall.mp4" type="video/mp4" media="(max-width:640px)">
+        <source src="media/pipeline_wide.mp4" type="video/mp4">
+      </video>
+      <ol class="r2-pipe-ch" aria-label="Video chapters">
+        <li><button type="button" data-t="0"><span>0:00</span><b>Input</b><em>A phone scan, and one human demo per task: cube (RGB-D), tape roll and nut (RGB)</em></button></li>
+        <li><button type="button" data-t="5.2"><span>0:05</span><b>Scan</b><em>COLMAP poses and a Gaussian splat, registered to the robot frame</em></button></li>
+        <li><button type="button" data-t="14.2"><span>0:14</span><b>Segment &middot; cube</b><em>GARField (SAM) + DiG (DINOv2), then a metric cut</em></button></li>
+        <li><button type="button" data-t="22.7"><span>0:22</span><b>Mesh &middot; cube</b><em>SuGaR surface, cleaned to the 3,965-triangle sim and ICP asset</em></button></li>
+        <li><button type="button" data-t="30.9"><span>0:30</span><b>Shapes &middot; tape, nut</b><em>Measured rings fitted to colour silhouettes in two views</em></button></li>
+        <li><button type="button" data-t="38.4"><span>0:38</span><b>Track</b><em>Depth ICP of the SuGaR mesh; two-view silhouette fits</em></button></li>
+        <li><button type="button" data-t="48"><span>0:48</span><b>Plan</b><em>Symmetric grasps, whole-trajectory IK in JAX</em></button></li>
+        <li><button type="button" data-t="54.7"><span>0:54</span><b>Generate</b><em>IsaacLab renders: 448/448, 25/48, 48/48 valid</em></button></li>
+        <li><button type="button" data-t="62.7"><span>1:02</span><b>Repair</b><em>Trajectory optimization around an added bottle: 5 &rarr; 17</em></button></li>
+        <li><button type="button" data-t="69.2"><span>1:09</span><b>Train</b><em>ResNet-18 policy: 3% &rarr; 94%, 4% &rarr; 85% in the twin</em></button></li>
+      </ol>
+    </section>
 
     <section class="r2-block" id="r2-video" aria-labelledby="h-str">
       <video id="r2-trip" class="r2-trip" muted playsinline loop preload="metadata" poster="media/triptych.jpg" data-tall="media/triptych_tall" aria-label="Real demo, tracked cube and rendered robot replay, side by side">
@@ -86,7 +108,7 @@
         <div><span class="story-label">OUTPUT</span><h3>A dataset of robot demonstrations</h3><p>The pipeline plans robot motion and renders camera images paired with joint targets, under varied starts and scene conditions.</p></div>
         <div><span class="story-label">PURPOSE</span><h3>A policy that handles new situations</h3><p>A visual policy learns from these examples. I test whether it can complete the task in scenes held out from training.</p></div>
       </div>
-      <p class="r2-note"><b>Where the learned models fit:</b> COLMAP and Gaussian splatting reconstruct the real bench from a phone video, and calibration puts that reconstruction in the robot&rsquo;s coordinate frame. GARField (trained on SAM masks) and DiG (DINOv2 features) make the object selectable, and SuGaR turns its Gaussians into the mesh that the tracker and the simulator both use. <a href="#h-models">See the model stack</a>. The reported policy experiments run in a rendered, kinematic twin: the cube attaches to the gripper during replay.</p>
+      <p class="r2-note"><b>Where the learned models fit:</b> for all three tasks, COLMAP and Gaussian splatting reconstruct the real bench from a phone video, and calibration puts that reconstruction in the robot&rsquo;s coordinate frame. For the cube, GARField (trained on SAM masks) and DiG (DINOv2 features) make the object selectable, and SuGaR turns its Gaussians into the mesh that the tracker and the simulator both use. The tape roll and nut were never scanned and were recorded in colour only, so they are measured shapes fitted to their silhouettes in both cameras. <a href="#h-models">See the model stack, task by task</a>. The reported policy experiments run in a rendered, kinematic twin: the cube attaches to the gripper during replay.</p>
     </section>
 
     <section class="r2-block" aria-labelledby="h-3d">
@@ -412,8 +434,26 @@
     </section>
 
     <section class="r2-block" id="r2-models" aria-labelledby="h-models">
-      <h2 id="h-models" class="r2-h">From phone video to simulation asset: the model stack</h2>
-      <p class="r2-lead">Before any robot motion is planned, a chain of learned models turns the phone video into things a tracker and a simulator can use: camera poses, a Gaussian splat, an object selection and a mesh. Here the cube passes through each stage. Panels 1&ndash;5 are drawn from the same phone-scan camera, so the stages line up.</p>
+      <h2 id="h-models" class="r2-h">The model stack, task by task</h2>
+      <p class="r2-lead">Before any robot motion is planned, the bench and each object have to exist as geometry in the robot&rsquo;s frame. The bench comes from one phone scan for all three tasks. The object models depend on what was recorded. The cube was in the scan and its demo has depth, so it goes through the learned chain. The tape roll and the nut were recorded later, in colour only and never scanned, so they are measured shapes fitted to their outlines in the two calibrated views.</p>
+      <div class="r2-res-wrap r2-wide">
+        <table class="r2-res r2-cmp r2-tasktab">
+          <caption>What each task used at each stage. The bench row is shared by all three tasks.</caption>
+          <thead><tr><th scope="col">Stage</th><th scope="col">Cube <small>RGB-D demo</small></th><th scope="col">Tape roll <small>RGB demo</small></th><th scope="col">Nut <small>RGB demo</small></th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Bench</th><td colspan="3" data-label="All tasks"><b>COLMAP + Gaussian splat</b> from one phone video, registered to the robot base frame; a 360&deg; render of the splat lights every IsaacLab scene</td></tr>
+            <tr><th scope="row">Find the object</th><td data-label="Cube"><b>GARField (SAM) + DiG (DINOv2)</b>, then a cut in the robot frame</td><td data-label="Tape roll">Blue colour mask in each view, hand pixels ignored</td><td data-label="Nut">Green colour mask; the stand&rsquo;s green spacers ignored</td></tr>
+            <tr><th scope="row">Object shape</th><td data-label="Cube"><b>SuGaR</b> mesh, cleaned to 3,965 triangles</td><td data-label="Tape roll">Measured roll: 51.4&nbsp;mm outer and 41.3&nbsp;mm core radius, 24&nbsp;mm wide</td><td data-label="Nut">Measured ring: 32&nbsp;mm across, 21&nbsp;mm hole, 15.7&nbsp;mm thick</td></tr>
+            <tr><th scope="row">Fixtures</th><td data-label="Cube">Table plane and fixtures measured from RGB-D</td><td data-label="Tape roll">Mug tree: post, base and branches triangulated from both views</td><td data-label="Nut">Bolt stand: rod, spacers and block triangulated and fitted</td></tr>
+            <tr><th scope="row">Track</th><td data-label="Cube">Two-view depth ICP of the SuGaR mesh (RSRD drifted)</td><td data-label="Tape roll">Two-view silhouette fit, 5-DoF: the spin about the roll&rsquo;s axis is unobservable and irrelevant</td><td data-label="Nut">Silhouette fit; a 1.3&nbsp;s one-view gap bridged along the front camera&rsquo;s ray</td></tr>
+            <tr><th scope="row">Clean-up</th><td data-label="Cube">Nearest of 24 symmetric orientations; levelled rests</td><td data-label="Tape roll">End-for-end symmetry; release 4.5&nbsp;cm onto the branch</td><td data-label="Nut">Centred on the rod, lowered from above its tip</td></tr>
+            <tr><th scope="row">Valid rollouts</th><td data-label="Cube">448 / 448</td><td data-label="Tape roll">25 / 48</td><td data-label="Nut">48 / 48</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="r2-sub">Cube: the learned chain, stage by stage</h3>
+      <p class="r2-lead">Panels 1&ndash;5 are drawn from the same phone-scan camera, so the stages line up.</p>
       <div class="r2-stack" role="list" aria-label="The cube at each stage of the model stack">
         <figure role="listitem"><img src="media/stack_photo.jpg" alt="Phone video frame: the black cube on its orange fixture, taped to the bench" loading="lazy" width="480" height="480"><figcaption><b>1 &middot; Phone video</b><span>319 frames, posed by COLMAP</span></figcaption></figure>
         <figure role="listitem"><img src="media/stack_splat.jpg" alt="The Gaussian splat rendered from the same camera, nearly identical to the photo" loading="lazy" width="480" height="480"><figcaption><b>2 &middot; Gaussian splat</b><span>splatfacto: 450,534 Gaussians</span></figcaption></figure>
@@ -423,6 +463,16 @@
         <figure role="listitem"><img src="media/stack_asset.jpg" alt="Close-up of the cleaned, decimated cube mesh with its triangle edges drawn" loading="lazy" width="480" height="480"><figcaption><b>6 &middot; Sim and ICP asset</b><span>cube frame, metres: 3,965 triangles</span></figcaption></figure>
       </div>
       <p class="r2-cap">Panel 6 is a close-up of the asset in its own frame. Its faces are rippled and one side has a dent: 493 Gaussians on a dark, nearly textureless 4&nbsp;cm cube are a thin basis for a surface, and the mesh&rsquo;s bounding box is 46.6 &times; 43.6 &times; 41.0&nbsp;mm.</p>
+
+      <h3 class="r2-sub">Tape roll and nut: measured shapes from colour video</h3>
+      <p class="r2-lead">Neither object is in the phone scan and their demos have no depth, so the scan-to-mesh chain has nothing to work on. Each object is instead a parametric ring. Its surface is sampled, z-buffered and projected into both calibrated views, and its size and pose are fitted until the rendered outline matches the colour mask (1&nbsp;&minus;&nbsp;IoU). Size is fitted once, on frames where the object rests in two different places; the same fit, run frame by frame with the size fixed, is the tracker.</p>
+      <div class="r2-shapes" role="list" aria-label="Measured shapes of the tape and nut tasks">
+        <figure role="listitem"><img src="media/shapes_tape_rest.jpg" alt="Tape roll lying on the bench with the fitted outer and inner outlines drawn over it" loading="lazy" width="360" height="450"><figcaption><b>Tape roll, at rest</b><span>R 51.4&nbsp;mm, core 41.3&nbsp;mm, 24&nbsp;mm wide</span></figcaption></figure>
+        <figure role="listitem"><img src="media/shapes_tape_tree.jpg" alt="Tape roll hanging on the mug tree with the fitted outlines drawn over it" loading="lazy" width="360" height="450"><figcaption><b>Tape roll, on the tree</b><span>the second frame of the size fit</span></figcaption></figure>
+        <figure role="listitem"><img src="media/shapes_mug_tree.jpg" alt="Mug tree with its measured post, base disc and branches drawn over the right camera view" loading="lazy" width="360" height="450"><figcaption><b>Mug tree</b><span>post, base and branches triangulated</span></figcaption></figure>
+        <figure role="listitem"><img src="media/shapes_nut_stand.jpg" alt="Bolt stand with its measured rod, spacers, base nut and block drawn over the front camera view" loading="lazy" width="360" height="450"><figcaption><b>Bolt stand</b><span>rod, spacers, block and the nut&rsquo;s final pose</span></figcaption></figure>
+      </div>
+      <p class="r2-cap">Fitted models drawn over the RealSense images. The mug tree&rsquo;s points were picked in both views and checked against the epipolar lines: within 1&nbsp;px, except one branch tip at 2&nbsp;px.</p>
 
       <div class="r2-res-wrap r2-fig">
         <table class="r2-res r2-cmp r2-mtab">
@@ -441,10 +491,10 @@
       </div>
 
       <h3 class="r2-sub">Where each model&rsquo;s output lands in a training sample</h3>
-      <p class="r2-lead">A generated sample is two camera images, the joint state, and the next 16 joint targets. Each model reaches it through the geometry that defines the robot frame, the motion that becomes the action labels, or the appearance of the images the policy sees.</p>
+      <p class="r2-lead">A generated sample is two camera images, the joint state, and the next 16 joint targets. Each model reaches it through the geometry that defines the robot frame, the motion that becomes the action labels, or the appearance of the images the policy sees. The same three paths hold for the tape and nut, with measured shapes in SuGaR&rsquo;s place.</p>
       <div class="r2-res-wrap">
         <table class="r2-res r2-cmp r2-impact">
-          <caption>The registration reaches everything indirectly, through the scan&rsquo;s scale and pose. SuGaR&rsquo;s mesh is the only model output that is itself in the labels (as the ICP template) and in the images (as the rendered cube).</caption>
+          <caption>The registration reaches everything indirectly, through the scan&rsquo;s scale and pose. For the cube, SuGaR&rsquo;s mesh is the only model output that is itself in the labels (as the ICP template) and in the images (as the rendered cube); the measured shapes play that role for the tape and nut.</caption>
           <thead><tr><th scope="col"></th><th scope="col">Robot-frame geometry</th><th scope="col">Action labels</th><th scope="col">Policy images</th></tr></thead>
           <tbody>
             <tr><th scope="row">COLMAP + registration</th><td data-label="Geometry"><b>Puts the scan in the robot frame, in metres</b></td><td data-label="Labels">Scales the ICP template; the track&rsquo;s first pose</td><td data-label="Images">Aligns the scan background</td></tr>
@@ -452,18 +502,19 @@
             <tr><th scope="row">GARField + DiG</th><td data-label="Geometry">&mdash;</td><td data-label="Labels">Choose what is tracked</td><td data-label="Images">&mdash;</td></tr>
             <tr><th scope="row">SuGaR</th><td data-label="Geometry">Object shape</td><td data-label="Labels"><b>ICP template for the track</b></td><td data-label="Images"><b>The cube the policy sees</b></td></tr>
             <tr><th scope="row">RSRD</th><td data-label="Geometry">Object-frame convention</td><td data-label="Labels">Replaced by ICP</td><td data-label="Images">&mdash;</td></tr>
+            <tr><th scope="row">Measured shapes <small>(tape, nut)</small></th><td data-label="Geometry">Object and fixture shapes</td><td data-label="Labels"><b>Silhouette-fit template for the track</b></td><td data-label="Images"><b>The rendered roll, nut and fixtures</b></td></tr>
           </tbody>
         </table>
       </div>
       <div class="story-grid">
-        <div><span class="story-label">GEOMETRY DECIDES THE LABELS</span><h3>Errors here repeat in every rollout</h3><p>The joint targets come from the ICP track, which takes its template&rsquo;s size and its first pose from the registration. An offset there is copied into all 448 cube rollouts, and a policy trained on them would grasp where the real cube is not. So the scale has two independent estimates, and the track is checked by overlaying the fitted cube on both camera views.</p></div>
-        <div><span class="story-label">SUGAR IS THE BRIDGE</span><h3>Gaussians become a surface</h3><p>A splat has no surface, so ICP and IsaacLab cannot use it. SuGaR&rsquo;s mesh is the only model output that reaches both the labels and the images, and it comes from the same phone video as the background, with no CAD.</p></div>
-        <div><span class="story-label">WHERE THE MODELS STOPPED</span><h3>Small, dark objects need metric geometry</h3><p>SAM-supervised grouping merged the cube with its fixture, and DINOv2 tracking drifted off it. Both were fixed with the metric frame from the registration: a height cut for the selection, two-view depth ICP for the motion.</p></div>
+        <div><span class="story-label">GEOMETRY DECIDES THE LABELS</span><h3>Errors here repeat in every rollout</h3><p>In all three tasks the joint targets come from the object track. For the cube, the ICP template&rsquo;s size and the track&rsquo;s first pose come from the registration; an offset there is copied into all 448 cube rollouts, and a policy trained on them would grasp where the real cube is not. So the scale has two independent estimates, and every track is checked by overlaying the fitted object on both camera views.</p></div>
+        <div><span class="story-label">SUGAR IS THE BRIDGE</span><h3>Gaussians become a surface</h3><p>A splat has no surface, so ICP and IsaacLab cannot use it. For the cube, SuGaR&rsquo;s mesh is the only model output that reaches both the labels and the images, and it comes from the same phone video as the background, with no CAD.</p></div>
+        <div><span class="story-label">MATCH THE MODEL TO THE DATA</span><h3>Learned where it works, geometry where it breaks</h3><p>SAM-supervised grouping merged the cube with its fixture and DINOv2 tracking drifted off it; a height cut in the robot frame and two-view depth ICP fixed both. The tape and nut had no scan and no depth, so analysis by synthesis with measured shapes recovered their motion from colour video alone.</p></div>
       </div>
       <details class="story-detail"><summary>How each model works here, and what I changed</summary>
         <p><b>Gaussian splat.</b> splatfacto fits 450,534 anisotropic Gaussians with degree-3 spherical harmonics (30k steps). It is not rendered inside IsaacLab: six cube-map faces rendered from above the workspace, with the scan&rsquo;s arm, cube and table top removed, become the equirectangular dome light. The same splat, moved into the robot frame, is the bench in the interactive replays and checks the registration against real RealSense frames.</p>
         <p><b>GARField and DiG.</b> GARField runs SAM on every training image and distils the masks into a scale-conditioned affinity field over 3D (8k steps). DiG trains a second splat whose Gaussians each carry a 64-d feature distilled from DINOv2, grouped by GARField&rsquo;s field (8k steps); clicking the cube selects its group. At no scale did the cube separate from the fixture top and its tape, so I keep only Gaussians above z&nbsp;=&nbsp;9.5&nbsp;mm in the robot base frame (the fixture top is at 9.2&nbsp;mm) and within 3.5&nbsp;cm of the cube&rsquo;s axis, then re-export with DiG&rsquo;s writers so SuGaR and RSRD read it unchanged.</p>
-        <p><b>SuGaR.</b> 7k iterations of regularization make the Gaussians&rsquo; density agree with a signed-distance function, which pulls them flat onto a surface. Points sampled on a level set of that density go through Poisson surface reconstruction (200k vertices), and a 2k-iteration refinement binds six Gaussians to each triangle and optimizes them together with the mesh. I move the mesh into the cube frame in metres, keep its largest connected component, decimate it to 3,965 triangles, and convert it to the USD that IsaacLab loads. The planner&rsquo;s collision model uses a nominal 4&nbsp;cm cube instead.</p>
+        <p><b>SuGaR.</b> 7k iterations of regularization make the Gaussians&rsquo; density agree with a signed-distance function, which pulls them flat onto a surface. Points sampled on a level set of that density go through Poisson surface reconstruction (200k vertices), and a 2k-iteration refinement binds six Gaussians to each triangle and optimizes them together with the mesh. I move the mesh into the cube frame in metres, keep its largest connected component, decimate it to 3,965 triangles, and convert it to the USD that IsaacLab loads (rendered in the texture&rsquo;s mean colour, since vertex colours do not survive the import). The planner&rsquo;s collision model uses a nominal 4&nbsp;cm cube instead.</p>
         <p><b>RSRD and HaMeR.</b> My RSRD patches add RealSense metric depth as a loss, scan-unit distances, a 2&times; digital zoom (it rasterizes at 490&nbsp;px), NaN fixes, and a first-frame pose from calibration instead of DINO seed search. The tape and nut tasks skip GARField, DiG, SuGaR and RSRD: their colour-only demos use measured shapes fitted to outlines in both views. GARField, DiG and SuGaR took about 35, 22 and 45 minutes on one 11&ndash;12&nbsp;GB GPU.</p>
         <p>Full write-up with commands: <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/docs/model_stack.md">docs/model_stack.md</a> &middot; figure: <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/make_model_stack_figure.py">make_model_stack_figure.py</a> &middot; <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/filter_rigid_state.py">metric cut</a> &middot; <a href="https://github.com/ur10/real2render2real-ur5e/blob/main/pipeline/mesh_to_object_frame.py">mesh to asset</a></p>
       </details>
@@ -486,6 +537,6 @@
     <p><a href="../../">ur10.github.io</a><span>|</span><a href="mailto:rai.ut@northeastern.edu">rai.ut@northeastern.edu</a><span>|</span><a href="https://github.com/ur10" target="_blank" rel="noopener noreferrer">GitHub</a></p>
   </footer>
 </div>
-<script src="r2.js?v=20261109-story" defer></script>
+<script src="r2.js?v=20261121-video" defer></script>
 </body>
 </html>
