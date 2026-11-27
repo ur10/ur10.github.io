@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adapting Pretrained 3D Manipulation Policies with Residual RL | Utkarsh Rai</title>
+<meta name="description" content="A bounded SAC residual and a learned Q-advantage gate adapt a frozen, simulation-pretrained 3D Diffusion Policy for precise ring-on-peg insertion on a physical UR10 with dual RealSense point clouds." />
+<link rel="canonical" href="https://ur10.github.io/projects/pointcloud-adaptation/" />
+<meta property="og:title" content="Adapting Pretrained 3D Manipulation Policies with Residual RL" />
+<meta property="og:description" content="Frozen DP3 base, bounded SAC residual, Q-advantage gate. Ring-on-peg insertion on a physical UR10." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ur10.github.io/projects/pointcloud-adaptation/" />
+<meta property="og:image" content="https://ur10.github.io/assets/real/peg-comparison-front.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="../../site.css?v=20261126" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topnav">
+  <div class="topnav-in">
+    <a class="home" href="../../">Utkarsh Rai</a>
+    <nav aria-label="Site">
+      <a href="../../#robot-learning">Robot Learning</a>
+      <a href="../../#optimization">Optimization</a>
+      <a href="../../#publications">Publications</a>
+      <a href="../../#experience">Experience</a>
+      <a href="../../assets/cv/Utkarsh_Rai_Resume.pdf">CV</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <header class="p-header">
+    <h1 class="p-title">Adapting Pretrained 3D Manipulation Policies with Residual RL</h1>
+    <p class="p-sub">Bounded, gated corrections for a frozen point-cloud policy on a physical UR10</p>
+    <p class="p-authors"><a href="../../">Utkarsh Rai</a></p>
+    <p class="p-affil">Northeastern University</p>
+    <p class="p-scope"><span class="scope hw">Physical UR10</span><span class="scope sim">Simulation pretraining</span></p>
+    <div class="pills">
+      <a class="pill" href="https://github.com/ur10/residual-pointcloud-adaptation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>Code</a>
+    </div>
+  </header>
+
+  <section class="p-wide teaser">
+    <figure class="fig">
+      <div class="frame"><video data-loop autoplay muted loop playsinline preload="metadata" width="900" height="506" poster="../../assets/real/peg-comparison-front.jpg" aria-label="UR10 ring-on-peg from the front camera: base policy plus residual on the left, base policy alone on the right, with end-effector traces below"><source src="../../assets/real/peg-comparison-front.mp4" type="video/mp4"></video></div>
+      <figcaption><b>Left:</b> frozen base policy + residual. <b>Right:</b> base policy alone. Front camera with the fused point cloud, top-down end-effector path, commanded step and end-effector height.</figcaption>
+    </figure>
+  </section>
+
+  <div class="keyresult">
+    <div class="keyresult-top">
+      <div class="kr hw"><span class="num">≤ 5 mm</span><span class="lab">per-step correction bound (0.02 rad in rotation); the base policy never changes</span></div>
+      <span class="kr-sep" aria-hidden="true"></span>
+      <div class="kr"><span class="num">10 Hz</span><span class="lab">closed-loop control on the UR10 from a 1,024-point fused cloud</span></div>
+    </div>
+    <dl class="qa">
+      <div><dt>Question</dt><dd>Can small, bounded corrections fix the final alignment of a frozen 3D policy on real hardware?</dd></div>
+      <div><dt>Setting</dt><dd>Physical UR10, Robotiq 2F gripper, ring onto a peg, two RealSense cameras</dd></div>
+      <div><dt>Measurement</dt><dd>Ring seated 15 mm down the peg, matched starts for base and adapted policy</dd></div>
+      <div><dt>Comparator</dt><dd>The same frozen DP3 base policy without the residual</dd></div>
+    </dl>
+  </div>
+
+  <section class="p-section p-col" aria-labelledby="h-overview">
+    <h2 class="p-h" id="h-overview">Overview</h2>
+    <p>A frozen, simulation-pretrained 3D Diffusion Policy can bring a ring to the peg and still miss the final alignment under depth noise, occlusion and calibration error.</p>
+    <p>I developed a bounded SAC residual controller that corrects the base policy's 6-DoF actions using real-robot experience. A learned Q-advantage gate decides when a correction should be applied, and two RealSense cameras provide the fused point-cloud observation. The project includes physical UR10 runs and a complete perception-to-policy execution pipeline.</p>
+  </section>
+
+  <section class="p-section" aria-labelledby="h-method">
+    <div class="p-col"><h2 class="p-h" id="h-method">Method</h2></div>
+    <div class="p-wide">
+      <figure class="diagram">
+        <div class="scroll">
+        <svg viewBox="0 0 960 330" role="img" aria-labelledby="dg2-t dg2-d">
+          <title id="dg2-t">Gated residual architecture</title>
+          <desc id="dg2-d">Two RealSense depth streams are fused into a 1,024-point cloud. A frozen DP3 policy proposes a base action. A SAC residual actor proposes a bounded correction. A Q-advantage gate compares base plus residual against base alone and opens only when the correction is predicted to help. The executed action goes to the UR10 at 10 Hz; real transitions update the residual and critic, never the base.</desc>
+          <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="dg-head"/></marker></defs>
+          <rect class="dg-box data" x="20" y="96" width="190" height="120" rx="12"/>
+          <text class="dg-m" x="38" y="122">OBSERVATION</text>
+          <text class="dg-t" x="38" y="148">Fused point cloud</text>
+          <text class="dg-s" x="38" y="172">2 × RealSense → 1,024 pts</text>
+          <text class="dg-s" x="38" y="194">+ robot state</text>
+          <rect class="dg-box base" x="270" y="30" width="230" height="88" rx="12"/>
+          <text class="dg-m" x="288" y="56">FROZEN · SIM-PRETRAINED</text>
+          <text class="dg-t" x="288" y="80">DP3 base policy</text>
+          <text class="dg-s" x="288" y="102">6-DoF EE delta + gripper</text>
+          <rect class="dg-box learn" x="270" y="168" width="230" height="88" rx="12"/>
+          <text class="dg-m" x="288" y="194">LEARNED · SAC</text>
+          <text class="dg-t" x="288" y="218">Bounded residual Δa</text>
+          <text class="dg-s" x="288" y="240">≤ 5 mm, ≤ 0.02 rad per step</text>
+          <path class="dg-a" d="M210 140 C240 140 240 74 268 74" marker-end="url(#ah2)"/>
+          <path class="dg-a" d="M210 172 C240 172 240 212 268 212" marker-end="url(#ah2)"/>
+          <rect class="dg-box learn" x="560" y="98" width="190" height="116" rx="12"/>
+          <text class="dg-m" x="578" y="124">Q-ADVANTAGE GATE</text>
+          <text class="dg-t" x="578" y="148">Q(base + Δa) vs Q(base)</text>
+          <text class="dg-s" x="578" y="172">open only if it helps</text>
+          <text class="dg-s" x="578" y="194">hysteresis: ≥ 3 steps open</text>
+          <path class="dg-a" d="M500 74 C532 74 532 128 558 128" marker-end="url(#ah2)"/>
+          <path class="dg-a" d="M500 212 C532 212 532 184 558 184" marker-end="url(#ah2)"/>
+          <rect class="dg-box hw" x="800" y="98" width="142" height="116" rx="12"/>
+          <text class="dg-m dg-hw" x="816" y="124">HARDWARE</text>
+          <text class="dg-t" x="816" y="148">UR10</text>
+          <text class="dg-s" x="816" y="172">UR RTDE</text>
+          <text class="dg-s" x="816" y="194">10 Hz</text>
+          <path class="dg-a" d="M750 156 H798" marker-end="url(#ah2)"/>
+          <path class="dg-a" d="M871 214 V296 H385 V258" marker-end="url(#ah2)"/>
+          <text class="dg-m" x="628" y="316" text-anchor="middle">REAL TRANSITIONS → REPLAY BUFFER → SAC UPDATE · BASE NEVER CHANGES</text>
+        </svg>
+        </div>
+        <figcaption>a<sub>exec</sub> = a<sub>base</sub> + gate · Δa. When the gate is closed the robot executes the base action unchanged; the residual never touches the gripper.</figcaption>
+      </figure>
+    </div>
+    <div class="p-col">
+      <h3 class="p-h3">Why a frozen 3D base</h3>
+      <p>A point cloud directly represents observed surfaces in 3D, which exposes the relative pose, clearance and approach direction that alignment depends on. The DP3-style base keeps that geometric prior; the residual builds on it rather than retraining it.</p>
+      <h3 class="p-h3">Why a gate</h3>
+      <p>A residual that always acts can undo good base behaviour. Twin Q-functions score the corrected action against the base action, and the gate opens only when the correction is predicted to help, with hysteresis to prevent rapid switching.</p>
+      <h3 class="p-h3">Perception pipeline</h3>
+    </div>
+    <div class="p-wide">
+      <div class="flow">
+        <div><b>Fuse</b><span>Two RealSense depth streams in the robot base frame</span></div>
+        <div><b>Crop</b><span>Workspace bounds around ring and peg; depth truncated at 1.2 m</span></div>
+        <div><b>Clean</b><span>4 mm voxel filter and outlier removal</span></div>
+        <div><b>Sample</b><span>Farthest-point sampling to 1,024 points</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section" aria-labelledby="h-runs">
+    <div class="p-col"><h2 class="p-h" id="h-runs">Robot Runs</h2></div>
+    <div class="p-wide">
+      <div class="grid2">
+        <figure class="fig">
+          <div class="frame"><video data-loop autoplay muted loop playsinline preload="metadata" poster="../../assets/real/peg-ep0-composite.jpg" aria-label="Per-episode dashboard: point cloud reprojected onto both RealSense images"><source src="../../assets/real/peg-ep0-composite.mp4" type="video/mp4"></video></div>
+          <figcaption><b>Per-episode dashboard:</b> the fused point cloud reprojected onto both RealSense images.</figcaption>
+        </figure>
+        <figure class="fig">
+          <div class="frame"><video data-loop autoplay muted loop playsinline preload="metadata" poster="../../assets/real/peg-comparison-right.jpg" aria-label="Right camera view of the same two episodes"><source src="../../assets/real/peg-comparison-right.mp4" type="video/mp4"></video></div>
+          <figcaption><b>Right camera,</b> same two episodes.</figcaption>
+        </figure>
+        <figure class="fig">
+          <div class="frame"><video data-loop autoplay muted loop playsinline preload="metadata" poster="../../assets/real/peg-rerun.jpg" aria-label="Rerun timeline of both episodes"><source src="../../assets/real/peg-rerun.mp4" type="video/mp4"></video></div>
+          <figcaption><b>Rerun timeline:</b> point cloud, camera streams and actions on one clock.</figcaption>
+        </figure>
+        <figure class="fig">
+          <div class="frame" style="aspect-ratio:900/506"><video style="height:100%;object-fit:cover" data-loop autoplay muted loop playsinline preload="metadata" poster="../../assets/thumbs/peg-ours.jpg" aria-label="Peg insertion in simulation"><source src="../../assets/thumbs/peg-ours.mp4" type="video/mp4"></video></div>
+          <figcaption><b>Simulation counterpart:</b> peg insertion. Also evaluated on RoboMimic Square, Adroit Pen and Adroit Door. <span class="scope sim">Physics sim</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section p-col" aria-labelledby="h-compare">
+    <h2 class="p-h" id="h-compare">Two Residual Projects, Two Questions</h2>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th scope="col"></th><th scope="col">UR10 point-cloud adaptation</th><th scope="col">UR5e force-aware insertion</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Core problem</th><td>Visual and depth uncertainty in fine alignment</td><td>Contact uncertainty during insertion</td></tr>
+          <tr><th scope="row">Base policy</th><td>Frozen DP3 point-cloud diffusion policy</td><td>Frozen DAgger controller</td></tr>
+          <tr><th scope="row">Residual learner</th><td>SAC, from real-robot experience</td><td>PPO in calibrated contact simulation</td></tr>
+          <tr><th scope="row">Primary signals</th><td>Fused point cloud + robot state</td><td>Wrist F/T history + robot state</td></tr>
+          <tr><th scope="row">Control decision</th><td>Bounded correction, Q-advantage gate</td><td>Force-aware bounded correction</td></tr>
+          <tr><th scope="row">Physical result</th><td>Example robot runs</td><td>~80% insertion success</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:10px;font-size:14.5px"><a href="../force-aware-insertion/">UR5e force-aware insertion →</a></p>
+    <p class="note"><b>Next:</b> matched-trial success rates for base vs. base + residual on the UR10, using the evaluation script in the repository.</p>
+  </section>
+</main>
+
+<footer class="p-foot"><span><a href="../../">← Utkarsh Rai</a></span><span><a href="mailto:rai.ut@northeastern.edu">rai.ut@northeastern.edu</a></span></footer>
+<script src="../../site.js?v=20261126" defer></script>
+</body>
+</html>

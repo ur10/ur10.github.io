@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact-Aware Residual RL for Sim-to-Real Insertion | Utkarsh Rai</title>
+<meta name="description" content="Force-aware residual reinforcement learning on a physical UR5e: a bounded PPO residual over a frozen DAgger controller reaches ~80% physical nut-on-rod insertion success, ahead of a naïve expert and a transferred visuomotor policy." />
+<link rel="canonical" href="https://ur10.github.io/projects/force-aware-insertion/" />
+<meta property="og:title" content="Contact-Aware Residual RL for Sim-to-Real Insertion" />
+<meta property="og:description" content="~80% physical insertion success on a UR5e with a force-aware residual policy. Contact simulation, calibration from real measurements, DAgger + residual PPO." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ur10.github.io/projects/force-aware-insertion/" />
+<meta property="og:image" content="https://ur10.github.io/assets/force/group-1.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="../../site.css?v=20261126" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topnav">
+  <div class="topnav-in">
+    <a class="home" href="../../">Utkarsh Rai</a>
+    <nav aria-label="Site">
+      <a href="../../#robot-learning">Robot Learning</a>
+      <a href="../../#optimization">Optimization</a>
+      <a href="../../#publications">Publications</a>
+      <a href="../../#experience">Experience</a>
+      <a href="../../assets/cv/Utkarsh_Rai_Resume.pdf">CV</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <header class="p-header">
+    <h1 class="p-title">Contact-Aware Residual RL for Sim-to-Real Insertion</h1>
+    <p class="p-sub">Force-aware residual reinforcement learning for nut-on-rod insertion on a physical UR5e</p>
+    <p class="p-authors"><a href="../../">Utkarsh Rai</a></p>
+    <p class="p-affil">Northeastern University · 2026</p>
+    <p class="p-scope"><span class="scope hw">Physical UR5e</span><span class="scope sim">Isaac Lab contact simulation</span></p>
+    <div class="pills">
+      <a class="pill" href="https://github.com/ur10/force-sim2real-ur5e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>Code</a>
+      <a class="pill" href="https://github.com/ur10/force-sim2real-ur5e/tree/main/docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Docs</a>
+      <a class="pill" href="https://github.com/ur10/force-sim2real-ur5e/tree/main/docs/media/hardware"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>Hardware footage</a>
+    </div>
+  </header>
+
+  <!-- Teaser: hardware first -->
+  <section class="p-wide teaser">
+    <div class="grid3">
+      <figure class="fig"><div class="frame"><video data-loop autoplay muted loop playsinline preload="metadata" poster="../../assets/force/group-0.jpg" aria-label="Hardware rollout 1: the residual policy lowers the nut onto the threaded rod and seats it"><source src="../../assets/force/group-0.mp4" type="video/mp4"></video></div></figure>
+      <figure class="fig"><div class="frame"><video data-loop autoplay muted loop playsinline preload="metadata" poster="../../assets/force/group-1.jpg" aria-label="Hardware rollout 2: the residual policy seats the nut on the threaded rod"><source src="../../assets/force/group-1.mp4" type="video/mp4"></video></div></figure>
+      <figure class="fig"><div class="frame"><video data-loop autoplay muted loop playsinline preload="metadata" poster="../../assets/force/group-2.jpg" aria-label="Hardware rollout 3: the residual policy seats the nut on the threaded rod"><source src="../../assets/force/group-2.mp4" type="video/mp4"></video></div></figure>
+    </div>
+    <figure class="fig"><figcaption>Three rollouts of the force-aware residual policy on the physical UR5e, side camera, real time. All five camera views are in the <a href="https://github.com/ur10/force-sim2real-ur5e/tree/main/docs/media/hardware">repository</a>.</figcaption></figure>
+  </section>
+
+  <div class="keyresult">
+    <div class="keyresult-top">
+      <div class="kr hw"><span class="num">~80%</span><span class="lab" style="max-width:46ch">physical insertion success with the force-aware residual, ahead of a naïve expert replay and a transferred visuomotor policy <span class="pre">preliminary</span></span></div>
+    </div>
+    <dl class="qa">
+      <div><dt>Question</dt><dd>Does a force-aware residual improve physical insertion over the controllers it is built from?</dd></div>
+      <div><dt>Setting</dt><dd>Physical UR5e, Robotiq 2F-85 fin-ray gripper, printed nut onto a threaded rod (≈2.7 mm radial clearance)</dd></div>
+      <div><dt>Measurement</dt><dd>Insertion success: the nut seated on the rod at the end of the attempt</dd></div>
+      <div><dt>Comparators</dt><dd>Naïve expert replay · sim-to-real visuomotor policy, same task and protocol</dd></div>
+    </dl>
+  </div>
+
+  <section class="p-section p-col" aria-labelledby="h-overview">
+    <h2 class="p-h" id="h-overview">Overview</h2>
+    <p>Simulation-trained manipulation policies often fail during insertion: small grasping errors, contact forces and calibration inaccuracies are not captured by visual observations or demonstration replay.</p>
+    <p>I developed a force-aware policy adaptation framework that combines a pretrained base controller with bounded residual RL. The residual reads wrist force/torque feedback and robot state, and corrects the insertion motion while preserving what the base controller already does well. Payload, sensing and fixture measurements from the real robot are fed back into an Isaac Lab contact simulation, so the observation chain the policy trains on matches the one it runs on.</p>
+  </section>
+
+  <section class="p-section" id="method" aria-labelledby="h-method">
+    <div class="p-col"><h2 class="p-h" id="h-method">Method</h2>
+      <p>DAgger distils a privileged contact expert into a base policy that runs on hardware observations. Residual PPO then learns corrections on top of that base while it stays frozen. The residual actor starts with a near-zero mean, so early training reproduces the base controller.</p>
+    </div>
+    <div class="p-wide" style="margin-top:18px">
+      <figure class="diagram">
+        <div class="scroll">
+        <svg viewBox="0 0 960 400" role="img" aria-labelledby="dg1-t dg1-d">
+          <title id="dg1-t">Base-plus-residual architecture</title>
+          <desc id="dg1-d">A 62-value observation of wrench history, TCP offsets, previous action and alignment estimate feeds a frozen DAgger base and a residual PPO actor. The residual also sees the base action. Their outputs are summed with a bounded, clipped correction and sent as a 5-D TCP velocity to the physical UR5e. Wrist force/torque and robot state feed back into the observation. An asymmetric critic with simulator state is used only during training.</desc>
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="dg-head"/></marker>
+            <marker id="ahd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--faint)"/></marker>
+          </defs>
+          <path class="dg-a" d="M810 92 V24 H125 V108" marker-end="url(#ah)"/>
+          <text class="dg-m" x="468" y="17" text-anchor="middle">WRIST F/T + TCP STATE · 30 HZ</text>
+          <rect class="dg-box data" x="20" y="112" width="210" height="160" rx="12"/>
+          <text class="dg-m" x="38" y="138">OBSERVATION · 62</text>
+          <text class="dg-t" x="38" y="164">Contact history</text>
+          <text class="dg-s" x="38" y="188">8 × six-axis wrench samples</text>
+          <text class="dg-s" x="38" y="208">commanded / measured TCP</text>
+          <text class="dg-s" x="38" y="228">previous action</text>
+          <text class="dg-s" x="38" y="248">XY alignment estimate + flag</text>
+          <rect class="dg-box base" x="292" y="44" width="250" height="88" rx="12"/>
+          <text class="dg-m" x="310" y="70">FROZEN</text>
+          <text class="dg-t" x="310" y="94">DAgger base policy</text>
+          <text class="dg-s" x="310" y="116">62 → 256³ → 5 · from contact expert</text>
+          <rect class="dg-box learn" x="292" y="180" width="250" height="88" rx="12"/>
+          <text class="dg-m" x="310" y="206">LEARNED · PPO</text>
+          <text class="dg-t" x="310" y="230">Force-aware residual</text>
+          <text class="dg-s" x="310" y="252">obs + base action · 67 → 256³ → 5</text>
+          <rect class="dg-box train" x="292" y="306" width="250" height="74" rx="12"/>
+          <text class="dg-m" x="310" y="330">TRAINING ONLY</text>
+          <text class="dg-s" x="310" y="352">asymmetric critic: + 6 simulator states</text>
+          <text class="dg-s" x="310" y="370">contact-aware reward</text>
+          <path class="dg-a" d="M230 170 C262 170 262 88 290 88" marker-end="url(#ah)"/>
+          <path class="dg-a" d="M230 214 C262 214 262 224 290 224" marker-end="url(#ah)"/>
+          <path class="dg-a" d="M417 132 V178" marker-end="url(#ah)"/>
+          <text class="dg-m" x="426" y="160">BASE ACTION</text>
+          <path class="dg-a dash" d="M417 306 V270" marker-end="url(#ahd)"/>
+          <path class="dg-a" d="M542 88 C580 88 590 120 594 136" marker-end="url(#ah)"/>
+          <path class="dg-a" d="M542 224 C580 224 590 190 594 174" marker-end="url(#ah)"/>
+          <circle class="dg-sum" cx="604" cy="155" r="20"/>
+          <path d="M594 155 H614 M604 145 V165" stroke="var(--ink-2)" stroke-width="2"/>
+          <text class="dg-m" x="612" y="254" text-anchor="middle">CLIP(BASE +</text>
+          <text class="dg-m" x="612" y="269" text-anchor="middle">β·CLIP(RES))</text>
+          <path class="dg-a" d="M624 155 H678" marker-end="url(#ah)"/>
+          <rect class="dg-box hw" x="680" y="94" width="262" height="122" rx="12"/>
+          <text class="dg-m dg-hw" x="698" y="120">PHYSICAL HARDWARE</text>
+          <text class="dg-t" x="698" y="146">UR5e + 2F-85 fin-ray</text>
+          <text class="dg-s" x="698" y="170">5-D TCP velocity: X, Y, Z, tilt X/Y</text>
+          <text class="dg-s" x="698" y="192">30 Hz policy → 120 Hz UR control</text>
+          <path class="dg-a" d="M811 216 V262" marker-end="url(#ah)"/>
+          <rect class="dg-box" x="680" y="264" width="262" height="80" rx="12"/>
+          <text class="dg-m" x="698" y="290">EVALUATION</text>
+          <text class="dg-s" x="698" y="312">insertion success vs. naïve expert</text>
+          <text class="dg-s" x="698" y="330">and transferred visuomotor policy</text>
+        </svg>
+        </div>
+        <figcaption>The deployed actor sees only the 62 hardware observations. The six simulator-state values (offset, depth, tilt and bore entry) reach the critic during training, never the robot.</figcaption>
+      </figure>
+    </div>
+    <div class="p-col">
+      <h3 class="p-h3">Action and safety bounds</h3>
+      <p>The policy outputs five TCP velocities: lateral X/Y, vertical Z and tilt about X/Y. Training samples a Gaussian policy with a clipped PPO objective and GAE; deployment uses its deterministic mean.</p>
+      <p class="ineq">action = clip(base_action + residual_scale × clip(residual))</p>
+      <h3 class="p-h3">Contact-aware reward</h3>
+      <p class="ineq wrap">reward = seating bonus + alignment-gated progress − excessive wrench − hard failure − correction size − correction slew − time</p>
+      <ul>
+        <li><b>Geometric seating defines success</b>, not contact force alone.</li>
+        <li><b>Depth progress is gated by alignment</b>, so the policy aligns before pushing deeper.</li>
+        <li><b>Wrench cost is averaged over physics substeps</b> to account for loads between policy updates.</li>
+        <li><b>Residual size and slew carry a cost</b>, favouring small, smooth corrections.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="p-section" id="evaluation" aria-labelledby="h-eval">
+    <div class="p-col"><h2 class="p-h" id="h-eval">Evaluation</h2>
+      <p>The physical evaluation runs the same nut-on-rod task with three controllers: the naïve expert replay, a visuomotor policy transferred from simulation, and the force-aware residual. The simulation benchmark is deliberately tighter than the physical nut (0.5 mm vs. ≈2.7 mm radial clearance), because loose fits hide the difference between policies: at 2.7 mm, blind replay already seats 122 of 128 simulated attempts.</p>
+      <h3 class="p-h3">Simulation benchmark <span class="scope sim" style="margin-left:8px">Physics sim · 0.5 mm</span></h3>
+    </div>
+    <div class="p-col">
+      <div class="table-wrap">
+        <table class="data">
+          <caption>Fin-ray grasp, 128 held-out attempts per condition, one training seed per policy, grouped by the alignment input each policy receives. <a href="https://github.com/ur10/force-sim2real-ur5e/blob/main/results/sim_evaluations.json">Raw results</a></caption>
+          <thead><tr><th scope="col">Alignment input</th><th scope="col">Policy</th><th scope="col" class="r">Seated / 128</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">None</th><td>Blind force-limited replay</td><td class="r"><span class="bar"><i style="--w:27%"></i>35</span></td></tr>
+            <tr><th scope="row">Kinematic estimate</th><td>DAgger</td><td class="r"><span class="bar"><i style="--w:61%"></i>78</span></td></tr>
+            <tr><th scope="row">Oracle-derived, noisy</th><td>DAgger</td><td class="r"><span class="bar"><i style="--w:71%"></i>91</span></td></tr>
+            <tr><th scope="row">Oracle-derived, noisy</th><td>Residual PPO on DAgger</td><td class="r"><span class="bar"><i style="--w:73%"></i>93</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="p-wide" style="margin-top:24px">
+      <div class="grid2">
+        <figure class="fig">
+          <div class="frame white"><img src="../../assets/force/residual_learning_curve.png" alt="Held-out seated rate per checkpoint for residual RL on a blind base: the fin-ray grasp model reaches 112 of 128 and the first grasp model 125 of 128, versus 20 and 7 of 128 for the blind base alone." loading="lazy" width="1080" height="540"></div>
+          <figcaption><b>Residual RL lifts a blind base.</b> On the fin-ray grasp model, a residual on a base that seats 20/128 alone reaches 112/128 held-out after 90 minutes of training.</figcaption>
+        </figure>
+        <figure class="fig">
+          <div class="frame"><img src="../../assets/force/comparison_measured.jpg" alt="Simulated insertions from replay, kinematic DAgger, DAgger, residual on DAgger and the privileged expert on the same held-out starts, labelled seated or invalid." loading="lazy" width="1400" height="840"></div>
+          <figcaption><b>Same held-out starts, five strategies:</b> replay, kinematic DAgger, DAgger, residual on DAgger and the privileged expert.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="p-col">
+      <h3 class="p-h3">Ablations that make the hardware result convincing</h3>
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th scope="col">Experiment</th><th scope="col">Question answered</th><th scope="col">Status</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Base controllers vs. residual RL</th><td>Does residual adaptation improve physical insertion success?</td><td><span class="status done">Reported above</span></td></tr>
+            <tr><th scope="row">With vs. without force history</th><td>Is contact feedback necessary for the improvement?</td><td><span class="status">Next</span></td></tr>
+            <tr><th scope="row">Offset and orientation sweeps</th><td>Does the policy tolerate grasp and calibration errors?</td><td><span class="status">Next</span></td></tr>
+            <tr><th scope="row">Success, peak force and duration</th><td>Are successful insertions also safe and efficient?</td><td><span class="status">Next</span></td></tr>
+            <tr><th scope="row">Simulated vs. physical</th><td>Where does the sim-to-real gap remain?</td><td><span class="status">Next</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section" id="engineering" aria-labelledby="h-eng">
+    <div class="p-col"><h2 class="p-h" id="h-eng">Calibration and Deployment</h2>
+      <p>Generated approach demonstrations from my <a href="../real2render2real/">Real2Render pipeline</a> are replayed in an Isaac Lab contact environment built on Factory/IndustReal. Fitted payload, centre of gravity, wrist-sensor noise and fixture registration are written back into the simulator. The exported policy runs in NumPy on the robot computer with the same observation processing and action integration as training.</p>
+    </div>
+    <div class="p-wide" style="margin-top:20px">
+      <figure class="fig">
+        <div class="frame" style="background:#0b1220"><video data-loop autoplay muted loop playsinline preload="metadata" poster="../../assets/force/pipeline_overview.png" width="1200" height="650" aria-label="Three panels at 1× speed: simulated nut contact, real payload calibration and UR5e insertion"><source src="../../assets/force/pipeline_overview.mp4" type="video/mp4"></video></div>
+        <figcaption><b>Simulate → calibrate → deploy:</b> Isaac Lab contact reference, real payload identification and UR5e insertion, each at 1×.</figcaption>
+      </figure>
+      <div class="stats" style="margin-top:22px">
+        <div><b>1.35 kg</b><span>fitted tool payload, vs. 1.0 kg configured</span></div>
+        <div><b>43 mm</b><span>fitted centre of gravity along the tool</span></div>
+        <div><b>1.17 → 0.70 N</b><span>post-tare cross-pose force error (RMS)</span></div>
+        <div><b>10 tests</b><span>offline checks of numerical equivalence and stop behaviour</span></div>
+      </div>
+      <figure class="fig" style="margin-top:24px">
+        <div class="frame white"><img src="../../assets/force/payload_result.jpg" alt="Payload fit result: 1.35 kg mass, 43 mm centre of gravity, and per-pose force error for the configured versus fitted payload." loading="lazy" width="1400" height="788"></div>
+        <figcaption><b>Payload identification</b> from 10 still poses on the physical UR5e: F = m·g + F₀ and T = (m·c) × g + T₀ on the raw wrist-sensor reading.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="p-section" id="contributions" aria-labelledby="h-contrib">
+    <div class="p-wide"><h2 class="p-h" id="h-contrib">Contributions</h2>
+      <div class="contrib">
+        <div class="reused"><h4>Built on</h4><ul>
+          <li><b>Isaac Lab, Factory / IndustReal</b>contact simulation and assembly environments</li>
+          <li><b>DAgger and PPO</b>standard imitation and policy-gradient algorithms</li>
+          <li><b>Real2Render2Real</b>generated approach demonstrations for the UR5e</li>
+        </ul></div>
+        <div class="adapted"><h4>Adapted</h4><ul>
+          <li><b>Contact environment</b>fin-ray grasp compliance, measured payload, sensor noise and fixture registration</li>
+          <li><b>Residual RL formulation</b>frozen base, near-zero residual initialisation, asymmetric critic</li>
+        </ul></div>
+        <div class="original"><h4>Original</h4><ul>
+          <li><b>Force-aware residual policy</b>wrench-history observation, bounded 5-D correction, contact-aware reward</li>
+          <li><b>Measurement → simulation loop</b>payload and sensor identification on the real robot</li>
+          <li><b>Hardware deployment and evaluation</b>NumPy export, equivalence tests, UR5e trials against two baselines</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="p-col">
+      <h3 class="p-h3">How this differs from my UR10 residual project</h3>
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th scope="col"></th><th scope="col">UR10 point-cloud adaptation</th><th scope="col">UR5e force-aware insertion</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Core problem</th><td>Visual and depth uncertainty in fine alignment</td><td>Contact uncertainty during insertion</td></tr>
+            <tr><th scope="row">Base policy</th><td>Frozen DP3 point-cloud diffusion policy</td><td>Frozen DAgger controller</td></tr>
+            <tr><th scope="row">Residual learner</th><td>SAC, from real-robot experience</td><td>PPO in calibrated contact simulation</td></tr>
+            <tr><th scope="row">Primary signals</th><td>Fused point cloud + robot state</td><td>Wrist F/T history + robot state</td></tr>
+            <tr><th scope="row">Control decision</th><td>Bounded correction, Q-advantage gate</td><td>Force-aware bounded correction</td></tr>
+            <tr><th scope="row">Physical result</th><td>Example robot runs</td><td>~80% insertion success</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:10px;font-size:14.5px"><a href="../pointcloud-adaptation/">UR10 point-cloud adaptation →</a></p>
+    </div>
+  </section>
+
+  <section class="p-section p-col" id="limits" aria-labelledby="h-limits">
+    <h2 class="p-h" id="h-limits">Limitations and Next Steps</h2>
+    <ul class="limits">
+      <li><b>One assembly task so far.</b>The workflow is built to be reused, but transfer to other parts and fixtures is untested.</li>
+      <li><b>Kinematic alignment, not vision.</b>The deployed policy uses a kinematic offset estimate; a camera-conditioned approach-and-contact policy is future work.</li>
+      <li><b>Force and time alongside success.</b>Peak force, duration and safety stops are the next metrics to report.</li>
+      <li><b>Grasp slip.</b>The elastic in-hand model does not reproduce irreversible slip, which real contact can cause.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="p-foot"><span><a href="../../">← Utkarsh Rai</a></span><span><a href="mailto:rai.ut@northeastern.edu">rai.ut@northeastern.edu</a></span></footer>
+<script src="../../site.js?v=20261126" defer></script>
+</body>
+</html>

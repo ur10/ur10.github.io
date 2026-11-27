@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Certifiable IMU Preintegration for Globally Optimal State Estimation | Utkarsh Rai</title>
+<meta name="description" content="A Cayley-based IMU preintegration factor that admits a QCQP formulation, a strengthened semidefinite relaxation, and optimality certificates for IMU–GNSS smoothing on EuRoC and UrbanNav." />
+<link rel="canonical" href="https://ur10.github.io/projects/certifiable-imu/" />
+<meta property="og:title" content="Certifiable IMU Preintegration for Globally Optimal State Estimation" />
+<meta property="og:description" content="Cayley preintegration → QCQP → Shor SDP → optimality certificate. 34/34 EuRoC flight windows certified." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ur10.github.io/projects/certifiable-imu/" />
+<meta property="og:image" content="https://ur10.github.io/assets/imu/basins.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="../../site.css?v=20261126" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topnav">
+  <div class="topnav-in">
+    <a class="home" href="../../">Utkarsh Rai</a>
+    <nav aria-label="Site">
+      <a href="../../#robot-learning">Robot Learning</a>
+      <a href="../../#optimization">Optimization</a>
+      <a href="../../#publications">Publications</a>
+      <a href="../../#experience">Experience</a>
+      <a href="../../assets/cv/Utkarsh_Rai_Resume.pdf">CV</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <header class="p-header">
+    <h1 class="p-title">A QCQP-Representable IMU Pre-Integration Factor for Certifiable State Estimation</h1>
+    <p class="p-sub">Nonlinear optimization · QCQP · Semidefinite relaxation · IMU–GNSS smoothing</p>
+    <p class="p-authors"><a href="../../">Utkarsh Rai</a>, Zhexin Xu, Bang-Shien Chen, David Rosen</p>
+    <p class="p-affil">Robust Autonomy Lab, Northeastern University · arXiv 2026</p>
+    <p class="p-scope"><span class="scope data">Recorded EuRoC + UrbanNav IMU</span><span class="scope sim">Simulated GNSS fixes</span></p>
+    <div class="pills">
+      <a class="pill" href="https://arxiv.org/abs/2609.38048"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>arXiv</a>
+      <a class="pill" href="https://github.com/ur10/certifiable-imu-preintegration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>Code &amp; demos</a>
+    </div>
+  </header>
+
+  <section class="p-wide teaser">
+    <figure class="fig">
+      <div class="frame white"><img src="../../assets/imu/basins.png" alt="Left: Levenberg–Marquardt final attitude error from 100 random initial attitudes; 89 reach the global optimum at 0.12 degrees, 11 stop in a local minimum near 158 degrees, while one Cayley SDP solve is certified at 0.12 degrees. Right: histogram of final cost over the global optimum, with the 11 trapped runs at about 7130 times the optimal cost." width="1680" height="630"></div>
+      <figcaption>One 16 s EuRoC MH_04 window with no attitude prior. Levenberg–Marquardt from 100 random attitudes stops in a ~158° local minimum 11 times, at 7,130× the optimal cost, with nothing in its output to flag it. One Cayley SDP solve, with no initial guess, is certified with a relative dual gap of 6 × 10<sup>−10</sup> (0.1° attitude error).</figcaption>
+    </figure>
+  </section>
+
+  <div class="keyresult">
+    <div class="keyresult-top">
+      <div class="kr data"><span class="num">34 / 34</span><span class="lab">EuRoC flight windows certified globally optimal</span></div>
+      <span class="kr-sep" aria-hidden="true"></span>
+      <div class="kr data"><span class="num">122 / 143</span><span class="lab">UrbanNav driving windows certified; the rest are the car at a stop</span></div>
+    </div>
+    <dl class="qa">
+      <div><dt>Question</dt><dd>Can an IMU–GNSS smoother recover a solution without trajectory initialization, and verify its optimality afterwards?</dd></div>
+      <div><dt>Setting</dt><dd>Recorded EuRoC and UrbanNav IMU, back-to-back 16 s windows; GNSS fixes simulated from ground truth</dd></div>
+      <div><dt>Certified when</dt><dd>Numerically rank one, relative candidate-to-dual gap ≤ 10<sup>−6</sup>, residuals within solver tolerance</dd></div>
+      <div><dt>Comparator</dt><dd>Levenberg–Marquardt on the exponential-map formulation, from gravity-aligned and identity starts</dd></div>
+    </dl>
+  </div>
+
+  <section class="p-section p-col" aria-labelledby="h-abstract">
+    <h2 class="p-h" id="h-abstract">Overview</h2>
+    <p>Conventional inertial state estimation relies on nonlinear least-squares solvers that can converge to local minima without any global optimality guarantee. We develop a Cayley-based IMU preintegration factor that admits a quadratically constrained quadratic program. This structure enables a semidefinite relaxation of the maximum-likelihood problem and, when the relaxation is tight, a certificate that the recovered solution is globally optimal.</p>
+    <p>My work focuses on the mathematical formulation, relaxation design and experimental evaluation on synthetic and real-world IMU–GNSS datasets.</p>
+  </section>
+
+  <section class="p-section" aria-labelledby="h-method">
+    <div class="p-col"><h2 class="p-h" id="h-method">Method</h2></div>
+    <div class="p-wide">
+      <div class="flow">
+        <div><b>Nonlinear MLE</b><span>IMU–GNSS smoothing over states, velocities and biases; non-convex in rotation</span></div>
+        <div><b>QCQP formulation</b><span>The rational Cayley map replaces the exponential map; auxiliary variables make every term quadratic</span></div>
+        <div><b>Shor SDP relaxation</b><span>Lift xxᵀ to Z ⪰ 0, drop the rank constraint, add redundant constraints to keep it tight</span></div>
+        <div><b>Optimality certificate</b><span>Recover a feasible estimate and compare its cost with the SDP dual bound</span></div>
+      </div>
+    </div>
+    <div class="p-col">
+      <p class="ineq">dual bound d &nbsp;≤&nbsp; optimal QCQP cost f* &nbsp;≤&nbsp; cost of recovered estimate f(x̂)</p>
+      <h3 class="p-h3">Why change the preintegration factor</h3>
+      <p>The exponential map in conventional preintegration blocks an exact polynomial representation. The Cayley map is rational, so the inertial model can be written as algebraic relations and lifted into quadratic form, with auxiliary variables for the coupled state and bias terms.</p>
+      <h3 class="p-h3">Why add redundant constraints</h3>
+      <p>Auxiliary variables make the problem quadratic, but dropping the rank constraint can separate them from the physics they represent. Redundant identities on the lifting variables restore that structure in the relaxation without removing any feasible physical solution. Tightness is then checked on every instance.</p>
+    </div>
+  </section>
+
+  <section class="p-section" aria-labelledby="h-results">
+    <div class="p-col"><h2 class="p-h" id="h-results">Results</h2></div>
+    <div class="p-wide stack">
+      <figure class="fig">
+        <div class="frame white"><img src="../../assets/imu/sweep.png" alt="Left: grid of 34 EuRoC windows across four sequences, all certified with log10 dual gaps between minus 7 and minus 11. Right: LM from identity attitude versus Cayley SDP attitude error; all points on the diagonal except three windows where LM stops about 176 degrees off." loading="lazy" width="1750" height="680"></div>
+        <figcaption><b>Certificate success, window by window.</b> Every EuRoC window certifies, with dual gaps of 10<sup>−7</sup> to 10<sup>−11</sup>. From a gravity-aligned start LM agrees on all 34; from identity it stops ~176° off on three, all of which have a certified reference.</figcaption>
+      </figure>
+      <figure class="fig">
+        <div class="frame white"><img src="../../assets/imu/urbannav_certified.png" alt="Two UrbanNav drives in Hong Kong coloured by the heading error of each certified 16 second window: medium urban, 41 of 48 certified, median 0.45 degrees, worst 1.5; deep urban, 81 of 95 certified, median 0.79 degrees, worst 6.3. Grey dots mark stops that were not certified." loading="lazy" width="1800" height="840"></div>
+        <figcaption><b>Optimal is not the same as accurate.</b> On two Hong Kong drives, 122 of 143 windows certify. The largest certified heading errors occur in weakly excited motion: solving the problem globally does not remove ambiguity in the measurements.</figcaption>
+      </figure>
+      <figure class="fig">
+        <div class="frame white"><img src="../../assets/imu/mission_certified.png" alt="Simulated quadrotor mission: 32 of 41 windows certified with median attitude error 0.15 degrees; the nine windows during GNSS jamming are not certified; LM restarted from random attitudes is trapped at 158 to 161 degrees on three windows." loading="lazy" width="1500" height="540"></div>
+        <figcaption><b>Failure mode: degraded GNSS.</b> In a simulated mission, the nine windows under GNSS jamming do not certify; everywhere else the certified SDP and a warm-started LM agree, while random LM restarts are trapped 158–161° off.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="p-section" aria-labelledby="h-rt">
+    <div class="p-col"><h2 class="p-h" id="h-rt">Runtime and Scalability</h2>
+      <p>A dense SDP grows quickly with the estimation window: about 0.5 s for a 4 s window and 74–85 s for 32 s on one thread. Exploiting the chain structure of the smoothing problem with a chordal decomposition brings 32 s windows down to 4–8 s and makes 64 s windows solvable in 12–21 s. The flight experiments report a median of 20 s per window with four sequences sharing 12 cores (6.7 s uncontended): an offline smoother with a certificate, not yet a real-time filter.</p>
+    </div>
+    <div class="p-col" style="margin-top:8px">
+<!-- RUNTIME-CHART:START (generated by scripts/build_runtime_chart.py) -->
+<figure class="chart" style="margin:0">
+  <p class="chart-title">Solve time grows with the window; chordal decomposition flattens it</p>
+  <p class="chart-sub">Median over recorded start windows; faint points are individual runs. Hover a point for values.</p>
+  <ul class="legend"><li><i style="background:var(--s1)"></i>Dense MOSEK</li><li><i style="background:var(--s2)"></i>Dense + presolve</li><li><i style="background:var(--s3)"></i>Chordal MOSEK</li></ul>
+  <svg viewBox="0 0 720 330" role="img" aria-labelledby="rt-title rt-desc">
+<title id="rt-title">Solve time versus estimation window length</title>
+<desc id="rt-desc">Log-log chart. Dense MOSEK and dense with presolve grow from about 0.5 s at a 4 s window to about 75 to 81 s at 32 s. The chordal decomposition grows from 0.5 s to 6.1 s at 32 s and 16.3 s at 64 s.</desc>
+<line class="c-grid" x1="58" x2="600" y1="228.5" y2="228.5"/>
+<text class="c-tick" x="50" y="232.5" text-anchor="end">1 s</text>
+<line class="c-grid" x1="58" x2="600" y1="129.9" y2="129.9"/>
+<text class="c-tick" x="50" y="133.9" text-anchor="end">10 s</text>
+<line class="c-grid" x1="58" x2="600" y1="31.4" y2="31.4"/>
+<text class="c-tick" x="50" y="35.4" text-anchor="end">100 s</text>
+<line class="c-axis" x1="58" x2="600" y1="280" y2="280"/>
+<text class="c-tick" x="58.0" y="298" text-anchor="middle">4 s</text>
+<text class="c-tick" x="193.5" y="298" text-anchor="middle">8 s</text>
+<text class="c-tick" x="329.0" y="298" text-anchor="middle">16 s</text>
+<text class="c-tick" x="464.5" y="298" text-anchor="middle">32 s</text>
+<text class="c-tick" x="600.0" y="298" text-anchor="middle">64 s</text>
+<text class="c-lab" x="329.0" y="326" text-anchor="middle">Estimation window length (log scale)</text>
+<text class="c-lab" transform="translate(14 147.0) rotate(-90)" text-anchor="middle">Wall-clock time, one thread</text>
+<circle class="c-run" cx="58.0" cy="260.6" r="3" fill="var(--s1)"/>
+<circle class="c-run" cx="58.0" cy="254.7" r="3" fill="var(--s1)"/>
+<circle class="c-run" cx="193.5" cy="201.2" r="3" fill="var(--s1)"/>
+<circle class="c-run" cx="193.5" cy="192.7" r="3" fill="var(--s1)"/>
+<circle class="c-run" cx="329.0" cy="110.0" r="3" fill="var(--s1)"/>
+<circle class="c-run" cx="329.0" cy="108.6" r="3" fill="var(--s1)"/>
+<circle class="c-run" cx="464.5" cy="43.0" r="3" fill="var(--s1)"/>
+<circle class="c-run" cx="464.5" cy="38.2" r="3" fill="var(--s1)"/>
+<path class="c-line" d="M58.0 257.5 L193.5 196.7 L329.0 109.3 L464.5 40.5" stroke="var(--s1)"/>
+<circle class="c-pt" cx="58.0" cy="257.5" r="4.5" fill="var(--s1)"/>
+<circle class="c-hit" cx="58.0" cy="257.5" r="13" tabindex="0" data-tip="Dense MOSEK · 4 s window · median 0.51 s (2 runs: 0.47 s, 0.54 s)" aria-label="Dense MOSEK · 4 s window · median 0.51 s (2 runs: 0.47 s, 0.54 s)"/>
+<circle class="c-pt" cx="193.5" cy="196.7" r="4.5" fill="var(--s1)"/>
+<circle class="c-hit" cx="193.5" cy="196.7" r="13" tabindex="0" data-tip="Dense MOSEK · 8 s window · median 2.10 s (2 runs: 1.89 s, 2.31 s)" aria-label="Dense MOSEK · 8 s window · median 2.10 s (2 runs: 1.89 s, 2.31 s)"/>
+<circle class="c-pt" cx="329.0" cy="109.3" r="4.5" fill="var(--s1)"/>
+<circle class="c-hit" cx="329.0" cy="109.3" r="13" tabindex="0" data-tip="Dense MOSEK · 16 s window · median 16.2 s (2 runs: 15.9 s, 16.5 s)" aria-label="Dense MOSEK · 16 s window · median 16.2 s (2 runs: 15.9 s, 16.5 s)"/>
+<circle class="c-pt" cx="464.5" cy="40.5" r="4.5" fill="var(--s1)"/>
+<circle class="c-hit" cx="464.5" cy="40.5" r="13" tabindex="0" data-tip="Dense MOSEK · 32 s window · median 80.7 s (2 runs: 76.2 s, 85.1 s)" aria-label="Dense MOSEK · 32 s window · median 80.7 s (2 runs: 76.2 s, 85.1 s)"/>
+<text class="c-dl" x="476.5" y="30.5">Dense MOSEK</text>
+<circle class="c-run" cx="58.0" cy="261.1" r="3" fill="var(--s2)"/>
+<circle class="c-run" cx="58.0" cy="256.3" r="3" fill="var(--s2)"/>
+<circle class="c-run" cx="193.5" cy="196.6" r="3" fill="var(--s2)"/>
+<circle class="c-run" cx="193.5" cy="191.6" r="3" fill="var(--s2)"/>
+<circle class="c-run" cx="329.0" cy="113.8" r="3" fill="var(--s2)"/>
+<circle class="c-run" cx="329.0" cy="113.5" r="3" fill="var(--s2)"/>
+<circle class="c-run" cx="464.5" cy="44.2" r="3" fill="var(--s2)"/>
+<circle class="c-run" cx="464.5" cy="43.5" r="3" fill="var(--s2)"/>
+<path class="c-line" d="M58.0 258.6 L193.5 194.0 L329.0 113.6 L464.5 43.8" stroke="var(--s2)"/>
+<circle class="c-pt" cx="58.0" cy="258.6" r="4.5" fill="var(--s2)"/>
+<circle class="c-hit" cx="58.0" cy="258.6" r="13" tabindex="0" data-tip="Dense + presolve · 4 s window · median 0.49 s (2 runs: 0.47 s, 0.52 s)" aria-label="Dense + presolve · 4 s window · median 0.49 s (2 runs: 0.47 s, 0.52 s)"/>
+<circle class="c-pt" cx="193.5" cy="194.0" r="4.5" fill="var(--s2)"/>
+<circle class="c-hit" cx="193.5" cy="194.0" r="13" tabindex="0" data-tip="Dense + presolve · 8 s window · median 2.24 s (2 runs: 2.11 s, 2.37 s)" aria-label="Dense + presolve · 8 s window · median 2.24 s (2 runs: 2.11 s, 2.37 s)"/>
+<circle class="c-pt" cx="329.0" cy="113.6" r="4.5" fill="var(--s2)"/>
+<circle class="c-hit" cx="329.0" cy="113.6" r="13" tabindex="0" data-tip="Dense + presolve · 16 s window · median 14.6 s (2 runs: 14.6 s, 14.7 s)" aria-label="Dense + presolve · 16 s window · median 14.6 s (2 runs: 14.6 s, 14.7 s)"/>
+<circle class="c-pt" cx="464.5" cy="43.8" r="4.5" fill="var(--s2)"/>
+<circle class="c-hit" cx="464.5" cy="43.8" r="13" tabindex="0" data-tip="Dense + presolve · 32 s window · median 74.7 s (2 runs: 74.1 s, 75.3 s)" aria-label="Dense + presolve · 32 s window · median 74.7 s (2 runs: 74.1 s, 75.3 s)"/>
+<text class="c-dl" x="476.5" y="59.8">Dense + presolve</text>
+<circle class="c-run" cx="58.0" cy="264.8" r="3" fill="var(--s3)"/>
+<circle class="c-run" cx="58.0" cy="249.9" r="3" fill="var(--s3)"/>
+<circle class="c-run" cx="193.5" cy="246.9" r="3" fill="var(--s3)"/>
+<circle class="c-run" cx="193.5" cy="235.6" r="3" fill="var(--s3)"/>
+<circle class="c-run" cx="329.0" cy="186.7" r="3" fill="var(--s3)"/>
+<circle class="c-run" cx="329.0" cy="161.1" r="3" fill="var(--s3)"/>
+<circle class="c-run" cx="464.5" cy="169.2" r="3" fill="var(--s3)"/>
+<circle class="c-run" cx="464.5" cy="138.4" r="3" fill="var(--s3)"/>
+<circle class="c-run" cx="600.0" cy="123.6" r="3" fill="var(--s3)"/>
+<circle class="c-run" cx="600.0" cy="98.2" r="3" fill="var(--s3)"/>
+<path class="c-line" d="M58.0 256.7 L193.5 240.9 L329.0 172.0 L464.5 151.1 L600.0 109.1" stroke="var(--s3)"/>
+<circle class="c-pt" cx="58.0" cy="256.7" r="4.5" fill="var(--s3)"/>
+<circle class="c-hit" cx="58.0" cy="256.7" r="13" tabindex="0" data-tip="Chordal MOSEK · 4 s window · median 0.52 s (2 runs: 0.43 s, 0.61 s)" aria-label="Chordal MOSEK · 4 s window · median 0.52 s (2 runs: 0.43 s, 0.61 s)"/>
+<circle class="c-pt" cx="193.5" cy="240.9" r="4.5" fill="var(--s3)"/>
+<circle class="c-hit" cx="193.5" cy="240.9" r="13" tabindex="0" data-tip="Chordal MOSEK · 8 s window · median 0.75 s (2 runs: 0.65 s, 0.85 s)" aria-label="Chordal MOSEK · 8 s window · median 0.75 s (2 runs: 0.65 s, 0.85 s)"/>
+<circle class="c-pt" cx="329.0" cy="172.0" r="4.5" fill="var(--s3)"/>
+<circle class="c-hit" cx="329.0" cy="172.0" r="13" tabindex="0" data-tip="Chordal MOSEK · 16 s window · median 3.74 s (2 runs: 2.66 s, 4.83 s)" aria-label="Chordal MOSEK · 16 s window · median 3.74 s (2 runs: 2.66 s, 4.83 s)"/>
+<circle class="c-pt" cx="464.5" cy="151.1" r="4.5" fill="var(--s3)"/>
+<circle class="c-hit" cx="464.5" cy="151.1" r="13" tabindex="0" data-tip="Chordal MOSEK · 32 s window · median 6.10 s (2 runs: 4.00 s, 8.20 s)" aria-label="Chordal MOSEK · 32 s window · median 6.10 s (2 runs: 4.00 s, 8.20 s)"/>
+<circle class="c-pt" cx="600.0" cy="109.1" r="4.5" fill="var(--s3)"/>
+<circle class="c-hit" cx="600.0" cy="109.1" r="13" tabindex="0" data-tip="Chordal MOSEK · 64 s window · median 16.3 s (2 runs: 11.6 s, 21.0 s)" aria-label="Chordal MOSEK · 64 s window · median 16.3 s (2 runs: 11.6 s, 21.0 s)"/>
+<text class="c-dl" x="612.0" y="113.1">Chordal MOSEK</text>
+</svg>
+  <details class="data-view"><summary>Show as a table</summary>
+    <div class="table-wrap"><table class="data"><thead><tr><th scope="col">Window</th><th scope="col" class="r">Dense MOSEK</th><th scope="col" class="r">Dense + presolve</th><th scope="col" class="r">Chordal MOSEK</th></tr></thead><tbody><tr><th scope="row">4 s</th><td class="r">0.51 s</td><td class="r">0.49 s</td><td class="r">0.52 s</td></tr><tr><th scope="row">8 s</th><td class="r">2.10 s</td><td class="r">2.24 s</td><td class="r">0.75 s</td></tr><tr><th scope="row">16 s</th><td class="r">16.2 s</td><td class="r">14.6 s</td><td class="r">3.74 s</td></tr><tr><th scope="row">32 s</th><td class="r">80.7 s</td><td class="r">74.7 s</td><td class="r">6.10 s</td></tr><tr><th scope="row">64 s</th><td class="r">not run</td><td class="r">not run</td><td class="r">16.3 s</td></tr></tbody></table></div>
+  </details>
+</figure>
+<!-- RUNTIME-CHART:END -->
+    </div>
+  </section>
+
+  <section class="p-section p-col" aria-labelledby="h-scope">
+    <h2 class="p-h" id="h-scope">What the Certificate Says</h2>
+    <ul class="limits">
+      <li><b>It certifies the stated Cayley objective,</b>including its noise model, bias linearization and priors. Baselines must be evaluated under the same QCQP to compare costs.</li>
+      <li><b>Optimal is not necessarily accurate.</b>Weak heading excitation can leave yaw poorly determined even at a certified global optimum.</li>
+      <li><b>An uncertified window is inconclusive.</b>Failure to certify does not prove the estimate is wrong or locally optimal.</li>
+      <li><b>Tightness and cost depend on the instance.</b>Degraded GNSS, a stationary vehicle and long windows can prevent certification or make the solve expensive.</li>
+    </ul>
+  </section>
+
+  <section class="p-section p-col" aria-labelledby="h-cite">
+    <h2 class="p-h" id="h-cite">Citation</h2>
+    <p class="ineq wrap" style="text-align:left">U. Rai, Z. Xu, B.-S. Chen, D. Rosen. "A QCQP-Representable IMU Pre-Integration Factor for Certifiable State Estimation." arXiv:2609.38048, 2026.</p>
+  </section>
+</main>
+
+<footer class="p-foot"><span><a href="../../">← Utkarsh Rai</a></span><span><a href="mailto:rai.ut@northeastern.edu">rai.ut@northeastern.edu</a></span></footer>
+<script src="../../site.js?v=20261126" defer></script>
+</body>
+</html>
